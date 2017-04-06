@@ -163,7 +163,6 @@ $rs2=mysql_fetch_row($stock2);
                 <tr class="header">
                     <td>股票代碼</td>
                     <td>購入日期</td>
-                    <td>購入價位</td>
                     <td>權重</td>
                 </tr>
 <?php
@@ -174,7 +173,6 @@ $rs=mysql_fetch_row($stock);
                 <tr class="content">
                     <td><?php echo $rs[3]?></td>
                     <td><?php echo $rs[1]?></td>
-                    <td><?php echo $rs[2]?></td>
                     <td><?php echo $rs[4]?></td>
                 </tr>
 <?php
