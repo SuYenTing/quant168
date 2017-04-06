@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>快樂退休理財網</title>
+    <link rel="icon" type="image" href="img/favicon.ico" />
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <style>
+    body {
+        padding-top: 130px;
+    }
+  
+    .navbar-template {
+        padding: 40px 5px;
+    }
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: red; /*BACKGROUND color for active*/
+background-color: #030033;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+color: red;  /*Sets the text hover color on navbar*/
+}
+
+  .navbar-default {
+    background-color: #0f006f;
+    border-color: #030033;
+}
+
+.navbar-default  > .logo{
+    background-color: white;
+    border-color: white;
+}
+
+    </style>
+    
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div id="logo" class="logo" align="center">
+        <a href="/">
+            <img src="img/logo.png" alt="快樂退休理財網" /></a>
+    </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.php">Home</a></li>
+                    
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">量化基金<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">投資基金<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="investfundprofit1m.php">獲利基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="smart-beta2.php">成長基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="smart-beta3.php">股利基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="smart-beta4.php">穩健基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="smart-beta5.php">品質基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="smart-beta2.php">嚴選基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="smart-beta3.php">風險預警基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="smart-beta4.php">技術嚴選基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="smart-beta5.php">價值嚴選基金</a></li>
+                                </ul>
+                            </li>
+                             <li class="divider"></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">退休基金<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">獲利型基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">成長型基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">股利型基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">穩健型基金</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">品質型基金</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">個股診斷<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">基本分析<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="sbscore.php">SB分數</a></li>
+                                </ul>
+                            </li>
+                             <li class="divider"></li>
+                            <li>
+                                 <li><a href="stock-tech.php">技術分析</a></li>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="select-stock-sb.php" >精選個股</a></li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">理財規劃<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="PnsnPl.php" >個人規劃</a>
+                            </li>
+                             <li class="divider"></li>
+                            <li>
+                                <a href="PnsnPl.php" >理財小工具</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    <!--<div class="container">
+        <div class="navbar-template text-center">
+            <h1>Bootstrap NavBar</h1>
+            <p class="lead text-info">NavBar with too many childs.</p>
+        </div>
+    </div>-->
+    <!-- /.container -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+
+</html>
