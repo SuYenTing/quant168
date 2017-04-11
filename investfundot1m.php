@@ -16,6 +16,30 @@ $IndexTrendData=mysql_query("select date, close/(select close from stock_market.
     width: 80%;
     
 }
+td {
+    text-align: center;
+    vertical-align: middle;
+    height: 30px;
+}
+
+.header {
+    background-color: #409ad5
+}
+
+.subheader {
+    background-color: #AAD1E4
+}
+
+.content {
+    background-color: #D9EDF7
+}
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
 </style>
 <div class="container">
     <div>
@@ -27,29 +51,10 @@ $IndexTrendData=mysql_query("select date, close/(select close from stock_market.
     </div>
     <div>
         <div>
-            <style type="text/css">
-            td {
-                text-align: center;
-                vertical-align: middle;
-                height: 30px;
-            }
-            
-            .header {
-                background-color: #409ad5
-            }
-            
-            .subheader {
-                background-color: #AAD1E4
-            }
-            
-            .content {
-                background-color: #D9EDF7
-            }
-            </style>
             <table>
                 <tr class="header">
                     <td></td>
-                    <td>獲利基金</td>
+                    <td>基金</td>
                     <td>調整後台灣加權指數</td>
                 </tr>
 <?php
@@ -84,25 +89,6 @@ $rs2=mysql_fetch_row($stock2);
     <div>
         <h4>淨值比較表</h4>
         <div>
-            <style type="text/css">
-            td {
-                text-align: center;
-                vertical-align: middle;
-                height: 30px;
-            }
-            
-            .header {
-                background-color: #409ad5
-            }
-            
-            .subheader {
-                background-color: #AAD1E4
-            }
-            
-            .content {
-                background-color: #D9EDF7
-            }
-            </style>
             <table>
                 <tr class="header">
                     <td>期間報酬(%)</td>
@@ -140,25 +126,6 @@ $rs2=mysql_fetch_row($stock2);
     <div>
         <h4>最新持股</h4>
         <div>
-            <style type="text/css">
-            td {
-                text-align: center;
-                vertical-align: middle;
-                height: 30px;
-            }
-            
-            .header {
-                background-color: #409ad5
-            }
-            
-            .subheader {
-                background-color: #AAD1E4
-            }
-            
-            .content {
-                background-color: #D9EDF7
-            }
-            </style>
             <table>
                 <tr class="header">
                     <td>股票代碼</td>
@@ -166,7 +133,7 @@ $rs2=mysql_fetch_row($stock2);
                     <td>權重</td>
                 </tr>
 <?php
-$stock=mysql_query("SELECT * FROM web_data.strategies_holding where start_date=(select max(start_date) from web_data.strategies_holding) ;");
+$stock=mysql_query("SELECT * FROM web_data.strategies_holding where start_date=(select max(start_date) from web_data.strategies_holding where name='ot.1m') and name='ot.1m' ;");
 for($i=1;$i<=mysql_num_rows($stock);$i++){
 $rs=mysql_fetch_row($stock);
 ?>
@@ -210,7 +177,8 @@ $tmp = $tmp+$rs[1];
 <?php
 }
 ?>],
-      backgroundColor: "rgba(153,255,51,0.4)"
+     backgroundColor: "rgba(0,0,0,0)",
+      borderColor: "rgba(153,255,51,1)"
     },
 {
       label: '指數走勢圖',
@@ -225,7 +193,8 @@ $tmp = $tmp+$rs[1];
 <?php
 }
 ?>],
-      backgroundColor: "rgba(255,0,0,1)"
+       backgroundColor: "rgba(0,0,0,0)",
+      borderColor: "rgba(255,153,0,1)"
     }
     ]
   }
