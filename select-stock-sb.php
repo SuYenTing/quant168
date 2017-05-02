@@ -193,6 +193,271 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                             <button  onclick="addcondition('order_angle')">新增</button>
                         </td>
                     </tr>
+                    <tr>
+                        <th colspan="2" class="tablesubtit">
+                            <h3>籌碼面</h3></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            <select id="chip1Vtype">
+                                <option value="volume" selected>張數</option>
+                                <option value="value">金額</option>
+                            </select>
+                            前
+                            <input type="text" id="chip1Number" size="4">
+                            名個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日連續
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            過
+                            <input type="text" id="chip1Number" size="4">
+                            日以上個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日的近
+                            <select id="chip1Type">
+                                <option value="f_" selected>1</option>
+                                <option value="t_">2</option>
+                                <option value="d_">3</option>
+                                <option value="f_">5</option>
+                                <option value="t_">10</option>
+                                <option value="d_">20</option>
+                                <option value="f_">30</option>
+                                <option value="t_">60</option>
+                            </select>
+                            個交易日
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            過
+                            <input type="text" id="chip1Number" size="4">
+                            日以上個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日的近
+                            <select id="chip1Type">
+                                <option value="f_" selected>1</option>
+                                <option value="t_">2</option>
+                                <option value="d_">3</option>
+                                <option value="f_">5</option>
+                                <option value="t_">10</option>
+                                <option value="d_">20</option>
+                                <option value="f_">30</option>
+                                <option value="t_">60</option>
+                            </select>
+                            個交易日
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            累積張數超過
+                            <input type="text" id="chip1Number" size="4">
+                            張個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日的近
+                            <select id="chip1Type">
+                                <option value="f_" selected>1</option>
+                                <option value="t_">2</option>
+                                <option value="d_">3</option>
+                                <option value="f_">5</option>
+                                <option value="t_">10</option>
+                                <option value="d_">20</option>
+                                <option value="f_">30</option>
+                                <option value="t_">60</option>
+                            </select>
+                            個交易日
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            累積成交金額超過
+                            <input type="text" id="chip1Number" size="4">
+                            百萬元個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日的近
+                            <select id="chip1Type">
+                                <option value="f_" selected>1</option>
+                                <option value="t_">2</option>
+                                <option value="d_">3</option>
+                                <option value="f_">5</option>
+                                <option value="t_">10</option>
+                                <option value="d_">20</option>
+                                <option value="f_">30</option>
+                                <option value="t_">60</option>
+                            </select>
+                            個交易日累積
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            張數除上流通在外股數之比率前
+                            <input type="text" id="chip1Number" size="4">
+                            名個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日的近
+                            <select id="chip1Type">
+                                <option value="f_" selected>1</option>
+                                <option value="t_">2</option>
+                                <option value="d_">3</option>
+                                <option value="f_">5</option>
+                                <option value="t_">10</option>
+                                <option value="d_">20</option>
+                                <option value="f_">30</option>
+                                <option value="t_">60</option>
+                            </select>
+                            個交易日累積
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            張數除上累積成交量之比率前
+                            <input type="text" id="chip1Number" size="4">
+                            名個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日的近
+                            <select id="chip1Type">
+                                <option value="f_" selected>1</option>
+                                <option value="t_">2</option>
+                                <option value="d_">3</option>
+                                <option value="f_">5</option>
+                                <option value="t_">10</option>
+                                <option value="d_">20</option>
+                                <option value="f_">30</option>
+                                <option value="t_">60</option>
+                            </select>
+                            個交易日累積
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            金額除上市直之比率前
+                            <input type="text" id="chip1Number" size="4">
+                            名個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="chip1Type">
+                                <option value="f_" selected>外資</option>
+                                <option value="t_">投信</option>
+                                <option value="d_">自營商</option>
+                            </select>
+                            今日的近
+                            <select id="chip1Type">
+                                <option value="f_" selected>1</option>
+                                <option value="t_">2</option>
+                                <option value="d_">3</option>
+                                <option value="f_">5</option>
+                                <option value="t_">10</option>
+                                <option value="d_">20</option>
+                                <option value="f_">30</option>
+                                <option value="t_">60</option>
+                            </select>
+                            個交易日累積
+                            <select id="chip1SellBuy">
+                                <option value="net_buy_" selected>買超</option>
+                                <option value="">賣超</option>
+                            </select>
+                            金額除上累積成交金額之比率前
+                            <input type="text" id="chip1Number" size="4">
+                            名個股
+                        </td>
+                        <td>
+                            <button onclick="addcondition('chip1')">新增</button>
+                        </td>
+                    </tr>
                 </table>
             </td>
             <td valign="top">
