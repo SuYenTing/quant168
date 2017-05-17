@@ -197,17 +197,17 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                         <th colspan="2" class="tablesubtit">
                             <h3>籌碼面</h3></th>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <td>
                             <select id="chip1Type">
-                                <option value="f_" selected>外資</option>
-                                <option value="t_">投信</option>
-                                <option value="d_">自營商</option>
+                                <option value="f_net_buy_" selected>外資</option>
+                                <option value="t_net_buy_">投信</option>
+                                <option value="d_net_buy_">自營商</option>
                             </select>
                             今日
                             <select id="chip1SellBuy">
-                                <option value="net_buy_" selected>買超</option>
-                                <option value="">賣超</option>
+                                <option value="> 0" selected>買超</option>
+                                <option value="< 0">賣超</option>
                             </select>
                             <select id="chip1Vtype">
                                 <option value="volume" selected>張數</option>
@@ -220,121 +220,121 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                         <td>
                             <button onclick="addcondition('chip1')">新增</button>
                         </td>
-                    </tr>
+                    </tr>-->
                     <tr>
                         <td>
-                            <select id="chip1Type">
+                            <select id="chip2Type">
                                 <option value="f_" selected>外資</option>
                                 <option value="t_">投信</option>
                                 <option value="d_">自營商</option>
                             </select>
                             今日連續
-                            <select id="chip1SellBuy">
-                                <option value="net_buy_" selected>買超</option>
-                                <option value="">賣超</option>
+                            <select id="chip2SellBuy">
+                                <option value="con_buy_days" selected>買超</option>
+                                <option value="con_sell_days">賣超</option>
                             </select>
                             過
-                            <input type="text" id="chip1Number" size="4">
+                            <input type="text" id="chip2Day" size="4">
                             日以上個股
                         </td>
                         <td>
-                            <button onclick="addcondition('chip1')">新增</button>
+                            <button onclick="addcondition('chip2')">新增</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <select id="chip1Type">
+                            <select id="chip3Type">
                                 <option value="f_" selected>外資</option>
                                 <option value="t_">投信</option>
                                 <option value="d_">自營商</option>
                             </select>
                             今日的近
-                            <select id="chip1Type">
-                                <option value="f_" selected>1</option>
-                                <option value="t_">2</option>
-                                <option value="d_">3</option>
-                                <option value="f_">5</option>
-                                <option value="t_">10</option>
-                                <option value="d_">20</option>
-                                <option value="f_">30</option>
-                                <option value="t_">60</option>
+                            <select id="chip3Num">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="60">60</option>
                             </select>
                             個交易日
-                            <select id="chip1SellBuy">
-                                <option value="net_buy_" selected>買超</option>
-                                <option value="">賣超</option>
+                            <select id="chip3SellBuy">
+                                <option value="buy_days" selected>買超</option>
+                                <option value="sell_days">賣超</option>
                             </select>
                             過
-                            <input type="text" id="chip1Number" size="4">
+                            <input type="text" id="chip3Day" size="4">
                             日以上個股
                         </td>
                         <td>
-                            <button onclick="addcondition('chip1')">新增</button>
+                            <button onclick="addcondition('chip3')">新增</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <select id="chip1Type">
-                                <option value="f_" selected>外資</option>
-                                <option value="t_">投信</option>
-                                <option value="d_">自營商</option>
+                            <select id="chip4Type">
+                                <option value="f_cum_volume" selected>外資</option>
+                                <option value="t_cum_volume">投信</option>
+                                <option value="d_cum_volume">自營商</option>
                             </select>
                             今日的近
-                            <select id="chip1Type">
-                                <option value="f_" selected>1</option>
-                                <option value="t_">2</option>
-                                <option value="d_">3</option>
-                                <option value="f_">5</option>
-                                <option value="t_">10</option>
-                                <option value="d_">20</option>
-                                <option value="f_">30</option>
-                                <option value="t_">60</option>
+                            <select id="chip4Day">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="60">60</option>
                             </select>
                             個交易日
-                            <select id="chip1SellBuy">
-                                <option value="net_buy_" selected>買超</option>
-                                <option value="">賣超</option>
+                            <select id="chip4SellNum">
+                                <option value="> " selected>買超</option>
+                                <option value="< ">賣超</option>
                             </select>
                             累積張數超過
-                            <input type="text" id="chip1Number" size="4">
+                            <input type="text" id="chip4Num" size="4">
                             張個股
                         </td>
                         <td>
-                            <button onclick="addcondition('chip1')">新增</button>
+                            <button onclick="addcondition('chip4')">新增</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <select id="chip1Type">
+                            <select id="chip5Type">
                                 <option value="f_" selected>外資</option>
                                 <option value="t_">投信</option>
                                 <option value="d_">自營商</option>
                             </select>
                             今日的近
-                            <select id="chip1Type">
-                                <option value="f_" selected>1</option>
-                                <option value="t_">2</option>
-                                <option value="d_">3</option>
-                                <option value="f_">5</option>
-                                <option value="t_">10</option>
-                                <option value="d_">20</option>
-                                <option value="f_">30</option>
-                                <option value="t_">60</option>
+                            <select id="chip5Day">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="60">60</option>
                             </select>
                             個交易日
-                            <select id="chip1SellBuy">
-                                <option value="net_buy_" selected>買超</option>
-                                <option value="">賣超</option>
+                            <select id="chip5SellBuy">
+                                <option value="> " selected>買超</option>
+                                <option value="< ">賣超</option>
                             </select>
                             累積成交金額超過
-                            <input type="text" id="chip1Number" size="4">
+                            <input type="text" id="chip5Num" size="5">
                             百萬元個股
                         </td>
                         <td>
-                            <button onclick="addcondition('chip1')">新增</button>
+                            <button onclick="addcondition('chip5')">新增</button>
                         </td>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <td>
                             <select id="chip1Type">
                                 <option value="f_" selected>外資</option>
@@ -457,7 +457,7 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                         <td>
                             <button onclick="addcondition('chip1')">新增</button>
                         </td>
-                    </tr>
+                    </tr>-->
                 </table>
             </td>
             <td valign="top">
@@ -472,7 +472,7 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                         <?php
                             if(isset($_POST['sql'])){
                                 $sql=$_POST['sql'];
-                                $sql="SELECT DISTINCT stock_tech.code FROM web_data.stock_tech INNER JOIN sb_score ON stock_tech.code=sb_score.code where 1=1 ".$sql." order by stock_tech.code";
+                                $sql="SELECT DISTINCT stock_tech.code FROM web_data.stock_tech INNER JOIN sb_score ON stock_tech.code=sb_score.code INNER JOIN ins_bs_con ON stock_tech.code=ins_bs_con.code  INNER JOIN ins_bs_interval ON stock_tech.code=ins_bs_interval.code where 1=1 ".$sql." order by stock_tech.code";
                                 $data=mysql_query($sql);
                         ?>
                         <tr>
@@ -535,6 +535,18 @@ function addcondition(type) {
             sqlarr.push("stock_tech.order_angle/1602"+" > (1-"+document.getElementById("percent").value+") ");
             alert("stock_tech.order_angle/1602"+" > (1-"+document.getElementById("percent").value+") ");
         }
+    }else if (type == 'chip2') {
+        condition.push(document.getElementById("chip2Type").options[document.getElementById("chip2Type").selectedIndex].text + "今日連續"+document.getElementById("chip2SellBuy").options[document.getElementById("chip2SellBuy").selectedIndex].text + " 過"+document.getElementById("chip2Day").value+"日以上個股");
+        sqlarr.push("ins_bs_con." + document.getElementById("chip2Type").value+ document.getElementById("chip2SellBuy").value + " >" + document.getElementById("chip2Day").value);
+    }else if (type == 'chip3') {
+        condition.push(document.getElementById("chip3Type").options[document.getElementById("chip3Type").selectedIndex].text + "今日的近"+document.getElementById("chip3Num").options[document.getElementById("chip3Num").selectedIndex].text + "個交易日"+document.getElementById("chip3SellBuy").options[document.getElementById("chip3SellBuy").selectedIndex].text+"過"+document.getElementById("chip3Day").value+"日以上個股");
+        sqlarr.push("(ins_bs_interval." + document.getElementById("chip3Type").value+ document.getElementById("chip3SellBuy").value + " >" + document.getElementById("chip3Day").value+"and ins_bs_interval.interval_days = "+document.getElementById("chip3Num").value+")");
+    }else if (type == 'chip4') {
+        condition.push(document.getElementById("chip4Type").options[document.getElementById("chip4Type").selectedIndex].text + "今日的近"+document.getElementById("chip4Day").options[document.getElementById("chip4Day").selectedIndex].text + "個交易日累積"+document.getElementById("chip4SellBuy").options[document.getElementById("chip4SellBuy").selectedIndex].text+"過"+document.getElementById("chip4Num").value+"日以上個股");
+        sqlarr.push("(ins_bs_interval." + document.getElementById("chip4Type").value+ document.getElementById("chip4SellBuy").value  + document.getElementById("chip4Num").value+"and ins_bs_interval.interval_days = "+document.getElementById("chip4Day").value+")");
+    }else if (type == 'chip5') {
+        condition.push(document.getElementById("chip5Type").options[document.getElementById("chip5Type").selectedIndex].text + "今日的近"+document.getElementById("chip5Day").options[document.getElementById("chip5Day").selectedIndex].text + "個交易日累積"+document.getElementById("chip5SellBuy").options[document.getElementById("chip4SellBuy").selectedIndex].text+"金額過"+document.getElementById("chip5Num").value+"百萬元個股");
+        sqlarr.push("(ins_bs_interval." + document.getElementById("chip5Type").value+ document.getElementById("chip5SellBuy").value  + document.getElementById("chip5Num").value+"and ins_bs_interval.interval_days = "+document.getElementById("chip5Day").value+")");
     }
     createTable();
 }
@@ -565,6 +577,7 @@ function selectStockSbFormSubmit(){
         sql = sql + " and " + sqlarr[i];
     }
     document.getElementById("sql").value = sql;
+    alert(sql);
     document.getElementById("selectStockSbForm").submit();
 }
 </script>
