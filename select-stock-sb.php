@@ -291,7 +291,7 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                                 <option value="60">60</option>
                             </select>
                             個交易日
-                            <select id="chip4SellNum">
+                            <select id="chip4SellBuy">
                                 <option value="> " selected>買超</option>
                                 <option value="< ">賣超</option>
                             </select>
