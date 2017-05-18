@@ -306,9 +306,9 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                     <tr>
                         <td>
                             <select id="chip5Type">
-                                <option value="f_" selected>外資</option>
-                                <option value="t_">投信</option>
-                                <option value="d_">自營商</option>
+                                <option value="f_cum_value" selected>外資</option>
+                                <option value="t_cum_value">投信</option>
+                                <option value="d_cum_value">自營商</option>
                             </select>
                             今日的近
                             <select id="chip5Day">
@@ -472,7 +472,7 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                         <?php
                             if(isset($_POST['sql'])){
                                 $sql=$_POST['sql'];
-                                $sql="SELECT DISTINCT stock_tech.code FROM web_data.stock_tech INNER JOIN sb_score ON stock_tech.code=sb_score.code INNER JOIN ins_bs_con ON stock_tech.code=ins_bs_con.code  INNER JOIN ins_bs_interval ON stock_tech.code=ins_bs_interval.code where 1=1 ".$sql." order by stock_tech.code";
+                                //$sql="SELECT DISTINCT stock_tech.code FROM web_data.stock_tech INNER JOIN sb_score ON stock_tech.code=sb_score.code INNER JOIN ins_bs_con ON stock_tech.code=ins_bs_con.code  INNER JOIN ins_bs_interval ON stock_tech.code=ins_bs_interval.code where 1=1 ".$sql." order by stock_tech.code";
                                 $data=mysql_query($sql);
                         ?>
                         <tr>
@@ -509,14 +509,15 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
 <script type="text/javascript">
 var condition = [];
 var sqlarr = [];
-
+var tablearr = []; 
 function addcondition(type) {
     if (type == 'sb') {
         condition.push(document.getElementById("sbtype").options[document.getElementById("sbtype").selectedIndex].text + document.getElementById("sbbigsmall").options[document.getElementById("sbbigsmall").selectedIndex].text + document.getElementById("sbscore").options[document.getElementById("sbscore").selectedIndex].text);
         sqlarr.push("sb_score." + document.getElementById("sbtype").value + document.getElementById("sbbigsmall").value + document.getElementById("sbscore").value);
+        inserttablearr("sb_score");
     }else if(type == 'typeSignal'){
         condition.push("波浪型態-"+document.getElementById("typeSignal").options[document.getElementById("typeSignal").selectedIndex].text);
-        sqlarr.push("stock_tech.Type_signal="+document.getElementById("sbtype").value);
+        sqlarr.push("stock_tech.Type_signal="+document.getElementById("typeSignal").value);
     }else if(type == 'ma'){
         condition.push("價與"+document.getElementById("MA1").options[document.getElementById("MA1").selectedIndex].text+document.getElementById("maBigSmall").options[document.getElementById("maBigSmall").selectedIndex].text+document.getElementById("MA2").options[document.getElementById("MA2").selectedIndex].text);
         sqlarr.push("stock_tech."+document.getElementById("MA1").value+" "+document.getElementById("maBigSmall").value+"  stock_tech."+document.getElementById("MA2").value);
@@ -538,15 +539,19 @@ function addcondition(type) {
     }else if (type == 'chip2') {
         condition.push(document.getElementById("chip2Type").options[document.getElementById("chip2Type").selectedIndex].text + "今日連續"+document.getElementById("chip2SellBuy").options[document.getElementById("chip2SellBuy").selectedIndex].text + " 過"+document.getElementById("chip2Day").value+"日以上個股");
         sqlarr.push("ins_bs_con." + document.getElementById("chip2Type").value+ document.getElementById("chip2SellBuy").value + " >" + document.getElementById("chip2Day").value);
+        inserttablearr("ins_bs_con");
     }else if (type == 'chip3') {
         condition.push(document.getElementById("chip3Type").options[document.getElementById("chip3Type").selectedIndex].text + "今日的近"+document.getElementById("chip3Num").options[document.getElementById("chip3Num").selectedIndex].text + "個交易日"+document.getElementById("chip3SellBuy").options[document.getElementById("chip3SellBuy").selectedIndex].text+"過"+document.getElementById("chip3Day").value+"日以上個股");
-        sqlarr.push("(ins_bs_interval." + document.getElementById("chip3Type").value+ document.getElementById("chip3SellBuy").value + " >" + document.getElementById("chip3Day").value+"and ins_bs_interval.interval_days = "+document.getElementById("chip3Num").value+")");
+        sqlarr.push("(ins_bs_interval." + document.getElementById("chip3Type").value+ document.getElementById("chip3SellBuy").value + " >" + document.getElementById("chip3Day").value+" and ins_bs_interval.interval_days = "+document.getElementById("chip3Num").value+")");
+        inserttablearr("ins_bs_interval");
     }else if (type == 'chip4') {
         condition.push(document.getElementById("chip4Type").options[document.getElementById("chip4Type").selectedIndex].text + "今日的近"+document.getElementById("chip4Day").options[document.getElementById("chip4Day").selectedIndex].text + "個交易日累積"+document.getElementById("chip4SellBuy").options[document.getElementById("chip4SellBuy").selectedIndex].text+"過"+document.getElementById("chip4Num").value+"日以上個股");
-        sqlarr.push("(ins_bs_interval." + document.getElementById("chip4Type").value+ document.getElementById("chip4SellBuy").value  + document.getElementById("chip4Num").value+"and ins_bs_interval.interval_days = "+document.getElementById("chip4Day").value+")");
+        sqlarr.push("(ins_bs_interval." + document.getElementById("chip4Type").value+ document.getElementById("chip4SellBuy").value  + document.getElementById("chip4Num").value+" and ins_bs_interval.interval_days = "+document.getElementById("chip4Day").value+")");
+        inserttablearr("ins_bs_interval");
     }else if (type == 'chip5') {
         condition.push(document.getElementById("chip5Type").options[document.getElementById("chip5Type").selectedIndex].text + "今日的近"+document.getElementById("chip5Day").options[document.getElementById("chip5Day").selectedIndex].text + "個交易日累積"+document.getElementById("chip5SellBuy").options[document.getElementById("chip4SellBuy").selectedIndex].text+"金額過"+document.getElementById("chip5Num").value+"百萬元個股");
-        sqlarr.push("(ins_bs_interval." + document.getElementById("chip5Type").value+ document.getElementById("chip5SellBuy").value  + document.getElementById("chip5Num").value+"and ins_bs_interval.interval_days = "+document.getElementById("chip5Day").value+")");
+        sqlarr.push("(ins_bs_interval." + document.getElementById("chip5Type").value+ document.getElementById("chip5SellBuy").value  + document.getElementById("chip5Num").value+" and ins_bs_interval.interval_days = "+document.getElementById("chip5Day").value+")");
+        inserttablearr("ins_bs_interval");
     }
     createTable();
 }
@@ -565,6 +570,12 @@ function createTable() {
     }
 }
 
+function inserttablearr(tablename){
+    if(tablearr.indexOf(tablename)<0){
+        tablearr.push(tablename);
+    }
+
+}
 function deletecondition(i) {
     condition.splice(i, 1);
     sqlarr.splice(i, 1);
@@ -576,8 +587,13 @@ function selectStockSbFormSubmit(){
     for (var i = 0; i < sqlarr.length; i++) {
         sql = sql + " and " + sqlarr[i];
     }
-    document.getElementById("sql").value = sql;
-    alert(sql);
+    
+    table="";
+    for (var i = 0; i < tablearr.length; i++) {
+        table = table + " INNER JOIN "+tablearr[i]+" ON stock_tech.code="+tablearr[i]+".code ";
+    }
+    document.getElementById("sql").value = "SELECT DISTINCT stock_tech.code FROM web_data.stock_tech "+table+" where 1=1 "+sql+" order by stock_tech.code ";
+    alert(document.getElementById("sql").value);
     document.getElementById("selectStockSbForm").submit();
 }
 </script>
