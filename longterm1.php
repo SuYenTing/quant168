@@ -391,6 +391,21 @@ $goal = $_POST['goal'];
 		var emplAver = emplTotal / (((1 + (roi / 12) * 1) * ((Math.pow((1 + (roi / 12)), (lifeLeft * 12)) - 1) / (roi / 12))));
 		var selfAver = selfTotal / (((1 + (roi / 12) * 1) * ((Math.pow((1 + (roi / 12)), (lifeLeft * 12)) - 1) / (roi / 12))));
 		var totalAver = emplAver + selfAver;
+
+		var z = retireAge - workAge;
+		var y1 = Math.min((wage * Math.pow((1 + ( wageGrowth/12 )), z)), 45800);
+		var y2 = Math.min((wage * Math.pow((1 + ( wageGrowth/12 )), z - 1)), 45800);
+		var y3 = Math.min((wage * Math.pow((1 + ( wageGrowth/12 )), z - 2)), 45800);
+		var y4 = Math.min((wage * Math.pow((1 + ( wageGrowth/12 )), z - 3)), 45800);
+		var y5 = Math.min((wage * Math.pow((1 + ( wageGrowth/12 )), z - 4)), 45800);
+		var x = (y1 + y2 + y3 + y4 + y5)/5;
+		var w = Math.max(((x * z * 0.00775) + 3000), (x * z * 0.0155));
+		var v = w * (1 - Math.pow( (1/(1 + (roi/12))), ((retireAge - lifeLeft)*12)))/(roi/12);
+
+		// alert( w * (1 - Math.pow( (1/(1 + (roi/12))), ((retireAge - lifeLeft)*12)))/(roi/12) );
+
+		document.getElementById("w").innerHTML = "$" + Math.round(w);
+		document.getElementById("v").innerHTML = "$" + Math.round(v);
 		document.getElementById("emplAver").innerHTML = "$" + Math.round(emplAver);
 		document.getElementById("selfAver").innerHTML = "$" + Math.round(selfAver);
 		document.getElementById("totalAver").innerHTML = "$" + Math.round(totalAver);
