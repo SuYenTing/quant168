@@ -197,6 +197,10 @@ $goal = $_POST['goal'];
                     <input type="radio" name="type" id="type" value="finalCount" onchange="typeFunc('finalCount')"> 期滿累積金額
                     <input type="hidden" name="types" id="types" value="eachPeriodInvested">
 				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>存款頻率</td>
@@ -206,6 +210,10 @@ $goal = $_POST['goal'];
                     <input type="radio" name="frequency" id="frequency" value="yearly" onchange="freqFunc('yearly')"> 每年
                     <input type="hidden" name="frequence" id="frequence" value="monthly">
 				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>現有資金金額</td>
@@ -267,6 +275,8 @@ $goal = $_POST['goal'];
 						<option value="500000">$500,000</option>
                     </select>
                 </td>
+                <td></td>
+                <td></td>
 			</tr>
 		</table>
 		<button type="button" class="button button4" onclick="calculate()">開始計算</button>
