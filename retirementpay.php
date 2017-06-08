@@ -59,7 +59,7 @@ include("navbar.html");
 <body>
     <style>
         .container {
-            width: 50%;
+            width: 65%;
         }
     </style>
 
@@ -114,17 +114,80 @@ include("navbar.html");
                         <option value="60">60</option>
                     </select>
                     歲</td>
-                </tr>
-                <tr>
-                        <td>性別</td>
-                        <td>
+                <td>性別</td>
+                <td>
                             <input type="radio" name="gender" id="gender" value="male" checked onchange="genderFunc('male')"> 男
                             <input type="radio" name="gender" id="gender" value="female" onchange="genderFunc('female')"> 女
                             <input type="hidden" name="genders" id="genders" value="male">
-                        </td>
+                </td>
                 </tr>
                 <tr>
-                    <td>預計退休年齡</td>
+                <td>職業別</td>
+                <td>
+                            <input type="radio" name="vocation" id="vocation" value="labor" checked onchange="vocationFunc('labor')"> 勞工
+                            <input type="radio" name="vocation" id="vocation" value="functionary" onchange="vocationFunc('functionary')"> 公務員
+                            <input type="radio" name="vocation" id="vocation" value="publicta" onchange="vocationFunc('publicta')"> 公立教職
+                            <input type="radio" name="vocation" id="vocation" value="privateta" onchange="vocationFunc('privateta')"> 私立教職
+                            <input type="radio" name="vocation" id="vocation" value="military" onchange="vocationFunc('military')"> 軍人
+                            <input type="radio" name="vocation" id="vocation" value="farmer" onchange="vocationFunc('farmer')"> 農民
+                            <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular')"> 一般民眾
+                            <input type="hidden" name="vocations" id="vocations" value="labor">
+                </td>
+                <td>
+                    <p id="a"></p>
+                </td>
+                <td>
+                    <p id="b"></p>
+                </td>
+                </tr>
+                <tr>
+                <td>開始工作年齡</td>
+                <td>
+                    <select name="workAge" id="workAge">
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25" selected>25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="49">49</option>
+                        <option value="50">50</option>
+                        <option value="51">51</option>
+                        <option value="52">52</option>
+                        <option value="53">53</option>
+                        <option value="54">54</option>
+                        <option value="55">55</option>
+                        <option value="56">56</option>
+                        <option value="57">57</option>
+                        <option value="58">58</option>
+                        <option value="59">59</option>
+                        <option value="60">60</option>
+                    </select>
+                歲</td>
+                <td>預計退休年齡</td>
                 <td>
                     <select id="retireAge" onchange="lifeLeftFunc()">
                         <option value="55">55</option>
@@ -137,25 +200,23 @@ include("navbar.html");
                         <option value="62">62</option>
                         <option value="63">63</option>
                         <option value="64">64</option>
-                        <option value="65"selected>65</option>
+                        <option value="65">65</option>
                         <option value="66">66</option>
                         <option value="67">67</option>
                         <option value="68">68</option>
                         <option value="69">69</option>
-                        <option value="70">70</option>
+                        <option value="70"selected>70</option>
                     </select>
                 歲</td>
                 
                 <tr>
-                        <td>現在每月生活費</td>
+                        <td>目前薪資</td>
                         <td>$
-                            <input type="number" id="livingCost" value=10000>
+                            <input type="number" id="wage" value=40000>
                         </td>
-                </tr>
-                <tr>
-                        <td>預估生活費用每年上漲率</td>
+                        <td>薪資成長率</td>
                         <td>
-                            <select id="livingCostGrowth" >
+                            <select id="wageGrowth" >
                             <option value="0.5">0.5%</option>
                             <option value="1.0">1.0%</option>
                             <option value="1.5">1.5%</option>
@@ -173,40 +234,79 @@ include("navbar.html");
                     <td>退休時平均餘命</td>
                     <td>
                     <input type="number" id="lifeLeft" value=13 readonly>歲</td>
-                </tr>
-                <tr>
-                    <td>年利率</td>
-                    <td>
-                            <select id="annualInterestRate" >
-                            <option value="0.5">0.5%</option>
-                            <option value="1.0"selected>1.0%</option>
-                            <option value="1.5">1.5%</option>
-                            <option value="2.0">2.0%</option>
-                            <option value="2.5">2.5%</option>
-                            <option value="3.0">3.0%</option>
-                            <option value="3.5">3.5%</option>
-                            <option value="4.0">4.0%</option>
-                            <option value="4.5">4.5%</option>
-                            <option value="5.0">5.0%</option>
-                    </select>
+                    <td>投資報酬率</td>
+                <td>
+                    <select id="roi" >
+                        <option value="0.2">0.2%</option>
+                        <option value="0.2">0.2%</option>
+                        <option value="0.4">0.4%</option>
+                        <option value="0.6">0.6%</option>
+                        <option value="0.8">0.8%</option>
+                        <option value="1.0">1.0%</option>
+                        <option value="1.2">1.2%</option>
+                        <option value="1.4">1.4%</option>
+                        <option value="1.6">1.6%</option>
+                        <option value="1.8">1.8%</option>
+                        <option value="2.0">2.0%</option>
+                        <option value="2.2">2.2%</option>
+                        <option value="2.4">2.4%</option>
+                        <option value="2.6">2.6%</option>
+                        <option value="2.8">2.8%</option>
+                        <option value="3.0">3.0%</option>
+                        <option value="3.2">3.2%</option>
+                        <option value="3.4">3.4%</option>
+                        <option value="3.6">3.6%</option>
+                        <option value="3.8">3.8%</option>
+                        <option value="4.0">4.0%</option>
+                        <option value="4.2">4.2%</option>
+                        <option value="4.4">4.4%</option>
+                        <option value="4.6">4.6%</option>
+                        <option value="4.8">4.8%</option>
+                        <option value="5.0" selected>5.0%</option>
+                        <option value="5.2">5.2%</option>
+                        <option value="5.4">5.4%</option>
+                        <option value="5.6">5.6%</option>
+                        <option value="5.8">5.8%</option>
+                        <option value="6.0">6.0%</option>
+                        <option value="6.2">6.2%</option>
+                        <option value="6.4">6.4%</option>
+                        <option value="6.6">6.6%</option>
+                        <option value="6.8">6.8%</option>
+                        <option value="7.0">7.0%</option>
+                        <option value="7.2">7.2%</option>
+                        <option value="7.4">7.4%</option>
+                        <option value="7.6">7.6%</option>
+                        <option value="7.8">7.8%</option>
+                        <option value="8.0">8.0%</option>
+                        <option value="8.2">8.2%</option>
+                        <option value="8.4">8.4%</option>
+                        <option value="8.6">8.6%</option>
+                        <option value="8.8">8.8%</option>
+                        <option value="9.0">9.0%</option>
+                        <option value="9.2">9.2%</option>
+                        <option value="9.4">9.4%</option>
+                        <option value="9.6">9.6%</option>
+                        <option value="9.8">9.8%</option>
+                        <option value="10.0">10.0%</option>
+                        </select>
                     </td>
                 </tr>
                 
             </table>
-            <button onclick="calculate()" class="button button4">計算需多少退休金</button>
+            <button onclick="calculate()" class="button button4">計算</button>
 
             <p>output</p>
             <table>
                 <tr>
-                    <td>退休後總生活費用</td>
+                    <td>月領金額</td>
                     <td>
-                        <p id="totalLivingCost">$0</p>
+                        <p id="monthlyAmount">$0</p>
                     </td>
                 </tr>
                 <tr>
-                    <td>每月需準備退休金</td>
+                    <td>累積金額</td>
                     <td>
-                        <p id="monthlyRetirementPay">$0</p>
+                        <p id="amountAccum">$0</p>
                     </td>
                 </tr>
             </table>
@@ -220,42 +320,74 @@ function genderFunc(gender) {
     document.getElementById("genders").value = gender;
 }
 
+function vocationFunc(vocation) {
+    document.getElementById("vocations").value = vocation;
+}
+
 function calculate(){
 
-    var currentAge = parseInt(document.getElementById("currentAge").value);
     var retireAge = parseInt(document.getElementById("retireAge").value);
+    var workAge = parseInt(document.getElementById("workAge").value);
     var gender = document.getElementById("genders").value;
-    var livingCost = document.getElementById("livingCost").value;
-    var livingCostGrowth = parseFloat(document.getElementById("livingCostGrowth").value) / 100;
-    var annualInterestRate = parseFloat(document.getElementById("annualInterestRate").value) / 100;
+    var wage = document.getElementById("wage").value;
+    var wageGrowth = parseFloat(document.getElementById("wageGrowth").value) / 100;
+    var roi = parseFloat(document.getElementById("roi").value) / 100;
     var lifeLeft = parseInt(document.getElementById("lifeLeft").value);
+    var vocation = document.getElementById("vocations").value;
 
-    var A = currentAge;
-    var B = retireAge;
-    var C = B + lifeLeft;
-    var N = (C - B) * 12;
-    var M = (B - A) * 12;
-    var I = annualInterestRate / 100;
-    var G = livingCostGrowth / 100;
-    var P = livingCost;
-    var J = Math.pow((1 + I), (1 / 12)) - 1;
-    var K = Math.pow((1 + G), (1 / 12)) - 1;
-    var D = J / (1 + J);
-    // var totalLivingCost = Math.round( P * (1 - ((1 + K)/(1 + J)) ^ N)/(1 - (1 + K)/(1 + J)) , 2 );
-    var totalLivingCost = P * Math.pow((1 - ((1 + K)/(1 + J))), N)/(1 - (1 + K)/(1 + J));
-    var monthlyRetirementPay = Math.round(totalLivingCost * D/((1+J)^M-1),2)
+    var a = wage;
+    var i = roi;
+    var g = wageGrowth;
+    var b = workAge;
+    var c = retireAge;
+    var d = lifeLeft;
 
 
-    document.getElementById("totalLivingCost").innerHTML = "$" + Math.round(totalLivingCost);
-    document.getElementById("monthlyRetirementPay").innerHTML = "$" + Math.round(monthlyRetirementPay);
+if("labor" == vocation){
 
-    alert(J);
-    alert(K);
-    alert(D);
+    var z = c - b;
+    var y1 = Math.min( Math.pow((a * (1 + g/12)), z), 45800);
+    var y2 = Math.min( Math.pow((a * (1 + g/12)), z - 1), 45800);
+    var y3 = Math.min( Math.pow((a * (1 + g/12)), z - 2), 45800);
+    var y4 = Math.min( Math.pow((a * (1 + g/12)), z - 3), 45800);
+    var y5 = Math.min( Math.pow((a * (1 + g/12)), z - 4), 45800);
+    var x = (y1 + y2 + y3 + y4 + y5)/5;
+    var w = Math.max(((x * z * 0.00775) + 3000), (x * z * 0.0155));
+    var v = w * (1 - Math.pow( (1/(1 + (i/12))), ((c - d)*12)))/(i/12);
 
-    alert(Math.pow((1 - ((1 + K)/(1 + J))), N));
-    alert(1 - ((1 + K)/(1 + J)));
+    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
 
+}else if ("popular" == vocation) {
+
+    var z = c - b;
+    var w = Math.max(18282 * z * 0.0065 + 3628, 18282 * z * 0.013);
+    var v = w * (1 - Math.pow( (1/(1 + (i/12))), ((c - d)*12)))/(i/12);
+
+    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+
+}else if ("privateta" == vocation) {
+
+    var z = c - b;
+    var x1 = a * Math.pow((1 + g), (z - 9));
+    var x2 = a * Math.pow((1 + g), (z - 8));
+    var x3 = a * Math.pow((1 + g), (z - 7));
+    var x4 = a * Math.pow((1 + g), (z - 6));
+    var x5 = a * Math.pow((1 + g), (z - 5));
+    var x6 = a * Math.pow((1 + g), (z - 4));
+    var x7 = a * Math.pow((1 + g), (z - 3));
+    var x8 = a * Math.pow((1 + g), (z - 2));
+    var x9 = a * Math.pow((1 + g), (z - 1));
+    var x10 = a * Math.pow((1 + g), z);
+
+    var x = (x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10) / 10;
+    var w = x * 0.013 * z;
+    var v = w * (1 - Math.pow( (1/(1 + (i/12))), ((c - d)*12)))/(i/12);
+
+    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+}
 
 }
 
