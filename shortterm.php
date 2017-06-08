@@ -193,8 +193,8 @@ $goal = $_POST['goal'];
 			<tr>
 				<td>預計算項目</td>
 				<td>
-					<input type="radio" name="type" id="type" value="eachPeriodInvested" checked onchange="typeFunc('eachPeriodInvested')"> 每期投資金額
-                    <input type="radio" name="type" id="type" value="finalCount" onchange="typeFunc('finalCount')"> 期滿累積金額
+					<input type="radio" name="type" id="type" value="eachPeriodInvested" checked onchange="typeFunc('eachPeriodInvested'); eachPeriodInvestedFunc()"> 每期投資金額
+                    <input type="radio" name="type" id="type" value="finalCount" onchange=" typeFunc('finalCount'); finalCount()"> 期滿累積金額
                     <input type="hidden" name="types" id="types" value="eachPeriodInvested">
 				</td>
 				<td></td>
@@ -220,60 +220,8 @@ $goal = $_POST['goal'];
 				<td>$
                     <input type="number" id="cash" value=100000>
                 </td>
-                <td>期滿累積金額</td>
-                <td>$
-                    <select id="amountAccum" >
-                        <option value="10000">$10,000</option>
-						<option value="20000">$20,000</option>
-						<option value="30000">$30,000</option>
-						<option value="40000">$40,000</option>
-						<option value="50000">$50,000</option>
-						<option value="60000">$60,000</option>
-						<option value="70000">$70,000</option>
-						<option value="80000">$80,000</option>
-						<option value="90000">$90,000</option>
-						<option value="100000">$100,000</option>
-						<option value="110000">$110,000</option>
-						<option value="120000">$120,000</option>
-						<option value="130000">$130,000</option>
-						<option value="140000">$140,000</option>
-						<option value="150000">$150,000</option>
-						<option value="160000">$160,000</option>
-						<option value="170000">$170,000</option>
-						<option value="180000">$180,000</option>
-						<option value="190000">$190,000</option>
-						<option value="200000">$200,000</option>
-						<option value="210000">$210,000</option>
-						<option value="220000">$220,000</option>
-						<option value="230000">$230,000</option>
-						<option value="240000">$240,000</option>
-						<option value="250000">$250,000</option>
-						<option value="260000">$260,000</option>
-						<option value="270000">$270,000</option>
-						<option value="280000">$280,000</option>
-						<option value="290000">$290,000</option>
-						<option value="300000" selected>$300,000</option>
-						<option value="310000">$310,000</option>
-						<option value="320000">$320,000</option>
-						<option value="330000">$330,000</option>
-						<option value="340000">$340,000</option>
-						<option value="350000">$350,000</option>
-						<option value="360000">$360,000</option>
-						<option value="370000">$370,000</option>
-						<option value="380000">$380,000</option>
-						<option value="390000">$390,000</option>
-						<option value="400000">$400,000</option>
-						<option value="410000">$410,000</option>
-						<option value="420000">$420,000</option>
-						<option value="430000">$430,000</option>
-						<option value="440000">$440,000</option>
-						<option value="450000">$450,000</option>
-						<option value="460000">$460,000</option>
-						<option value="470000">$470,000</option>
-						<option value="480000">$480,000</option>
-						<option value="490000">$490,000</option>
-						<option value="500000">$500,000</option>
-                    </select>
+                <td id="a"></td>
+                <td><div id="b"></div>
                 </td>
                 <td></td>
                 <td></td>
@@ -284,7 +232,7 @@ $goal = $_POST['goal'];
 		<p>output</p>
 		<table>
 			<tr>
-				<td>每期應繳金額</td>
+				<td id="c">每期應繳金額</td>
 				<td><p id="amountShouldPay">$0</p></td>
 			</tr>
 		</table>
@@ -302,19 +250,62 @@ $goal = $_POST['goal'];
 
 	<script type="text/javascript">
 
-	function typeFunc(type) {
+	function eachPeriodInvestedFunc(){
+
+		document.getElementById("a").innerHTML = "期滿累積金額";
+		document.getElementById("c").innerHTML = "每期應繳金額";
+
+		var b = document.getElementById("b");
+	    while(b.hasChildNodes()){
+	                b.removeChild(b.firstChild);
+	            }
+
+	    //Create array of options to be added
+	    var aArray = ["10000","20000","30000","40000","50000","60000","70000","80000","90000","100000","110000","120000","130000","140000","150000","160000","170000","180000","190000","200000","210000","220000","230000","240000","250000","260000","270000","280000","290000","300000","310000","320000","330000","340000","350000","360000","370000","380000","390000","400000","410000","420000","430000","440000","450000","460000","470000","480000","490000","500000"];
+
+	    //Create and append select list
+	    var aList = document.createElement("select");
+	    aList.id = "amountAccum";
+	    b.appendChild(aList);
+
+	    //Create and append the options
+	    for (var i = 0; i < aArray.length; i++) {
+	        var aOption = document.createElement("option");
+	        aOption.value = aArray[i];
+	        aOption.text = aArray[i];
+	        aList.appendChild(aOption);
+	    }
+
+	}
+	function finalCount(){
+
+		document.getElementById("a").innerHTML = "每期投資金額";
+		document.getElementById("c").innerHTML = "期滿累積金額";
+
+		var b = document.getElementById("b");
+	    while(b.hasChildNodes()){
+	                b.removeChild(b.firstChild);
+	            }
+
+	    //Create array of options to be added
+	    var bArray = ["1000","2000","3000","4000","5000","6000","7000","8000","9000","10000","11000","12000","13000","14000","15000","16000","17000","18000","19000","20000","21000","22000","23000","24000","25000","26000","27000","28000","29000","30000"];
+
+	    //Create and append select list
+	    var bList = document.createElement("select");
+	    bList.id = "periodInvest";
+	    b.appendChild(bList);
+
+	    //Create and append the options
+	    for (var i = 0; i < bArray.length; i++) {
+	        var bOption = document.createElement("option");
+	        bOption.value = bArray[i];
+	        bOption.text = bArray[i];
+	        bList.appendChild(bOption);
+	    }
+
+	}
+	function typeFunc(type){
 		document.getElementById("types").value = type;
-
-		// var container = document.getElementById("container");
-		// var tr = container.insertRow();
-		// var td1 = tr.insertCell();
-		// td1.appendChild(document.createTextNode("存款頻率"));
-		// td1.style.border = '1px solid black';
-		// var td2 = tr.insertCell();
-
-
-
-
 	}
 
 	function freqFunc(frequency) {
@@ -326,25 +317,57 @@ $goal = $_POST['goal'];
 		var roi = parseFloat(document.getElementById("roi").value) / 100;
 		var investYear = parseInt(document.getElementById("investYear").value);
 		var cash = document.getElementById("cash").value;
-		var amountAccum = parseInt(document.getElementById("amountAccum").value);
+		var type = document.getElementById("types").value;
 		var j = 0;
 		var amountShouldPay = 0;
 
+		if(type == "eachPeriodInvested"){
 
-		if(freq == "monthly"){
-			j = Math.pow((1+roi),1/12)-1;
-			amountShouldPay = (amountAccum - (cash*(Math.pow((1+j),12*investYear))))/(((Math.pow((1+j),12*investYear)-1)/j)*(1+j));
-			document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+			var amountAccum = parseInt(document.getElementById("amountAccum").value);
 
-		}else if (freq == "seasonly") {
-			j = Math.pow((1+roi),1/4)-1;
-			amountShouldPay = (amountAccum - (cash*(Math.pow((1+j),4*investYear))))/(((Math.pow((1+j),4*investYear)-1)/j)*(1+j));
-			document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+			if(freq == "monthly"){
 
-		}else{
-			j = roi;
-			amountShouldPay = (amountAccum - (cash*(Math.pow((1+j),investYear))))/(((Math.pow((1+j),investYear)-1)/j)*(1+j));
-			document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+				j = Math.pow((1+roi),1/12)-1;
+				amountShouldPay = (amountAccum - (cash*(Math.pow((1+j),12*investYear))))/(((Math.pow((1+j),12*investYear)-1)/j)*(1+j));
+				document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+
+			}else if (freq == "seasonly") {
+
+				j = Math.pow((1+roi),1/4)-1;
+				amountShouldPay = (amountAccum - (cash*(Math.pow((1+j),4*investYear))))/(((Math.pow((1+j),4*investYear)-1)/j)*(1+j));
+				document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+
+			}else{
+
+				j = roi;
+				amountShouldPay = (amountAccum - (cash*(Math.pow((1+j),investYear))))/(((Math.pow((1+j),investYear)-1)/j)*(1+j));
+				document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+			}
+
+		}else if (type == "finalCount") {
+
+			var periodInvest = parseInt(document.getElementById("periodInvest").value);
+
+			if(freq == "monthly"){
+								
+				j = Math.pow((1+roi),1/12)-1;
+				amountShouldPay = cash * (Math.pow((1+j),(12*investYear))) + (periodInvest * (1+j) * (Math.pow((1+j),(12*investYear - 1))))/j;
+				document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+
+			}else if (freq == "seasonly") {
+				
+				j = Math.pow((1+roi),1/4)-1;
+				amountShouldPay = cash * (Math.pow((1+j),(4*investYear))) + (periodInvest * (1+j) * (Math.pow((1+j),(4*investYear - 1))))/j;
+				document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+
+			}else{
+				
+				j = roi;
+				amountShouldPay = cash * (Math.pow((1+j),(1*investYear))) + (periodInvest * (1+j) * (Math.pow((1+j),(1*investYear - 1))))/j;
+				document.getElementById("amountShouldPay").innerHTML = "$" + Math.round(amountShouldPay);
+
+			}
+
 		}
 
 	}
