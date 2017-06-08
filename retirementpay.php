@@ -124,13 +124,13 @@ include("navbar.html");
                 <tr>
                 <td>職業別</td>
                 <td>
-                            <input type="radio" name="vocation" id="vocation" value="labor" checked onchange="vocationFunc('labor')"> 勞工
-                            <input type="radio" name="vocation" id="vocation" value="functionary" onchange="vocationFunc('functionary')"> 公務員
+                            <input type="radio" name="vocation" id="vocation" value="labor" checked onchange="vocationFunc('labor'); laborFunc()"> 勞工
+                            <input type="radio" name="vocation" id="vocation" value="functionary" onchange="vocationFunc('functionary'); functionaryFunc()"> 公務員
                             <input type="radio" name="vocation" id="vocation" value="publicta" onchange="vocationFunc('publicta'); publictaFunc()"> 公立教職
-                            <input type="radio" name="vocation" id="vocation" value="privateta" onchange="vocationFunc('privateta')"> 私立教職
+                            <input type="radio" name="vocation" id="vocation" value="privateta" onchange="vocationFunc('privateta'); privatetaFunc()"> 私立教職
                             <input type="radio" name="vocation" id="vocation" value="military" onchange="vocationFunc('military'); militaryFunc()"> 軍人
                             <input type="radio" name="vocation" id="vocation" value="farmer" onchange="vocationFunc('farmer'); farmerFunc()"> 農民
-                            <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular')"> 一般民眾
+                            <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular'); popularFunc()"> 一般民眾
                             <input type="hidden" name="vocations" id="vocations" value="labor">
                 </td>
                 <td id="a"></td>
@@ -346,7 +346,6 @@ function farmerFunc(){
     }
 
 }
-
 function militaryFunc(){
 
     document.getElementById("a").innerHTML = "退休金制度";
@@ -399,7 +398,62 @@ function publictaFunc(){
     }
 
 }
+function functionaryFunc(){
 
+    document.getElementById("a").innerHTML = "退休金制度";
+
+    var b = document.getElementById("b");
+    while(b.hasChildNodes()){
+                b.removeChild(b.firstChild);
+            }
+
+    //Create array of options to be added
+    var functionaryArray = ["公保&公務人員退休金新制(40歲以下)","公保&公務人員退休金含新舊制(40歲以上)","公保&公務人員退休金含新舊制(40歲以上)"];
+
+    //Create and append select list
+    var functionaryList = document.createElement("select");
+    functionaryList.id = "functionaryInsuranceSystem";
+    b.appendChild(functionaryList);
+
+    //Create and append the options
+    for (var i = 0; i < functionaryArray.length; i++) {
+        var functionaryOption = document.createElement("option");
+        functionaryOption.value = functionaryArray[i];
+        functionaryOption.text = functionaryArray[i];
+        functionaryList.appendChild(functionaryOption);
+    }
+
+}
+function laborFunc(){
+
+    document.getElementById("a").innerHTML = "";
+
+    var b = document.getElementById("b");
+    while(b.hasChildNodes()){
+                b.removeChild(b.firstChild);
+            }
+
+}
+function privatetaFunc(){
+
+    document.getElementById("a").innerHTML = "";
+
+    var b = document.getElementById("b");
+    while(b.hasChildNodes()){
+                b.removeChild(b.firstChild);
+            }
+
+}
+function popularFunc(){
+
+    document.getElementById("a").innerHTML = "";
+
+    var b = document.getElementById("b");
+    while(b.hasChildNodes()){
+                b.removeChild(b.firstChild);
+            }
+
+}
 function calculate(){
 
     var currentAge = parseInt(document.getElementById("currentAge").value);
@@ -570,9 +624,49 @@ if("labor" == vocation){
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
     }
 
-}else if ("farmer" == vocation) {
+}else if ("functionary" == vocation) {
 
+    var functionaryInsuranceSystem = document.getElementById("functionaryInsuranceSystem").value;
 
+    if ("公保&公務人員退休金新制(40歲以下)" == functionaryInsuranceSystem) {
+
+        var z = c - b;
+        var y = Math.min(42, z * 1.2);
+        var x = a * Math.pow((1 + g), z);
+        var v = y * x; 
+
+        //有問題(c-d)?(d-c)?
+        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),((c - d)*12)))));
+
+        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+ 
+    }else if ("公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem || "公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem) {
+
+        var e = currentAge;
+        var z = c - b;
+        var u = Math.max(0, e - b - 2017 - 1911 - 88);
+
+        if (u <= 10) {
+            var y1 = u;
+        }else if (u > 10 && u <=15) {
+            var y1 = 10 + (u - 10) * 2;
+        }else if (u > 15 && u <=20) {
+            var y1 = 20 + (u - 15) * 3;
+        }else if (u >20) {
+            var y1 = 36;
+        }
+        var y2 = z - u;
+        var y = Math.min(42, y1 + y2 * 1.2);
+        var x = a * Math.pow((1 + g), z);
+        var v = y * x; 
+
+        //有問題(c-d)?(d-c)?
+        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),((c - d)*12)))));
+
+        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+    }
 
 }else if ("farmer" == vocation) {
 
