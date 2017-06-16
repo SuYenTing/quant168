@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
     <meta charset="utf-8">
@@ -7,163 +7,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>快樂退休理財網</title>
     <link rel="icon" type="image" href="img/favicon.ico" />
-    <!-- Bootstrap -->
+
+    <!--Include Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--Include Foundation css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css"/>
+
+    <!--Include JQuery js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Include Foundation JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+
+    <!--Include css/nabar-->
     <link href="css/navbar.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body>
-    <style>
-    body {
-        padding-top: 130px;
-    }
-  
-    .navbar-template {
-        padding: 40px 5px;
-    }
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
- a:hover, .navbar-default .navbar-nav > .active > a:focus {
-color: red; /*BACKGROUND color for active*/
-background-color: #030033;
-}
-
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-color: red;  /*Sets the text hover color on navbar*/
-}
-
-  .navbar-default {
-    background-color: #0f006f;
-    border-color: #030033;
-}
-
-.navbar-default  > .logo{
-    background-color: white;
-    border-color: white;
-}
-
-    </style>
-    
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div id="logo" class="logo" align="center">
-        <a href="/">
-            <img src="img/logo.png" alt="快樂退休理財網" /></a>
-    </div>
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.php">Home</a></li>
-                    
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">量化基金<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">投資基金<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="investfundprofit1m.php">獲利基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="investfundgrowth1m.php">成長基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="investfundpayout1m.php">股利基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="investfundsafety1m.php">穩健基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="investfundquality1m.php">品質基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="investfundoo1m.php">嚴選基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="investfundor1m.php">風險預警基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="investfundot1m.php">技術嚴選基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="investfundof1m.php">價值嚴選基金</a></li>
-                                </ul>
-                            </li>
-                             <li class="divider"></li>
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">退休基金<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="retirefundprofit10m.php">獲利型基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="retirefundgrowth10m.php">成長型基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="retirefundpayout10m.php">股利型基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="retirefundsafety10m.php">穩健型基金</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="retirefundquality10m.php">品質型基金</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">個股診斷<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">基本分析<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="sbscore.php">SB分數</a></li>
-                                </ul>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                 <li><a href="stock-tech.php">技術分析</a></li>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                 <li><a href="chip-anal.php">籌碼分析</a></li>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="select-stock-sb.php" >精選個股</a></li>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">理財規劃<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="psnpl.php" >個人規劃</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="psnpl.php" >理財小工具</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="retirementpay.php" >退休金</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="convertiblebond.php" >可轉換公司債套利機會</a></li>                    
-
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
+        
+        <!--Include Logo -->
+        <div id="logo" class="logo" align="center">
+            <a href="/"> <img src="img/logo.png" alt="快樂退休理財網" /> </a>
         </div>
+    <div class="row column">
+        <!--Menu-->
+            <ul class="vertical medium-horizontal menu" data-responsive-menu="accordion medium-dropdown">
+                <li> <a href="index.php"> 主頁 </a> </li>
+                
+                <!--量化基金-->
+                <li>
+                    <a href="#">量化基金</a>
+                    <ul class="nested vertical menu">
+                        <!--投資基金-->
+                        <li>
+                            <a href="#"> 投資基金 </a>
+                            <ul class="nested vertical menu">
+                                <li><a href="investfundprofit1m.php">獲利基金</a></li>
+                                <li><a href="investfundgrowth1m.php">成長基金</a></li>
+                                <li><a href="investfundpayout1m.php">股利基金</a></li>
+                                <li><a href="investfundsafety1m.php">穩健基金</a></li>
+                                <li><a href="investfundquality1m.php">品質基金</a></li>
+                                <li><a href="investfundoo1m.php">嚴選基金</a></li>
+                                <li><a href="investfundor1m.php">風險預警基金</a></li>
+                                <li><a href="investfundot1m.php">技術嚴選基金</a></li>
+                                <li><a href="investfundof1m.php">價值嚴選基金</a></li>
+                            </ul>
+                        </li> <!--投資基金 end-->
+
+                        <!--退休基金-->
+                        <li>
+                            <a href="#">退休基金</a>
+                            <ul class="nested vertical menu">
+                                <li><a href="retirefundprofit10m.php">獲利型基金</a></li>
+                                <li><a href="retirefundgrowth10m.php">成長型基金</a></li>
+                                <li><a href="retirefundpayout10m.php">股利型基金</a></li>
+                                <li><a href="retirefundsafety10m.php">穩健型基金</a></li>
+                                <li><a href="retirefundquality10m.php">品質型基金</a></li>
+                            </ul>
+                        </li> <!-- 退休基金 end-->
+                    </ul>
+                </li> <!--量化基金 end-->
+
+                <!--個股診斷-->
+                <li>
+                    <a href="#">個股診斷</a>
+                    <ul class="nested vertical menu">
+                        <!--基本分析-->
+                        <li>
+                            <a href="#">基本分析</a>
+                            <ul class="nested vertical menu">
+                                <li ><a href="sbscore.php">SB分數</a></li>
+                            </ul>
+                        </li>
+                        <!--技術分析-->
+                        <li><a href="stock-tech.php">技術分析</a></li>
+                        <!--籌碼分析-->
+                        <li><a href="chip-anal.php">籌碼分析</a></li>
+                    </ul>
+                </li> <!--個股診斷 end-->
+
+                <!--精選個股-->
+                <li> <a href="select-stock-sb.php" >精選個股</a></li> <!--精選個股 end-->
+                
+                <!--理財規劃-->
+                <li>
+                    <a href="#">理財規劃</a>
+                    <ul class="nested vertical menu">
+                        <li> <a href="psnpl.php" >個人規劃</a> </li>
+                        <li> <a href="psnpl.php" >理財小工具</a> </li>
+                        <li> <a href="retirementpay.php" >退休金</a> </li>
+                    </ul>
+                </li> <!--理財規劃 end-->
+
+                <!--可轉換公司債套利機會-->
+                <li><a href="convertiblebond.php" >可轉換公司債套利機會</a></li> <!--可轉換公司債套利機會 end-->
+            </ul>
     </div>
-    <!--<div class="container">
-        <div class="navbar-template text-center">
-            <h1>Bootstrap NavBar</h1>
-            <p class="lead text-info">NavBar with too many childs.</p>
-        </div>
-    </div>-->
-    <!-- /.container -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/navbar.js"></script>
+
+
+
+    <script>
+        $(document).ready(function(){
+            $(document).foundation();
+        }); 
+    </script>
+
+
 </body>
 
 </html>
