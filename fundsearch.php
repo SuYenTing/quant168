@@ -572,3 +572,5 @@ $rsFundTrendData=mysql_fetch_row($FundTrendData);
     }
     ?>
 </script>
+
+
