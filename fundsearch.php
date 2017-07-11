@@ -77,8 +77,8 @@ $rsfundName=mysql_fetch_row($fundName);
         <td>境內/境外</td>
         <td>
             <select name="invest_place" id="invest_place" onchange="setSubject()">
-                <option value="all">全部基金</option>
                 <option value="invest_place_in">境內</option>
+                <option value="all">全部基金</option>
                 <option value="invest_place_out">境外</option>
             </select>
         </td>
@@ -118,8 +118,8 @@ $rsfundName=mysql_fetch_row($fundName);
     <tr>
         <td>投資區域</td>
         <td>
-            <select name="cars">
-                <option value="台灣">台灣</option>
+            <select name="country" id="country">
+                <option value="taiwan">台灣</option>
             </select>
         </td>
         <td>晨星評等</td>
@@ -137,8 +137,8 @@ $rsfundName=mysql_fetch_row($fundName);
     <tr>
         <td>計價幣別</td>
         <td>
-            <select name="cars">
-                <option value="新台幣">新台幣</option>
+            <select id="currency" name="currency">
+                <option value="NTD">新台幣</option>
             </select>
         </td>
         <td></td>
@@ -153,6 +153,7 @@ $rsfundName=mysql_fetch_row($fundName);
 <script type="text/javascript">
 function setSubject() {
     if (document.getElementById("invest_place").value != "invest_place_in") {
+        //subject add
         var x = document.getElementById("subject");
         var option1 = document.createElement("option");
         option1.text = "債券型";
@@ -178,11 +179,246 @@ function setSubject() {
         option6.text = "指數股票型基金";
         option6.value = "指數股票型基金";
         x.add(option6);
+        //currency add
+        var currency = document.getElementById("currency");
+        var currency1 = document.createElement("option");
+        currency1.text = "英鎊";
+        currency1.value = "英鎊";
+        currency.add(currency1);
+        var currency2 = document.createElement("option");
+        currency2.text = "美元";
+        currency2.value = "美元";
+        currency.add(currency2);
+        var currency3 = document.createElement("option");
+        currency3.text = "紐幣  ";
+        currency3.value = "紐幣  ";
+        currency.add(currency3);
+        var currency4 = document.createElement("option");
+        currency4.text = "瑞法郎";
+        currency4.value = "瑞法郎";
+        currency.add(currency4);
+        var currency5 = document.createElement("option");
+        currency5.text = "瑞典幣";
+        currency5.value = "瑞典幣";
+        currency.add(currency5);
+        var currency6 = document.createElement("option");
+        currency6.text = "澳幣  ";
+        currency6.value = "澳幣  ";
+        currency.add(currency6);
+        var currency7 = document.createElement("option");
+        currency7.text = "港幣  ";
+        currency7.value = "港幣  ";
+        currency.add(currency7);
+        var currency8 = document.createElement("option");
+        currency8.text = "歐元  ";
+        currency8.value = "歐元  ";
+        currency.add(currency8);
+        var currency9 = document.createElement("option");
+        currency9.text = "日圓  ";
+        currency9.value = "日圓  ";
+        currency.add(currency9);
+        var currency10 = document.createElement("option");
+        currency10.text = "南非幣";
+        currency10.value = "南非幣";
+        currency.add(currency10);
+        var currency11 = document.createElement("option");
+        currency11.text = "加幣  ";
+        currency11.value = "加幣  ";
+        currency.add(currency11);
+        //add country
+        var country = document.getElementById("country");
+        var country1 = document.createElement("option");
+        country1.text = "全球                ";
+        country1.value = "全球                ";
+        country.add(country1);
+        var country2 = document.createElement("option");
+        country2.text = "已開發歐洲          ";
+        country2.value = "已開發歐洲          ";
+        country.add(country2);
+        var country3 = document.createElement("option");
+        country3.text = "美國                ";
+        country3.value = "美國                ";
+        country.add(country3);
+        var country4 = document.createElement("option");
+        country4.text = "日本                ";
+        country4.value = "日本                ";
+        country.add(country4);
+        var country5 = document.createElement("option");
+        country5.text = "歐洲                ";
+        country5.value = "歐洲                ";
+        country.add(country5);
+        var country6 = document.createElement("option");
+        country6.text = "亞太(不含日本)      ";
+        country6.value = "亞太(不含日本)      ";
+        country.add(country6);
+        var country7 = document.createElement("option");
+        country7.text = "歐盟國家            ";
+        country7.value = "歐盟國家            ";
+        country.add(country7);
+        var country8 = document.createElement("option");
+        country8.text = "新興市場            ";
+        country8.value = "新興市場            ";
+        country.add(country8);
+        var country9 = document.createElement("option");
+        country9.text = "拉丁美洲            ";
+        country9.value = "拉丁美洲            ";
+        country.add(country9);
+        var country10 = document.createElement("option");
+        country10.text = "印度                ";
+        country10.value = "印度                ";
+        country.add(country10);
+        var country11 = document.createElement("option");
+        country11.text = "新興拉丁美洲        ";
+        country11.value = "新興拉丁美洲        ";
+        country.add(country11);
+        var country12 = document.createElement("option");
+        country12.text = "中國大陸及香港      ";
+        country12.value = "中國大陸及香港      ";
+        country.add(country12);
+        var country13 = document.createElement("option");
+        country13.text = "已開發市場          ";
+        country13.value = "已開發市場          ";
+        country.add(country13);
+        var country14 = document.createElement("option");
+        country14.text = "亞洲不含日本        ";
+        country14.value = "亞洲不含日本        ";
+        country.add(country14);
+        var country15 = document.createElement("option");
+        country15.text = "澳洲                ";
+        country15.value = "澳洲                ";
+        country.add(country15);
+        var country16 = document.createElement("option");
+        country16.text = "英國                ";
+        country16.value = "英國                ";
+        country.add(country16);
+        var country17 = document.createElement("option");
+        country17.text = "亞洲太平洋(含日本)  ";
+        country17.value = "亞洲太平洋(含日本)  ";
+        country.add(country17);
+        var country18 = document.createElement("option");
+        country18.text = "新興歐洲            ";
+        country18.value = "新興歐洲            ";
+        country.add(country18);
+        var country19 = document.createElement("option");
+        country19.text = "北美                ";
+        country19.value = "北美                ";
+        country.add(country19);
+        var country20 = document.createElement("option");
+        country20.text = "亞洲                ";
+        country20.value = "亞洲                ";
+        country.add(country20);
+        var country21 = document.createElement("option");
+        country21.text = "印尼                ";
+        country21.value = "印尼                ";
+        country.add(country21);
+        var country22 = document.createElement("option");
+        country22.text = "香港                ";
+        country22.value = "香港                ";
+        country.add(country22);
+        var country23 = document.createElement("option");
+        country23.text = "歐元國家            ";
+        country23.value = "歐元國家            ";
+        country.add(country23);
+        var country24 = document.createElement("option");
+        country24.text = "泰國                ";
+        country24.value = "泰國                ";
+        country.add(country24);
+        var country25 = document.createElement("option");
+        country25.text = "韓國                ";
+        country25.value = "韓國                ";
+        country.add(country25);
+        var country26 = document.createElement("option");
+        country26.text = "星馬                ";
+        country26.value = "星馬                ";
+        country.add(country26);
+        var country27 = document.createElement("option");
+        country27.text = "新加坡              ";
+        country27.value = "新加坡              ";
+        country.add(country27);
+        var country28 = document.createElement("option");
+        country28.text = "馬來西亞            ";
+        country28.value = "馬來西亞            ";
+        country.add(country28);
+        var country29 = document.createElement("option");
+        country29.text = "北歐                ";
+        country29.value = "北歐                ";
+        country.add(country29);
+        var country30 = document.createElement("option");
+        country30.text = "南歐                ";
+        country30.value = "南歐                ";
+        country.add(country30);
+        var country31 = document.createElement("option");
+        country31.text = "德國                ";
+        country31.value = "德國                ";
+        country.add(country31);
+        var country32 = document.createElement("option");
+        country32.text = "法國                ";
+        country32.value = "法國                ";
+        country.add(country32);
+        var country33 = document.createElement("option");
+        country33.text = "義大利              ";
+        country33.value = "義大利              ";
+        country.add(country33);
+        var country34 = document.createElement("option");
+        country34.text = "瑞士                ";
+        country34.value = "瑞士                ";
+        country.add(country34);
+        var country35 = document.createElement("option");
+        country35.text = "歐洲不含英國        ";
+        country35.value = "歐洲不含英國        ";
+        country.add(country35);
+        var country36 = document.createElement("option");
+        country36.text = "亞太                ";
+        country36.value = "亞太                ";
+        country.add(country36);
+        var country37 = document.createElement("option");
+        country37.text = "巴西                ";
+        country37.value = "巴西                ";
+        country.add(country37);
+        var country38 = document.createElement("option");
+        country38.text = "俄羅斯              ";
+        country38.value = "俄羅斯              ";
+        country.add(country38);
+        var country39 = document.createElement("option");
+        country39.text = "東協                ";
+        country39.value = "東協                ";
+        country.add(country39);
+        var country40 = document.createElement("option");
+        country40.text = "菲律賓              ";
+        country40.value = "菲律賓              ";
+        country.add(country40);
+        var country41 = document.createElement("option");
+        country41.text = "亞澳                ";
+        country41.value = "亞澳                ";
+        country.add(country41);
+        var country42 = document.createElement("option");
+        country42.text = "中東歐非            ";
+        country42.value = "中東歐非            ";
+        country.add(country42);
+        var country43 = document.createElement("option");
+        country43.text = "歐美                ";
+        country43.value = "歐美                ";
+        country.add(country43);
+        var country44 = document.createElement("option");
+        country44.text = "東歐                ";
+        country44.value = "東歐                ";
+        country.add(country44);
+        var country45 = document.createElement("option");
+        country45.text = "美洲                ";
+        country45.value = "美洲                ";
+        country.add(country45);
     }
 }
 
 function fundAdvanceSearchSubmit() {
-    sql = "SELECT * FROM web_data.fund_performance where 1=1 ";
+    sql = "";
+    if (document.getElementById("invest_place").value=="invest_place_in") {
+      sql = sql + "SELECT * FROM web_data.fund_performance where 1=1 ";
+    } else if (document.getElementById("invest_place").value=="all"){
+      sql = sql + "SELECT * FROM web_data.foreign_fund_performance LEFT JOIN web_data.fund_performance ON foreign_fund_performance.code = fund_performance.code where 1=1 ";
+    } else if (document.getElementById("invest_place").value=="invest_place_out"){
+      sql = sql + "SELECT * FROM web_data.foreign_fund_performance where 1=1 ";
+    }
     sql = sql + "and subject = '" + document.getElementById("subject").value + "' ";
     if (document.getElementById("std1y").value != "all") {
         if (document.getElementById("std1y").value == "std1y1") {
@@ -206,11 +442,23 @@ function fundAdvanceSearchSubmit() {
         }
 
     }
+
     if (document.getElementById("risk_level").value != "all") {
       sql = sql + "and risk_level = '" + document.getElementById("risk_level").value + "' ";
     }
+
+    if (document.getElementById("country").value == "taiwan") {
+      sql = sql + "and (invest_place = '投資國內'  or invest_place='投資國內外') ";
+    } else {
+      sql = sql + "and invest_place = '" + document.getElementById("country").value + "' ";
+    }
+
+
+    sql = sql + "and currency = '" + document.getElementById("currency").value + "' ";
+    
+
     document.getElementById("sql").value = sql;
-    //alert(document.getElementById("sql").value);
+    alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
 }
