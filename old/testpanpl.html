@@ -4,52 +4,50 @@
         <th colspan="2">基金風險評等</th>
     </tr>
     <tr>
-        <td>境內/境外</td>
+        <td>基金標的</td>
         <td>
-            <select name="invest_place" id="invest_place" onchange="setSubject()">
-                <option value="all">全部基金</option>
-                <option value="invest_place_in">境內</option>
-                <option value="invest_place_out">境外</option>
+            <select name="subject" id="subject">
+                <option value="貨幣">貨幣型</option>
+                <option value="股票">股票型</option>
+                <option value="平衡">平衡型</option>
+                <option value="小型股">小型股</option>
+                <option value="科技股">科技股</option>
+                <option value="指數型基金">指數型基金</option>
             </select>
         </td>
         <td>一年年化標準差</td>
         <td>
             <select name="std1y" id="std1y">
                 <option value="all">不限</option>
-                <option value="std1y1">0 &#60=SD &#603</option>
-                <option value="std1y2">3 &#60=SD &#606</option>
-                <option value="std1y3">6 &#60=SD &#609</option>
-                <option value="std1y4">9 &#60=SD</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>基金標的</td>
-        <td>
-            <select name="subject" id="subject">
-                <option value="貨幣型">貨幣型</option>
-                <option value="股票型">股票型</option>
-                <option value="平衡型">平衡型</option>
-                <option value="小型股">小型股</option>
-                <option value="科技股">科技股</option>
-                <option value="指數型基金">指數型基金</option>
-            </select>
-        </td>
-        <td>一年年化Sharp Ratio</td>
-        <td>
-            <select name="sr1y" id="sr1y">
-                <option value="all">不限</option>
-                <option value="sr1y1">0&#60SR</option>
-                <option value="sr1y2">0 &#60=SR&#601</option>
-                <option value="sr1y3">1 &#60=SR</option>
+                <option value="std1y1">0 &#60;=SD &#60;3</option>
+                <option value="std1y2">3 &#60;=SD &#60;6</option>
+                <option value="std1y3">6 &#60;=SD &#60;9</option>
+                <option value="std1y4">9 &#60;=SD</option>
             </select>
         </td>
     </tr>
     <tr>
         <td>投資區域</td>
         <td>
-            <select name="cars">
-                <option value="台灣">台灣</option>
+            <select name="country" id="country">
+                <option value="taiwan">台灣</option>
+            </select>
+        </td>
+        <td>一年年化Sharp Ratio</td>
+        <td>
+            <select name="sr1y" id="sr1y">
+                <option value="all">不限</option>
+                <option value="sr1y1">0&#60;SR</option>
+                <option value="sr1y2">0 &#60;=SR&#60;1</option>
+                <option value="sr1y3">1 &#60;=SR</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>計價幣別</td>
+        <td>
+            <select id="currency" name="currency">
+                <option value="NTD">新台幣</option>
             </select>
         </td>
         <td>晨星評等</td>
@@ -65,49 +63,65 @@
         </td>
     </tr>
     <tr>
-        <td>計價幣別</td>
-        <td>
-            <select name="cars">
-                <option value="新台幣">新台幣</option>
-            </select>
-        </td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
         <td colspan="4">
-            <input class="button" type="button" value="確認送出">
+            <input class="button" type="button" value="確認送出" onclick="fundAdvanceSearchSubmit()">
         </td>
     </tr>
 </table>
 <script type="text/javascript">
-function setSubject() {
-    if (document.getElementById("invest_place").value != "invest_place_in") {
-        var x = document.getElementById("subject");
-        var option1 = document.createElement("option");
-        option1.text = "債券型";
-        option1.value = "債券型";
-        x.add(option1);
-        var option2 = document.createElement("option");
-        option2.text = "醫療生化型";
-        option2.value = "醫療生化型";
-        x.add(option2);
-        var option3 = document.createElement("option");
-        option3.text = "房地型";
-        option3.value = "房地型";
-        x.add(option3);
-        var option4 = document.createElement("option");
-        option4.text = "能源股票";
-        option4.value = "能源股票";
-        x.add(option4);
-        var option5 = document.createElement("option");
-        option5.text = "認股權證/轉換公司債";
-        option5.value = "認股權證/轉換公司債";
-        x.add(option5);
-        var option6 = document.createElement("option");
-        option6.text = "指數股票型基金";
-        option6.value = "指數股票型基金";
-        x.add(option6);
+
+
+function fundAdvanceSearchSubmit() {
+    sql = "";
+    if (document.getElementById("invest_place").value=="invest_place_in") {
+      sql = sql + "SELECT * FROM web_data.fund_performance where 1=1 ";
+    } else if (document.getElementById("invest_place").value=="all"){
+      sql = sql + "SELECT * FROM web_data.foreign_fund_performance LEFT JOIN web_data.fund_performance ON foreign_fund_performance.code = fund_performance.code where 1=1 ";
+    } else if (document.getElementById("invest_place").value=="invest_place_out"){
+      sql = sql + "SELECT * FROM web_data.foreign_fund_performance where 1=1 ";
     }
+    sql = sql + "and subject = '" + document.getElementById("subject").value + "' ";
+    if (document.getElementById("std1y").value != "all") {
+        if (document.getElementById("std1y").value == "std1y1") {
+            sql = sql + "and std1y >=0  and std1y <3 ";
+        } else if (document.getElementById("std1y").value == "std1y2") {
+            sql = sql + "and std1y >=3  and std1y <6 ";
+        } else if (document.getElementById("std1y").value == "std1y3") {
+            sql = sql + "and std1y >=6  and std1y <9 ";
+        } else if (document.getElementById("std1y").value == "std1y4") {
+            sql = sql + "and std1y >=9  ";
+        }
+
+    }
+    if (document.getElementById("sr1y").value != "all") {
+        if (document.getElementById("sr1y").value == "sr1y1") {
+            sql = sql + "and sr1y >0 ";
+        } else if (document.getElementById("sr1y").value == "sr1y2") {
+            sql = sql + "and std1y >=0  and std1y <1 ";
+        } else if (document.getElementById("sr1y").value == "sr1y3") {
+            sql = sql + "and std1y >=1 ";
+        }
+
+    }
+
+    if (document.getElementById("risk_level").value != "all") {
+      sql = sql + "and risk_level = '" + document.getElementById("risk_level").value + "' ";
+    }
+
+    if (document.getElementById("country").value == "taiwan") {
+      sql = sql + "and (invest_place = '投資國內'  or invest_place='投資國內外') ";
+    } else {
+      sql = sql + "and invest_place = '" + document.getElementById("country").value + "' ";
+    }
+
+
+    sql = sql + "and currency = '" + document.getElementById("currency").value + "' ";
+    
+
+    document.getElementById("sql").value = sql;
+    alert(document.getElementById("sql").value);
+    document.getElementById("searchType").value = "advanceResult";
+    document.getElementById("fundsearch").submit();
 }
+
 </script>
