@@ -1,31 +1,191 @@
-
-
-body {
-
-    }
-
-.menu {
-	background-color: #333	;
-	color: black;
-	padding: 0.5rem;
-	font-family: "Noto Sans", "Noto Sans CJK TC", monospace;
-	font-weight: 900;
-	font: black;
-	font-size: 110%;
+.description {
+	background-color: #005A31;
+	margin: 0.5em;
+	padding: 1.5em;
+	color: white;
 }
+#form1 {
+	background-color: #F3FAB6;
+	border-radius: 2em;
+	margin-left: 5em;
+	margin-right:5em;
+	padding: 1.5em;
+	border-color: black;
+	border-style: dotted;
 
-.dropdown {
-	border-color: red;
 }
 
 a {
-	color: white;
+	color:  #005A31;
+	font-weight: bold;
 }
 
-.logo {
-	width: auto;
-	height: 100%;
-	padding:0.5rem;
+input[type=number]{
+    width: 120px;
+} 
+select option{
+	font-size: 1.8em;
 }
-  
+
+
+
+
+.chartitem {
+	margin: 0.3em;
+	padding: 1.5em;
+	background-color: #F3FAB6;
+	border-radius: 2em;
+	min-height: 8em;
+} 
+
+
+  /* Note: Try to remove the following lines to see the effect of CSS positioning */
+.affix {
+  top: 0;
+  width: 100%;
+}
+
+.affix + .container-fluid {
+  padding-top: 70px;
+}
+
+
+.logo {
+	font-size: 2em;
+	font-weight: bold;
+	color: #005A31;
+	height: 1.5em;
+}
+
+.menu {
+	z-index: 100
+
+}
+
+.dropdown-menu, .dropdown-header {
+	font-size: 20px;
+	color: #005A31;
+	font-weight: bold;
+}
+
+.navbar-default {
+    background-color: white;
+    border-color: white;
+    font-size: 25px;
+
+    border-bottom-color: #005A31;
+    border-width: 5px;
+}
+/* Title */
+.navbar-default .navbar-brand {
+    color: #005A31;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #005A31;
+}
+/* Link */
+.navbar-default .navbar-nav > li > a {
+    color: #005A31;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #005A31;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #005A31;
+    background-color: white;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #005A31;
+    background-color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #005A31;
+}
+
+@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+
+
+body {
+	font-family: "Roboto Mono", roboto mono;
+	font-size: 25px;
+}
+
+
+button {
+	font-size: 20px;
+}
+
+option {
+	font-size: 20px;
+}
+
+
+svg {
+
+	height: auto;
+	width: 100%;
+}
+
+.axisX {
+	width: 100%;
+}
+
+.axisY {
+	height: 100%;
+}
+
+
+td, th {
+  padding: 0.5em 2em;
+}
+
+.caret {
+    border-width: 8px;
+}
+
+
+
 
