@@ -1,3 +1,6 @@
+<?php
+include("navbar.html");
+?>
 <html>
 
 <head>
@@ -11,16 +14,22 @@
 .zc-ref {
     display: none;
 }
+.container {
+    width: 80%;
+}
 </style>
 
 <body>
-    <div id='myChart'><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div>
+<div class="container">
+    <div id='myChart'></div>
+</div>
 </body>
 <script type="text/javascript">
-zingchart.THEME = "classic";
+//zingchart.THEME = "classic";
 var myConfig = {
     "type": "bubble",
-    "background-color": "#f4f4f4 #dfdfdf",
+    
+    //"background-color": "#f4f4f4 #dfdfdf",
     "legend": {
         //"background-color": "#ffe6e6",
         "border-width": 2,
@@ -32,20 +41,20 @@ var myConfig = {
         "y": "25%",
     },
     "title": {
-        "text": "Bubbles in ZingChart",
+        "text": "泡泡圖",
         "background-color": "#777e88 #4e5665",
         "border-bottom": "1px solid #050505",
         "height": "50px",
         "font-color": "#fff",
         "font-family": "Arial",
         "font-weight": "normal",
-        "font-size": "18px"
+        "font-size": "18px",
     },
     "plotarea": {
         "margin-right":"25%",
         "background-color": "#fff",
-        "alpha": 0.3,
-        "margin": "90px 40px 50px 50px"
+        "alpha": 0.1,
+        //"margin": "90px 40px 50px 50px"
     },
     "scale-y": {
         "values": "0:20:5",
@@ -107,15 +116,15 @@ var myConfig = {
         }
     },
     "tooltip": {
-        "text": "Y-Axis Value: %v0<br>X-Axis Value: %v1<br>Bubble Size: %v2",
+        "text": "這是測試資料<br>A lot of TEXT <br> Y-Axis Value: %v0<br>X-Axis Value: %v1<br>Bubble Size: %v2",
         "text-align": "left"
     },
     "series": [{
         "text":"Test 1",
         "values": [
             [
-                1,
-                15,
+                1.3,
+                15.2,
                 8
             ],
             [
@@ -141,7 +150,7 @@ var myConfig = {
             [
                 7,
                 15,
-                1
+                10
             ],
             [
                 8,
@@ -149,7 +158,7 @@ var myConfig = {
                 4
             ],
             [
-                1,
+                0.1,
                 6,
                 6
             ],
@@ -217,7 +226,7 @@ var myConfig = {
             ],
             [
                 7,
-                3,
+                3.3,
                 5
             ],
             [
@@ -227,7 +236,7 @@ var myConfig = {
             ],
             [
                 1,
-                0,
+                0.28,
                 3
             ],
             [
@@ -247,7 +256,7 @@ var myConfig = {
             ],
             [
                 2,
-                6,
+                6.79,
                 2
             ]
         ],
@@ -289,7 +298,7 @@ var myConfig = {
             ],
             [
                 5,
-                5,
+                5.69,
                 2
             ],
             [
@@ -341,8 +350,8 @@ var myConfig = {
 zingchart.render({
     id: 'myChart',
     data: myConfig,
-    height: "500",
-    width: "725"
+    height: "700",
+    width: "1000"
 });
 </script>
 

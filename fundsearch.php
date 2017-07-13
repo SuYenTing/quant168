@@ -586,7 +586,7 @@ function fundAdvanceSearchSubmit() {
     }
     
     document.getElementById("sql").value = "SELECT * FROM web_data.foreign_fund_performance where 1=1 "+sql;
-    //alert(document.getElementById("sql").value);
+    alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
 }
@@ -645,6 +645,22 @@ div.tab button.active {
     border: 1px solid #ccc;
     border-top: none;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
 </style>
 </head>
 <div class="tab">
@@ -661,7 +677,7 @@ div.tab button.active {
             <th>幣別</th>
             <th>標準差</th>
             <th>Sharpe值</th>
-            <th>風險報籌等級/晨星評等</th>
+            <th>晨星評等</th>
         </tr>
 <?php
 $sql=$_POST['sql'];
@@ -722,10 +738,10 @@ $rs=mysql_fetch_row($result);
             <th>Burke Ratio</th>
             <th>BernardoLedoit Ratio</th>
             <th>D Ratio</th>
-            <th>MaxDrawdown</th>
+            <th>Max Drawdown</th>
             <th>Omega Sharpe</th>
             <th>Pain Ratio</th>
-            <th>Skewnesskurtosis Ratio</th>
+            <th>Skewness kurtosis Ratio</th>
             <th>Sortino Ratio</th>
             <th>Upsidepotential Ratio</th>
         </tr>
@@ -737,16 +753,16 @@ $rs=mysql_fetch_row($result);
 ?>
         <tr class="content">
           <td><?php echo $rs[1]?></td>
-          <td><?php echo $rs[38]?></td>
-          <td><?php echo $rs[37]?></td>
-          <td><?php echo $rs[39]?></td>
-          <td><?php echo $rs[40]?></td>
-          <td><?php echo $rs[41]?></td>
-          <td><?php echo $rs[42]?></td>
-          <td><?php echo $rs[43]?></td>
-          <td><?php echo $rs[44]?></td>
-          <td><?php echo $rs[45]?></td>
-          <td><?php echo $rs[46]?></td>
+          <td><?php echo substr($rs[38],0,5)?></td>
+          <td><?php echo substr($rs[37],0,5)?></td>
+          <td><?php echo substr($rs[39],0,5)?></td>
+          <td><?php echo substr($rs[40],0,5)?></td>
+          <td><?php echo substr($rs[41],0,5)?></td>
+          <td><?php echo substr($rs[42],0,5)?></td>
+          <td><?php echo substr($rs[43],0,5)?></td>
+          <td><?php echo substr($rs[44],0,5)?></td>
+          <td><?php echo substr($rs[45],0,5)?></td>
+          <td><?php echo substr($rs[46],0,5)?></td>
         </tr>
 <?php
 }
