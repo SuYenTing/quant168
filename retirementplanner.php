@@ -15,15 +15,14 @@ fr_graph: fund return graph,
 <!--Include Header-->
 <?php include "navbar.html" ?>
 
-
-<button id="testID"> Test Interactive Dashboard</button>
+<link rel="stylesheet" href="css/retirementplanner.css">
 
 <!--Description of Retirement Planner-->
 <div class="description" id="description">
 	想要快樂的退休嗎？用我們理財規劃計算機...
 </div>
 
-
+<button id="testID"> Test Interactive Dashboard</button>
 <!--Form 1: get RTS, YUR, and Age-->
 <div class="container-fluid">
 	<form id="form1" action="">
@@ -109,44 +108,35 @@ fr_graph: fund return graph,
 	</form>
 </div> 
 
+
+
 <!--Interactive Dashboard-->
 <div id="interactivedashboard">
 	<div class="container-fluid">
 		<div class="row text-center">
-			<div class="col-md-4">
-				<div class="chartitem">
-					<div id="showRTS"></div>	
-					<br>	
-					<input id="rts_id_input" type="range" min=1 max=100> 
-					<a id="openForm2Modal" data-toggle="modal" data-target="#form2Modal">重新計算我所願意接受的投資風險</a> <br>
+			<div class="col-md-3">
+				<div class="chartcontrol">
+					<div class="row">
+						<div id="showYUR"></div>
+						<br>
+						<input id="yur_id_input" type="range" min=5 max=40>
+						<br><br><br>
+					</div>
+					<div class="row">
+						<div id="showIAR"></div>
+						<br>	
+						<input id="iar_id_input" type="range" step=1 min=1 max=20>
+						<br><br><br>
+					</div>
+					<div class="row">
+						<div id="showRTS"></div>	
+						<br>	
+						<input id="rts_id_input" type="range" min=1 max=100> 
+						<a id="openForm2Modal" data-toggle="modal" data-target="#form2Modal">重新計算我所願意接受的投資風險</a> <br><br><br>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-4">				
-				<div class="chartitem">
-					<div id="showYUR"></div>
-					<br>
-					<input id="yur_id_input" type="range" min=5 max=40>
-				</div>
-
-			</div>
-			<div class="col-md-4">
-				<div class="chartitem">
-					<div id="showIAR"></div>
-					<br>	
-					<input id="iar_id_input" type="range" step=1 min=1 max=20>
-				</div>
-				
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-md-4">
-				<div class="chartitem">
-					2017年資產配置建議
-					<div id="assetallocationpie" ></div>
-					<a id="opengg" data-toggle="modal" data-target="#almModal"><div id="showYUR2"></div></a>
-				</div>
-			</div> 
-			<div class="col-md-8">
+			<div class="col-md-9">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="chartitem">
@@ -169,6 +159,12 @@ fr_graph: fund return graph,
 						<div id="fundreturnchart"></div>
 					</div>
 				</div>
+				<div class="chartitem">
+					2017年資產配置建議
+					<div id="assetallocationpie" ></div>
+					<a id="opengg" data-toggle="modal" data-target="#almModal"><div id="showYUR2"></div></a>
+				</div>			
+				
 			</div>
 		</div>
 	</div>

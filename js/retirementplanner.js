@@ -215,8 +215,8 @@ function FundReturnChart() {
 
 	var ReturnChart = d3.select("#fundreturnchart");
 	var margin = {top: 90, right: 90, bottom: 90, left: 90},
-	    width = 1200,
-	    height = 600,
+	    width = 960,
+	    height = 500,
 	    width_g = width - margin.left - margin.right,
 	    height_g = height - margin.top - margin.bottom;
 	var x = d3.scaleTime()
@@ -319,7 +319,7 @@ function FundReturnChart() {
 		var $ReturnChart = $("#fundreturnchart");
 		var svg = ReturnChart
 			.append("svg")
-			.attr("viewBox","0 0 300 600")
+			.attr("viewBox","0 0 250 500")
 			.attr("preserveAspectRatio","xMinYMin meet")
 			.attr("width", width)
 			.attr("height",height)
@@ -383,12 +383,13 @@ function FundReturnChart() {
 			.attr("font-size",20);
 
 		//label for the xais
-		// frg.append("text")
-		// 	.attr("transform",
-  //           "translate(" + (width_g/2) + " ," + 
-  //                          (height_g + 60) + ")")
-  //     		.style("text-anchor", "middle")
-  //     		.text("年");
+		frg.append("text")
+			.attr("transform",
+            "translate(" + (width_g/2) + " ," + 
+                           (height_g + 60) + ")")
+      		.style("text-anchor", "middle")
+      		.text("年")
+      		.attr("font-size",20);
 
       	// text label for the y axis
 		frg.append("text")
@@ -397,7 +398,8 @@ function FundReturnChart() {
 			.attr("x",0 - (height_g / 2))
 			.attr("dy", "1em")
 			.style("text-anchor", "middle")
-			.text("百萬"); 
+			.text("百萬")
+			.attr("font-size",20);
 
 		updateReturnChart();
 
@@ -496,6 +498,7 @@ $(document).ready(function(){
 
 	$("#interactivedashboard").hide();
 
+
 	$("#testID").on("click",function(e) {
 		age = 22;
 		yur = 20;
@@ -514,8 +517,11 @@ $(document).ready(function(){
 			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
 		});
 		$("#form1").hide();
-		$("#description").html("資產配置建議");	
+		$("#description").hide();
+		// $("#description").html("資產配置建議");	
+		$("#testID").hide();
 		$("#interactivedashboard").show();
+
 		return false;
 	});
 

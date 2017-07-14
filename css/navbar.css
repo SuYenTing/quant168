@@ -1,43 +1,7 @@
-.description {
-	background-color: #005A31;
-	margin: 0.5em;
-	padding: 1.5em;
-	color: white;
-}
-#form1 {
-	background-color: #F3FAB6;
-	border-radius: 2em;
-	margin-left: 5em;
-	margin-right:5em;
-	padding: 1.5em;
-	border-color: black;
-	border-style: dotted;
-
-}
-
 a {
 	color:  #005A31;
 	font-weight: bold;
 }
-
-input[type=number]{
-    width: 120px;
-} 
-select option{
-	font-size: 1.8em;
-}
-
-
-
-
-.chartitem {
-	margin: 0.3em;
-	padding: 1.5em;
-	background-color: #F3FAB6;
-	border-radius: 2em;
-	min-height: 8em;
-} 
-
 
   /* Note: Try to remove the following lines to see the effect of CSS positioning */
 .affix {
@@ -54,16 +18,15 @@ select option{
 	font-size: 2em;
 	font-weight: bold;
 	color: #005A31;
-	height: 1.5em;
+/*	height: em;*/
 }
 
 .menu {
 	z-index: 100
-
 }
 
 .dropdown-menu, .dropdown-header {
-	font-size: 20px;
+	font-size: 15px;
 	color: #005A31;
 	font-weight: bold;
 }
@@ -71,8 +34,7 @@ select option{
 .navbar-default {
     background-color: white;
     border-color: white;
-    font-size: 25px;
-
+    font-size: 15px;
     border-bottom-color: #005A31;
     border-width: 5px;
 }
@@ -150,41 +112,9 @@ select option{
 
 body {
 	font-family: "Roboto Mono", roboto mono;
-	font-size: 25px;
 }
 
 
-button {
-	font-size: 20px;
-}
-
-option {
-	font-size: 20px;
-}
-
-
-svg {
-
-	height: auto;
-	width: 100%;
-}
-
-.axisX {
-	width: 100%;
-}
-
-.axisY {
-	height: 100%;
-}
-
-
-td, th {
-  padding: 0.5em 2em;
-}
-
-.caret {
-    border-width: 8px;
-}
 
 
 
