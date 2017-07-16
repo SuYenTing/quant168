@@ -1,5 +1,121 @@
-@media (min-width: 767px) {
-    .navbar-nav .dropdown-menu .caret {
-	transform: rotate(-90deg);
+a {
+	color:  #005A31;
+	font-weight: bold;
+}
+
+  /* Note: Try to remove the following lines to see the effect of CSS positioning */
+.affix {
+  top: 0;
+  width: 100%;
+}
+
+.affix + .container-fluid {
+  padding-top: 70px;
+}
+
+
+.logo {
+	font-size: 2em;
+	font-weight: bold;
+	color: #005A31;
+/*	height: em;*/
+}
+
+.menu {
+	z-index: 100
+}
+
+.dropdown-menu, .dropdown-header {
+	font-size: 15px;
+	color: #005A31;
+	font-weight: bold;
+}
+
+.navbar-default {
+    background-color: white;
+    border-color: white;
+    font-size: 15px;
+    border-bottom-color: #005A31;
+    border-width: 5px;
+}
+/* Title */
+.navbar-default .navbar-brand {
+    color: #005A31;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #005A31;
+}
+/* Link */
+.navbar-default .navbar-nav > li > a {
+    color: #005A31;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #005A31;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #005A31;
+    background-color: white;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #005A31;
+    background-color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #005A31;
+}
+
+@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
     }
 }
+
+
+body {
+	font-family: "Roboto Mono", roboto mono;
+}
+
+
+
+
+
+

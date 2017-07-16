@@ -1,6 +1,7 @@
 <?php
 include("navbar.html");
- 
+
+
 
 ?>
         <div class="slideshow">

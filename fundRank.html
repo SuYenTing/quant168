@@ -1,0 +1,153 @@
+<meta charset="utf-8">
+<style>
+.container {
+    width: 80%;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+
+/* Style the tab */
+
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+
+/* Style the buttons inside the tab */
+
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+
+/* Change background color of buttons on hover */
+
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+
+/* Create an active/current tablink class */
+
+div.tab button.active {
+    background-color: #ccc;
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <table>
+            <td>
+                <p>排行榜條件</p>
+                <table>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                </table>
+            </td>
+            <td>
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">資訊總覽</button>
+                    <button class="tablinks" onclick="openCity(event, 'Paris')">績效表現</button>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">基金指標</button>
+                </div>
+                <div id="London" class="tabcontent">
+                    <table>
+                        <tr>
+                            <th>基金名稱</th>
+                            <th>淨值/淨值日</th>
+                            <th>漲跌幅%/漲跌</th>
+                            <th>幣別</th>
+                            <th>標準差</th>
+                            <th>Sharpe值</th>
+                            <th>風險報籌等級/晨星評等</th>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                    </table>
+                </div>
+                <div id="Paris" class="tabcontent">
+                    <table>
+                        <tr>
+                            <th>基金名稱</th>
+                            <th>近三月</th>
+                            <th>近六月</th>
+                            <th>近一年</th>
+                            <th>近兩年</th>
+                            <th>近三年</th>
+                            <th>近五年</th>
+                            <th>近十年</th>
+                            <th>成立乞今</th>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                    </table>
+                </div>
+                <div id="Tokyo" class="tabcontent">
+                    <table>
+                        <tr>
+                            <th>基金名稱</th>
+                            <th>Adjust Sharpe</th>
+                            <th>Burke Ratio</th>
+                            <th>BernardoLedoit Ratio</th>
+                            <th>D Ratio</th>
+                            <th>MaxDrawdown</th>
+                            <th>Omega Sharpe</th>
+                            <th>Pain Ratio</th>
+                            <th>Skewnesskurtosis Ratio</th>
+                            <th>Sortino Ratio</th>
+                            <th>Upsidepotential Ratio</th>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                    </table>
+                </div>
+            </td>
+        </table>
+    </div>
+    <script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    </script>
+</body>
