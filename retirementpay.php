@@ -133,8 +133,16 @@ include("navbar.html");
                             <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular'); popularFunc()"> 一般民眾
                             <input type="hidden" name="vocations" id="vocations" value="labor">
                 </td>
-                <td id="a"></td>
-                <td><div id="b"></div></td>
+                <td id="a">退休金制度</td>
+                <td><div id="b">
+                    <select>
+                        <option>勞保年金&勞保退新制(30歲以下)</option>
+                        <option>勞保年金&全新制(30歲以上)</option>
+                        <option>勞保年金&選擇勞退新制(30歲以上)</option>
+                    </select>
+                </div></td>
+                <td id="c"></td>
+                <td id="d"></td>
                 </tr>
                 <tr>
                 <td>開始工作年齡</td>
@@ -287,6 +295,7 @@ include("navbar.html");
                         </select>
                     </td>
                 </tr>
+
                 
             </table>
             <button onclick="calculate()" class="button button4">計算</button>
@@ -323,10 +332,15 @@ function vocationFunc(vocation) {
 function farmerFunc(){
 
     document.getElementById("a").innerHTML = "欲投保年資";
+    document.getElementById("c").innerHTML = "";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
                 b.removeChild(b.firstChild);
+            }
+    var d = document.getElementById("d");
+    while(d.hasChildNodes()){
+                d.removeChild(d.firstChild);
             }
 
     //Create array of options to be added
@@ -349,19 +363,29 @@ function farmerFunc(){
 function militaryFunc(){
 
     document.getElementById("a").innerHTML = "退休金制度";
+    document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
                 b.removeChild(b.firstChild);
             }
+    var d = document.getElementById("d");
+    while(d.hasChildNodes()){
+                d.removeChild(d.firstChild);
+            }
 
     //Create array of options to be added
     var militaryArray = ["軍保&公務人員退休金新制(40歲以下)","軍保&公務人員退休金新制(40歲以上)","軍保&軍職人員退休金含新舊制(軍人, 40歲以上)"];
+    var militaryArray2 = [9455, 10180 ,10905 ,11635 ,12105 ,12570 ,13040 ,13510 ,13980 ,14450 ,15115 ,15780 ,16445 ,17110 ,17780 ,18445 ,19110 ,19775 ,20440 ,21110 ,21775 ,22440 ,23105 ,23770 ,24440 ,25105 ,25770 ,26105 ,26435 ,27100 ,27770 ,28100 ,28435 ,29100 ,29435 ,29765 ,30100 ,30430 ,31100 ,31430 ,31765 ,32095 ,32430 ,33095 ,33430 ,33760 ,34095 ,34430 ,35095 ,35425 ,35760 ,36095 ,36425 ,37090 ,37425 ,37760 ,38425 ,39090 ,39425 ,40420 ,41420 ,41755 ,42420 ,43085 ,43420 ,44420 ,45750 ,46415 ,47080 ,47750 ,48415 ,49080 ,49745 ,50410 ,51080 ,51745 ,52410 ,53075 ,95250 ];
 
     //Create and append select list
     var militaryList = document.createElement("select");
     militaryList.id = "militaryInsuranceSystem";
     b.appendChild(militaryList);
+
+    var militaryList2 = document.createElement("select");
+    militaryList2.id = "militaryInsuranceSystem2";
+    d.appendChild(militaryList2);
 
     //Create and append the options
     for (var i = 0; i < militaryArray.length; i++) {
@@ -370,24 +394,43 @@ function militaryFunc(){
         militaryOption.text = militaryArray[i];
         militaryList.appendChild(militaryOption);
     }
+    for (var i = 0; i < militaryArray2.length; i++) {
+        var militaryOption2 = document.createElement("option");
+        militaryOption2.value = militaryArray2[i];
+        militaryOption2.text = militaryArray2[i];
+        militaryList2.appendChild(militaryOption2);
+    }
 
 }
 function publictaFunc(){
 
     document.getElementById("a").innerHTML = "退休金制度";
+    document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
                 b.removeChild(b.firstChild);
             }
 
+    var d = document.getElementById("d");
+    while(d.hasChildNodes()){
+                d.removeChild(d.firstChild);
+            }
+
     //Create array of options to be added
     var publictaArray = ["公保&公教人員退休撫卹金新制(40歲以下)","公保&公教人員退休撫卹金新制(40歲以上)","公保&公教人員退休撫卹金新舊制(40歲以上)"];
+    
+    var publictaArray2 = [53075, 52410 ,51745 ,49745 ,48415 ,47080 ,45750 ,44420 ,43085 ,41755 ,40420 ,39090 ,36425 ,35425 ,34430 ,33430 ,32430 ,31430 ,30430 ,29435 ,28435 ,27435 ,26435 ,25435 ,24440 ,23770 ,23105 ,22440 ,21775 ,21110 ,20440 ,19775 ,19110 ,18445 ,17780 ,17110 ,16445 ,15780 ,15115 ,14450 ,13980 ,13510 ,13040 ,12570 ,12105 ,11635 ,11610 ,11235 ,10865 ,10490 ];
+
 
     //Create and append select list
     var publictaList = document.createElement("select");
     publictaList.id = "publictaInsuranceSystem";
     b.appendChild(publictaList);
+
+    var publictaList2 = document.createElement("select");
+    publictaList2.id = "publictaInsuranceSystem2";
+    d.appendChild(publictaList2);
 
     //Create and append the options
     for (var i = 0; i < publictaArray.length; i++) {
@@ -397,23 +440,42 @@ function publictaFunc(){
         publictaList.appendChild(publictaOption);
     }
 
+    for (var i = 0; i < publictaArray2.length; i++) {
+        var publictaOption2 = document.createElement("option");
+        publictaOption2.value = publictaArray2[i];
+        publictaOption2.text = publictaArray2[i];
+        publictaList2.appendChild(publictaOption2);
+    }
+
 }
 function functionaryFunc(){
 
     document.getElementById("a").innerHTML = "退休金制度";
+    document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
                 b.removeChild(b.firstChild);
             }
 
+    var d = document.getElementById("d");
+    while(d.hasChildNodes()){
+        d.removeChild(d.firstChild);
+    }
+
     //Create array of options to be added
-    var functionaryArray = ["公保&公務人員退休金新制(40歲以下)","公保&公務人員退休金含新舊制(40歲以上)","公保&公務人員退休金含新舊制(40歲以上)"];
+    var functionaryArray = ["公保&公務人員退休金新制(40歲以下)","公保&公務人員退休金含新舊制(40歲以上)，退撫舊制年資=0 ","公保&公務人員退休金含新舊制(40歲以上)"];
+
+    var functionaryArray2 = [53075, 52410 ,51745 ,49745 ,48415 ,47080 ,45750 ,44420 ,43085 ,41755 ,40420 ,39090 ,36425 ,35425 ,34430 ,33430 ,32430 ,31430 ,30430 ,29435 ,28435 ,27435 ,26435 ,25435 ,24440 ,23770 ,23105 ,22440 ,21775 ,21110 ,20440 ,19775 ,19110 ,18445 ,17780 ,17110 ,16445 ,15780 ,15115 ,14450 ,13980 ,13510 ,13040 ,12570 ,12105 ,11635 ];
 
     //Create and append select list
     var functionaryList = document.createElement("select");
     functionaryList.id = "functionaryInsuranceSystem";
     b.appendChild(functionaryList);
+
+    var functionaryList2 = document.createElement("select");
+    functionaryList2.id = "functionaryInsuranceSystem2";
+    d.appendChild(functionaryList2);
 
     //Create and append the options
     for (var i = 0; i < functionaryArray.length; i++) {
@@ -423,34 +485,104 @@ function functionaryFunc(){
         functionaryList.appendChild(functionaryOption);
     }
 
+    for (var i = 0; i < functionaryArray2.length; i++) {
+        var functionaryOption2 = document.createElement("option");
+        functionaryOption2.value = functionaryArray2[i];
+        functionaryOption2.text = functionaryArray2[i];
+        functionaryList2.appendChild(functionaryOption2);
+    }
+
 }
 function laborFunc(){
 
-    document.getElementById("a").innerHTML = "";
+    document.getElementById("a").innerHTML = "退休金制度";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
                 b.removeChild(b.firstChild);
             }
+    document.getElementById("c").innerHTML = "";
+    var d = document.getElementById("d");
+    while(d.hasChildNodes()){
+                d.removeChild(d.firstChild);
+            }
+
+    //Create array of options to be added
+    var laborArray = ["勞保年金&勞保退新制(30歲以下)","勞保年金&全新制(30歲以上)","勞保年金&選擇勞退新制(30歲以上)"];
+
+    //Create and append select list
+    var laborList = document.createElement("select");
+    laborList.id = "laborInsuranceSystem";
+    b.appendChild(laborList);
+
+    //Create and append the options
+    for (var i = 0; i < laborArray.length; i++) {
+        var laborOption = document.createElement("option");
+        laborOption.value = laborArray[i];
+        laborOption.text = laborArray[i];
+        laborList.appendChild(laborOption);
+    }
+
 
 }
 function privatetaFunc(){
 
-    document.getElementById("a").innerHTML = "";
+    document.getElementById("a").innerHTML = "退休金制度";
+    document.getElementById("c").innerHTML = "預估退保前10年平均保俸";
+
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
                 b.removeChild(b.firstChild);
             }
+
+    var d = document.getElementById("d");
+    while(d.hasChildNodes()){
+                d.removeChild(d.firstChild);
+            }
+
+    //Create array of options to be added
+    var privatetaArray = ["公保&私校退撫新制(25歲以下)","公保&私校退撫新制(25歲以下)","公保&私校退撫舊制(25歲以上)"];
+
+    var privatetaArray2 = [53075, 52410 ,51745 ,49745 ,48415 ,47080 ,45750 ,44420 ,43085 ,41755 ,40420 ,39090 ,36425 ,35425 ,34430 ,33430 ,32430 ,31430 ,30430 ,29435 ,28435 ,27435 ,26435 ,25435 ,24440 ,23770 ,23105 ,22440 ,21775 ,21110 ,20440 ,19775 ,19110 ,18445 ,17780 ,17110 ,16445 ,15780 ,15115 ,14450 ,13980 ,13510 ,13040 ,12570 ,12105 ,11635];
+
+    //Create and append select list
+    var privatetaList = document.createElement("select");
+    privatetaList.id = "privatetaInsuranceSystem";
+    b.appendChild(privatetaList);
+
+    var privatetaList2 = document.createElement("select");
+    privatetaList2.id = "privatetaInsuranceSystem2";
+    d.appendChild(privatetaList2);
+
+    //Create and append the options
+    for (var i = 0; i < privatetaArray.length; i++) {
+        var privatetaOption = document.createElement("option");
+        privatetaOption.value = privatetaArray[i];
+        privatetaOption.text = privatetaArray[i];
+        privatetaList.appendChild(privatetaOption);
+    }
+
+    for (var i = 0; i < privatetaArray2.length; i++) {
+        var privatetaOption2 = document.createElement("option");
+        privatetaOption2.value = privatetaArray2[i];
+        privatetaOption2.text = privatetaArray2[i];
+        privatetaList2.appendChild(privatetaOption2);
+    }
 
 }
 function popularFunc(){
 
     document.getElementById("a").innerHTML = "";
+    document.getElementById("c").innerHTML = "";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
                 b.removeChild(b.firstChild);
+            }
+    var d = document.getElementById("d");
+    while(d.hasChildNodes()){
+                d.removeChild(d.firstChild);
             }
 
 }
@@ -477,11 +609,11 @@ function calculate(){
 if("labor" == vocation){
 
     var z = c - b;
-    var y1 = Math.min( Math.pow((a * (1 + g/12)), z), 45800);
-    var y2 = Math.min( Math.pow((a * (1 + g/12)), z - 1), 45800);
-    var y3 = Math.min( Math.pow((a * (1 + g/12)), z - 2), 45800);
-    var y4 = Math.min( Math.pow((a * (1 + g/12)), z - 3), 45800);
-    var y5 = Math.min( Math.pow((a * (1 + g/12)), z - 4), 45800);
+    var y1 = Math.min( Math.pow((a * (1 + g)), z), 45800);
+    var y2 = Math.min( Math.pow((a * (1 + g)), z - 1), 45800);
+    var y3 = Math.min( Math.pow((a * (1 + g)), z - 2), 45800);
+    var y4 = Math.min( Math.pow((a * (1 + g)), z - 3), 45800);
+    var y5 = Math.min( Math.pow((a * (1 + g)), z - 4), 45800);
     var x = (y1 + y2 + y3 + y4 + y5)/5;
     var w = Math.max(((x * z * 0.00775) + 3000), (x * z * 0.0155));
     var v = w * (1 - Math.pow( (1/(1 + (i/12))), ((c - d)*12)))/(i/12);
@@ -500,19 +632,22 @@ if("labor" == vocation){
 
 }else if ("privateta" == vocation) {
 
-    var z = c - b;
-    var x1 = a * Math.pow((1 + g), (z - 9));
-    var x2 = a * Math.pow((1 + g), (z - 8));
-    var x3 = a * Math.pow((1 + g), (z - 7));
-    var x4 = a * Math.pow((1 + g), (z - 6));
-    var x5 = a * Math.pow((1 + g), (z - 5));
-    var x6 = a * Math.pow((1 + g), (z - 4));
-    var x7 = a * Math.pow((1 + g), (z - 3));
-    var x8 = a * Math.pow((1 + g), (z - 2));
-    var x9 = a * Math.pow((1 + g), (z - 1));
-    var x10 = a * Math.pow((1 + g), z);
+    var privatetaInsuranceSystem2 = document.getElementById("privatetaInsuranceSystem2").value;
 
-    var x = (x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10) / 10;
+    var z = c - b;
+    // var x1 = a * Math.pow((1 + g), (z - 9));
+    // var x2 = a * Math.pow((1 + g), (z - 8));
+    // var x3 = a * Math.pow((1 + g), (z - 7));
+    // var x4 = a * Math.pow((1 + g), (z - 6));
+    // var x5 = a * Math.pow((1 + g), (z - 5));
+    // var x6 = a * Math.pow((1 + g), (z - 4));
+    // var x7 = a * Math.pow((1 + g), (z - 3));
+    // var x8 = a * Math.pow((1 + g), (z - 2));
+    // var x9 = a * Math.pow((1 + g), (z - 1));
+    // var x10 = a * Math.pow((1 + g), z);
+
+    // var x = (x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10) / 10;
+    var x = privatetaInsuranceSystem2;
     var w = x * 0.013 * z;
     var v = w * (1 - Math.pow( (1/(1 + (i/12))), ((c - d)*12)))/(i/12);
 
@@ -538,12 +673,14 @@ if("labor" == vocation){
 }else if ("military" == vocation) {
 
     var militaryInsuranceSystem = document.getElementById("militaryInsuranceSystem").value;
+    var militaryInsuranceSystem2 = document.getElementById("militaryInsuranceSystem2").value;
+
 
     if ("軍保&公務人員退休金新制(40歲以下)" == militaryInsuranceSystem || "軍保&公務人員退休金新制(40歲以上)" == militaryInsuranceSystem) {
 
         var z = c - b;
         var y = Math.min(42, z * 1.2);
-        var x = a * Math.pow((1 + g), z);
+        var x = militaryInsuranceSystem2;
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
@@ -569,7 +706,7 @@ if("labor" == vocation){
         }
         var y2 = z - u;
         var y = Math.min(42, y1 + y2 * 1.2);
-        var x = a * Math.pow((1 + g), z);
+        var x = militaryInsuranceSystem2;
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
@@ -583,12 +720,14 @@ if("labor" == vocation){
 }else if ("publicta" == vocation) {
 
     var publictaInsuranceSystem = document.getElementById("publictaInsuranceSystem").value;
+    var publictaInsuranceSystem2 = document.getElementById("publictaInsuranceSystem2").value;
+
 
     if ("公保&公教人員退休撫卹金新制(40歲以下)" == publictaInsuranceSystem || "公保&公教人員退休撫卹金新制(40歲以上)" == publictaInsuranceSystem) {
 
         var z = c - b;
         var y = Math.min(42, z * 1.2);
-        var x = a * Math.pow((1 + g), z);
+        var x = publictaInsuranceSystem2;
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
@@ -614,7 +753,7 @@ if("labor" == vocation){
         }
         var y2 = z - u;
         var y = Math.min(42, y1 + y2 * 1.2);
-        var x = a * Math.pow((1 + g), z);
+        var x = publictaInsuranceSystem2;
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
@@ -627,12 +766,13 @@ if("labor" == vocation){
 }else if ("functionary" == vocation) {
 
     var functionaryInsuranceSystem = document.getElementById("functionaryInsuranceSystem").value;
+    var functionaryInsuranceSystem2 = document.getElementById("functionaryInsuranceSystem2").value;
 
     if ("公保&公務人員退休金新制(40歲以下)" == functionaryInsuranceSystem) {
 
         var z = c - b;
         var y = Math.min(42, z * 1.2);
-        var x = a * Math.pow((1 + g), z);
+        var x = functionaryInsuranceSystem2;
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
@@ -658,7 +798,7 @@ if("labor" == vocation){
         }
         var y2 = z - u;
         var y = Math.min(42, y1 + y2 * 1.2);
-        var x = a * Math.pow((1 + g), z);
+        var x = functionaryInsuranceSystem2;
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
