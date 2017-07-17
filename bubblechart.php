@@ -1,358 +1,144 @@
 <?php
 include("navbar.html");
 ?>
+<?php
+set_time_limit(0);
+mysql_connect("140.119.86.174","nccu","nccu");//連結伺服器
+mysql_select_db("web_data");//選擇資料庫
+mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中文
+//從contact資料庫中選擇所有的資料表
+function classify($x) {
+    $y="classC";
+    switch ($x){
+        case 1:
+            $y = "水泥工業";
+            break;
+        case 2:
+            $y = "食品工業";
+            break;
+        case 3:
+            $y = "塑膠工業";
+            break;
+        case 4:
+            $y = "紡織纖維";
+            break;
+        case 5:
+            $y = "電機機械";
+            break;
+        case 6:
+            $y = "電器電纜";
+            break;
+        case 21:
+            $y = "化學生技醫療";
+            break;
+        case 22:
+            $y = "化學生技醫療";
+            break;
+        case 8:
+            $y = "玻璃陶瓷";
+            break;
+        case 9:
+            $y = "造紙工業";
+            break;
+        case 10:
+            $y = "鋼鐵工業";
+            break;
+        case 11:
+            $y = "橡膠工業";
+            break;
+        case 12:
+            $y = "汽車工業";
+            break;
+        case 24:
+            $y = "電子工業";
+            break;
+        case 25:
+            $y = "電子工業";
+            break;
+        case 26:
+            $y = "電子工業";
+            break;
+        case 27:
+            $y = "電子工業";
+            break;
+        case 28:
+            $y = "電子工業";
+            break;
+        case 29:
+            $y = "電子工業";
+            break;
+        case 30:
+            $y = "電子工業";
+            break;
+        case 31:
+            $y = "電子工業";
+            break;
+        case 14:
+            $y = "建材營造";
+            break;
+        case 15:
+            $y = "航運業";
+            break;
+        case 16:
+            $y = "觀光事業";
+            break;
+        case 17:
+            $y = "金融保險";
+            break;
+        case 18:
+            $y = "貿易百貨";
+            break;
+        case 19:
+            $y = "綜合";
+            break;
+        case 20:
+            $y = "其他產業";
+            break;
+        default:
+            $y = "-";        
+    }
+    return $y;
+}
+?>
 <html>
 
 <head>
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    <script>
-    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawSeriesChart);
+
+    function drawSeriesChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['ID', '安全性分數', '1年年化索提諾值', '產業代碼',     '1個月累積報酬'],
+<?php
+      $funddata=mysql_query("SELECT * FROM web_data.bubble_chart");
+      for($i=1;$i<=mysql_num_rows($funddata);$i++){
+      $rs=mysql_fetch_row($funddata);
+      echo "['".$rs[1]."',".$rs[10].",".$rs[14].",'".classify($rs[2])."',".$rs[15]."],";
+}
+
+?>
+       //['CAN',    80.66,              1.67,      'North America',  33739900]
+      ]);
+
+      var options = {
+        title: 'Correlation between life expectancy, fertility rate ' +
+               'and population of some world countries (2010)',
+        hAxis: {title: '安全性分數'},
+        vAxis: {title: '1年年化索提諾值'},
+        explorer:{},
+        bubble: {textStyle: {fontSize: 11}}
+      };
+
+      var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+      chart.draw(data, options);
+    }
     </script>
-</head>
-<style>
-.zc-ref {
-    display: none;
-}
-.container {
-    width: 80%;
-}
-</style>
-
-<body>
-<div class="container">
-    <div id='myChart'></div>
-</div>
-</body>
-<script type="text/javascript">
-//zingchart.THEME = "classic";
-var myConfig = {
-    "type": "bubble",
-    
-    //"background-color": "#f4f4f4 #dfdfdf",
-    "legend": {
-        //"background-color": "#ffe6e6",
-        "border-width": 2,
-        //"border-color": "red",
-        "border-radius": "5px",
-        "padding": "10%",
-        //"layout": "5x1",
-        "x": "82%",
-        "y": "25%",
-    },
-    "title": {
-        "text": "泡泡圖",
-        "background-color": "#777e88 #4e5665",
-        "border-bottom": "1px solid #050505",
-        "height": "50px",
-        "font-color": "#fff",
-        "font-family": "Arial",
-        "font-weight": "normal",
-        "font-size": "18px",
-    },
-    "plotarea": {
-        "margin-right":"25%",
-        "background-color": "#fff",
-        "alpha": 0.1,
-        //"margin": "90px 40px 50px 50px"
-    },
-    "scale-y": {
-        "values": "0:20:5",
-        "line-color": "#aaadb3",
-        "shadow": 0,
-        "tick": {
-            "line-color": "#aaadb3"
-        },
-        "minor-ticks": 1,
-        "minor-tick": {
-            "visible": false,
-            "line-color": "#aaadb3",
-            "shadow": 0
-        },
-        "guide": {
-            "line-color": "#aaadb3",
-            "alpha": 0.3,
-            "line-style": "solid"
-        },
-        "minor-guide": {
-            "line-color": "#aaadb3",
-            "alpha": 0.2,
-            "line-style": "dashed"
-        },
-        "item": {
-            "padding-right": "5px",
-            "font-family": "Arial",
-            "font-size": "11px",
-            "font-color": "#676b72"
-        }
-    },
-    "scale-x": {
-        "line-color": "#aaadb3",
-        "shadow": 0,
-        "tick": {
-            "line-color": "#aaadb3"
-        },
-        "minor-ticks": 1,
-        "minor-tick": {
-            "visible": false,
-            "line-color": "#aaadb3",
-            "shadow": 0
-        },
-        "guide": {
-            "line-color": "#aaadb3",
-            "alpha": 0.3,
-            "line-style": "solid"
-        },
-        "minor-guide": {
-            "line-color": "#aaadb3",
-            "alpha": 0.2,
-            "line-style": "dashed"
-        },
-        "item": {
-            "padding-top": "5px",
-            "font-family": "Arial",
-            "font-size": "11px",
-            "font-color": "#676b72"
-        }
-    },
-    "tooltip": {
-        "text": "這是測試資料<br>A lot of TEXT <br> Y-Axis Value: %v0<br>X-Axis Value: %v1<br>Bubble Size: %v2",
-        "text-align": "left"
-    },
-    "series": [{
-        "text":"Test 1",
-        "values": [
-            [
-                1.3,
-                15.2,
-                8
-            ],
-            [
-                2,
-                4,
-                2
-            ],
-            [
-                5,
-                10,
-                1
-            ],
-            [
-                6,
-                3,
-                3
-            ],
-            [
-                3,
-                6,
-                2
-            ],
-            [
-                7,
-                15,
-                10
-            ],
-            [
-                8,
-                2,
-                4
-            ],
-            [
-                0.1,
-                6,
-                6
-            ],
-            [
-                2,
-                12,
-                3
-            ],
-            [
-                4,
-                4,
-                4
-            ],
-            [
-                5,
-                1,
-                5
-            ],
-            [
-                6,
-                0,
-                1
-            ],
-            [
-                8,
-                16,
-                2
-            ]
-        ],
-        "marker": {
-            "background-color": "#b2bf77 #829550",
-            "border-width": "1px",
-            "border-color": "#728440",
-            "fill-type": "linear",
-            "shadow": true,
-
-        },
-        "hover-marker": {
-            "background-color": "#d2d9af #b2bf77",
-            "border-color": "#a1ae64",
-            "border-width": "1px"
-        },
-    }, {
-        "text":"Test 2",
-        "values": [
-            [
-                3,
-                5,
-                1
-            ],
-            [
-                2,
-                17,
-                2
-            ],
-            [
-                8,
-                8,
-                3
-            ],
-            [
-                4,
-                6,
-                2
-            ],
-            [
-                7,
-                3.3,
-                5
-            ],
-            [
-                2,
-                12,
-                1
-            ],
-            [
-                1,
-                0.28,
-                3
-            ],
-            [
-                6,
-                2,
-                2
-            ],
-            [
-                4,
-                12,
-                7
-            ],
-            [
-                6,
-                14,
-                2
-            ],
-            [
-                2,
-                6.79,
-                2
-            ]
-        ],
-        "marker": {
-            "background-color": "#9d9ad1 #615faa",
-            "border-width": "1px",
-            "border-color": "#514f99",
-            "fill-type": "linear",
-            "shadow": true,
-
-        },
-        "hover-marker": {
-            "background-color": "#c3c2e3 #9d9ad1",
-            "border-color": "#8a87c2",
-            "border-width": "1px"
-        }
-    }, {
-        "text":"Test 3",
-        "values": [
-            [
-                3,
-                6,
-                5
-            ],
-            [
-                6,
-                8,
-                8
-            ],
-            [
-                8,
-                12,
-                5
-            ],
-            [
-                3,
-                2,
-                3
-            ],
-            [
-                5,
-                5.69,
-                2
-            ],
-            [
-                7,
-                10,
-                2
-            ],
-            [
-                2,
-                1,
-                1
-            ],
-            [
-                7,
-                4,
-                1
-            ],
-            [
-                6,
-                17,
-                4
-            ],
-            [
-                1,
-                9,
-                3
-            ],
-            [
-                5,
-                14,
-                1
-            ]
-        ],
-        "marker": {
-            "background-color": "#ecd466 #e0b140",
-            "border-width": "1px",
-            "border-color": "#cb9f34",
-            "fill-type": "linear",
-            "shadow": true,
-        },
-        "hover-marker": {
-            "background-color": "#f9f0c8 #ecd466",
-            "border-color": "#d5bc4c",
-            "border-width": "1px"
-        }
-    }]
-};
-
-zingchart.render({
-    id: 'myChart',
-    data: myConfig,
-    height: "700",
-    width: "1000"
-});
-</script>
+  </head>
+  <body>
+    <div id="series_chart_div" style="width: 1200px; height: 800px;"></div>
+  </body>
 
 </html>
