@@ -25,23 +25,35 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
             theme: "light",
             axisX: {
                 title: {
-                    text: "Budget"
+                    text: "安全性分數"
                 },
                 endOffset: 0.05,
                 startOffset: 0.05
             },
             axisY: {
                 title: {
-                    text: "Revenue"
+                    text: "1年年化索提諾值"
                 }
             },
             primaryHeader: {
-                text: "Ad Budget VS Revenue"
+                text: "安全性分數 / 1年年化索提諾值"
             },
             chartLegend: {
                 align: "right",
                 verticalAlign: "right",
                 renderDirection: "vertical"
+            },
+            tooltipSettings: {
+                customHeaderText: '{point.pointName}',
+                customPointText: function (point, chart) {
+                    return shield.format(
+                        '<span style="color:{color}">安全性分數: <b>{point.x}</b><br/>1年年化索提諾值:<b>{point.y}</b><br/>1個月累積報酬:<b>{point.size}</b></span>',
+                        {
+                            point: point,
+                            color: point.y > 87 ? 'red' : 'green'
+                        }
+                    );
+                }
             },
             dataSeries: [{
                     seriesType: "bubble",
