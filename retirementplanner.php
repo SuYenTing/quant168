@@ -114,7 +114,7 @@ fr_graph: fund return graph,
 <div id="interactivedashboard">
 	<div class="container-fluid">
 		<div class="row text-center">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<div class="chartcontrol">
 					<div class="row">
 						<div id="showYUR"></div>
@@ -132,39 +132,47 @@ fr_graph: fund return graph,
 						<div id="showRTS"></div>	
 						<br>	
 						<input id="rts_id_input" type="range" min=1 max=100> 
-						<a id="openForm2Modal" data-toggle="modal" data-target="#form2Modal">重新計算我所願意接受的投資風險</a> <br><br><br>
+						<a id="openForm2Modal" data-toggle="modal" data-target="#form2Modal">重新計算我願意接受的投資風險</a> <br><br><br>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-10">
 				<div class="row">
-					<div class="col-md-6">
-						<div class="chartitem">
+					<div class="col-md-4">
+						<div class="chartitem" style="font:bold; min-height: 50px">
+							<h5> 快樂退休	  理財規劃 </h5>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="chartitem" style="min-height: 50px">
 							正常市場環境
 							<div id="showFR50"></div>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="chartitem">
+					<div class="col-md-4">
+						<div class="chartitem" style="min-height: 50px">
 							艱苦市場環境
 							<div id="showFR25"></div>
 						</div>
 						
-					</div>
-					
+					</div>					
 				</div>
 				<div class="row">
-					<div class="chartitem">
+				<div class="col-md-4">
+					<div class="chartitem" style="min-height:500px">
+						2017年資產配置建議
+						<div id="assetallocationpie" ></div>
+						<a id="opengg" data-toggle="modal" data-target="#almModal"><div id="showYUR2"></div></a>
+					</div>
+				</div>	
+				<div class="col-md-8">
+					<div class="chartitem" style="min-height:500px">
 						資產成長
 						<div id="fundreturnchart"></div>
 					</div>
 				</div>
-				<div class="chartitem">
-					2017年資產配置建議
-					<div id="assetallocationpie" ></div>
-					<a id="opengg" data-toggle="modal" data-target="#almModal"><div id="showYUR2"></div></a>
-				</div>			
-				
+						
 			</div>
 		</div>
 	</div>

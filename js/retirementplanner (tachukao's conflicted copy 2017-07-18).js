@@ -92,9 +92,9 @@ function AssetAllocationTable() {
 
 function AssetAllocationPie() {
 	var PieChart = d3.select("#assetallocationpie");
-	var margin = {top: 40, right: 40, bottom: 40, left: 40},
-	    width = 500,
-	    height = 500,
+	var margin = {top: 90, right: 90, bottom: 90, left: 90},
+	    width = 250,
+	    height = 250,
 	    width_g = width - margin.left - margin.right,
 	    height_g = height - margin.top - margin.bottom,
 		radius = Math.min(width, height) / 2;
@@ -168,7 +168,7 @@ function AssetAllocationPie() {
 		var pieData = parseData(data,year);
 		var $PieChart = $("#allocation-pie");
 		var svg = PieChart.append("svg")
-		.attr("viewBox","0 0 500 500")
+		.attr("viewBox","0 0 250 250")
 		.attr("preserveAspectRatio","xMinYMin meet")
 		.attr("width", width)
 		.attr("height", height);
@@ -215,7 +215,7 @@ function FundReturnChart() {
 
 	var ReturnChart = d3.select("#fundreturnchart");
 	var margin = {top: 90, right: 90, bottom: 90, left: 90},
-	    width = 700,
+	    width = 960,
 	    height = 500,
 	    width_g = width - margin.left - margin.right,
 	    height_g = height - margin.top - margin.bottom;
@@ -319,7 +319,7 @@ function FundReturnChart() {
 		var $ReturnChart = $("#fundreturnchart");
 		var svg = ReturnChart
 			.append("svg")
-			.attr("viewBox","0 0 700 500")
+			.attr("viewBox","0 0 500 500")
 			.attr("preserveAspectRatio","xMinYMin meet")
 			.attr("width", width)
 			.attr("height",height)
