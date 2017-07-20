@@ -608,15 +608,19 @@ function calculate(){
 
 if("labor" == vocation){
 
+    // alert(a);
+
     var z = c - b;
-    var y1 = Math.min( Math.pow((a * (1 + g)), z), 45800);
-    var y2 = Math.min( Math.pow((a * (1 + g)), z - 1), 45800);
-    var y3 = Math.min( Math.pow((a * (1 + g)), z - 2), 45800);
-    var y4 = Math.min( Math.pow((a * (1 + g)), z - 3), 45800);
-    var y5 = Math.min( Math.pow((a * (1 + g)), z - 4), 45800);
+    var y1 = Math.min( a * Math.pow((1 + g), z), 45800);
+    var y2 = Math.min( a * Math.pow((1 + g), z - 1), 45800);
+    var y3 = Math.min( a * Math.pow((1 + g), z - 2), 45800);
+    var y4 = Math.min( a * Math.pow((1 + g), z - 3), 45800);
+    var y5 = Math.min( a * Math.pow((1 + g), z - 4), 45800);
     var x = (y1 + y2 + y3 + y4 + y5)/5;
     var w = Math.max(((x * z * 0.00775) + 3000), (x * z * 0.0155));
     var v = w * (1 - Math.pow( (1/(1 + (i/12))), ((c - d)*12)))/(i/12);
+
+    // alert(y1);
 
     document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
     document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
