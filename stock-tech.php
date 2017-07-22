@@ -94,7 +94,7 @@ td {
     <?php
             if(isset($_POST['code'])){
             $code=$_POST['code'];
-            $data=mysql_query("select * from web_data.stock_tech where code = '$code' ");
+            $data=mysql_query("SELECT * FROM web_data.stock_tech where code = '$code' and date = (select max(date) FROM web_data.stock_tech where code = '$code');");
             $rs=mysql_fetch_row($data);
             
             }
