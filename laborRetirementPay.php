@@ -2,6 +2,18 @@
 
 include("navbar.html");
 
+$currentAge = $_POST['currentAge'];
+$gender = $_POST['gender'];
+$vocation = $_POST['vocation'];
+$workAge = $_POST['workAge'];
+$retireAge = $_POST['retireAge'];
+$wage = $_POST['wage'];
+$wageGrowth = $_POST['wageGrowth'];
+$lifeLeft = $_POST['lifeLeft'];
+$roi = $_POST['roi'];
+
+
+
 ?>
 
 <html>
@@ -67,58 +79,57 @@ include("navbar.html");
         
         <p>input</p>
         <table>
-        <form method="post" action="" name="form" id="form">
+        <form method="post" action="" name="form" id="form" >
             <tr>
                 <td>現在年齡</td>
                 <td>
                     <select name="currentAge" id="currentAge">
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30"selected>30</option>
-                        <option value="31">31</option>
-                        <option value="32">32</option>
-                        <option value="33">33</option>
-                        <option value="34">34</option>
-                        <option value="35">35</option>
-                        <option value="36">36</option>
-                        <option value="37">37</option>
-                        <option value="38">38</option>
-                        <option value="39">39</option>
-                        <option value="40">40</option>
-                        <option value="41">41</option>
-                        <option value="42">42</option>
-                        <option value="43">43</option>
-                        <option value="44">44</option>
-                        <option value="45">45</option>
-                        <option value="46">46</option>
-                        <option value="47">47</option>
-                        <option value="48">48</option>
-                        <option value="49">49</option>
-                        <option value="50">50</option>
-                        <option value="51">51</option>
-                        <option value="52">52</option>
-                        <option value="53">53</option>
-                        <option value="54">54</option>
-                        <option value="55">55</option>
-                        <option value="56">56</option>
-                        <option value="57">57</option>
-                        <option value="58">58</option>
-                        <option value="59">59</option>
-                        <option value="60">60</option>
+                    <option value="20" <?php if($currentAge ==20) {echo "selected";}?>>20</option>
+                    <option value="21" <?php if($currentAge ==21) {echo "selected";}?>>21</option>
+                    <option value="23" <?php if($currentAge ==23) {echo "selected";}?>>23</option>
+                    <option value="24" <?php if($currentAge ==24) {echo "selected";}?>>24</option>
+                    <option value="25" <?php if($currentAge ==25) {echo "selected";}?>>25</option>
+                    <option value="26" <?php if($currentAge ==26) {echo "selected";}?>>26</option>
+                    <option value="27" <?php if($currentAge ==27) {echo "selected";}?>>27</option>
+                    <option value="28" <?php if($currentAge ==28) {echo "selected";}?>>28</option>
+                    <option value="29" <?php if($currentAge ==29) {echo "selected";}?>>29</option>
+                    <option value="30" <?php if($currentAge ==30) {echo "selected";}?>>30</option>
+                    <option value="31" <?php if($currentAge ==31) {echo "selected";}?>>31</option>
+                    <option value="32" <?php if($currentAge ==32) {echo "selected";}?>>32</option>
+                    <option value="33" <?php if($currentAge ==33) {echo "selected";}?>>33</option>
+                    <option value="34" <?php if($currentAge ==34) {echo "selected";}?>>34</option>
+                    <option value="35" <?php if($currentAge ==35) {echo "selected";}?>>35</option>
+                    <option value="36" <?php if($currentAge ==36) {echo "selected";}?>>36</option>
+                    <option value="37" <?php if($currentAge ==37) {echo "selected";}?>>37</option>
+                    <option value="38" <?php if($currentAge ==38) {echo "selected";}?>>38</option>
+                    <option value="39" <?php if($currentAge ==39) {echo "selected";}?>>39</option>
+                    <option value="40" <?php if($currentAge ==40) {echo "selected";}?>>40</option>
+                    <option value="41" <?php if($currentAge ==41) {echo "selected";}?>>41</option>
+                    <option value="42" <?php if($currentAge ==42) {echo "selected";}?>>42</option>
+                    <option value="43" <?php if($currentAge ==43) {echo "selected";}?>>43</option>
+                    <option value="44" <?php if($currentAge ==44) {echo "selected";}?>>44</option>
+                    <option value="45" <?php if($currentAge ==45) {echo "selected";}?>>45</option>
+                    <option value="46" <?php if($currentAge ==46) {echo "selected";}?>>46</option>
+                    <option value="47" <?php if($currentAge ==47) {echo "selected";}?>>47</option>
+                    <option value="48" <?php if($currentAge ==48) {echo "selected";}?>>48</option>
+                    <option value="49" <?php if($currentAge ==49) {echo "selected";}?>>49</option>
+                    <option value="50" <?php if($currentAge ==50) {echo "selected";}?>>50</option>
+                    <option value="51" <?php if($currentAge ==51) {echo "selected";}?>>51</option>
+                    <option value="52" <?php if($currentAge ==52) {echo "selected";}?>>52</option>
+                    <option value="53" <?php if($currentAge ==53) {echo "selected";}?>>53</option>
+                    <option value="54" <?php if($currentAge ==54) {echo "selected";}?>>54</option>
+                    <option value="55" <?php if($currentAge ==55) {echo "selected";}?>>55</option>
+                    <option value="56" <?php if($currentAge ==56) {echo "selected";}?>>56</option>
+                    <option value="57" <?php if($currentAge ==57) {echo "selected";}?>>57</option>
+                    <option value="58" <?php if($currentAge ==58) {echo "selected";}?>>58</option>
+                    <option value="59" <?php if($currentAge ==59) {echo "selected";}?>>59</option>
+                    <option value="60" <?php if($currentAge ==60) {echo "selected";}?>>60</option>
                     </select>
                     歲</td>
                 <td>性別</td>
                 <td>
-                            <input type="radio" name="gender" id="gender" value="male" checked onchange="genderFunc('male')"> 男
-                            <input type="radio" name="gender" id="gender" value="female" onchange="genderFunc('female')"> 女
+                            <input type="radio" name="gender" id="gender" value="male" <?php if($gender == "male"){echo "checked";}?> onchange="genderFunc('male')"> 男
+                            <input type="radio" name="gender" id="gender" value="female" <?php if($gender == "female"){echo "checked";}?> onchange="genderFunc('female')"> 女
                             <input type="hidden" name="genders" id="genders" value="male">
                 </td>
                 </tr>
@@ -149,154 +160,165 @@ include("navbar.html");
                 <td>開始工作年齡</td>
                 <td>
                     <select name="workAge" id="workAge">
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25" selected>25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                        <option value="32">32</option>
-                        <option value="33">33</option>
-                        <option value="34">34</option>
-                        <option value="35">35</option>
-                        <option value="36">36</option>
-                        <option value="37">37</option>
-                        <option value="38">38</option>
-                        <option value="39">39</option>
-                        <option value="40">40</option>
-                        <option value="41">41</option>
-                        <option value="42">42</option>
-                        <option value="43">43</option>
-                        <option value="44">44</option>
-                        <option value="45">45</option>
-                        <option value="46">46</option>
-                        <option value="47">47</option>
-                        <option value="48">48</option>
-                        <option value="49">49</option>
-                        <option value="50">50</option>
-                        <option value="51">51</option>
-                        <option value="52">52</option>
-                        <option value="53">53</option>
-                        <option value="54">54</option>
-                        <option value="55">55</option>
-                        <option value="56">56</option>
-                        <option value="57">57</option>
-                        <option value="58">58</option>
-                        <option value="59">59</option>
-                        <option value="60">60</option>
+                    <option value="20" <?php if($workAge ==20) {echo "selected";}?>>20</option>
+                    <option value="21" <?php if($workAge ==21) {echo "selected";}?>>21</option>
+                    <option value="23" <?php if($workAge ==23) {echo "selected";}?>>23</option>
+                    <option value="24" <?php if($workAge ==24) {echo "selected";}?>>24</option>
+                    <option value="25" <?php if($workAge ==25) {echo "selected";}?>>25</option>
+                    <option value="26" <?php if($workAge ==26) {echo "selected";}?>>26</option>
+                    <option value="27" <?php if($workAge ==27) {echo "selected";}?>>27</option>
+                    <option value="28" <?php if($workAge ==28) {echo "selected";}?>>28</option>
+                    <option value="29" <?php if($workAge ==29) {echo "selected";}?>>29</option>
+                    <option value="30" <?php if($workAge ==30) {echo "selected";}?>>30</option>
+                    <option value="31" <?php if($workAge ==31) {echo "selected";}?>>31</option>
+                    <option value="32" <?php if($workAge ==32) {echo "selected";}?>>32</option>
+                    <option value="33" <?php if($workAge ==33) {echo "selected";}?>>33</option>
+                    <option value="34" <?php if($workAge ==34) {echo "selected";}?>>34</option>
+                    <option value="35" <?php if($workAge ==35) {echo "selected";}?>>35</option>
+                    <option value="36" <?php if($workAge ==36) {echo "selected";}?>>36</option>
+                    <option value="37" <?php if($workAge ==37) {echo "selected";}?>>37</option>
+                    <option value="38" <?php if($workAge ==38) {echo "selected";}?>>38</option>
+                    <option value="39" <?php if($workAge ==39) {echo "selected";}?>>39</option>
+                    <option value="40" <?php if($workAge ==40) {echo "selected";}?>>40</option>
+                    <option value="41" <?php if($workAge ==41) {echo "selected";}?>>41</option>
+                    <option value="42" <?php if($workAge ==42) {echo "selected";}?>>42</option>
+                    <option value="43" <?php if($workAge ==43) {echo "selected";}?>>43</option>
+                    <option value="44" <?php if($workAge ==44) {echo "selected";}?>>44</option>
+                    <option value="45" <?php if($workAge ==45) {echo "selected";}?>>45</option>
+                    <option value="46" <?php if($workAge ==46) {echo "selected";}?>>46</option>
+                    <option value="47" <?php if($workAge ==47) {echo "selected";}?>>47</option>
+                    <option value="48" <?php if($workAge ==48) {echo "selected";}?>>48</option>
+                    <option value="49" <?php if($workAge ==49) {echo "selected";}?>>49</option>
+                    <option value="50" <?php if($workAge ==50) {echo "selected";}?>>50</option>
+                    <option value="51" <?php if($workAge ==51) {echo "selected";}?>>51</option>
+                    <option value="52" <?php if($workAge ==52) {echo "selected";}?>>52</option>
+                    <option value="53" <?php if($workAge ==53) {echo "selected";}?>>53</option>
+                    <option value="54" <?php if($workAge ==54) {echo "selected";}?>>54</option>
+                    <option value="55" <?php if($workAge ==55) {echo "selected";}?>>55</option>
+                    <option value="56" <?php if($workAge ==56) {echo "selected";}?>>56</option>
+                    <option value="57" <?php if($workAge ==57) {echo "selected";}?>>57</option>
+                    <option value="58" <?php if($workAge ==58) {echo "selected";}?>>58</option>
+                    <option value="59" <?php if($workAge ==59) {echo "selected";}?>>59</option>
+                    <option value="60" <?php if($workAge ==60) {echo "selected";}?>>60</option>
                     </select>
                 歲</td>
                 <td>預計退休年齡</td>
                 <td>
-                    <select name="retireAge" id="retireAge" onchange="lifeLeftFunc()">
-                        <option value="55">55</option>
-                        <option value="56">56</option>
-                        <option value="57">57</option>
-                        <option value="58">58</option>
-                        <option value="59">59</option>
-                        <option value="60">60</option>
-                        <option value="61">61</option>
-                        <option value="62">62</option>
-                        <option value="63">63</option>
-                        <option value="64">64</option>
-                        <option value="65">65</option>
-                        <option value="66">66</option>
-                        <option value="67">67</option>
-                        <option value="68">68</option>
-                        <option value="69">69</option>
-                        <option value="70"selected>70</option>
+                    <select id="retireAge" onchange="lifeLeftFunc()">
+                        <option value="55" <?php if($retireAge ==55) {echo "selected";}?>>55</option>
+                        <option value="56" <?php if($retireAge ==56) {echo "selected";}?>>56</option>
+                        <option value="57" <?php if($retireAge ==57) {echo "selected";}?>>57</option>
+                        <option value="58" <?php if($retireAge ==58) {echo "selected";}?>>58</option>
+                        <option value="59" <?php if($retireAge ==59) {echo "selected";}?>>59</option>
+                        <option value="60" <?php if($retireAge ==60) {echo "selected";}?>>60</option>
+                        <option value="61" <?php if($retireAge ==61) {echo "selected";}?>>61</option>
+                        <option value="62" <?php if($retireAge ==62) {echo "selected";}?>>62</option>
+                        <option value="63" <?php if($retireAge ==63) {echo "selected";}?>>63</option>
+                        <option value="64" <?php if($retireAge ==64) {echo "selected";}?>>64</option>
+                        <option value="65" <?php if($retireAge ==65) {echo "selected";}?>>65</option>
+                        <option value="66" <?php if($retireAge ==66) {echo "selected";}?>>66</option>
+                        <option value="67" <?php if($retireAge ==67) {echo "selected";}?>>67</option>
+                        <option value="68" <?php if($retireAge ==68) {echo "selected";}?>>68</option>
+                        <option value="69" <?php if($retireAge ==69) {echo "selected";}?>>69</option>
+                        <option value="70" <?php if($retireAge ==70) {echo "selected";}?>>70</option>
                     </select>
                 歲</td>
                 
                 <tr>
-                        <td>目前薪資</td>
+                        <td>起薪</td>
                         <td>$
-                            <input name="wage" type="number" id="wage" value=40000>
+                            <input type="number" id="wage" value=<?php echo $wage?>>
                         </td>
                         <td>薪資成長率</td>
                         <td>
-                            <select name="wageGrowth" id="wageGrowth" >
-                            <option value="0.5">0.5%</option>
-                            <option value="1.0">1.0%</option>
-                            <option value="1.5">1.5%</option>
-                            <option value="2.0">2.0%</option>
-                            <option value="2.5">2.5%</option>
-                            <option value="3.0">3.0%</option>
-                            <option value="3.5">3.5%</option>
-                            <option value="4.0">4.0%</option>
-                            <option value="4.5">4.5%</option>
-                            <option value="5.0"selected>5.0%</option>
+                            <select id="wageGrowth" >
+                            <option value="0.5" <?php if($wageGrowth ==0.5) {echo "selected";}?>>0.5%</option>
+                            <option value="1.0" <?php if($wageGrowth ==1.0) {echo "selected";}?>>1.0%</option>
+                            <option value="1.5" <?php if($wageGrowth ==1.5) {echo "selected";}?>>1.5%</option>
+                            <option value="2.0" <?php if($wageGrowth ==2.0) {echo "selected";}?>>2.0%</option>
+                            <option value="2.5" <?php if($wageGrowth ==2.5) {echo "selected";}?>>2.5%</option>
+                            <option value="3.0" <?php if($wageGrowth ==3.0) {echo "selected";}?>>3.0%</option>
+                            <option value="3.5" <?php if($wageGrowth ==3.5) {echo "selected";}?>>3.5%</option>
+                            <option value="4.0" <?php if($wageGrowth ==4.0) {echo "selected";}?>>4.0%</option>
+                            <option value="4.5" <?php if($wageGrowth ==4.5) {echo "selected";}?>>4.5%</option>
+                            <option value="5.0" <?php if($wageGrowth ==5.0) {echo "selected";}?>>5.0%</option>
                         </select>
                         </td>
                 </tr>
                 <tr>
                     <td>退休時平均餘命</td>
                     <td>
-                    <input name="lifeLeft" type="number" id="lifeLeft" value=13 readonly>歲</td>
+                    <input type="number" id="lifeLeft" value=13 readonly>歲</td>
                     <td>投資報酬率</td>
                 <td>
-                    <select name="roi" id="roi" >
-                        <option value="0.2">0.2%</option>
-                        <option value="0.2">0.2%</option>
-                        <option value="0.4">0.4%</option>
-                        <option value="0.6">0.6%</option>
-                        <option value="0.8">0.8%</option>
+                    <select id="roi" >
+                        <option value="0.2" <?php if($roi ==0.2) {echo "selected";}?>>0.2%</option>
+                        <option value="0.4" <?php if($roi ==0.4) {echo "selected";}?>>0.4%</option>
+                        <option value="0.6" <?php if($roi ==0.6) {echo "selected";}?>>0.6%</option>
+                        <option value="0.8" <?php if($roi ==0.8) {echo "selected";}?>>0.8%</option>
+                        <option value="1.0" <?php if($roi ==1.0) {echo "selected";}?>>1.0%</option>
+                        <option value="1.2" <?php if($roi ==1.2) {echo "selected";}?>>1.2%</option>
+                        <option value="1.4" <?php if($roi ==1.4) {echo "selected";}?>>1.4%</option>
+                        <option value="1.6" <?php if($roi ==1.6) {echo "selected";}?>>1.6%</option>
+                        <option value="1.8" <?php if($roi ==1.8) {echo "selected";}?>>1.8%</option>
+                        <option value="2.0" <?php if($roi ==2.0) {echo "selected";}?>>2.0%</option>
+                        <option value="2.2" <?php if($roi ==2.2) {echo "selected";}?>>2.2%</option>
+                        <option value="2.4" <?php if($roi ==2.4) {echo "selected";}?>>2.4%</option>
+                        <option value="2.6" <?php if($roi ==2.6) {echo "selected";}?>>2.6%</option>
+                        <option value="2.8" <?php if($roi ==2.8) {echo "selected";}?>>2.8%</option>
+                        <option value="3.0" <?php if($roi ==3.0) {echo "selected";}?>>3.0%</option>
+                        <option value="3.2" <?php if($roi ==3.2) {echo "selected";}?>>3.2%</option>
+                        <option value="3.4" <?php if($roi ==3.4) {echo "selected";}?>>3.4%</option>
+                        <option value="3.6" <?php if($roi ==3.6) {echo "selected";}?>>3.6%</option>
+                        <option value="3.8" <?php if($roi ==3.8) {echo "selected";}?>>3.8%</option>
+                        <option value="4.0" <?php if($roi ==4.0) {echo "selected";}?>>4.0%</option>
+                        <option value="4.2" <?php if($roi ==4.2) {echo "selected";}?>>4.2%</option>
+                        <option value="4.4" <?php if($roi ==4.4) {echo "selected";}?>>4.4%</option>
+                        <option value="4.6" <?php if($roi ==4.6) {echo "selected";}?>>4.6%</option>
+                        <option value="4.8" <?php if($roi ==4.8) {echo "selected";}?>>4.8%</option>
+                        <option value="5.0" <?php if($roi ==5.0) {echo "selected";}?>>5.0%</option>
+                        <option value="5.2" <?php if($roi ==5.2) {echo "selected";}?>>5.2%</option>
+                        <option value="5.4" <?php if($roi ==5.4) {echo "selected";}?>>5.4%</option>
+                        <option value="5.6" <?php if($roi ==5.6) {echo "selected";}?>>5.6%</option>
+                        <option value="5.8" <?php if($roi ==5.8) {echo "selected";}?>>5.8%</option>
+                        <option value="6.0" <?php if($roi ==6.0) {echo "selected";}?>>6.0%</option>
+                        <option value="6.2" <?php if($roi ==6.2) {echo "selected";}?>>6.2%</option>
+                        <option value="6.4" <?php if($roi ==6.4) {echo "selected";}?>>6.4%</option>
+                        <option value="6.6" <?php if($roi ==6.6) {echo "selected";}?>>6.6%</option>
+                        <option value="6.8" <?php if($roi ==6.8) {echo "selected";}?>>6.8%</option>
+                        <option value="7.0" <?php if($roi ==7.0) {echo "selected";}?>>7.0%</option>
+                        <option value="7.2" <?php if($roi ==7.2) {echo "selected";}?>>7.2%</option>
+                        <option value="7.4" <?php if($roi ==7.4) {echo "selected";}?>>7.4%</option>
+                        <option value="7.6" <?php if($roi ==7.6) {echo "selected";}?>>7.6%</option>
+                        <option value="7.8" <?php if($roi ==7.8) {echo "selected";}?>>7.8%</option>
+                        <option value="8.0" <?php if($roi ==8.0) {echo "selected";}?>>8.0%</option>
+                        <option value="8.2" <?php if($roi ==8.2) {echo "selected";}?>>8.2%</option>
+                        <option value="8.4" <?php if($roi ==8.4) {echo "selected";}?>>8.4%</option>
+                        <option value="8.6" <?php if($roi ==8.6) {echo "selected";}?>>8.6%</option>
+                        <option value="8.8" <?php if($roi ==8.8) {echo "selected";}?>>8.8%</option>
+                        <option value="9.0" <?php if($roi ==9.0) {echo "selected";}?>>9.0%</option>
+                        <option value="9.2" <?php if($roi ==9.2) {echo "selected";}?>>9.2%</option>
+                        <option value="9.4" <?php if($roi ==9.4) {echo "selected";}?>>9.4%</option>
+                        <option value="9.6" <?php if($roi ==9.6) {echo "selected";}?>>9.6%</option>
+                        <option value="9.8" <?php if($roi ==9.8) {echo "selected";}?>>9.8%</option>
+                        <option value="10.0" <?php if($roi ==10.0) {echo "selected";}?>>10.0%</option>
+                    </select>
+                </td>
+                </tr>
+                <tr>
+                    <td>雇主提撥</td>
+                    <td>6%</td>
+                    <td>自行提撥(0%-6%)</td>
+                    <td>
+                        <select name="selfWithdraw" id="selfWithdraw" >
                         <option value="1.0">1.0%</option>
-                        <option value="1.2">1.2%</option>
-                        <option value="1.4">1.4%</option>
-                        <option value="1.6">1.6%</option>
-                        <option value="1.8">1.8%</option>
                         <option value="2.0">2.0%</option>
-                        <option value="2.2">2.2%</option>
-                        <option value="2.4">2.4%</option>
-                        <option value="2.6">2.6%</option>
-                        <option value="2.8">2.8%</option>
                         <option value="3.0">3.0%</option>
-                        <option value="3.2">3.2%</option>
-                        <option value="3.4">3.4%</option>
-                        <option value="3.6">3.6%</option>
-                        <option value="3.8">3.8%</option>
                         <option value="4.0">4.0%</option>
-                        <option value="4.2">4.2%</option>
-                        <option value="4.4">4.4%</option>
-                        <option value="4.6">4.6%</option>
-                        <option value="4.8">4.8%</option>
                         <option value="5.0">5.0%</option>
-                        <option value="5.2">5.2%</option>
-                        <option value="5.4">5.4%</option>
-                        <option value="5.6">5.6%</option>
-                        <option value="5.8">5.8%</option>
                         <option value="6.0">6.0%</option>
-                        <option value="6.2">6.2%</option>
-                        <option value="6.4">6.4%</option>
-                        <option value="6.6">6.6%</option>
-                        <option value="6.8">6.8%</option>
-                        <option value="7.0" selected>7.0%</option>
-                        <option value="7.2">7.2%</option>
-                        <option value="7.4">7.4%</option>
-                        <option value="7.6">7.6%</option>
-                        <option value="7.8">7.8%</option>
-                        <option value="8.0">8.0%</option>
-                        <option value="8.2">8.2%</option>
-                        <option value="8.4">8.4%</option>
-                        <option value="8.6">8.6%</option>
-                        <option value="8.8">8.8%</option>
-                        <option value="9.0">9.0%</option>
-                        <option value="9.2">9.2%</option>
-                        <option value="9.4">9.4%</option>
-                        <option value="9.6">9.6%</option>
-                        <option value="9.8">9.8%</option>
-                        <option value="10.0">10.0%</option>
-                        </select>
                     </td>
                 </tr>
-
             </form>
             </table>
             <button onclick="calculate()" class="button button4">計算</button>
@@ -304,9 +326,25 @@ include("navbar.html");
             <p>output</p>
             <table>
                 <tr>
+                    <td></td>
+                    <td>政府退休金</td>
+                    <td>雇主提撥</td>
+                    <td>自行提撥</td>
+                    <td>加總</td>
+                </tr>
+                <tr>
                     <td>月領金額</td>
                     <td>
                         <p id="monthlyAmount">$0</p>
+                    </td>
+                    <td>
+                        <p id="u">$0</p>
+                    </td>
+                    <td>
+                        <p id="s">$0</p>
+                    </td>
+                    <td>
+                        <p id="monthSum">$0</p>
                     </td>
                 </tr>
                 <tr>
@@ -314,20 +352,25 @@ include("navbar.html");
                     <td>
                         <p id="amountAccum">$0</p>
                     </td>
+                    <td>
+                        <p id="t">$0</p>
+                    </td>
+                    <td>
+                        <p id="r">$0</p>
+                    </td>
+                    <td>
+                        <p id="totalSum">$0</p>
+                    </td>
                 </tr>
             </table>
-            <button onclick="changePage()" class="button button4">知道更多</button>(點擊即可計算雇主提撥及自行提撥的退休金)
+            <p><button onclick="window.location.href='retirementpay.php'" class="button button4">回去上頁</button>(點擊即可回上一頁重新輸入)</p>
+            <p><button onclick="changePage()" class="button button4">知道更多</button>(點擊即可計算個人財務規劃)</p>
+
            </body>
 
 
 <script type="text/javascript">
 
-function changePage(){
-
-    document.getElementById('form').action = "laborRetirementPay.php";
-    document.getElementById('form').submit();
-
-}
 
 function genderFunc(gender) {
     document.getElementById("genders").value = gender;
@@ -337,170 +380,7 @@ function vocationFunc(vocation) {
     document.getElementById("vocations").value = vocation;
 }
 
-function farmerFunc(){
 
-    document.getElementById("a").innerHTML = "欲投保年資";
-    document.getElementById("c").innerHTML = "";
-
-    var b = document.getElementById("b");
-    while(b.hasChildNodes()){
-                b.removeChild(b.firstChild);
-            }
-    var d = document.getElementById("d");
-    while(d.hasChildNodes()){
-                d.removeChild(d.firstChild);
-            }
-
-    //Create array of options to be added
-    var farmerArray = [">=15","<15"];
-
-    //Create and append select list
-    var farmerList = document.createElement("select");
-    farmerList.id = "insuranceYear";
-    b.appendChild(farmerList);
-
-    //Create and append the options
-    for (var i = 0; i < farmerArray.length; i++) {
-        var farmerOption = document.createElement("option");
-        farmerOption.value = farmerArray[i];
-        farmerOption.text = farmerArray[i];
-        farmerList.appendChild(farmerOption);
-    }
-
-}
-function militaryFunc(){
-
-    document.getElementById("a").innerHTML = "退休金制度";
-    document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
-
-    var b = document.getElementById("b");
-    while(b.hasChildNodes()){
-                b.removeChild(b.firstChild);
-            }
-    var d = document.getElementById("d");
-    while(d.hasChildNodes()){
-                d.removeChild(d.firstChild);
-            }
-
-    //Create array of options to be added
-    var militaryArray = ["軍保&公務人員退休金新制(40歲以下)","軍保&公務人員退休金新制(40歲以上)","軍保&軍職人員退休金含新舊制(軍人, 40歲以上)"];
-    var militaryArray2 = [9455, 10180 ,10905 ,11635 ,12105 ,12570 ,13040 ,13510 ,13980 ,14450 ,15115 ,15780 ,16445 ,17110 ,17780 ,18445 ,19110 ,19775 ,20440 ,21110 ,21775 ,22440 ,23105 ,23770 ,24440 ,25105 ,25770 ,26105 ,26435 ,27100 ,27770 ,28100 ,28435 ,29100 ,29435 ,29765 ,30100 ,30430 ,31100 ,31430 ,31765 ,32095 ,32430 ,33095 ,33430 ,33760 ,34095 ,34430 ,35095 ,35425 ,35760 ,36095 ,36425 ,37090 ,37425 ,37760 ,38425 ,39090 ,39425 ,40420 ,41420 ,41755 ,42420 ,43085 ,43420 ,44420 ,45750 ,46415 ,47080 ,47750 ,48415 ,49080 ,49745 ,50410 ,51080 ,51745 ,52410 ,53075 ,95250 ];
-
-    //Create and append select list
-    var militaryList = document.createElement("select");
-    militaryList.id = "militaryInsuranceSystem";
-    b.appendChild(militaryList);
-
-    var militaryList2 = document.createElement("select");
-    militaryList2.id = "militaryInsuranceSystem2";
-    d.appendChild(militaryList2);
-
-    //Create and append the options
-    for (var i = 0; i < militaryArray.length; i++) {
-        var militaryOption = document.createElement("option");
-        militaryOption.value = militaryArray[i];
-        militaryOption.text = militaryArray[i];
-        militaryList.appendChild(militaryOption);
-    }
-    for (var i = 0; i < militaryArray2.length; i++) {
-        var militaryOption2 = document.createElement("option");
-        militaryOption2.value = militaryArray2[i];
-        militaryOption2.text = militaryArray2[i];
-        militaryList2.appendChild(militaryOption2);
-    }
-
-}
-function publictaFunc(){
-
-    document.getElementById("a").innerHTML = "退休金制度";
-    document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
-
-    var b = document.getElementById("b");
-    while(b.hasChildNodes()){
-                b.removeChild(b.firstChild);
-            }
-
-    var d = document.getElementById("d");
-    while(d.hasChildNodes()){
-                d.removeChild(d.firstChild);
-            }
-
-    //Create array of options to be added
-    var publictaArray = ["公保&公教人員退休撫卹金新制(40歲以下)","公保&公教人員退休撫卹金新制(40歲以上)","公保&公教人員退休撫卹金新舊制(40歲以上)"];
-    
-    var publictaArray2 = [53075, 52410 ,51745 ,49745 ,48415 ,47080 ,45750 ,44420 ,43085 ,41755 ,40420 ,39090 ,36425 ,35425 ,34430 ,33430 ,32430 ,31430 ,30430 ,29435 ,28435 ,27435 ,26435 ,25435 ,24440 ,23770 ,23105 ,22440 ,21775 ,21110 ,20440 ,19775 ,19110 ,18445 ,17780 ,17110 ,16445 ,15780 ,15115 ,14450 ,13980 ,13510 ,13040 ,12570 ,12105 ,11635 ,11610 ,11235 ,10865 ,10490 ];
-
-
-    //Create and append select list
-    var publictaList = document.createElement("select");
-    publictaList.id = "publictaInsuranceSystem";
-    b.appendChild(publictaList);
-
-    var publictaList2 = document.createElement("select");
-    publictaList2.id = "publictaInsuranceSystem2";
-    d.appendChild(publictaList2);
-
-    //Create and append the options
-    for (var i = 0; i < publictaArray.length; i++) {
-        var publictaOption = document.createElement("option");
-        publictaOption.value = publictaArray[i];
-        publictaOption.text = publictaArray[i];
-        publictaList.appendChild(publictaOption);
-    }
-
-    for (var i = 0; i < publictaArray2.length; i++) {
-        var publictaOption2 = document.createElement("option");
-        publictaOption2.value = publictaArray2[i];
-        publictaOption2.text = publictaArray2[i];
-        publictaList2.appendChild(publictaOption2);
-    }
-
-}
-function functionaryFunc(){
-
-    document.getElementById("a").innerHTML = "退休金制度";
-    document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
-
-    var b = document.getElementById("b");
-    while(b.hasChildNodes()){
-                b.removeChild(b.firstChild);
-            }
-
-    var d = document.getElementById("d");
-    while(d.hasChildNodes()){
-        d.removeChild(d.firstChild);
-    }
-
-    //Create array of options to be added
-    var functionaryArray = ["公保&公務人員退休金新制(40歲以下)","公保&公務人員退休金含新舊制(40歲以上)，退撫舊制年資=0 ","公保&公務人員退休金含新舊制(40歲以上)"];
-
-    var functionaryArray2 = [53075, 52410 ,51745 ,49745 ,48415 ,47080 ,45750 ,44420 ,43085 ,41755 ,40420 ,39090 ,36425 ,35425 ,34430 ,33430 ,32430 ,31430 ,30430 ,29435 ,28435 ,27435 ,26435 ,25435 ,24440 ,23770 ,23105 ,22440 ,21775 ,21110 ,20440 ,19775 ,19110 ,18445 ,17780 ,17110 ,16445 ,15780 ,15115 ,14450 ,13980 ,13510 ,13040 ,12570 ,12105 ,11635 ];
-
-    //Create and append select list
-    var functionaryList = document.createElement("select");
-    functionaryList.id = "functionaryInsuranceSystem";
-    b.appendChild(functionaryList);
-
-    var functionaryList2 = document.createElement("select");
-    functionaryList2.id = "functionaryInsuranceSystem2";
-    d.appendChild(functionaryList2);
-
-    //Create and append the options
-    for (var i = 0; i < functionaryArray.length; i++) {
-        var functionaryOption = document.createElement("option");
-        functionaryOption.value = functionaryArray[i];
-        functionaryOption.text = functionaryArray[i];
-        functionaryList.appendChild(functionaryOption);
-    }
-
-    for (var i = 0; i < functionaryArray2.length; i++) {
-        var functionaryOption2 = document.createElement("option");
-        functionaryOption2.value = functionaryArray2[i];
-        functionaryOption2.text = functionaryArray2[i];
-        functionaryList2.appendChild(functionaryOption2);
-    }
-
-}
 function laborFunc(){
 
     document.getElementById("a").innerHTML = "退休金制度";
@@ -533,67 +413,7 @@ function laborFunc(){
 
 
 }
-function privatetaFunc(){
 
-    document.getElementById("a").innerHTML = "退休金制度";
-    document.getElementById("c").innerHTML = "預估退保前10年平均保俸";
-
-
-    var b = document.getElementById("b");
-    while(b.hasChildNodes()){
-                b.removeChild(b.firstChild);
-            }
-
-    var d = document.getElementById("d");
-    while(d.hasChildNodes()){
-                d.removeChild(d.firstChild);
-            }
-
-    //Create array of options to be added
-    var privatetaArray = ["公保&私校退撫新制(25歲以下)","公保&私校退撫新制(25歲以下)","公保&私校退撫舊制(25歲以上)"];
-
-    var privatetaArray2 = [53075, 52410 ,51745 ,49745 ,48415 ,47080 ,45750 ,44420 ,43085 ,41755 ,40420 ,39090 ,36425 ,35425 ,34430 ,33430 ,32430 ,31430 ,30430 ,29435 ,28435 ,27435 ,26435 ,25435 ,24440 ,23770 ,23105 ,22440 ,21775 ,21110 ,20440 ,19775 ,19110 ,18445 ,17780 ,17110 ,16445 ,15780 ,15115 ,14450 ,13980 ,13510 ,13040 ,12570 ,12105 ,11635];
-
-    //Create and append select list
-    var privatetaList = document.createElement("select");
-    privatetaList.id = "privatetaInsuranceSystem";
-    b.appendChild(privatetaList);
-
-    var privatetaList2 = document.createElement("select");
-    privatetaList2.id = "privatetaInsuranceSystem2";
-    d.appendChild(privatetaList2);
-
-    //Create and append the options
-    for (var i = 0; i < privatetaArray.length; i++) {
-        var privatetaOption = document.createElement("option");
-        privatetaOption.value = privatetaArray[i];
-        privatetaOption.text = privatetaArray[i];
-        privatetaList.appendChild(privatetaOption);
-    }
-
-    for (var i = 0; i < privatetaArray2.length; i++) {
-        var privatetaOption2 = document.createElement("option");
-        privatetaOption2.value = privatetaArray2[i];
-        privatetaOption2.text = privatetaArray2[i];
-        privatetaList2.appendChild(privatetaOption2);
-    }
-
-}
-function popularFunc(){
-
-    document.getElementById("a").innerHTML = "";
-    document.getElementById("c").innerHTML = "";
-
-    var b = document.getElementById("b");
-    while(b.hasChildNodes()){
-                b.removeChild(b.firstChild);
-            }
-    var d = document.getElementById("d");
-    while(d.hasChildNodes()){
-                d.removeChild(d.firstChild);
-            }
-
-}
 function calculate(){
 
     var currentAge = parseInt(document.getElementById("currentAge").value);
@@ -605,6 +425,7 @@ function calculate(){
     var roi = parseFloat(document.getElementById("roi").value) / 100;
     var lifeLeft = parseInt(document.getElementById("lifeLeft").value);
     var vocation = document.getElementById("vocations").value;
+    var selfWithdraw = document.getElementById("selfWithdraw").value;
 
     var a = wage;
     var i = roi;
@@ -612,6 +433,7 @@ function calculate(){
     var b = workAge;
     var c = retireAge;
     var d = lifeLeft;
+    var j = selfWithdraw;
 
 
 if("labor" == vocation){
@@ -632,6 +454,29 @@ if("labor" == vocation){
 
     document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
     document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+
+
+    var t = a * 0.06 * ((Math.pow((1 + (i - g)/12),(z * 12)) - 1)/((i - g)/12));
+    var u = (t/12) * (i/(1-(1/Math.pow((1 + (i/12)),12*d))));
+
+    // alert(i - g);
+
+    document.getElementById("t").innerHTML = "$" + Math.round(t);
+    document.getElementById("u").innerHTML = "$" + Math.round(u);
+
+
+    var r = a * j * ((Math.pow((1 + ((i-g)/12)), z * 12) - 1)/((i - g)/12));
+    var s = (r / 12) * (i/(1 - (1/(Math.pow((1 + (i/12)),12 * d)))));
+
+    document.getElementById("r").innerHTML = "$" + Math.round(r);
+    document.getElementById("s").innerHTML = "$" + Math.round(s);
+
+    var monthSum = w + u + s;
+    var totalSum = v + t + r;
+
+    document.getElementById("monthSum").innerHTML = "$" + Math.round(monthSum);
+    document.getElementById("totalSum").innerHTML = "$" + Math.round(totalSum);
+
 
 }else if ("popular" == vocation) {
 
@@ -677,7 +522,7 @@ if("labor" == vocation){
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
     }else if ("<15" == insuranceYear) {
         var w = 3628;
-        var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
+        var v = w * (1 - Math.pow( (1/(1 + (i/12))), d))/(i/12);
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
     }

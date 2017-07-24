@@ -67,7 +67,7 @@ select option{
     <input class="button" type="button" name="button" id="name" onclick="normalSearch()" value="搜尋">
     <select name="invest_type" id="invest_type" class="button" onchange="advanceSearch()">
         <option disabled selected value> 進階搜尋 </option>
-        <option value="all">全部基金</option>
+        <!--<option value="all">全部基金</option>-->
         <option value="invest_place_in">境內</option>
         <option value="invest_place_out">境外</option>
     </select>
@@ -132,10 +132,10 @@ th {
         <td>
             <select name="std1y" id="std1y">
                 <option value="all">不限</option>
-                <option value="std1y1">0 &#60;=SD &#60;3</option>
-                <option value="std1y2">3 &#60;=SD &#60;6</option>
-                <option value="std1y3">6 &#60;=SD &#60;9</option>
-                <option value="std1y4">9 &#60;=SD</option>
+                <option value="std1y1">0 &#60;=SD &#60;0.3</option>
+                <option value="std1y2">0.3 &#60;=SD &#60;0.6</option>
+                <option value="std1y3">0.6 &#60;=SD &#60;0.9</option>
+                <option value="std1y4">0.9 &#60;=SD</option>
             </select>
         </td>
     </tr>
@@ -260,13 +260,13 @@ function fundAdvanceSearchSubmit() {
     }
     if (document.getElementById("std1y").value != "all") {
         if (document.getElementById("std1y").value == "std1y1") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=0  and foreign_fund_performance.std1y <3) or (fund_performance.std1y >=0  and fund_performance.std1y <3))";
+            sql = sql + "and ((foreign_fund_performance.std1y >=0  and foreign_fund_performance.std1y <0.3) or (fund_performance.std1y >=0  and fund_performance.std1y <0.3))";
         } else if (document.getElementById("std1y").value == "std1y2") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=3  and foreign_fund_performance.std1y <6) or (fund_performance.std1y >=3  and fund_performance.std1y <6)) ";
+            sql = sql + "and ((foreign_fund_performance.std1y >=0.3  and foreign_fund_performance.std1y <0.6) or (fund_performance.std1y >=0.3  and fund_performance.std1y <0.6)) ";
         } else if (document.getElementById("std1y").value == "std1y3") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=6  and foreign_fund_performance.std1y <9) or (fund_performance.std1y >=6  and fund_performance.std1y <9)) ";
+            sql = sql + "and ((foreign_fund_performance.std1y >=0.6  and foreign_fund_performance.std1y <0.9) or (fund_performance.std1y >=0.6  and fund_performance.std1y <0.9)) ";
         } else if (document.getElementById("std1y").value == "std1y4") {
-            sql = sql + "and (foreign_fund_performance.std1y >=9   or fund_performance.std1y >=9  )";
+            sql = sql + "and (foreign_fund_performance.std1y >=0.9   or fund_performance.std1y >=0.9  )";
         }
     }
     if (document.getElementById("sr1y").value != "all") {
@@ -283,7 +283,7 @@ function fundAdvanceSearchSubmit() {
         
     }
     
-    document.getElementById("sql").value = "SELECT * FROM web_data.fund_performance RIGHT JOIN web_data.foreign_fund_performance ON foreign_fund_performance.code = fund_performance.code where 1=1 "+sql+" UNION SELECT * FROM web_data.fund_performance LEFT JOIN web_data.foreign_fund_performance ON foreign_fund_performance.code = fund_performance.code where 1=1 "+sql;
+    document.getElementById("sql").value = "SELECT fund_performance.name,fund_performance.net_value,fund_performance.date,fund_performance.roc,fund_performance.change,fund_performance.currency,fund_performance.std1y,fund_performance.sr1y,fund_performance.risk_level,fund_performance.Return3m,fund_performance.Return6m,fund_performance.Return1y,fund_performance.Return3y,fund_performance.Return5y,fund_performance.Returnall,fund_performance.adjSR,fund_performance.BurkeRatio,fund_performance.BernardoLedoitRatio,fund_performance.DRatio,fund_performance.MDD,fund_performance.OmegaSR,fund_performance.PainRatio,fund_performance.SkewnessKurtosisRatio,fund_performance.SortinoRatio,fund_performance.UpsidePotentialRatio FROM web_data.fund_performance where 1=1 "+sql+" union SELECT foreign_fund_performance.name,foreign_fund_performance.net_value,foreign_fund_performance.date,foreign_fund_performance.roc,foreign_fund_performance.change,foreign_fund_performance.currency,foreign_fund_performance.std1y,foreign_fund_performance.sr1y,foreign_fund_performance.risk_level,foreign_fund_performance.Return3m,foreign_fund_performance.Return6m,foreign_fund_performance.Return1y,foreign_fund_performance.Return3y,foreign_fund_performance.Return5y,foreign_fund_performance.Returnall,foreign_fund_performance.adjSR,foreign_fund_performance.BurkeRatio,foreign_fund_performance.BernardoLedoitRatio,foreign_fund_performance.DRatio,foreign_fund_performance.MDD,foreign_fund_performance.OmegaSR,foreign_fund_performance.PainRatio,foreign_fund_performance.SkewnessKurtosisRatio,foreign_fund_performance.SortinoRatio,foreign_fund_performance.UpsidePotentialRatio  FROM web_data.foreign_fund_performance where 1=1 "+sql;
     //alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
@@ -318,10 +318,10 @@ function fundAdvanceSearchSubmit() {
         <td>
             <select name="std1y" id="std1y">
                 <option value="all">不限</option>
-                <option value="std1y1">0 &#60;=SD &#60;3</option>
-                <option value="std1y2">3 &#60;=SD &#60;6</option>
-                <option value="std1y3">6 &#60;=SD &#60;9</option>
-                <option value="std1y4">9 &#60;=SD</option>
+                <option value="std1y1">0 &#60;=SD &#60;0.3</option>
+                <option value="std1y2">0.3 &#60;=SD &#60;0.6</option>
+                <option value="std1y3">0.6 &#60;=SD &#60;0.9</option>
+                <option value="std1y4">0.9 &#60;=SD</option>
             </select>
         </td>
     </tr>
@@ -384,13 +384,13 @@ function fundAdvanceSearchSubmit() {
     }
     if (document.getElementById("std1y").value != "all") {
         if (document.getElementById("std1y").value == "std1y1") {
-            sql = sql + "and std1y >=0  and std1y <3 ";
+            sql = sql + "and std1y >=0  and std1y <0.3 ";
         } else if (document.getElementById("std1y").value == "std1y2") {
-            sql = sql + "and std1y >=3  and std1y <6 ";
+            sql = sql + "and std1y >=0.3  and std1y <0.6 ";
         } else if (document.getElementById("std1y").value == "std1y3") {
-            sql = sql + "and std1y >=6  and std1y <9 ";
+            sql = sql + "and std1y >=0.6  and std1y <0.9 ";
         } else if (document.getElementById("std1y").value == "std1y4") {
-            sql = sql + "and std1y >=9  ";
+            sql = sql + "and std1y >=0.9  ";
         }
     }
     if (document.getElementById("sr1y").value != "all") {
@@ -406,7 +406,7 @@ function fundAdvanceSearchSubmit() {
        sql = sql + "and risk_level = '" + document.getElementById("risk_level").value + "' ";
     }
     
-    document.getElementById("sql").value = "SELECT * FROM web_data.fund_performance where 1=1 "+sql;
+    document.getElementById("sql").value = "SELECT fund_performance.name,net_value,fund_performance.date,roc,fund_performance.change,currency,std1y,sr1y,risk_level,Return3m,Return6m,Return1y,Return3y,Return5y,Returnall,adjSR,BurkeRatio,BernardoLedoitRatio,DRatio,MDD,OmegaSR,PainRatio,SkewnessKurtosisRatio,SortinoRatio,UpsidePotentialRatio FROM web_data.fund_performance where 1=1 "+sql;
     //alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
@@ -444,10 +444,10 @@ function fundAdvanceSearchSubmit() {
         <td>
             <select name="std1y" id="std1y">
                 <option value="all">不限</option>
-                <option value="std1y1">0 &#60;=SD &#60;3</option>
-                <option value="std1y2">3 &#60;=SD &#60;6</option>
-                <option value="std1y3">6 &#60;=SD &#60;9</option>
-                <option value="std1y4">9 &#60;=SD</option>
+                <option value="std1y1">0 &#60;=SD &#60;0.3</option>
+                <option value="std1y2">0.3 &#60;=SD &#60;0.6</option>
+                <option value="std1y3">0.6 &#60;=SD &#60;0.9</option>
+                <option value="std1y4">0.9 &#60;=SD</option>
             </select>
         </td>
     </tr>
@@ -563,13 +563,13 @@ function fundAdvanceSearchSubmit() {
     }
     if (document.getElementById("std1y").value != "all") {
         if (document.getElementById("std1y").value == "std1y1") {
-            sql = sql + "and std1y >=0  and std1y <3 ";
+            sql = sql + "and std1y >=0  and std1y <0.3 ";
         } else if (document.getElementById("std1y").value == "std1y2") {
-            sql = sql + "and std1y >=3  and std1y <6 ";
+            sql = sql + "and std1y >=0.3  and std1y <0.6 ";
         } else if (document.getElementById("std1y").value == "std1y3") {
-            sql = sql + "and std1y >=6  and std1y <9 ";
+            sql = sql + "and std1y >=0.6  and std1y <0.9 ";
         } else if (document.getElementById("std1y").value == "std1y4") {
-            sql = sql + "and std1y >=9  ";
+            sql = sql + "and std1y >=0.9  ";
         }
     }
     if (document.getElementById("sr1y").value != "all") {
@@ -585,8 +585,8 @@ function fundAdvanceSearchSubmit() {
        sql = sql + "and risk_level = '" + document.getElementById("risk_level").value + "' ";
     }
     
-    document.getElementById("sql").value = "SELECT * FROM web_data.foreign_fund_performance where 1=1 "+sql;
-    alert(document.getElementById("sql").value);
+    document.getElementById("sql").value = "SELECT foreign_fund_performance.name,net_value,foreign_fund_performance.date,roc,foreign_fund_performance.change,currency,std1y,sr1y,risk_level,Return3m,Return6m,Return1y,Return3y,Return5y,Returnall,adjSR,BurkeRatio,BernardoLedoitRatio,DRatio,MDD,OmegaSR,PainRatio,SkewnessKurtosisRatio,SortinoRatio,UpsidePotentialRatio  FROM web_data.foreign_fund_performance where 1=1 "+sql;
+    //alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
 }
@@ -672,8 +672,10 @@ th {
     <table>
         <tr>
             <th>基金名稱</th>
-            <th>淨值/淨值日</th>
-            <th>漲跌幅%/漲跌</th>
+            <th>淨值</th>
+            <th>淨值日</th>
+            <th>漲跌幅(%)</th>
+            <th>漲跌</th>
             <th>幣別</th>
             <th>標準差</th>
             <th>Sharpe值</th>
@@ -686,13 +688,15 @@ for($i=1;$i<=mysql_num_rows($result);$i++){
 $rs=mysql_fetch_row($result);
 ?>
         <tr class="content">
+          <td><?php echo $rs[0]?></td>
           <td><?php echo $rs[1]?></td>
-          <td><?php echo $rs[13]?>/<?php echo $rs[11]?></td>
-          <td><?php echo $rs[14]?>/<?php echo $rs[15]?></td>
-          <td><?php echo $rs[12]?></td>
-          <td><?php echo $rs[26]?></td>
-          <td><?php echo $rs[27]?></td>
+          <td><?php echo $rs[2]?></td>
+          <td><?php echo $rs[3]?></td>
+          <td><?php echo $rs[4]?></td>
+          <td><?php echo $rs[5]?></td>
+          <td><?php echo $rs[6]?></td>
           <td><?php echo $rs[7]?></td>
+          <td><?php echo $rs[8]?></td>
         </tr>
 <?php
 }
@@ -717,13 +721,13 @@ for($i=1;$i<=mysql_num_rows($result);$i++){
 $rs=mysql_fetch_row($result);
 ?>
         <tr class="content">
-          <td><?php echo $rs[1]?></td>
-          <td><?php echo $rs[19]?></td>
-          <td><?php echo $rs[22]?></td>
-          <td><?php echo $rs[25]?></td>
-          <td><?php echo $rs[28]?></td>
-          <td><?php echo $rs[31]?></td>
-          <td><?php echo $rs[34]?></td>
+          <td><?php echo $rs[0]?></td>
+          <td><?php echo $rs[9]?></td>
+          <td><?php echo $rs[10]?></td>
+          <td><?php echo $rs[11]?></td>
+          <td><?php echo $rs[12]?></td>
+          <td><?php echo $rs[13]?></td>
+          <td><?php echo $rs[14]?></td>
         </tr>
 <?php
 }
@@ -752,17 +756,17 @@ for($i=1;$i<=mysql_num_rows($result);$i++){
 $rs=mysql_fetch_row($result);
 ?>
         <tr class="content">
-          <td><?php echo $rs[1]?></td>
-          <td><?php echo substr($rs[38],0,5)?></td>
-          <td><?php echo substr($rs[37],0,5)?></td>
-          <td><?php echo substr($rs[39],0,5)?></td>
-          <td><?php echo substr($rs[40],0,5)?></td>
-          <td><?php echo substr($rs[41],0,5)?></td>
-          <td><?php echo substr($rs[42],0,5)?></td>
-          <td><?php echo substr($rs[43],0,5)?></td>
-          <td><?php echo substr($rs[44],0,5)?></td>
-          <td><?php echo substr($rs[45],0,5)?></td>
-          <td><?php echo substr($rs[46],0,5)?></td>
+          <td><?php echo $rs[0]?></td>
+          <td><?php echo substr($rs[15],0,5)?></td>
+          <td><?php echo substr($rs[16],0,5)?></td>
+          <td><?php echo substr($rs[17],0,5)?></td>
+          <td><?php echo substr($rs[18],0,5)?></td>
+          <td><?php echo substr($rs[19],0,5)?></td>
+          <td><?php echo substr($rs[20],0,5)?></td>
+          <td><?php echo substr($rs[21],0,5)?></td>
+          <td><?php echo substr($rs[22],0,5)?></td>
+          <td><?php echo substr($rs[23],0,5)?></td>
+          <td><?php echo substr($rs[24],0,5)?></td>
         </tr>
 <?php
 }
@@ -808,11 +812,43 @@ document.getElementById("defaultOpen").click();
       $name=$_POST['name'];
       $data=mysql_query("select * from web_data.fund_performance where name = '$name' ");
       $rs=mysql_fetch_row($data);
-      echo "<h1>"."單檔基金介紹"."</h1>";
+      
       echo "<h2>".$rs[1]."</h2>";
-      echo "<h2>".$rs[13].$rs[12]."&nbsp".$rs[15]."/".$rs[14]."&nbsp".$rs[11]."</h2>";
+      
       
     ?>
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+    <table>
+      <tr>
+        <th>淨值</th>
+        <th>漲跌</th> 
+        <th>漲跌幅(%)</th>
+        <th>淨值日</th> 
+      </tr>
+      <tr>
+        <td><?php  echo $rs[13].$rs[12]; ?></td>
+        <td><?php  echo $rs[15]; ?></td> 
+        <td><?php  echo $rs[14]; ?></td>
+        <td><?php  echo $rs[11]; ?></td>
+      </tr>
+    </table>
     <div>
         <h2>淨值走勢圖</h2>
         <canvas id="myChart"></canvas>
