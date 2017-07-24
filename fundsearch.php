@@ -132,10 +132,10 @@ th {
         <td>
             <select name="std1y" id="std1y">
                 <option value="all">不限</option>
-                <option value="std1y1">0 &#60;=SD &#60;3</option>
-                <option value="std1y2">3 &#60;=SD &#60;6</option>
-                <option value="std1y3">6 &#60;=SD &#60;9</option>
-                <option value="std1y4">9 &#60;=SD</option>
+                <option value="std1y1">0 &#60;=SD &#60;0.3</option>
+                <option value="std1y2">0.3 &#60;=SD &#60;0.6</option>
+                <option value="std1y3">0.6 &#60;=SD &#60;0.9</option>
+                <option value="std1y4">0.9 &#60;=SD</option>
             </select>
         </td>
     </tr>
@@ -260,13 +260,13 @@ function fundAdvanceSearchSubmit() {
     }
     if (document.getElementById("std1y").value != "all") {
         if (document.getElementById("std1y").value == "std1y1") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=0  and foreign_fund_performance.std1y <3) or (fund_performance.std1y >=0  and fund_performance.std1y <3))";
+            sql = sql + "and ((foreign_fund_performance.std1y >=0  and foreign_fund_performance.std1y <0.3) or (fund_performance.std1y >=0  and fund_performance.std1y <0.3))";
         } else if (document.getElementById("std1y").value == "std1y2") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=3  and foreign_fund_performance.std1y <6) or (fund_performance.std1y >=3  and fund_performance.std1y <6)) ";
+            sql = sql + "and ((foreign_fund_performance.std1y >=0.3  and foreign_fund_performance.std1y <0.6) or (fund_performance.std1y >=0.3  and fund_performance.std1y <0.6)) ";
         } else if (document.getElementById("std1y").value == "std1y3") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=6  and foreign_fund_performance.std1y <9) or (fund_performance.std1y >=6  and fund_performance.std1y <9)) ";
+            sql = sql + "and ((foreign_fund_performance.std1y >=0.6  and foreign_fund_performance.std1y <0.9) or (fund_performance.std1y >=0.6  and fund_performance.std1y <0.9)) ";
         } else if (document.getElementById("std1y").value == "std1y4") {
-            sql = sql + "and (foreign_fund_performance.std1y >=9   or fund_performance.std1y >=9  )";
+            sql = sql + "and (foreign_fund_performance.std1y >=0.9   or fund_performance.std1y >=0.9  )";
         }
     }
     if (document.getElementById("sr1y").value != "all") {
@@ -384,13 +384,13 @@ function fundAdvanceSearchSubmit() {
     }
     if (document.getElementById("std1y").value != "all") {
         if (document.getElementById("std1y").value == "std1y1") {
-            sql = sql + "and std1y >=0  and std1y <3 ";
+            sql = sql + "and std1y >=0  and std1y <0.3 ";
         } else if (document.getElementById("std1y").value == "std1y2") {
-            sql = sql + "and std1y >=3  and std1y <6 ";
+            sql = sql + "and std1y >=0.3  and std1y <0.6 ";
         } else if (document.getElementById("std1y").value == "std1y3") {
-            sql = sql + "and std1y >=6  and std1y <9 ";
+            sql = sql + "and std1y >=0.6  and std1y <0.9 ";
         } else if (document.getElementById("std1y").value == "std1y4") {
-            sql = sql + "and std1y >=9  ";
+            sql = sql + "and std1y >=0.9  ";
         }
     }
     if (document.getElementById("sr1y").value != "all") {
@@ -563,13 +563,13 @@ function fundAdvanceSearchSubmit() {
     }
     if (document.getElementById("std1y").value != "all") {
         if (document.getElementById("std1y").value == "std1y1") {
-            sql = sql + "and std1y >=0  and std1y <3 ";
+            sql = sql + "and std1y >=0  and std1y <0.3 ";
         } else if (document.getElementById("std1y").value == "std1y2") {
-            sql = sql + "and std1y >=3  and std1y <6 ";
+            sql = sql + "and std1y >=0.3  and std1y <0.6 ";
         } else if (document.getElementById("std1y").value == "std1y3") {
-            sql = sql + "and std1y >=6  and std1y <9 ";
+            sql = sql + "and std1y >=0.6  and std1y <0.9 ";
         } else if (document.getElementById("std1y").value == "std1y4") {
-            sql = sql + "and std1y >=9  ";
+            sql = sql + "and std1y >=0.9  ";
         }
     }
     if (document.getElementById("sr1y").value != "all") {
@@ -756,7 +756,7 @@ for($i=1;$i<=mysql_num_rows($result);$i++){
 $rs=mysql_fetch_row($result);
 ?>
         <tr class="content">
-          <td><?php echo $rs[1]?></td>
+          <td><?php echo $rs[0]?></td>
           <td><?php echo substr($rs[15],0,5)?></td>
           <td><?php echo substr($rs[16],0,5)?></td>
           <td><?php echo substr($rs[17],0,5)?></td>
