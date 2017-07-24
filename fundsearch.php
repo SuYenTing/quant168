@@ -283,7 +283,6 @@ function fundAdvanceSearchSubmit() {
         
     }
     
-    document.getElementById("sql").value = "SELECT * FROM web_data.fund_performance RIGHT JOIN web_data.foreign_fund_performance ON foreign_fund_performance.code = fund_performance.code where 1=1 "+sql+" UNION SELECT * FROM web_data.fund_performance LEFT JOIN web_data.foreign_fund_performance ON foreign_fund_performance.code = fund_performance.code where 1=1 "+sql;
     //alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
@@ -406,7 +405,7 @@ function fundAdvanceSearchSubmit() {
        sql = sql + "and risk_level = '" + document.getElementById("risk_level").value + "' ";
     }
     
-    document.getElementById("sql").value = "SELECT * FROM web_data.fund_performance where 1=1 "+sql;
+    document.getElementById("sql").value = "SELECT fund_performance.name,net_value,fund_performance.date,roc,fund_performance.change,currency,std1y,sr1y,risk_level,Return3m,Return6m,Return1y,Return3y,Return5y,Returnall,adjSR,BurkeRatio,BernardoLedoitRatio,DRatio,MDD,OmegaSR,PainRatio,SkewnessKurtosisRatio,SortinoRatio,UpsidePotentialRatio FROM web_data.fund_performance where 1=1 "+sql;
     //alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
@@ -585,8 +584,8 @@ function fundAdvanceSearchSubmit() {
        sql = sql + "and risk_level = '" + document.getElementById("risk_level").value + "' ";
     }
     
-    document.getElementById("sql").value = "SELECT * FROM web_data.foreign_fund_performance where 1=1 "+sql;
-    alert(document.getElementById("sql").value);
+    document.getElementById("sql").value = "SELECT foreign_fund_performance.name,net_value,foreign_fund_performance.date,roc,foreign_fund_performance.change,currency,std1y,sr1y,risk_level,Return3m,Return6m,Return1y,Return3y,Return5y,Returnall,adjSR,BurkeRatio,BernardoLedoitRatio,DRatio,MDD,OmegaSR,PainRatio,SkewnessKurtosisRatio,SortinoRatio,UpsidePotentialRatio  FROM web_data.foreign_fund_performance where 1=1 "+sql;
+    //alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
 }
@@ -672,8 +671,10 @@ th {
     <table>
         <tr>
             <th>基金名稱</th>
-            <th>淨值/淨值日</th>
-            <th>漲跌幅%/漲跌</th>
+            <th>淨值</th>
+            <th>淨值日</th>
+            <th>漲跌幅(%)</th>
+            <th>漲跌</th>
             <th>幣別</th>
             <th>標準差</th>
             <th>Sharpe值</th>
@@ -686,13 +687,15 @@ for($i=1;$i<=mysql_num_rows($result);$i++){
 $rs=mysql_fetch_row($result);
 ?>
         <tr class="content">
+          <td><?php echo $rs[0]?></td>
           <td><?php echo $rs[1]?></td>
-          <td><?php echo $rs[13]?>/<?php echo $rs[11]?></td>
-          <td><?php echo $rs[14]?>/<?php echo $rs[15]?></td>
-          <td><?php echo $rs[12]?></td>
-          <td><?php echo $rs[26]?></td>
-          <td><?php echo $rs[27]?></td>
+          <td><?php echo $rs[2]?></td>
+          <td><?php echo $rs[3]?></td>
+          <td><?php echo $rs[4]?></td>
+          <td><?php echo $rs[5]?></td>
+          <td><?php echo $rs[6]?></td>
           <td><?php echo $rs[7]?></td>
+          <td><?php echo $rs[8]?></td>
         </tr>
 <?php
 }
@@ -717,13 +720,13 @@ for($i=1;$i<=mysql_num_rows($result);$i++){
 $rs=mysql_fetch_row($result);
 ?>
         <tr class="content">
-          <td><?php echo $rs[1]?></td>
-          <td><?php echo $rs[19]?></td>
-          <td><?php echo $rs[22]?></td>
-          <td><?php echo $rs[25]?></td>
-          <td><?php echo $rs[28]?></td>
-          <td><?php echo $rs[31]?></td>
-          <td><?php echo $rs[34]?></td>
+          <td><?php echo $rs[0]?></td>
+          <td><?php echo $rs[9]?></td>
+          <td><?php echo $rs[10]?></td>
+          <td><?php echo $rs[11]?></td>
+          <td><?php echo $rs[12]?></td>
+          <td><?php echo $rs[13]?></td>
+          <td><?php echo $rs[14]?></td>
         </tr>
 <?php
 }
@@ -753,16 +756,16 @@ $rs=mysql_fetch_row($result);
 ?>
         <tr class="content">
           <td><?php echo $rs[1]?></td>
-          <td><?php echo substr($rs[38],0,5)?></td>
-          <td><?php echo substr($rs[37],0,5)?></td>
-          <td><?php echo substr($rs[39],0,5)?></td>
-          <td><?php echo substr($rs[40],0,5)?></td>
-          <td><?php echo substr($rs[41],0,5)?></td>
-          <td><?php echo substr($rs[42],0,5)?></td>
-          <td><?php echo substr($rs[43],0,5)?></td>
-          <td><?php echo substr($rs[44],0,5)?></td>
-          <td><?php echo substr($rs[45],0,5)?></td>
-          <td><?php echo substr($rs[46],0,5)?></td>
+          <td><?php echo substr($rs[15],0,5)?></td>
+          <td><?php echo substr($rs[16],0,5)?></td>
+          <td><?php echo substr($rs[17],0,5)?></td>
+          <td><?php echo substr($rs[18],0,5)?></td>
+          <td><?php echo substr($rs[19],0,5)?></td>
+          <td><?php echo substr($rs[20],0,5)?></td>
+          <td><?php echo substr($rs[21],0,5)?></td>
+          <td><?php echo substr($rs[22],0,5)?></td>
+          <td><?php echo substr($rs[23],0,5)?></td>
+          <td><?php echo substr($rs[24],0,5)?></td>
         </tr>
 <?php
 }
@@ -808,9 +811,9 @@ document.getElementById("defaultOpen").click();
       $name=$_POST['name'];
       $data=mysql_query("select * from web_data.fund_performance where name = '$name' ");
       $rs=mysql_fetch_row($data);
-      echo "<h1>"."單檔基金介紹"."</h1>";
+      
       echo "<h2>".$rs[1]."</h2>";
-      echo "<h2>".$rs[13].$rs[12]."&nbsp".$rs[15]."/".$rs[14]."&nbsp".$rs[11]."</h2>";
+      
       
     ?>
 <style>
@@ -831,6 +834,20 @@ th {
     color: white;
 }
 </style>
+    <table>
+      <tr>
+        <th>淨值</th>
+        <th>漲跌</th> 
+        <th>漲跌幅(%)</th>
+        <th>淨值日</th> 
+      </tr>
+      <tr>
+        <td><?php  echo $rs[13].$rs[12]; ?></td>
+        <td><?php  echo $rs[15]; ?></td> 
+        <td><?php  echo $rs[14]; ?></td>
+        <td><?php  echo $rs[11]; ?></td>
+      </tr>
+    </table>
     <div>
         <h2>淨值走勢圖</h2>
         <canvas id="myChart"></canvas>
