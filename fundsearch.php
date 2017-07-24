@@ -318,10 +318,10 @@ function fundAdvanceSearchSubmit() {
         <td>
             <select name="std1y" id="std1y">
                 <option value="all">不限</option>
-                <option value="std1y1">0 &#60;=SD &#60;3</option>
-                <option value="std1y2">3 &#60;=SD &#60;6</option>
-                <option value="std1y3">6 &#60;=SD &#60;9</option>
-                <option value="std1y4">9 &#60;=SD</option>
+                <option value="std1y1">0 &#60;=SD &#60;0.3</option>
+                <option value="std1y2">0.3 &#60;=SD &#60;0.6</option>
+                <option value="std1y3">0.6 &#60;=SD &#60;0.9</option>
+                <option value="std1y4">0.9 &#60;=SD</option>
             </select>
         </td>
     </tr>
@@ -444,10 +444,10 @@ function fundAdvanceSearchSubmit() {
         <td>
             <select name="std1y" id="std1y">
                 <option value="all">不限</option>
-                <option value="std1y1">0 &#60;=SD &#60;3</option>
-                <option value="std1y2">3 &#60;=SD &#60;6</option>
-                <option value="std1y3">6 &#60;=SD &#60;9</option>
-                <option value="std1y4">9 &#60;=SD</option>
+                <option value="std1y1">0 &#60;=SD &#60;0.3</option>
+                <option value="std1y2">0.3 &#60;=SD &#60;0.6</option>
+                <option value="std1y3">0.6 &#60;=SD &#60;0.9</option>
+                <option value="std1y4">0.9 &#60;=SD</option>
             </select>
         </td>
     </tr>
