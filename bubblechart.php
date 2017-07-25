@@ -93,17 +93,22 @@ select option{
     $(function() {
         $("#chart").shieldChart({
             theme: "light",
+            enableAutoFit: true,
             axisX: {
                 title: {
                     text: "<?php echo xaxisclassify($xaxischose) ; ?>"
                 },
                 endOffset: 0.05,
-                startOffset: 0.05
+                startOffset: 0.05,
+                max:1.05,
+                min:-0.05
             },
             axisY: {
                 title: {
                     text: "1年年化索提諾值"
-                }
+                },
+                max:1,
+                min:0
             },
             primaryHeader: {
                 text: "<?php echo xaxisclassify($xaxischose) ; ?> / 1年年化索提諾值"
