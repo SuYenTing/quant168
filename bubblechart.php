@@ -6,6 +6,99 @@ set_time_limit(0);
 mysql_connect("140.119.86.174","nccu","nccu");//連結伺服器
 mysql_select_db("web_data");//選擇資料庫
 mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中文
+//從contact資料庫中選擇所有的資料表
+function classify($x) {
+    $y="classC";
+    switch ($x){
+        case 1:
+            $y = "水泥工業";
+            break;
+        case 2:
+            $y = "食品工業";
+            break;
+        case 3:
+            $y = "塑膠工業";
+            break;
+        case 4:
+            $y = "紡織纖維";
+            break;
+        case 5:
+            $y = "電機機械";
+            break;
+        case 6:
+            $y = "電器電纜";
+            break;
+        case 21:
+            $y = "化學生技醫療";
+            break;
+        case 22:
+            $y = "化學生技醫療";
+            break;
+        case 8:
+            $y = "玻璃陶瓷";
+            break;
+        case 9:
+            $y = "造紙工業";
+            break;
+        case 10:
+            $y = "鋼鐵工業";
+            break;
+        case 11:
+            $y = "橡膠工業";
+            break;
+        case 12:
+            $y = "汽車工業";
+            break;
+        case 24:
+            $y = "電子工業";
+            break;
+        case 25:
+            $y = "電子工業";
+            break;
+        case 26:
+            $y = "電子工業";
+            break;
+        case 27:
+            $y = "電子工業";
+            break;
+        case 28:
+            $y = "電子工業";
+            break;
+        case 29:
+            $y = "電子工業";
+            break;
+        case 30:
+            $y = "電子工業";
+            break;
+        case 31:
+            $y = "電子工業";
+            break;
+        case 14:
+            $y = "建材營造";
+            break;
+        case 15:
+            $y = "航運業";
+            break;
+        case 16:
+            $y = "觀光事業";
+            break;
+        case 17:
+            $y = "金融保險";
+            break;
+        case 18:
+            $y = "貿易百貨";
+            break;
+        case 19:
+            $y = "綜合";
+            break;
+        case 20:
+            $y = "其他產業";
+            break;
+        default:
+            $y = "-";        
+    }
+    return $y;
+}
 function xaxisclassify($x) {
     $y="";
 if ($x == "profitability") {
@@ -36,22 +129,83 @@ if ($x == "cum_return_1m") {
 }
 ?>
 <html>
-
 <head>
-    <meta charset="utf-8" />
-    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
-    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+     <?php
+            if(isset($_POST['bubblesizechose'])&&isset($_POST['xaxischose'])){
+            $bubblesizechose=$_POST['bubblesizechose'];
+            $xaxischose=$_POST['xaxischose'];
+            $industry=$_POST['industry'];
+    ?>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawSeriesChart);
+
+    function drawSeriesChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['ID', '<?php echo xaxisclassify($xaxischose) ; ?>', '1年年化索提諾值', '產業代碼', '<?php echo bubblesizeclassify($bubblesizechose) ; ?>'],
+<?php
+      $funddata=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name,industry FROM web_data.bubble_chart $industry");
+      for($i=1;$i<=mysql_num_rows($funddata);$i++){
+      $rs=mysql_fetch_row($funddata);
+      echo "['".$rs[3]."',".$rs[0].",".$rs[1].",'".classify($rs[4])."',".$rs[2]."],";
+}
+
+?>
+            //['CAN',    80.66,              1.67,      'North America',  33739900]
+        ]);
+        var options = {
+            //title: 'Correlation between life expectancy, fertility rate ' +'and population of some world countries (2010)',
+            chartArea: { left: 50, top: 0, width: '92%', height: '90%' },
+            hAxis: { title: '<?php echo xaxisclassify($xaxischose) ; ?>' },
+            vAxis: { title: '1年年化索提諾值' },
+            //explorer:{},
+            bubble: { textStyle: { fontSize: 0.1 } },
+            legend: { position: 'none' },
+            //tooltip:{trigger:'selection'},
+            series: {
+                '水泥工業': { color: '#444444' },
+                '食品工業': { color: '#A20055' },
+                '塑膠工業': { color: '#AA0000' },
+                '紡織纖維': { color: '#CC6600' },
+                '電機機械': { color: '#BBBB00' },
+                '電器電纜': { color: '#88AA00' },
+                '化學生技醫療': { color: '#66DD00' },
+                '玻璃陶瓷': { color: '#668800' },
+                '造紙工業': { color: '#55AA00' },
+                '鋼鐵工業': { color: '#00AA55' },
+                '橡膠工業': { color: '#00AAAA' },
+                '汽車工業': { color: '#007799' },
+                '電子工業': { color: '#003C9D' },
+                '建材營造': { color: '#5500FF' },
+                '航運業': { color: '#2200AA' },
+                '觀光事業': { color: '#3A0088' },
+                '金融保險': { color: '#66009D' },
+                '貿易百貨': { color: '#660077' },
+                '綜合': { color: '#5500FF' },
+                '其他產業': { color: '#7700FF' },
+                '-': { color: '#9900FF' },
+            }
+            //colorAxis:{legend:{position: 'bottom'}}
+        };
+        var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+        chart.draw(data, options);
+    }
+    </script>
+    <?php
+        }
+    ?>
 </head>
 <style>
 .container {
     width: 80%;
 }
+
 .button {
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -59,290 +213,117 @@ if ($x == "cum_return_1m") {
     margin: 4px 2px;
     cursor: pointer;
 }
-select option{
+
+select option {
     font-size: 13pt;
 }
 </style>
-<body class="theme-light">
-<div class="container">
-<form id="bubblechartselect" name="bubblechartselect" method="post" action="bubblechart.php">
-    <select name="xaxischose" id="xaxischose" class="button" >
-        <option disabled selected value> X軸 </option>
-        <option value="profitability">獲利性分數</option>
-        <option value="safety">安全性分數</option>
-        <option value="payout">股利性分數</option>
-        <option value="growth">成長性分數</option>
-        <option value="quality">品質性分數</option>
-    </select>
-    <select name="bubblesizechose" id="bubblesizechose" class="button" >
-        <option disabled selected value> Bubble Size </option>
-        <option value="cum_return_1m">1個月累積報酬</option>
-        <option value="cum_return_3m">3個月累積報酬</option>
-        <option value="cum_return_6m">6個月累積報酬</option>
-        <option value="cum_return_1y">1年累積報酬</option>
-    </select>
-    <input type="submit" name="searchType" id="searchType" value="送出" class="button">
-</form>
+
+<body>
+    <div class="container">
+        <form id="bubblechartselect" name="bubblechartselect" method="post" action="bubblechart.php">
+            <select name="xaxischose" id="xaxischose" class="button">
+                <option disabled selected value> X軸 </option>
+                <option value="profitability">獲利性分數</option>
+                <option value="safety">安全性分數</option>
+                <option value="payout">股利性分數</option>
+                <option value="growth">成長性分數</option>
+                <option value="quality">品質性分數</option>
+            </select>
+            <select name="bubblesizechose" id="bubblesizechose" class="button">
+                <option disabled selected value> Bubble Size </option>
+                <option value="cum_return_1m">1個月累積報酬</option>
+                <option value="cum_return_3m">3個月累積報酬</option>
+                <option value="cum_return_6m">6個月累積報酬</option>
+                <option value="cum_return_1y">1年累積報酬</option>
+            </select>
+            <input type="hidden" id="industry" name="industry">
+            <input type="button" name="searchType" id="searchType" value="送出" class="button" onclick="submitbubblechartselectForm()">
+        </form>
     <?php
             if(isset($_POST['bubblesizechose'])&&isset($_POST['xaxischose'])){
-            $bubblesizechose=$_POST['bubblesizechose'];
-            $xaxischose=$_POST['xaxischose'];
     ?>
-    <div id="chart"></div>
-    <script type="text/javascript">
-    $(function() {
-        $("#chart").shieldChart({
-            theme: "light",
-            axisX: {
-                title: {
-                    text: "<?php echo xaxisclassify($xaxischose) ; ?>"
-                },
-                endOffset: 0.05,
-                startOffset: 0.05
-            },
-            axisY: {
-                title: {
-                    text: "1年年化索提諾值"
-                }
-            },
-            primaryHeader: {
-                text: "<?php echo xaxisclassify($xaxischose) ; ?> / 1年年化索提諾值"
-            },
-            chartLegend: {
-                align: "right",
-                verticalAlign: "right",
-                renderDirection: "vertical"
-            },
-            tooltipSettings: {
-                customHeaderText: '{point.pointName}',
-                customPointText: function (point, chart) {
-                    return shield.format(
-                        '<span style="color:{color}"><?php echo xaxisclassify($xaxischose) ; ?>: <b>{point.x}</b><br/>1年年化索提諾值:<b>{point.y}</b><br/><?php echo bubblesizeclassify($bubblesizechose) ; ?>:<b>{point.size}</b></span>',
-                        {
-                            point: point,
-                            color: point.y > 87 ? 'red' : 'green'
-                        }
-                    );
-                }
-            },
-            dataSeries: [{
-                    seriesType: "bubble",
-                    collectionAlias: "水泥工業",
-                    data: [
-<?php
-      $data1=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=1 ;");
-      for($i=1;$i<=mysql_num_rows($data1);$i++){
-      $rs1=mysql_fetch_row($data1);
-      echo "{x:".$rs1[0].",y:".$rs1[1].",size: ".$rs1[2].",pointName: '".$rs1[3]."'},";
+        <table>
+            <td>
+                <div id="series_chart_div" style="width: 1000px; height: 600px;"></div>
+            </td>
+            <td>
+                <p style="color:#444444;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter1" value="industry=1 or ">水泥工業</p>
+                <p style="color:#A20055;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter2" value="industry=2 or ">食品工業</p>
+                <p style="color:#AA0000;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter3" value="industry=3 or ">塑膠工業</p>
+                <p style="color:#CC6600;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter4" value="industry=4 or ">紡織纖維</p>
+                <p style="color:#BBBB00;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter5" value="industry=5 or ">電機機械</p>
+                <p style="color:#88AA00;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter6" value="industry=6 or ">電器電纜</p>
+                <p style="color:#66DD00;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter7" value="industry=21 or industry=22 or ">化學生技醫療</p>
+                <p style="color:#668800;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter8" value="industry=8 or ">玻璃陶瓷</p>
+                <p style="color:#55AA00;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter9" value="industry=9 or ">造紙工業</p>
+                <p style="color:#00AA55;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter10" value="industry=10 or ">鋼鐵工業</p>
+                <p style="color:#00AAAA;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter11" value="industry=11 or ">橡膠工業</p>
+                <p style="color:#007799;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter12" value="industry=12 or ">汽車工業</p>
+                <p style="color:#003C9D;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter13" value="industry=24 or industry=25 or industry=26 or industry=27 or industry=28 or industry=29 or industry=30 or industry=31 or ">電子工業</p>
+                <p style="color:#5500FF;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter14" value="industry=14 or ">建材營造</p>
+                <p style="color:#2200AA;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter15" value="industry=15 or ">航運業</p>
+                <p style="color:#3A0088;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter16" value="industry=16 or ">觀光事業</p>
+                <p style="color:#66009D;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter17" value="industry=17 or ">金融保險</p>
+                <p style="color:#660077;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter18" value="industry=18 or ">貿易百貨</p>
+                <p style="color:#5500FF;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter19" value="industry=19 or ">綜合</p>
+                <p style="color:#7700FF;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter20" value="industry=20 or ">其他產業</p>
+                <p style="color:#9900FF;font-weight:bolder;line-height:1px;">
+                    <input type="checkbox" id="filter21" value="industry=23 or ">-</p>
+                <p style="font-weight:bolder;">
+                    <input type="button" id="filter" value="篩選" onclick="submitFilterselectForm()">
+                </p>
+            </td>
+        </table>
+<script type="text/javascript">
+function submitFilterselectForm(){
+    industrySql="";
+    for (var i = 1; i < 22; i++) {
+        if (document.getElementById("filter"+i).checked) {
+            //alert("test"+document.getElementById("filter"+i).value);
+            industrySql=industrySql+document.getElementById("filter"+i).value;
+        }
+    }
+    if (industrySql.length>1) {
+        industrySql=industrySql.substr(0, industrySql.length-3);
+        industrySql="where "+industrySql;
+    }
+    document.getElementById("industry").value=industrySql;
+    document.getElementById("xaxischose").value="<?php echo $xaxischose ;?>";
+    document.getElementById("bubblesizechose").value="<?php echo $bubblesizechose ; ?>";
+    //alert(industrySql);
+    document.getElementById("bubblechartselect").submit();
 }
-?> ]            }, {
-                    seriesType: "bubble",
-                    collectionAlias: "食品工業",
-                    data: [
-<?php
-      $data2=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=2 ;");
-      for($i=1;$i<=mysql_num_rows($data2);$i++){
-      $rs2=mysql_fetch_row($data2);
-      echo "{x:".$rs2[0].",y:".$rs2[1].",size: ".$rs2[2].",pointName: '".$rs2[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "塑膠工業",
-                    data: [
-<?php
-      $data3=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=3 ;");
-      for($i=1;$i<=mysql_num_rows($data3);$i++){
-      $rs3=mysql_fetch_row($data3);
-      echo "{x:".$rs3[0].",y:".$rs3[1].",size: ".$rs3[2].",pointName: '".$rs3[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "紡織纖維",
-                    data: [
-<?php
-      $data4=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=4 ;");
-      for($i=1;$i<=mysql_num_rows($data4);$i++){
-      $rs4=mysql_fetch_row($data4);
-      echo "{x:".$rs4[0].",y:".$rs4[1].",size: ".$rs4[2].",pointName: '".$rs4[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "電機機械",
-                    data: [
-<?php
-      $data5=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=5 ;");
-      for($i=1;$i<=mysql_num_rows($data5);$i++){
-      $rs5=mysql_fetch_row($data5);
-      echo "{x:".$rs5[0].",y:".$rs5[1].",size: ".$rs5[2].",pointName: '".$rs5[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "電器電纜",
-                    data: [
-<?php
-      $data6=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=6 ;");
-      for($i=1;$i<=mysql_num_rows($data6);$i++){
-      $rs6=mysql_fetch_row($data6);
-      echo "{x:".$rs6[0].",y:".$rs6[1].",size: ".$rs6[2].",pointName: '".$rs6[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "化學生技醫療",
-                    data: [
-<?php
-      $data21=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=21 or industry=22;");
-      for($i=1;$i<=mysql_num_rows($data21);$i++){
-      $rs21=mysql_fetch_row($data21);
-      echo "{x:".$rs21[0].",y:".$rs21[1].",size: ".$rs21[2].",pointName: '".$rs21[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "玻璃陶瓷",
-                    data: [
-<?php
-      $data8=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=8 ;");
-      for($i=1;$i<=mysql_num_rows($data8);$i++){
-      $rs8=mysql_fetch_row($data8);
-      echo "{x:".$rs8[0].",y:".$rs8[1].",size: ".$rs8[2].",pointName: '".$rs8[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "造紙工業",
-                    data: [
-<?php
-      $data9=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=9 ;");
-      for($i=1;$i<=mysql_num_rows($data9);$i++){
-      $rs9=mysql_fetch_row($data9);
-      echo "{x:".$rs9[0].",y:".$rs9[1].",size: ".$rs9[2].",pointName: '".$rs9[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "鋼鐵工業",
-                    data: [
-<?php
-      $data10=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=10 ;");
-      for($i=1;$i<=mysql_num_rows($data10);$i++){
-      $rs10=mysql_fetch_row($data10);
-      echo "{x:".$rs10[0].",y:".$rs10[1].",size: ".$rs10[2].",pointName: '".$rs10[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "橡膠工業",
-                    data: [
-<?php
-      $data11=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=11 ;");
-      for($i=1;$i<=mysql_num_rows($data11);$i++){
-      $rs11=mysql_fetch_row($data11);
-      echo "{x:".$rs11[0].",y:".$rs11[1].",size: ".$rs11[2].",pointName: '".$rs11[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "汽車工業",
-                    data: [
-<?php
-      $data12=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=12 ;");
-      for($i=1;$i<=mysql_num_rows($data12);$i++){
-      $rs12=mysql_fetch_row($data12);
-      echo "{x:".$rs12[0].",y:".$rs12[1].",size: ".$rs12[2].",pointName: '".$rs12[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "電子工業",
-                    data: [
-<?php
-      $data24=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=24 or industry=25 or industry=26 or industry=27 or industry=28 or industry=29 or industry=30 or industry=31 ;");
-      for($i=1;$i<=mysql_num_rows($data24);$i++){
-      $rs24=mysql_fetch_row($data24);
-      echo "{x:".$rs24[0].",y:".$rs24[1].",size: ".$rs24[2].",pointName: '".$rs24[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "建材營造",
-                    data: [
-<?php
-      $data14=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=14 ;");
-      for($i=1;$i<=mysql_num_rows($data14);$i++){
-      $rs14=mysql_fetch_row($data14);
-      echo "{x:".$rs14[0].",y:".$rs14[1].",size: ".$rs14[2].",pointName: '".$rs14[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "航運業",
-                    data: [
-<?php
-      $data15=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=15 ;");
-      for($i=1;$i<=mysql_num_rows($data15);$i++){
-      $rs15=mysql_fetch_row($data15);
-      echo "{x:".$rs15[0].",y:".$rs15[1].",size: ".$rs15[2].",pointName: '".$rs15[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "觀光事業",
-                    data: [
-<?php
-      $data16=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=16 ;");
-      for($i=1;$i<=mysql_num_rows($data16);$i++){
-      $rs16=mysql_fetch_row($data16);
-      echo "{x:".$rs16[0].",y:".$rs16[1].",size: ".$rs16[2].",pointName: '".$rs16[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "金融保險",
-                    data: [
-<?php
-      $data17=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=17 ;");
-      for($i=1;$i<=mysql_num_rows($data17);$i++){
-      $rs17=mysql_fetch_row($data17);
-      echo "{x:".$rs17[0].",y:".$rs17[1].",size: ".$rs17[2].",pointName: '".$rs17[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "貿易百貨",
-                    data: [
-<?php
-      $data18=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=18 ;");
-      for($i=1;$i<=mysql_num_rows($data18);$i++){
-      $rs18=mysql_fetch_row($data18);
-      echo "{x:".$rs18[0].",y:".$rs18[1].",size: ".$rs18[2].",pointName: '".$rs18[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "綜合",
-                    data: [
-<?php
-      $data19=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=19 ;");
-      for($i=1;$i<=mysql_num_rows($data19);$i++){
-      $rs19=mysql_fetch_row($data19);
-      echo "{x:".$rs19[0].",y:".$rs19[1].",size: ".$rs19[2].",pointName: '".$rs19[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "其他產業",
-                    data: [
-<?php
-      $data20=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=20 ;");
-      for($i=1;$i<=mysql_num_rows($data20);$i++){
-      $rs20=mysql_fetch_row($data20);
-      echo "{x:".$rs20[0].",y:".$rs20[1].",size: ".$rs20[2].",pointName: '".$rs20[3]."'},";
-}
-?> ]            },{
-                    seriesType: "bubble",
-                    collectionAlias: "-",
-                    data: [
-<?php
-      $data23=mysql_query("SELECT $xaxischose,adjSortino,$bubblesizechose,name FROM web_data.bubble_chart where industry=23 ;");
-      for($i=1;$i<=mysql_num_rows($data23);$i++){
-      $rs23=mysql_fetch_row($data23);
-      echo "{x:".$rs23[0].",y:".$rs23[1].",size: ".$rs23[2].",pointName: '".$rs23[3]."'},";
-}
-?> ]            }
-            ]
-        });
-    });
-    </script>
-        <?PHP }?>
-</div>
+</script>
+    <?php
+        }
+    ?>
+    </div>
 </body>
-
-
+<script type="text/javascript">
+function submitbubblechartselectForm(){
+    document.getElementById("industry").value="";
+    document.getElementById("bubblechartselect").submit();
+}
+</script>
 </html>

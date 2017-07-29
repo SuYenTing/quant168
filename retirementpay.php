@@ -316,7 +316,9 @@ include("navbar.html");
                     </td>
                 </tr>
             </table>
-            <button onclick="changePage()" class="button button4">知道更多</button>(點擊即可計算雇主提撥及自行提撥的退休金)
+            <div id="f">
+            <button onclick="changePage()" class="button button4">知道更多(點擊即可計算雇主提撥及自行提撥的退休金)</button>
+            </div>
            </body>
 
 
@@ -338,6 +340,8 @@ function vocationFunc(vocation) {
 }
 
 function farmerFunc(){
+
+    document.getElementById('f').innerHTML = "";
 
     document.getElementById("a").innerHTML = "欲投保年資";
     document.getElementById("c").innerHTML = "";
@@ -369,6 +373,8 @@ function farmerFunc(){
 
 }
 function militaryFunc(){
+
+    document.getElementById('f').innerHTML = "";
 
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
@@ -411,6 +417,8 @@ function militaryFunc(){
 
 }
 function publictaFunc(){
+
+    document.getElementById('f').innerHTML = "";
 
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
@@ -458,6 +466,8 @@ function publictaFunc(){
 }
 function functionaryFunc(){
 
+    document.getElementById('f').innerHTML = "";
+
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
@@ -503,6 +513,16 @@ function functionaryFunc(){
 }
 function laborFunc(){
 
+    var changePageBtn = document.createElement("button");
+    changePageBtn.id = "changePageBtn";
+    changePageBtn.onclick = changePage;
+    changePageBtn.className = "button button4";
+    var changePageBtnText = document.createTextNode("知道更多(點擊即可計算雇主提撥及自行提撥的退休金)");
+    changePageBtn.appendChild(changePageBtnText);
+    var f = document.getElementById('f');
+    f.appendChild(changePageBtn);
+
+
     document.getElementById("a").innerHTML = "退休金制度";
 
     var b = document.getElementById("b");
@@ -534,6 +554,8 @@ function laborFunc(){
 
 }
 function privatetaFunc(){
+
+    document.getElementById('f').innerHTML = "";
 
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退保前10年平均保俸";
@@ -580,6 +602,8 @@ function privatetaFunc(){
 
 }
 function popularFunc(){
+
+    document.getElementById('f').innerHTML = "";
 
     document.getElementById("a").innerHTML = "";
     document.getElementById("c").innerHTML = "";
