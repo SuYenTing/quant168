@@ -93,8 +93,8 @@ function AssetAllocationTable() {
 function AssetAllocationPie() {
 	var PieChart = d3.select("#assetallocationpie");
 	var margin = {top: 10, right: 10, bottom: 10, left: 10},
-	    width = 350,
-	    height = 350,
+	    width = 1000,
+	    height = 600,
 	    width_g = width - margin.left - margin.right,
 	    height_g = height - margin.top - margin.bottom,
 		radius = Math.min(width, height) / 2;
@@ -117,7 +117,7 @@ function AssetAllocationPie() {
 
 	var arc = d3.arc()
 		.outerRadius(radius - 20)
-		.innerRadius(radius - 40);
+		.innerRadius(radius - 70);
 
 
 	var updatePie = function(){
@@ -168,7 +168,7 @@ function AssetAllocationPie() {
 		var pieData = parseData(data,year);
 		var $PieChart = $("#allocation-pie");
 		var svg = PieChart.append("svg")
-		.attr("viewBox","0 0 350 350")
+		.attr("viewBox","0 0 1000 600")
 		.attr("preserveAspectRatio","xMinYMin meet")
 		.attr("width", width)
 		.attr("height", height);
@@ -216,7 +216,7 @@ function FundReturnChart() {
 	var ReturnChart = d3.select("#fundreturnchart");
 	var margin = {top: 90, right: 90, bottom: 90, left: 90},
 	    width = 1000,
-	    height = 500,
+	    height = 600,
 	    width_g = width - margin.left - margin.right,
 	    height_g = height - margin.top - margin.bottom;
 	var x = d3.scaleTime()
@@ -295,6 +295,8 @@ function FundReturnChart() {
 		ReturnChart.select(".area4")
 			.attr("d",area4)
 			.style("fill","#005A31");
+
+
 		ReturnChart.select(".linegroup").selectAll("path")
 			.attr("d",line)
 			.style("stroke", function (d, i) {
@@ -307,6 +309,17 @@ function FundReturnChart() {
 					.attr("d",line)
 					.style("stroke", "black")
 					.attr("stroke-width",2);
+		var circlegroup = ReturnChart.select("circlegroup")
+		var circle95 = circlegroup.select(".circle95")
+
+		ReturnChart.selectAll("circle")
+					.attr("cx",function(d) {
+						return x(new Date(d.year.toString()));
+					})
+					.attr("cy", function(d) {
+						console.log(y(d.value))
+						return y(d.value)
+					})
 
 	}
 
@@ -315,11 +328,10 @@ function FundReturnChart() {
 		data.unshift({"year": 2017, "five_percentile": 1, "twentyfive_percentile": 1, "fifty_percentile": 1,"seventyfive_percentile": 1,"ninetyfive_percentile":1});
 		//parse data
 		var chartdata = parsedata(data);
-
 		var $ReturnChart = $("#fundreturnchart");
 		var svg = ReturnChart
 			.append("svg")
-			.attr("viewBox","0 0 1000 500")
+			.attr("viewBox","0 0 1000 600")
 			.attr("preserveAspectRatio","xMinYMin meet")
 			.attr("width", width)
 			.attr("height",height)
@@ -350,6 +362,7 @@ function FundReturnChart() {
 			.datum(data)
 			.attr("class","area4");
 
+
 		//create plot lines
 		var linegroup = frg.append("g")
 							.attr("class","linegroup");
@@ -358,13 +371,71 @@ function FundReturnChart() {
 							.enter()
 							.append("path")
 
-		var iarline = frg.append("path")
-						.datum(chartdata[0].map(function(d){
+		var iardata = []
+		for (var i = 0; i < chartdata[0].length; i++){
+			iardata.push({
+				"year": chartdata[0][i].year,
+				"value": chartdata[0][i].value
+			});
+		}
 
-							d.value = iar0;
-							return d;
-						}))
-						.attr("class","iarline");
+
+		var iarline = frg.append("path")
+					.datum(iardata)
+					.attr("class","iarline");
+
+		// create circles
+		var circlegroup = frg.append("g")
+							.attr("class","circlegroup")
+		var circle95 = circlegroup
+						.append("g")
+						.attr("class","circle95")
+						.selectAll("circle")
+						.data(chartdata[0])
+						.enter()
+						.append("circle")
+						.attr("r",3)
+						// .enter()
+						// .append("circle")
+						
+
+		var circle75 = circlegroup
+						.append("g")
+						.attr("class","circle75")
+						.selectAll("circle")
+						.data(chartdata[1])
+						.enter()
+						.append("circle")
+						.attr("r",3)
+
+		var circle50 = circlegroup
+						.append("g")
+						.attr("class","circle50")
+						.selectAll("circle")
+						.data(chartdata[2])
+						.enter()
+						.append("circle")
+						.attr("r",3)
+
+		var circle25 = circlegroup
+						.append("g")
+						.attr("class","circle25")
+						.selectAll("circle")
+						.data(chartdata[3])
+						.enter()
+						.append("circle")
+						.attr("r",3)
+
+		var circle5 = circlegroup
+						.append("g")
+						.attr("class","circle5")
+						.selectAll("circle")
+						.data(chartdata[4])
+						.enter()
+						.append("circle")
+						.attr("class","circle")
+						.attr("r",3)
+
 
 		var xAxis = d3.axisBottom()
 			.scale(x);
@@ -401,6 +472,8 @@ function FundReturnChart() {
 			.text("百萬")
 			.attr("font-size",20);
 
+
+
 		updateReturnChart();
 
     }
@@ -410,6 +483,13 @@ function FundReturnChart() {
 
 
     	var chartdata = parsedata(data);
+		var iardata = []
+		for (var i = 0; i < chartdata[0].length; i++){
+			iardata.push({
+				"year": chartdata[0][i].year,
+				"value": chartdata[0][i].value
+			});
+		}
     	
     	x.domain([new Date("2017"),new Date((chartdata[0].length-1 + 2017).toString())]);
 		var ymax = Math.max(Math.ceil(chartdata[0][chartdata[0].length-1].value),iar0 * 1.1);
@@ -427,12 +507,38 @@ function FundReturnChart() {
     	ReturnChart.select(".linegroup").selectAll("path")
     		.data(chartdata);
     	ReturnChart.select(".iarline")
-    				.datum(chartdata[0].map(function(d){
-							d.value = iar0;
-							return d;
-						}));
+    				.datum(iardata);
 
-
+    	ReturnChart.select(".circle95")
+    				.selectAll("circle")
+    				.data(chartdata[0])
+    				.enter()
+    				.append("circle")
+    				.attr("r",3)
+    	ReturnChart.select(".circle75")
+    				.selectAll("circle")
+    				.data(chartdata[1])
+    				.enter()
+    				.append("circle")
+    				.attr("r",3)
+    	ReturnChart.select(".circle50")
+    				.selectAll("circle")
+    				.data(chartdata[2])
+    				.enter()
+    				.append("circle")
+    				.attr("r",3)
+    	ReturnChart.select(".circle25")
+    				.selectAll("circle")
+    				.data(chartdata[3])
+    				.enter()
+    				.append("circle")
+    				.attr("r",3)
+    	ReturnChart.select(".circle25")
+    				.selectAll("circle")
+    				.data(chartdata[4])
+    				.enter()
+    				.append("circle")
+    				.attr("r",3)
 
 		var xAxis = d3.axisBottom()
 			.scale(x);
@@ -472,8 +578,8 @@ function calculateRTSForm2(age0) {
 
 function interactivedashboardSetUp(yur0,rts0,iar0,fr75,fr50,fr25) {
 	$("#showYUR").html(parseInt(yur0) + "年後退休");
-	$("#showRTS").html("願意接受的投資風險<br>" + parseInt(rts0));
-	$("#showYUR2").html("未來" + parseInt(yur0) + "年資產配置建議");
+	$("#showRTS").html("願意接受的<br>投資風險" + parseInt(rts0));
+	$("#showYUR2").html("<h4> 未來" + parseInt(yur0) + "年資產配置建議 </h4>");
 	$("#showYUR3").html("未來" + parseInt(yur0) + "年資產配置建議");
 	$("#showIAR").html("退休後期望有<br>" + parseInt(iar0) + "百萬元存款");
 	$("#showFR75").html(parseFloat(fr75).toFixed(2) + "百萬");
@@ -569,7 +675,7 @@ $(document).ready(function(){
 
 	$("#rts_id_input").on("input change", function(){
 		rts = $("#rts_id_input").val();
-		$("#showRTS").html("願意接受的投資風險 <br>" + parseInt(rts));
+		$("#showRTS").html("願意接受的<br>投資風險" + parseInt(rts));
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			//alert(data);
 			ALMData = JSON.parse(data);

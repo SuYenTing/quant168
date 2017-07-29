@@ -128,7 +128,7 @@ fr_graph: fund return graph,
 						<br>	
 						<input id="iar_id_input" type="range" step=1 min=1 max=20>
 						<br><br><br>
-						<h4></h4>
+						<h4>
 						<div id="showRTS"></div>
 						</h4>	
 						<br>	
@@ -146,7 +146,6 @@ fr_graph: fund return graph,
 							</h2>
 						</div>
 					</div>
-
 					<div class="col-md-4">
 						<div class="chartitem" style="min-height: 50px">
 							<h2>
@@ -166,12 +165,12 @@ fr_graph: fund return graph,
 					</div>					
 				</div>
 				<div class="row">
-					<div class="text-center">
-						<div class="chartitem" style="min-height:500px; max-height:700px">
+						<div class="chartitem">
 							<h2>資產成長</h2>
 							<div id="fundreturnchart"></div>					
 						</div>
-						<div class="chartitem" style="min-height:500px; max-height:700px">
+					
+						<div class="chartitem">
 							<h2>2017年資產配置建議</h2>
 							<div id="assetallocationpie" ></div>
 							<a id="opengg" data-toggle="modal" data-target="#almModal"><div id="showYUR2"></div></a>
