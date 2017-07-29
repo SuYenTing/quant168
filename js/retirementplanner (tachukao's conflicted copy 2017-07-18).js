@@ -470,18 +470,16 @@ function calculateRTSForm2(age0) {
 	return agegroupvalue + eval($("#q1_f2").val() + "+" + $("#q2_f2").val() + "+" + $("#q3_f2").val() + "+" + $("#q4_f2").val() + "+" + $("#q5_f2").val());
 }
 
-function interactivedashboardSetUp(yur0,rts0,iar0,fr50,fr25) {
+function interactivedashboardSetUp(yur0,rts0,iar0,fr75,fr50,fr25) {
 	$("#showYUR").html("我預計" + parseInt(yur0) + "年後退休");
 	$("#showRTS").html("我所願意接受的投資風險為" + parseInt(rts0));
 	$("#showYUR2").html("未來" + parseInt(yur0) + "年資產配置建議");
 	$("#showYUR3").html("未來" + parseInt(yur0) + "年資產配置建議");
 	$("#showIAR").html("退休後我希望有" + parseInt(iar0) + "百萬元存款");
+	$("#showFR75").html(parseFloat(fr75).toFixed(2) + "百萬");
 	$("#showFR50").html(parseFloat(fr50).toFixed(2) + "百萬");
 	$("#showFR25").html(parseFloat(fr25).toFixed(2) + "百萬");
 }
-
-
-
 
 $(document).ready(function(){
 
@@ -490,6 +488,7 @@ $(document).ready(function(){
 		rts,
 		age,
 		iar,
+		fr75,
 		fr50,
 		fr25,
 		AssetAllocationPie0 = new AssetAllocationPie();
@@ -511,10 +510,10 @@ $(document).ready(function(){
 			AssetAllocationPie0.create(ALMData,0);
 			FundReturnChart0.create(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);
-
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 		$("#form1").hide();
 		$("#description").hide();
@@ -536,9 +535,10 @@ $(document).ready(function(){
 			AssetAllocationPie0.create(ALMData,0);
 			FundReturnChart0.create(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);	
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);		
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);		
 		});
 		$("#form1").hide();
 		$("#description").html("資產配置建議");
@@ -556,9 +556,10 @@ $(document).ready(function(){
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 	});
 
@@ -572,9 +573,10 @@ $(document).ready(function(){
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 	});
 
@@ -583,9 +585,10 @@ $(document).ready(function(){
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			ALMData = JSON.parse(data);
 			FundReturnChart0.update(ALMData,parseInt(iar));
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 	});
 
@@ -605,9 +608,10 @@ $(document).ready(function(){
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 
 

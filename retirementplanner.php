@@ -114,65 +114,70 @@ fr_graph: fund return graph,
 <div id="interactivedashboard">
 	<div class="container-fluid">
 		<div class="row text-center">
-			<div class="col-md-2">
+			<div class="col-md-2" style="position: fixed">
 				<div class="chartcontrol">
-					<div class="row">
+						<h4>
 						<div id="showYUR"></div>
+						</h4>
 						<br>
 						<input id="yur_id_input" type="range" min=5 max=40>
 						<br><br><br>
-					</div>
-					<div class="row">
+						<h4>
 						<div id="showIAR"></div>
+						</h4>
 						<br>	
 						<input id="iar_id_input" type="range" step=1 min=1 max=20>
 						<br><br><br>
-					</div>
-					<div class="row">
-						<div id="showRTS"></div>	
+						<h4></h4>
+						<div id="showRTS"></div>
+						</h4>	
 						<br>	
 						<input id="rts_id_input" type="range" min=1 max=100> 
-						<a id="openForm2Modal" data-toggle="modal" data-target="#form2Modal">重新計算我願意接受的投資風險</a> <br><br><br>
-					</div>
+						<h4><a id="openForm2Modal" data-toggle="modal" data-target="#form2Modal">重新計算我願意<br>接受的投資風險</a> <br><br><br></h4>
 				</div>
 			</div>
-			<div class="col-md-10">
+			<div class="col-md-10 col-md-offset-2">
 				<div class="row">
 					<div class="col-md-4">
 						<div class="chartitem" style="font:bold; min-height: 50px">
-							<h5> 快樂退休	  理財規劃 </h5>
+							<h2>
+								多頭市場環境
+								<div id="showFR75"></div>
+							</h2>
 						</div>
 					</div>
 
 					<div class="col-md-4">
 						<div class="chartitem" style="min-height: 50px">
-							正常市場環境
-							<div id="showFR50"></div>
+							<h2>
+								正常市場環境
+								<div id="showFR50"></div>
+							</h2>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="chartitem" style="min-height: 50px">
-							艱苦市場環境
-							<div id="showFR25"></div>
+							<h2>
+								艱苦市場環境
+								<div id="showFR25"></div>
+							</h2>
 						</div>
 						
 					</div>					
 				</div>
 				<div class="row">
-				<div class="col-md-4">
-					<div class="chartitem" style="min-height:500px">
-						2017年資產配置建議
-						<div id="assetallocationpie" ></div>
-						<a id="opengg" data-toggle="modal" data-target="#almModal"><div id="showYUR2"></div></a>
-					</div>
-				</div>	
-				<div class="col-md-8">
-					<div class="chartitem" style="min-height:500px">
-						資產成長
-						<div id="fundreturnchart"></div>
-					</div>
+					<div class="text-center">
+						<div class="chartitem" style="min-height:500px; max-height:700px">
+							<h2>資產成長</h2>
+							<div id="fundreturnchart"></div>					
+						</div>
+						<div class="chartitem" style="min-height:500px; max-height:700px">
+							<h2>2017年資產配置建議</h2>
+							<div id="assetallocationpie" ></div>
+							<a id="opengg" data-toggle="modal" data-target="#almModal"><div id="showYUR2"></div></a>
+						</div>
+					</div>						
 				</div>
-						
 			</div>
 		</div>
 	</div>

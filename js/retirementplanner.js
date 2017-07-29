@@ -19,7 +19,7 @@ function AssetAllocationTable() {
 	var table = d3.select("#assetallocationtable").append('table');
 	var thead = table.append("thead");
 	var tbody = table.append("tbody");
-	var columns = ['年', '股票','債卷','現金'];
+	var columns = ['年', '股票','債券','現金'];
 	var columnsEN = ['year','stock_weight','bonds_weight', 'money_weight'];
 	var rows = tbody.selectAll('tr');
 
@@ -92,9 +92,9 @@ function AssetAllocationTable() {
 
 function AssetAllocationPie() {
 	var PieChart = d3.select("#assetallocationpie");
-	var margin = {top: 40, right: 40, bottom: 40, left: 40},
-	    width = 500,
-	    height = 500,
+	var margin = {top: 10, right: 10, bottom: 10, left: 10},
+	    width = 350,
+	    height = 350,
 	    width_g = width - margin.left - margin.right,
 	    height_g = height - margin.top - margin.bottom,
 		radius = Math.min(width, height) / 2;
@@ -105,7 +105,7 @@ function AssetAllocationPie() {
 		var pieData = [
 			{"label":"股票", "value": parseFloat(data[year]["stock_weight"])},
 			{"label":"現金", "value": parseFloat(data[year]["money_weight"])},
-			{"label":"債卷", "value": parseFloat(data[year]["bonds_weight"])}
+			{"label":"債券", "value": parseFloat(data[year]["bonds_weight"])}
 		];
 		return pieData;
 	}
@@ -116,8 +116,8 @@ function AssetAllocationPie() {
 	}).sort(null);
 
 	var arc = d3.arc()
-		.outerRadius(radius - 70)
-		.innerRadius(radius - 120);
+		.outerRadius(radius - 20)
+		.innerRadius(radius - 40);
 
 
 	var updatePie = function(){
@@ -168,7 +168,7 @@ function AssetAllocationPie() {
 		var pieData = parseData(data,year);
 		var $PieChart = $("#allocation-pie");
 		var svg = PieChart.append("svg")
-		.attr("viewBox","0 0 500 500")
+		.attr("viewBox","0 0 350 350")
 		.attr("preserveAspectRatio","xMinYMin meet")
 		.attr("width", width)
 		.attr("height", height);
@@ -215,7 +215,7 @@ function FundReturnChart() {
 
 	var ReturnChart = d3.select("#fundreturnchart");
 	var margin = {top: 90, right: 90, bottom: 90, left: 90},
-	    width = 700,
+	    width = 1000,
 	    height = 500,
 	    width_g = width - margin.left - margin.right,
 	    height_g = height - margin.top - margin.bottom;
@@ -319,7 +319,7 @@ function FundReturnChart() {
 		var $ReturnChart = $("#fundreturnchart");
 		var svg = ReturnChart
 			.append("svg")
-			.attr("viewBox","0 0 700 500")
+			.attr("viewBox","0 0 1000 500")
 			.attr("preserveAspectRatio","xMinYMin meet")
 			.attr("width", width)
 			.attr("height",height)
@@ -470,12 +470,13 @@ function calculateRTSForm2(age0) {
 	return agegroupvalue + eval($("#q1_f2").val() + "+" + $("#q2_f2").val() + "+" + $("#q3_f2").val() + "+" + $("#q4_f2").val() + "+" + $("#q5_f2").val());
 }
 
-function interactivedashboardSetUp(yur0,rts0,iar0,fr50,fr25) {
-	$("#showYUR").html("我預計" + parseInt(yur0) + "年後退休");
-	$("#showRTS").html("我所願意接受的投資風險為" + parseInt(rts0));
+function interactivedashboardSetUp(yur0,rts0,iar0,fr75,fr50,fr25) {
+	$("#showYUR").html(parseInt(yur0) + "年後退休");
+	$("#showRTS").html("願意接受的投資風險<br>" + parseInt(rts0));
 	$("#showYUR2").html("未來" + parseInt(yur0) + "年資產配置建議");
 	$("#showYUR3").html("未來" + parseInt(yur0) + "年資產配置建議");
-	$("#showIAR").html("退休後我希望有" + parseInt(iar0) + "百萬元存款");
+	$("#showIAR").html("退休後期望有<br>" + parseInt(iar0) + "百萬元存款");
+	$("#showFR75").html(parseFloat(fr75).toFixed(2) + "百萬");
 	$("#showFR50").html(parseFloat(fr50).toFixed(2) + "百萬");
 	$("#showFR25").html(parseFloat(fr25).toFixed(2) + "百萬");
 }
@@ -490,6 +491,7 @@ $(document).ready(function(){
 		rts,
 		age,
 		iar,
+		fr75,
 		fr50,
 		fr25,
 		AssetAllocationPie0 = new AssetAllocationPie();
@@ -511,10 +513,10 @@ $(document).ready(function(){
 			AssetAllocationPie0.create(ALMData,0);
 			FundReturnChart0.create(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);
-
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 		$("#form1").hide();
 		$("#description").hide();
@@ -536,9 +538,10 @@ $(document).ready(function(){
 			AssetAllocationPie0.create(ALMData,0);
 			FundReturnChart0.create(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);	
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);		
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);		
 		});
 		$("#form1").hide();
 		$("#description").html("資產配置建議");
@@ -549,32 +552,34 @@ $(document).ready(function(){
 	$("#yur_id_input").on("input change", function(){
 		yur = $("#yur_id_input").val();
 		$("#showYUR2").html("未來" + parseInt(yur) + "年資產配置建議");
-		$("#showYUR").html("預計" + parseInt(yur) + "年後退休");
+		$("#showYUR").html(parseInt(yur) + "年後退休");
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			//alert(data);
 			ALMData = JSON.parse(data);
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 	});
 
 
 	$("#rts_id_input").on("input change", function(){
 		rts = $("#rts_id_input").val();
-		$("#showRTS").html("我所願意接受的投資風險為" + parseInt(rts));
+		$("#showRTS").html("願意接受的投資風險 <br>" + parseInt(rts));
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			//alert(data);
 			ALMData = JSON.parse(data);
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 	});
 
@@ -583,9 +588,10 @@ $(document).ready(function(){
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			ALMData = JSON.parse(data);
 			FundReturnChart0.update(ALMData,parseInt(iar));
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 	});
 
@@ -593,21 +599,22 @@ $(document).ready(function(){
 		rts = eval($("#q1").val() + "+" + $("#q2").val()+ "+" + $("#q3").val()+ "+" + $("#q4").val() + "+"+ $("#q5").val()+ "+" +$("#q6").val());
 		$("#showRTS").html(rts_calculated);
 		$("#rts").val(rts_calculated)
-		$("#showRTS2").html("我所願意接受的投資風險為" + $("#rts").val());
+		$("#showRTS2").html("願意接受的投資風險：" + $("#rts").val());
 	});
 
 	$("#form2submit").on("click",function(){
 		rts = calculateRTSForm2(age);
-		$("#showRTSForm2").html("投資風險承受能力:" + parseInt(rts));
+		$("#showRTSForm2").html("投資風險承受能力<br>" + parseInt(rts));
 		interactivedashboardSetUp(yur,rts,iar);
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			ALMData = JSON.parse(data);
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);
+			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
-			interactivedashboardSetUp(yur,rts,iar,fr50,fr25);
+			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
 
 
