@@ -296,7 +296,6 @@ function FundReturnChart() {
 			.attr("d",area4)
 			.style("fill","#005A31");
 
-
 		ReturnChart.select(".linegroup").selectAll("path")
 			.attr("d",line)
 			.style("stroke", function (d, i) {
@@ -375,10 +374,10 @@ function FundReturnChart() {
 		for (var i = 0; i < chartdata[0].length; i++){
 			iardata.push({
 				"year": chartdata[0][i].year,
-				"value": chartdata[0][i].value
+				"value": iar0
 			});
 		}
-
+		console.log(iardata)
 
 		var iarline = frg.append("path")
 					.datum(iardata)
@@ -487,7 +486,7 @@ function FundReturnChart() {
 		for (var i = 0; i < chartdata[0].length; i++){
 			iardata.push({
 				"year": chartdata[0][i].year,
-				"value": chartdata[0][i].value
+				"value": iar0
 			});
 		}
     	
@@ -533,7 +532,7 @@ function FundReturnChart() {
     				.enter()
     				.append("circle")
     				.attr("r",3)
-    	ReturnChart.select(".circle25")
+    	ReturnChart.select(".circle5")
     				.selectAll("circle")
     				.data(chartdata[4])
     				.enter()
