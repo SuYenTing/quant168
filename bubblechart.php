@@ -245,9 +245,9 @@ select option {
     ?>
         <table>
             <td>
-                <div id="series_chart_div" style="width: 1000px; height: 600px;"></div>
+                <div id="series_chart_div" style="width: 700px; height: 600px;"></div>
             </td>
-            <td>
+            <td style="width:20%;">
                 <p style="color:#444444;font-weight:bolder;line-height:1px;">
                     <input type="checkbox" id="filter1" value="industry=1 or ">水泥工業</p>
                 <p style="color:#A20055;font-weight:bolder;line-height:1px;">
