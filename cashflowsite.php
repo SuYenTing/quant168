@@ -13,7 +13,6 @@ $lifeLeft = $_POST['lifeLeft'];
 $roi = $_POST['roi'];
 
 
-
 ?>
 
 <html>
@@ -76,6 +75,7 @@ $roi = $_POST['roi'];
     </style>
 
     <div class="container">
+    <h4>現金流網頁</h4>
         
         <p>input</p>
         <table>
@@ -136,14 +136,24 @@ $roi = $_POST['roi'];
                 <tr>
                 <td>職業別</td>
                 <td>
-                            <input type="radio" name="vocation" id="vocation" value="labor" checked onchange="vocationFunc('labor'); laborFunc()"> 勞工
+                <select name="vocation" id="vocation">
+                    <option value="labor" onchange="vocationFunc('labor'); laborFunc()" <?php if($vocation == 'labor') {echo "selected";}?>>勞工</option>
+                    <option value="functionary" onchange="vocationFunc('functionary'); functionaryFunc()" <?php if($vocation == 'functionary') {echo "selected";}?>>公務員</option>
+                    <option value="publicta" onchange="vocationFunc('publicta'); publictaFunc()" <?php if($vocation == 'publicta') {echo "selected";}?>>公立教職</option>
+                    <option value="privateta" onchange="vocationFunc('privateta'); privatetaFunc()" <?php if($vocation == 'privateta') {echo "selected";}?>>私立教職</option>
+                    <option value="military" onchange="vocationFunc('military'); militaryFunc()" <?php if($vocation == 'military') {echo "selected";}?>>軍人</option>
+                    <option value="farmer" onchange="vocationFunc('farmer'); farmerFunc()" <?php if($vocation == 'farmer') {echo "selected";}?>>農民</option>
+                    <option value="popular" onchange="vocationFunc('popular'); popularFunc()" <?php if($vocation == 'popular') {echo "selected";}?>>一般民眾</option>
+                    <option type="hidden" name="vocations" id="vocations" value="labor"></option>
+                </select>
+                            <!-- <input type="radio" name="vocation" id="vocation" value="labor" checked onchange="vocationFunc('labor'); laborFunc()"> 勞工
                             <input type="radio" name="vocation" id="vocation" value="functionary" onchange="vocationFunc('functionary'); functionaryFunc()"> 公務員
                             <input type="radio" name="vocation" id="vocation" value="publicta" onchange="vocationFunc('publicta'); publictaFunc()"> 公立教職
                             <input type="radio" name="vocation" id="vocation" value="privateta" onchange="vocationFunc('privateta'); privatetaFunc()"> 私立教職
                             <input type="radio" name="vocation" id="vocation" value="military" onchange="vocationFunc('military'); militaryFunc()"> 軍人
                             <input type="radio" name="vocation" id="vocation" value="farmer" onchange="vocationFunc('farmer'); farmerFunc()"> 農民
                             <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular'); popularFunc()"> 一般民眾
-                            <input type="hidden" name="vocations" id="vocations" value="labor">
+                            <input type="hidden" name="vocations" id="vocations" value="labor"> -->
                 </td>
                 <td id="a">退休金制度</td>
                 <td><div id="b">
@@ -204,7 +214,7 @@ $roi = $_POST['roi'];
                 歲</td>
                 <td>預計退休年齡</td>
                 <td>
-                    <select name="retireAge" id="retireAge" onchange="lifeLeftFunc()">
+                    <select id="retireAge" onchange="lifeLeftFunc()">
                         <option value="55" <?php if($retireAge ==55) {echo "selected";}?>>55</option>
                         <option value="56" <?php if($retireAge ==56) {echo "selected";}?>>56</option>
                         <option value="57" <?php if($retireAge ==57) {echo "selected";}?>>57</option>
@@ -227,11 +237,11 @@ $roi = $_POST['roi'];
                 <tr>
                         <td>起薪</td>
                         <td>$
-                            <input name="wage" type="number" id="wage" value=<?php echo $wage?>>
+                            <input type="number" id="wage" value=<?php echo $wage?>>
                         </td>
                         <td>薪資成長率</td>
                         <td>
-                            <select name="wageGrowth" id="wageGrowth" >
+                            <select id="wageGrowth" >
                             <option value="0.5" <?php if($wageGrowth ==0.5) {echo "selected";}?>>0.5%</option>
                             <option value="1.0" <?php if($wageGrowth ==1.0) {echo "selected";}?>>1.0%</option>
                             <option value="1.5" <?php if($wageGrowth ==1.5) {echo "selected";}?>>1.5%</option>
@@ -248,10 +258,10 @@ $roi = $_POST['roi'];
                 <tr>
                     <td>退休時平均餘命</td>
                     <td>
-                    <input name="lifeLeft" type="number" id="lifeLeft" value=13 readonly>歲</td>
+                    <input type="number" id="lifeLeft" value=13 readonly>歲</td>
                     <td>投資報酬率</td>
                 <td>
-                    <select name="roi" id="roi" >
+                    <select id="roi" >
                         <option value="0.2" <?php if($roi ==0.2) {echo "selected";}?>>0.2%</option>
                         <option value="0.4" <?php if($roi ==0.4) {echo "selected";}?>>0.4%</option>
                         <option value="0.6" <?php if($roi ==0.6) {echo "selected";}?>>0.6%</option>
