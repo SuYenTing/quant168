@@ -1,7 +1,7 @@
 function FundReturnChart() {
 	var circlegrouplist = []
 	var ReturnChart = d3.select("#fundreturnchart");
-	var margin = {top: 50, right: 50, bottom: 80, left: 80},
+	var margin = {top: 50, right: 70, bottom: 80, left: 80},
 	    width = 1000,
 	    height = 500,
 	    width_g = width - margin.left - margin.right,
@@ -70,27 +70,40 @@ function FundReturnChart() {
 
 	var updateReturnChart = function(){
 
+		var circlecolor = "rgba(255,242,34,1)"
+
+		var colorList = [
+							"rgba(0,90,49,1)",
+							"rgba(0,90,49,0.8)",
+							"rgba(0,90,49,0.6)",
+							"rgba(0,90,49,0.4)",
+							"rgba(0,90,49,0.4)",
+							// "rgba(168,205,27,1)",
+							// "rgba(203,227,45,1)",
+							// "rgba(0,90,49,1)",
+							// "rgba(0,90,49,0.8)",
+						]
+
 		ReturnChart.select(".area1")
 			.attr("d",area1)
-			.style("fill","#005A31");
+			.style("fill","rgba(0,90,49,0.9)");
 		ReturnChart.select(".area2")
 			.attr("d",area2)
-			.style("fill","#A8CD1B");
+			.style("fill","rgba(0,90,49,0.7)");
 		ReturnChart.select(".area3")
 			.attr("d",area3)
-			.style("fill","#CBE32D");
+			.style("fill","rgba(0,90,49,0.5)");
 		ReturnChart.select(".area4")
 			.attr("d",area4)
-			.style("fill","#005A31");
+			.style("fill","rgba(0,90,49,0.3)");
 
 		ReturnChart.select(".linegroup").selectAll("path")
 			.attr("d",line)
 			.style("stroke", function (d, i) {
-					return "#005A31";
-                    // halfway between line color and white
-                    //return d3.interpolateRgb(d3.rgb("#ffffff"), d3.rgb(color(i)))(.5).toString();
+					console.log(i);
+					return colorList[i];
                 })
-			.attr("stroke-width",1.5);
+			.attr("stroke-width",4);
 		ReturnChart.select(".iarline")
 					.attr("d",line)
 					.style("stroke", "black")
@@ -103,6 +116,7 @@ function FundReturnChart() {
 					.attr("cy", function(d) {
 						return y(d.value)
 					})
+					.attr("fill",circlecolor)
 
 		var circlelabel = ReturnChart.selectAll(".circlelabel")
 					.attr("transform", function(d) { 
@@ -111,19 +125,22 @@ function FundReturnChart() {
 						pos.push(y(d.value));
 						return "translate(" + pos + ")"; 
 					})
-					.attr("dy","-10px")
+					.attr("dy","-15px")
 					.attr("dx","-1em")
-					.attr("font-size","18px")
+					.attr("font-size","20px")
 					.attr("visibility","hidden")
-					.html(function(d){return parseFloat(d.value).toFixed(2).toString() ;})
+					.html(function(d){return parseFloat(d.value).toFixed(2).toString() + "百萬" ;})
 
 		ReturnChart.selectAll("circle")
 					.on("mouseover", function(){
-						console.log($(this).next()[0]);
+						$(this).css("fill",circlecolor).attr("r",12)
 						return $(this).next().css("visibility", "visible");
 					})
 					.on("mousemove", function(){return $(this).next().css("top",(d3.event.pageY-10)+"px").css("left",(d3.event.pageX+10)+"px");})
-					.on("mouseout", function(){return $(this).next().css("visibility", "hidden");});
+					.on("mouseout", function(){
+						$(this).css("fill",circlecolor).attr("r",3);
+						return $(this).next().css("visibility", "hidden");
+					});
 
 
 	}
@@ -149,7 +166,6 @@ function FundReturnChart() {
 			.attr("height",height_g)
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		//create stacked area	graphs	
 		var areagroup = frg.append("g")
 						.attr("class","areagroup");
 		areagroup.append("path")
@@ -222,12 +238,12 @@ function FundReturnChart() {
 			.attr("class","axis yaxis")
 			//.attr("transform", "translate(" + width_g + " ,0)")
 			.call(yAxis)
-			.attr("font-size",20);
+			.attr("font-size",25);
 		frg.append("g")
 			.attr("class","axis xaxis")
 			.attr("transform", "translate(0," + (height_g) + ")")
 			.call(xAxis)
-			.attr("font-size",20);
+			.attr("font-size",25);
 
 		//label for the xais
 		frg.append("text")
@@ -236,7 +252,7 @@ function FundReturnChart() {
                            (height_g + 60) + ")")
       		.style("text-anchor", "middle")
       		.text("年")
-      		.attr("font-size",20);
+      		.attr("font-size",30);
 
       	// text label for the y axis
 		frg.append("text")
@@ -246,7 +262,7 @@ function FundReturnChart() {
 			.attr("dy", "1em")
 			.style("text-anchor", "middle")
 			.text("百萬")
-			.attr("font-size",20);
+			.attr("font-size",30);
 
 
 

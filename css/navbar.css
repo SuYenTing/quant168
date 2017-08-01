@@ -13,24 +13,21 @@ a {
   padding-top: 0px;
 }*/
 
+.menu {
+    border-color: white;
+    font-size: 20px;
+    border-bottom-color: #005A31;
+    border-width: 5px;
+}
 
 .logo {
+    padding-left: 30px;
     background-color:white;
-	font-size: 2em;
+	font-size: 1.5em;
 	font-weight: bold;
 	color: #005A31;
     text-align:left;
-/*	height: em;*/
 }
-
-@media (max-width: 900px) {
-  .logo { text-align: center; }
-}
-
-
-/*.menu {
-	z-index: 100
-}*/
 
 .dropdown-menu, .dropdown-header {
 	font-size: 15px;
@@ -40,10 +37,7 @@ a {
 
 .navbar-default {
     background-color: white;
-    border-color: white;
-    font-size: 15px;
-    border-bottom-color: #005A31;
-    border-width: 5px;
+
 }
 /* Title */
 .navbar-default .navbar-brand {
@@ -78,7 +72,7 @@ a {
     background-color: #005A31;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1058px) {
     .navbar-header {
         float: none;
     }
@@ -115,8 +109,6 @@ a {
         overflow: hidden!important;
     }
 }
-
-
 body {
 	font-family: "Roboto Mono", roboto mono;
 }

@@ -1,7 +1,7 @@
 function AssetAllocationPie() {
 	var PieChart = d3.select("#assetallocationpie");
 	var margin = {top: 5, right: 5, bottom: 5, left: 5},
-	    width = 1000,
+	    width = 500,
 	    height = 500,
 	    width_g = width - margin.left - margin.right,
 	    height_g = height - margin.top - margin.bottom,
@@ -41,7 +41,7 @@ function AssetAllocationPie() {
 		var text1 = PieChart.select(".text1");
 		text1.selectAll("text")
 		.attr("class","pietext")
-		.attr("font-size","20px")	
+		.attr("font-size","28px")	
 		.attr("transform", function(d) { 
 			var pos = arc.centroid(d);
 			pos[0] = pos[0] * textradius;
@@ -56,7 +56,7 @@ function AssetAllocationPie() {
 		
 		var text2 = PieChart.select(".text2");
 		text2.selectAll("text")
-		.attr("font-size","20px")	
+		.attr("font-size","28px")	
 		.attr("transform", function(d) { 
 			var pos = arc.centroid(d);
 			pos[0] = pos[0] * textradius;
@@ -76,7 +76,7 @@ function AssetAllocationPie() {
 		var pieData = parseData(data,year);
 		var $PieChart = $("#allocation-pie");
 		var svg = PieChart.append("svg")
-		.attr("viewBox","0 0 1000 500")
+		.attr("viewBox","0 0 500 500")
 		.attr("preserveAspectRatio","xMinYMin meet")
 		.attr("width", width)
 		.attr("height", height);

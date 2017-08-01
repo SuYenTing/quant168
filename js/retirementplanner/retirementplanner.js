@@ -39,7 +39,7 @@ function calculateRTSForm2(age0) {
 function interactivedashboardSetUp(yur0,rts0,iar0,fr75,fr50,fr25) {
 	$("#showYUR").html(parseInt(yur0) + "年後退休");
 	$("#showRTS").html("願意接受的投資風險" + parseInt(rts0));
-	$("#showYUR2").html("<h5> 未來" + parseInt(yur0) + "年資產配置建議 </h5>" );
+	$("#showYUR2").html("未來" + parseInt(yur0) + "年資產配置建議" );
 	$("#showYUR3").html("未來" + parseInt(yur0) + "年資產配置建議");
 	$("#showIAR").html("退休後期望有" + parseInt(iar0) + "百萬元存款");
 	$("#showFR75").html(parseFloat(fr75).toFixed(2) + "百萬");
