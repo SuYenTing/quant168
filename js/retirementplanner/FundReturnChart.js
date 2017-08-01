@@ -1,7 +1,7 @@
 function FundReturnChart() {
-
+	var circlegrouplist = []
 	var ReturnChart = d3.select("#fundreturnchart");
-	var margin = {top: 20, right: 20, bottom: 80, left: 80},
+	var margin = {top: 50, right: 50, bottom: 80, left: 80},
 	    width = 1000,
 	    height = 500,
 	    width_g = width - margin.left - margin.right,
@@ -95,17 +95,36 @@ function FundReturnChart() {
 					.attr("d",line)
 					.style("stroke", "black")
 					.attr("stroke-width",2);
-		var circlegroup = ReturnChart.select("circlegroup")
-		var circle95 = circlegroup.select(".circle95")
 
 		ReturnChart.selectAll("circle")
 					.attr("cx",function(d) {
 						return x(new Date(d.year.toString()));
 					})
 					.attr("cy", function(d) {
-						console.log(y(d.value))
 						return y(d.value)
 					})
+
+		var circlelabel = ReturnChart.selectAll(".circlelabel")
+					.attr("transform", function(d) { 
+						var pos = []
+						pos.push(x(new Date(d.year.toString())));
+						pos.push(y(d.value));
+						return "translate(" + pos + ")"; 
+					})
+					.attr("dy","-10px")
+					.attr("dx","-1em")
+					.attr("font-size","18px")
+					.attr("visibility","hidden")
+					.html(function(d){return parseFloat(d.value).toFixed(2).toString() ;})
+
+		ReturnChart.selectAll("circle")
+					.on("mouseover", function(){
+						console.log($(this).next()[0]);
+						return $(this).next().css("visibility", "visible");
+					})
+					.on("mousemove", function(){return $(this).next().css("top",(d3.event.pageY-10)+"px").css("left",(d3.event.pageX+10)+"px");})
+					.on("mouseout", function(){return $(this).next().css("visibility", "hidden");});
+
 
 	}
 
@@ -172,54 +191,26 @@ function FundReturnChart() {
 		// create circles
 		var circlegroup = frg.append("g")
 							.attr("class","circlegroup")
-		var circle95 = circlegroup
-						.append("g")
-						.attr("class","circle95")
-						.selectAll("circle")
-						.data(chartdata[0])
-						.enter()
-						.append("circle")
-						.attr("r",3)
-						// .enter()
-						// .append("circle")
-						
+		
+		for (var i = 0; i < chartdata.length; i++) {
+			circlegrouplist[i] = circlegroup
+			.append("g")
 
-		var circle75 = circlegroup
-						.append("g")
-						.attr("class","circle75")
-						.selectAll("circle")
-						.data(chartdata[1])
-						.enter()
-						.append("circle")
-						.attr("r",3)
+			var cgroup = circlegrouplist[i]
+			.selectAll("g")
+			.data(chartdata[i])
+			.enter()
+			.append("g")
+			.attr("class","circlegroup")
 
-		var circle50 = circlegroup
-						.append("g")
-						.attr("class","circle50")
-						.selectAll("circle")
-						.data(chartdata[2])
-						.enter()
-						.append("circle")
-						.attr("r",3)
+			cgroup.append("circle")
+			.attr("r",3)
 
-		var circle25 = circlegroup
-						.append("g")
-						.attr("class","circle25")
-						.selectAll("circle")
-						.data(chartdata[3])
-						.enter()
-						.append("circle")
-						.attr("r",3)
+			cgroup.append("text")
+			.attr("class","circlelabel")
+			.attr("font-size","20px")
 
-		var circle5 = circlegroup
-						.append("g")
-						.attr("class","circle5")
-						.selectAll("circle")
-						.data(chartdata[4])
-						.enter()
-						.append("circle")
-						.attr("class","circle")
-						.attr("r",3)
+		}
 
 
 		var xAxis = d3.axisBottom()
@@ -293,38 +284,24 @@ function FundReturnChart() {
     		.data(chartdata);
     	ReturnChart.select(".iarline")
     				.datum(iardata);
+    	for (var i = 0; i < chartdata.length; i++)
+    	{
+    		circlegrouplist[i].selectAll("g").remove()
+			var cgroup = circlegrouplist[i]
+			.selectAll("g")
+			.data(chartdata[i])
+			.enter()
+			.append("g")
+			.attr("class","circlegroup")
 
-    	ReturnChart.select(".circle95")
-    				.selectAll("circle")
-    				.data(chartdata[0])
-    				.enter()
-    				.append("circle")
-    				.attr("r",3)
-    	ReturnChart.select(".circle75")
-    				.selectAll("circle")
-    				.data(chartdata[1])
-    				.enter()
-    				.append("circle")
-    				.attr("r",3)
-    	ReturnChart.select(".circle50")
-    				.selectAll("circle")
-    				.data(chartdata[2])
-    				.enter()
-    				.append("circle")
-    				.attr("r",3)
-    	ReturnChart.select(".circle25")
-    				.selectAll("circle")
-    				.data(chartdata[3])
-    				.enter()
-    				.append("circle")
-    				.attr("r",3)
-    	ReturnChart.select(".circle5")
-    				.selectAll("circle")
-    				.data(chartdata[4])
-    				.enter()
-    				.append("circle")
-    				.attr("r",3)
+			cgroup.append("circle")
+			.attr("r",3)
 
+			cgroup.append("text")
+			.attr("class","circlelabel")
+			.attr("font-size","20px")
+
+    	}
 		var xAxis = d3.axisBottom()
 			.scale(x);
 		var yAxis = d3.axisLeft()
