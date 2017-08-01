@@ -10,11 +10,12 @@ a {
 }
 
 .affix + .container-fluid {
-  padding-top: 70px;
+  padding-top: 0px;
 }
 
 
 .logo {
+    background-color:white;
 	font-size: 2em;
 	font-weight: bold;
 	color: #005A31;

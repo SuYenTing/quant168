@@ -16,8 +16,8 @@
 }
 
 .chartitem {
-	margin: 0.3em;
-	padding: 1.5em;
+	margin: 0.1em;
+	padding: 0.5em;
 	/*background-color: #F3FAB6;*/
 	/*border-radius: 2em;*/
 /*	min-height: 8em;*/
@@ -26,7 +26,6 @@
 	border-style: dotted;
 	border-width: 1px;
 	border-color: white;
-	border-bottom-color: grey;
 
 }
 
