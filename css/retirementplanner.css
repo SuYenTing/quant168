@@ -16,18 +16,10 @@
 }
 
 .chartitem {
-	margin: 0.3em;
-	padding: 1.5em;
-	/*background-color: #F3FAB6;*/
-	/*border-radius: 2em;*/
-/*	min-height: 8em;*/
 	font-size: 12px;
-/*	height: auto;*/
 	border-style: dotted;
 	border-width: 1px;
 	border-color: white;
-	border-bottom-color: grey;
-
 }
 
 .chartcontrol {
@@ -54,9 +46,8 @@ option {
 
 
 svg {
-
-	height: auto;
-	width: 100%;
+	width:80%;
+  height:80%;
 }
 
 .axisX {
@@ -72,18 +63,7 @@ td, th {
   padding: 0.5em 2em;
 }
 
-.caret {
-    border-width: 8px;
-}
 
-input[type=range][orient=vertical]
-{
-    writing-mode: bt-lr; /* IE */
-    -webkit-appearance: slider-vertical; /* WebKit */
-    width: 8px;
-    height: 175px;
-    padding: 0 5px;
-}
 
 /*input[type=range] {
   -webkit-appearance: none;

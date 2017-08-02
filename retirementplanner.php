@@ -103,8 +103,7 @@ fr_graph: fund return graph,
 	          </select> 
 	        </div>
 	        <button class="btn btn-lg" type="submit" id="form1submit" style="background-color: #005A31; font-size:1em; color: white;">送出</button>
-	    </ul>  
-		   
+	    </ul>  		   
 	</form>
 </div> 
 
@@ -112,72 +111,59 @@ fr_graph: fund return graph,
 
 <!--Interactive Dashboard-->
 <div id="interactivedashboard">
-	<div class="container-fluid">
-		<div class="row text-center">
-			<div class="col-md-2" style="position: fixed">
-				<div class="chartcontrol">
-						<h4>
-						<div id="showYUR"></div>
-						</h4>
-						<br>
-						<input id="yur_id_input" type="range" min=5 max=40>
-						<br><br><br>
-						<h4>
-						<div id="showIAR"></div>
-						</h4>
-						<br>	
-						<input id="iar_id_input" type="range" step=1 min=1 max=20>
-						<br><br><br>
-						<h4>
-						<div id="showRTS"></div>
-						</h4>	
-						<br>	
-						<input id="rts_id_input" type="range" min=1 max=100> 
-						<h4><a id="openForm2Modal" data-toggle="modal" data-target="#form2Modal">重新計算我願意<br>接受的投資風險</a> <br><br><br></h4>
+	<div class="container-fluid text-center">
+		<div class="row">
+			<div class="col-sm-4" style="font:bold; min-height: 100px">
+				<h4><span id="showYUR"></span></h4>
+				<input id="yur_id_input" type="range" min=5 max=40>
+			</div>
+			<div class="col-sm-4" style="font:bold; min-height: 100px">
+				<h4><span id="showIAR"></span></h4>
+				<input id="iar_id_input" type="range" step=1 min=1 max=20>
+			</div>
+			<div class="col-sm-4" style="font:bold; min-height: 100px">
+				<h4><span id="showRTS"></span></h4>	
+				<input id="rts_id_input" type="range" min=1 max=100> 
+			</div>
+		</div>
+		<div class="row">				
+			<div class="col-md-8">
+				<div class="chartitem">
+					<h3><b>資產成長</b></h3>
+					<div class="row">
+						<div class="col-xs-4">
+							<h4>
+							多頭市場環境
+							<div id="showFR75"></div>
+							</h4>
+						</div>
+						<div class="col-xs-4">
+							<h4>
+							正常市場環境
+							<div id="showFR50"></div>
+							</h4>
+						</div>
+						<div class="col-xs-4">
+							<h4>
+							惡劣市場環境
+							<div id="showFR25"></div>
+							</h4>
+						</div>
+					</div>				
+					<div id="fundreturnchart"></div>				
 				</div>
 			</div>
-			<div class="col-md-10 col-md-offset-2">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="chartitem" style="font:bold; min-height: 50px">
-							<h2>
-								多頭市場環境
-								<div id="showFR75"></div>
-							</h2>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="chartitem" style="min-height: 50px">
-							<h2>
-								正常市場環境
-								<div id="showFR50"></div>
-							</h2>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="chartitem" style="min-height: 50px">
-							<h2>
-								艱苦市場環境
-								<div id="showFR25"></div>
-							</h2>
-						</div>
-						
-					</div>					
-				</div>
-				<div class="row">
-						<div class="chartitem">
-							<h2>資產成長</h2>
-							<div id="fundreturnchart"></div>					
-						</div>
+			<div class="col-md-4">			
+				<div class="chartitem">
+					<h3><b>2017年資產配置建議</b></h3>
+					<div id="assetallocationpie" ></div>
 					
-						<div class="chartitem">
-							<h2>2017年資產配置建議</h2>
-							<div id="assetallocationpie" ></div>
-							<a id="opengg" data-toggle="modal" data-target="#almModal"><div id="showYUR2"></div></a>
-						</div>
-					</div>						
-				</div>
-			</div>
+					<a id="opengg" data-toggle="modal" data-target="#almModal">
+						<h4><div id="showYUR2"></div></h4>
+					</a>
+
+				</div>	
+			</div>				
 		</div>
 	</div>
 </div>
@@ -302,12 +288,10 @@ fr_graph: fund return graph,
 	</div>
 	</div>
 </div>
-
-
-
-
-
-<script src="js/retirementplanner.js"></script>
+<script src="js/retirementplanner/AssetAllocationTable.js"></script>
+<script src="js/retirementplanner/AssetAllocationPie.js"></script>
+<script src="js/retirementplanner/FundReturnChart.js"></script>
+<script src="js/retirementplanner/retirementplanner.js"></script>
 
 </body>
 
