@@ -126,10 +126,12 @@ function FundReturnChart() {
 						return "translate(" + pos + ")"; 
 					})
 					.attr("dy","-15px")
-					.attr("dx","-1em")
+					.attr("dx","-8em")
 					.attr("font-size","20px")
 					.attr("visibility","hidden")
-					.html(function(d){return parseFloat(d.value).toFixed(2).toString() + "百萬" ;})
+					.html(function(d){
+						return "(" + d.year.toString() + "年," + parseFloat(d.value).toFixed(2).toString() + "百萬）" ;
+					})
 
 		ReturnChart.selectAll("circle")
 					.on("mouseover", function(){
@@ -249,7 +251,7 @@ function FundReturnChart() {
 		frg.append("text")
 			.attr("transform",
             "translate(" + (width_g/2) + " ," + 
-                           (height_g + 60) + ")")
+                           (height_g + 75) + ")")
       		.style("text-anchor", "middle")
       		.text("年")
       		.attr("font-size",30);
@@ -259,7 +261,7 @@ function FundReturnChart() {
 			.attr("transform", "rotate(-90)")
 			.attr("y", 0 - 70)
 			.attr("x",0 - (height_g / 2))
-			.attr("dy", "1em")
+			.attr("dy", "0.5em")
 			.style("text-anchor", "middle")
 			.text("百萬")
 			.attr("font-size",30);

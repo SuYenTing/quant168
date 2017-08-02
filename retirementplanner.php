@@ -18,9 +18,9 @@ fr_graph: fund return graph,
 <link rel="stylesheet" href="css/retirementplanner.css">
 
 <!--Description of Retirement Planner-->
-<div class="description" id="description">
+<!-- <div class="description" id="description">
 	想要快樂的退休嗎？用我們理財規劃計算機...
-</div>
+</div> -->
 
 <button id="testID"> Test Interactive Dashboard</button>
 <!--Form 1: get RTS, YUR, and Age-->
@@ -43,7 +43,7 @@ fr_graph: fund return graph,
 	        <li style="font-weight: bold; font-size: 1.5em;">投資風險承受能力</li>
 	        <div class="form-group">
 	          <label for="q4">請問您目前持有的投資資產配置多少比例於股票或股票型基金；若無，曾持有的投資型商品約佔資產比例為何？</label>
-	          <select class="form-control" id="q4" size=12 required>
+	          <select class="form-control" id="q4" required>
 	            <option value=10>不曾持有投資型商品，沒有投資經驗</option>
 	            <option value=1> 不曾持有投資型商品，全部放在定存</option>
 	            <option value=2> 目前沒有，但曾經20%以下資產配置於投資型商品</option>
@@ -60,7 +60,7 @@ fr_graph: fund return graph,
 	        </div>
 	        <div class="form-group">
 	          <label for="q5">目前持有的資產有多少比例在定期存款？</label>
-	          <select class="form-control" id="q5" size=8 required>
+	          <select class="form-control" id="q5" required>
 	            <option value=7>沒有定存，沒有投資經驗</option>
 	            <option value=1> 不曾持有投資型商品，全部放在定存</option>
 	            <option value=15> 沒有定存，全部放在投資型商品</option>
@@ -73,7 +73,7 @@ fr_graph: fund return graph,
 	        </div>
 	        <div class="form-group">
 	          <label for="q6">長期而言，您期望每年平均能獲得多少投資報酬率？(以投資金額10萬為例)</label>
-	            <select class="form-control" id="q6" size=5 required>
+	            <select class="form-control" id="q6" required>
 	            <option value=3>1~2% (期望每年獲利1~2千)</option>
 	            <option value=6>3~5% (期望每年獲利3~5千)</option>
 	            <option value=10>6~10% (可接受每年獲利6千~1萬)</option>
@@ -83,7 +83,7 @@ fr_graph: fund return graph,
 	        </div>
 	        <div class="form-group">
 	          <label for="q7">長期而言，您平均每年所能承擔的最大損失約為何？(以投資金額10萬為例)</label>
-	          <select class="form-control" id="q7" size=5 required>
+	          <select class="form-control" id="q7" required>
 	            <option value=3>1~2% (期望每年損失1~2千)</option>
 	            <option value=6>3~5% (期望每年損失3~5千)</option>
 	            <option value=10>6~10% (可接受每年損失6千~1萬)</option>
@@ -93,13 +93,13 @@ fr_graph: fund return graph,
 	        </div>
 	        <div class="form-group">
 	          <label for="q8">附圖為一車輛油量表，在不考慮外部因素的情況下(如：油價即將調升/降)，您大部分在油表到哪個位置時，覺得應該去加油？</label>
-	          <img src="img/gasmeter.png" class="img-responsive" alt="油量表" width="25%" height=auto>
-	          <select class="form-control" id="q8" size=5 required>
+	          <img src="img/gasmeter.png" class="img-responsive" alt="油量表" width="25%" height=auto><br>
+	          <select class="form-control" id="q8" required>
 	            <option value=2>隨時維持滿格狀態</option>
-	            <option value=5>用了一半(位置)</option>
-	            <option value=8>用到紅線警示區(位置)</option>
-	            <option value=11>用到警示區中間(位置)</option>
-	            <option value=15>油箱沒油才加(位置)</option>
+	            <option value=5>用了一半(位置1)</option>
+	            <option value=8>用到紅線警示區(位置2)</option>
+	            <option value=11>用到警示區中間(位置3)</option>
+	            <option value=15>油箱沒油才加(位置4)</option>
 	          </select> 
 	        </div>
 	        <button class="btn btn-lg" type="submit" id="form1submit" style="background-color: #005A31; font-size:1em; color: white;">送出</button>
@@ -248,13 +248,15 @@ fr_graph: fund return graph,
           <div id="tab5" class="tab-pane">
             <div class="form-group">
               <label for="q5_f2">附圖為一車輛油量表，在不考慮外部因素的情況下(如：油價即將調升/降)，您大部分在油表到哪個位置時，覺得應該去加油？</label>
+              <img src="img/gasmeter.png" class="img-responsive" alt="油量表" width="25%" height=auto><br>
               <select class="form-control" id="q5_f2" size=5>
                 <option value=2>隨時維持滿格狀態</option>
-                <option value=5>用了一半(位置)</option>
-                <option value=8>用到紅線警示區(位置)</option>
-                <option value=11>用到警示區中間(位置)</option>
-                <option value=15>油箱沒油才加(位置)</option>
+                <option value=5>用了一半(位置1)</option>
+                <option value=8>用到紅線警示區(位置2)</option>
+                <option value=11>用到警示區中間(位置3)</option>
+                <option value=15>油箱沒油才加(位置4)</option>
               </select>
+
               <button class="btn btn-primary" data-toggle="tab" href="#tab4">上一題</button>
               <button type="submit" id="form2submit" class="btn btn-primary" data-toggle="tab" href="#tab6">計算風險承受度</button>             
             </div>  

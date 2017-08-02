@@ -107,7 +107,7 @@ $(document).ready(function(){
 			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);		
 		});
 		$("#form1").hide();
-		$("#description").html("資產配置建議");
+		// $("#description").html("資產配置建議");
 		$("#interactivedashboard").show();
 		return false;
 	});
