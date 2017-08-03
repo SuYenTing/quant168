@@ -26,6 +26,25 @@ div.tab button.active {
     border: 1px solid #ccc;
     border-top: none;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
 </style>
 </head>
 <div class="tab">
