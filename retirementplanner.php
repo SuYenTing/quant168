@@ -112,7 +112,7 @@ fr_graph: fund return graph,
 <!--Interactive Dashboard-->
 <div id="interactivedashboard">
 	<div class="container-fluid text-center">
-		<div class="row">
+		<div class="row match-my-cols">
 			<div class="col-sm-4" style="font:bold; min-height: 100px">
 				<h4><span id="showYUR"></span></h4>
 				<input id="yur_id_input" type="range" min=5 max=40>
@@ -124,6 +124,7 @@ fr_graph: fund return graph,
 			<div class="col-sm-4" style="font:bold; min-height: 100px">
 				<h4><span id="showRTS"></span></h4>	
 				<input id="rts_id_input" type="range" min=1 max=100> 
+				<a data-toggle="modal" data-target="#form2Modal">重新計算願意接受的投資風險</a>
 			</div>
 		</div>
 		<div class="row">				
@@ -131,19 +132,19 @@ fr_graph: fund return graph,
 				<div class="chartitem">
 					<h3><b>資產成長</b></h3>
 					<div class="row">
-						<div class="col-xs-4">
+						<div class="col-sm-4">
 							<h4>
 							多頭市場環境
 							<div id="showFR75"></div>
 							</h4>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-sm-4">
 							<h4>
 							正常市場環境
 							<div id="showFR50"></div>
 							</h4>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-sm	-4">
 							<h4>
 							惡劣市場環境
 							<div id="showFR25"></div>
@@ -156,8 +157,7 @@ fr_graph: fund return graph,
 			<div class="col-md-4">			
 				<div class="chartitem">
 					<h3><b>2017年資產配置建議</b></h3>
-					<div id="assetallocationpie" ></div>
-					
+					<div id="assetallocationpie" ></div>				
 					<a id="opengg" data-toggle="modal" data-target="#almModal">
 						<h4><div id="showYUR2"></div></h4>
 					</a>

@@ -5,6 +5,15 @@
 	color: white;
 }
 
+.row.match-my-cols {
+    overflow: hidden; 
+}
+
+.row.match-my-cols [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
 
 .chartitem {
 	font-size: 12px;
@@ -37,8 +46,8 @@ option {
 
 
 svg {
-	width:80%;
-  height:80%;
+	width:85%;
+  height:85%;
 }
 
 .axisX {
