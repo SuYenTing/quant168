@@ -112,7 +112,7 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$("#yur_id_input").on("input change", function(){
+	$("#yur_id_input").on("change", function(){
 		yur = $("#yur_id_input").val();
 		$("#showYUR2").html("未來" + parseInt(yur) + "年資產配置建議");
 		$("#showYUR").html(parseInt(yur) + "年後退休");
@@ -130,7 +130,7 @@ $(document).ready(function(){
 	});
 
 
-	$("#rts_id_input").on("input change", function(){
+	$("#rts_id_input").on("change", function(){
 		rts = $("#rts_id_input").val();
 		$("#showRTS").html("願意接受的投資風險" + parseInt(rts));
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
@@ -146,7 +146,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$("#iar_id_input").on("input change", function(){
+	$("#iar_id_input").on("change", function(){
 		iar = $("#iar_id_input").val();
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			ALMData = JSON.parse(data);
