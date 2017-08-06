@@ -58,7 +58,9 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
     include("fundSearch/fundSearchAdvanceResult.php");
 } elseif($_POST['searchType']=='normal'&&$_POST['name']!=""){
     include("fundSearch/fundSearchNormal.php");
-} ?>
+} elseif($_POST['searchType']=='detailRank'){
+    include($_POST['rankValue']);
+}?>
 </div>
 <script>
 function advanceSearch() {
