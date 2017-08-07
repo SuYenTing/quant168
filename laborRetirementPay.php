@@ -324,7 +324,7 @@ $roi = $_POST['roi'];
             <button onclick="calculate()" class="button button4">計算</button>
 
             <p>output</p>
-            <table>
+            <!-- <table>
                 <tr>
                     <td></td>
                     <td>政府退休金</td>
@@ -360,6 +360,20 @@ $roi = $_POST['roi'];
                     </td>
                     <td>
                         <p id="totalSum">$0</p>
+                    </td>
+                </tr>
+            </table> -->
+            <table>
+                <tr>
+                    <td>退休後每月可領</td>
+                    <td>
+                        <p id="monthlyGet">$0</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>一生可領退休金</td>
+                    <td>
+                        <p id="lifeGet">$0</p>
                     </td>
                 </tr>
             </table>
@@ -458,30 +472,41 @@ if("labor" == vocation){
 
     // alert(y1);
 
-    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+    // document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+    // document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
 
 
-    var t = a * 0.06 * ((Math.pow((1 + (i - g)/12),(z * 12)) - 1)/((i - g)/12));
+    // var t = a * 0.06 * ((Math.pow((1 + (i - g)/12),(z * 12)) - 1)/((i - g)/12));
+    var t = a * 0.06 * ((i * Math.pow((1 + i),(13/12)))/(Math.pow((1 + i), (1/12)) - 1) * ((Math.pow((1 + g),(z -1)) - (Math.pow((1 + g), (z - 1))))/(g - i)));
+
+
     var u = (t/12) * (i/(1-(1/Math.pow((1 + (i/12)),12*d))));
 
     // alert(i - g);
 
-    document.getElementById("t").innerHTML = "$" + Math.round(t);
-    document.getElementById("u").innerHTML = "$" + Math.round(u);
+    // document.getElementById("t").innerHTML = "$" + Math.round(t);
+    // document.getElementById("u").innerHTML = "$" + Math.round(u);
 
 
-    var r = a * j * ((Math.pow((1 + ((i-g)/12)), z * 12) - 1)/((i - g)/12));
+    // var r = a * j * ((Math.pow((1 + ((i-g)/12)), z * 12) - 1)/((i - g)/12));
+
+    var r = a * j * ((i * Math.pow((1 + i),(13/12)))/(Math.pow((1 + i), (1/12)) - 1) * ((Math.pow((1 + g),(z -1)) - (Math.pow((1 + g), (z - 1))))/(g - i)));
+
     var s = (r / 12) * (i/(1 - (1/(Math.pow((1 + (i/12)),12 * d)))));
 
-    document.getElementById("r").innerHTML = "$" + Math.round(r);
-    document.getElementById("s").innerHTML = "$" + Math.round(s);
+    // document.getElementById("r").innerHTML = "$" + Math.round(r);
+    // document.getElementById("s").innerHTML = "$" + Math.round(s);
 
     var monthSum = w + u + s;
     var totalSum = v + t + r;
 
-    document.getElementById("monthSum").innerHTML = "$" + Math.round(monthSum);
-    document.getElementById("totalSum").innerHTML = "$" + Math.round(totalSum);
+    // document.getElementById("monthSum").innerHTML = "$" + Math.round(monthSum);
+    // document.getElementById("totalSum").innerHTML = "$" + Math.round(totalSum);
+
+    document.getElementById("monthlyGet").innerHTML = "$" + Math.round(w + u + s);
+    document.getElementById("lifeGet").innerHTML = "$" + Math.round(v + t + r);
+
+
 
 
 }else if ("popular" == vocation) {
