@@ -302,19 +302,20 @@ include("navbar.html");
             <button onclick="calculate()" class="button button4">計算</button>
 
             <p>output</p>
-            <table id="output">
+            <table>
                 <tr>
-                    <td>月領金額</td>
+                    <td>退休後每月可領</td>
                     <td>
                         <p id="monthlyAmount">$0</p>
                     </td>
                 </tr>
                 <tr>
-                    <td>累積金額</td>
+                    <td>一生可領退休金</td>
                     <td>
                         <p id="amountAccum">$0</p>
                     </td>
                 </tr>
+                <tr id="output"></tr>
             </table>
             <div id="f">
             <button onclick="changePage()" class="button button4">知道更多(點擊即可計算雇主提撥及自行提撥的退休金)</button>
@@ -355,6 +356,11 @@ function farmerFunc(){
                 d.removeChild(d.firstChild);
             }
 
+    var output = document.getElementById("output");
+    while(output.hasChildNodes()){
+                output.removeChild(output.firstChild);
+            }
+
     //Create array of options to be added
     var farmerArray = [">=15","<15"];
 
@@ -388,6 +394,11 @@ function militaryFunc(){
                 d.removeChild(d.firstChild);
             }
 
+    var output = document.getElementById("output");
+    while(output.hasChildNodes()){
+                output.removeChild(output.firstChild);
+            }
+
     //Create array of options to be added
     var militaryArray = ["軍保&公務人員退休金新制(40歲以下)","軍保&公務人員退休金新制(40歲以上)","軍保&軍職人員退休金含新舊制(軍人, 40歲以上)"];
     var militaryArray2 = [9455, 10180 ,10905 ,11635 ,12105 ,12570 ,13040 ,13510 ,13980 ,14450 ,15115 ,15780 ,16445 ,17110 ,17780 ,18445 ,19110 ,19775 ,20440 ,21110 ,21775 ,22440 ,23105 ,23770 ,24440 ,25105 ,25770 ,26105 ,26435 ,27100 ,27770 ,28100 ,28435 ,29100 ,29435 ,29765 ,30100 ,30430 ,31100 ,31430 ,31765 ,32095 ,32430 ,33095 ,33430 ,33760 ,34095 ,34430 ,35095 ,35425 ,35760 ,36095 ,36425 ,37090 ,37425 ,37760 ,38425 ,39090 ,39425 ,40420 ,41420 ,41755 ,42420 ,43085 ,43420 ,44420 ,45750 ,46415 ,47080 ,47750 ,48415 ,49080 ,49745 ,50410 ,51080 ,51745 ,52410 ,53075 ,95250 ];
@@ -415,6 +426,14 @@ function militaryFunc(){
         militaryList2.appendChild(militaryOption2);
     }
 
+
+    var td = output.insertCell();
+    td.appendChild(document.createTextNode("退休時可領一次金"));
+    var td2 = output.insertCell();
+    td2.appendChild(document.createTextNode("$0"));
+    td2.id = "lifeGet";
+
+
 }
 function publictaFunc(){
 
@@ -431,6 +450,11 @@ function publictaFunc(){
     var d = document.getElementById("d");
     while(d.hasChildNodes()){
                 d.removeChild(d.firstChild);
+            }
+
+    var output = document.getElementById("output");
+    while(output.hasChildNodes()){
+                output.removeChild(output.firstChild);
             }
 
     //Create array of options to be added
@@ -463,6 +487,15 @@ function publictaFunc(){
         publictaList2.appendChild(publictaOption2);
     }
 
+
+    var td = output.insertCell();
+    td.appendChild(document.createTextNode("退休時可領一次金"));
+    var td2 = output.insertCell();
+    td2.appendChild(document.createTextNode("$0"));
+    td2.id = "lifeGet";
+
+
+
 }
 function functionaryFunc(){
 
@@ -480,6 +513,11 @@ function functionaryFunc(){
     while(d.hasChildNodes()){
         d.removeChild(d.firstChild);
     }
+
+    var output = document.getElementById("output");
+    while(output.hasChildNodes()){
+                output.removeChild(output.firstChild);
+            }
 
     //Create array of options to be added
     var functionaryArray = ["公保&公務人員退休金新制(40歲以下)","公保&公務人員退休金含新舊制(40歲以上)，退撫舊制年資=0 ","公保&公務人員退休金含新舊制(40歲以上)"];
@@ -511,12 +549,9 @@ function functionaryFunc(){
     }
 
 
-    var output = document.getElementById("output");
-    var outputRow = output.insertRow();
-
-    var td = outputRow.insertCell();
-    td.appendChild(document.createTextNode("一生可領退休金"));
-    var td2 = outputRow.insertCell();
+    var td = output.insertCell();
+    td.appendChild(document.createTextNode("退休時可領一次金"));
+    var td2 = output.insertCell();
     td2.appendChild(document.createTextNode("$0"));
     td2.id = "lifeGet";
 
@@ -545,6 +580,11 @@ function laborFunc(){
     var d = document.getElementById("d");
     while(d.hasChildNodes()){
                 d.removeChild(d.firstChild);
+            }
+
+    var output = document.getElementById("output");
+    while(output.hasChildNodes()){
+                output.removeChild(output.firstChild);
             }
 
     //Create array of options to be added
@@ -583,6 +623,11 @@ function privatetaFunc(){
                 d.removeChild(d.firstChild);
             }
 
+    var output = document.getElementById("output");
+    while(output.hasChildNodes()){
+                output.removeChild(output.firstChild);
+            }
+
     //Create array of options to be added
     var privatetaArray = ["公保&私校退撫新制(25歲以下)","公保&私校退撫新制(25歲以下)","公保&私校退撫舊制(25歲以上)"];
 
@@ -612,6 +657,15 @@ function privatetaFunc(){
         privatetaList2.appendChild(privatetaOption2);
     }
 
+
+    var td = output.insertCell();
+    td.appendChild(document.createTextNode("退休時可領一次金"));
+    var td2 = output.insertCell();
+    td2.appendChild(document.createTextNode("$0"));
+    td2.id = "lifeGet";
+
+
+
 }
 function popularFunc(){
 
@@ -627,6 +681,11 @@ function popularFunc(){
     var d = document.getElementById("d");
     while(d.hasChildNodes()){
                 d.removeChild(d.firstChild);
+            }
+
+    var output = document.getElementById("output");
+    while(output.hasChildNodes()){
+                output.removeChild(output.firstChild);
             }
 
 }
