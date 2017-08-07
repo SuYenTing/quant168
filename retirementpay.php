@@ -856,11 +856,33 @@ if("labor" == vocation){
         var x = militaryInsuranceSystem2;
         var v = y * x; 
 
+
+        if (z >= 3) {
+            var y1 = Math.min(z , 53);
+        } else if (z < 3) {
+            var y1 = 0;
+        }
+
+        if (z < 20) {
+            var v1 = x * 2 * y1;
+            var w = 0;
+        } else if (z >= 20) {
+            var v1 = 0;
+            var w = x * 2 * Math.min(0.7, z * 0.02);
+        }
+
+        var all = v + v1 + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
+
+
         //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+        // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
+        document.getElementById("lifeGet").innerHTML = "$" + Math.round(v + v1);
+
+        alert(v1);
+
  
     }else if ("軍保&軍職人員退休金含新舊制(軍人, 40歲以上)" == militaryInsuranceSystem) {
 
@@ -882,12 +904,51 @@ if("labor" == vocation){
         var x = militaryInsuranceSystem2;
         var v = y * x; 
 
-        //有問題(c-d)?(d-c)?
 
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+
+
+        if (u > 15) {
+            var y3 = 0.75 + (u - 15) * 0.01;
+        }else if (u <= 15) {
+            var y3 = u * 0.05;
+        }
+
+        var w = x * Math.min(0.9,y3) + 930 + x * 2 * Math.min(0.7, y2 * 0.02);
+
+        if(u < 3){
+            var y4 = 0;
+        }else if (u >= 3 && u <= 3.5) {
+            var y4 = 6;
+        }else if (u > 3.5 && u <= 10.5) {
+            var y4 = 6 + u - 3.5;
+        }else if (u > 10.5 && u < 24) {
+            var y4 = 13 + (u - 10.5) * 2;
+        }else if (u >= 24) {
+            var y4 = 61;
+        }
+
+        if (y2 >= 3) {
+            var y5 = Math.min(y2 * 1.5, 53);
+        }else if (y2 <3) {
+            var y5 = 0;
+        }
+
+        if (z < 20) {
+            var v1 = (x + 930) * y4 + x * 2 * y5;
+        }else if (z >= 20) {
+            var v1 = 0;
+        }
+
+        var all = v + v1 + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
+
+        //有問題(c-d)?(d-c)?
+        // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
+        document.getElementById("lifeGet").innerHTML = "$" + Math.round(v + v1);
+
+        alert(v);
 
     }
 
