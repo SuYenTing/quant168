@@ -309,13 +309,13 @@ include("navbar.html");
                         <p id="monthlyAmount">$0</p>
                     </td>
                 </tr>
+                <tr id="output"></tr>
                 <tr>
                     <td>一生可領退休金</td>
                     <td>
                         <p id="amountAccum">$0</p>
                     </td>
                 </tr>
-                <tr id="output"></tr>
             </table>
             <div id="f">
             <button onclick="changePage()" class="button button4">知道更多(點擊即可計算雇主提撥及自行提撥的退休金)</button>
@@ -520,7 +520,7 @@ function functionaryFunc(){
             }
 
     //Create array of options to be added
-    var functionaryArray = ["公保&公務人員退休金新制(40歲以下)","公保&公務人員退休金含新舊制(40歲以上)，退撫舊制年資=0 ","公保&公務人員退休金含新舊制(40歲以上)"];
+    var functionaryArray = ["公保&公務人員退休金新制(40歲以下)","公保&公務人員退休金含新舊制(40歲以上)，退撫舊制年資=0","公保&公務人員退休金含新舊制(40歲以上)"];
 
     var functionaryArray2 = [53075, 52410 ,51745 ,49745 ,48415 ,47080 ,45750 ,44420 ,43085 ,41755 ,40420 ,39090 ,36425 ,35425 ,34430 ,33430 ,32430 ,31430 ,30430 ,29435 ,28435 ,27435 ,26435 ,25435 ,24440 ,23770 ,23105 ,22440 ,21775 ,21110 ,20440 ,19775 ,19110 ,18445 ,17780 ,17110 ,16445 ,15780 ,15115 ,14450 ,13980 ,13510 ,13040 ,12570 ,12105 ,11635 ];
 
@@ -817,6 +817,7 @@ if("labor" == vocation){
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
+
         var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
@@ -838,10 +839,15 @@ if("labor" == vocation){
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+        // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+
+        var w = x * 2 * Math.min(0.7, z * 0.02);
+        var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
+        document.getElementById("lifeGet").innerHTML = "$" + Math.round(v);
+
  
     }else if ("公保&公教人員退休撫卹金新舊制(40歲以上)" == publictaInsuranceSystem) {
 
@@ -858,16 +864,27 @@ if("labor" == vocation){
         }else if (u >20) {
             var y1 = 36;
         }
+
+        if(u <= 15){
+            var y3 = u * 0.05;
+        }else if(u > 15){
+            var y3 = 0.75 + (u - 15) * 0.01;
+        }
+
         var y2 = z - u;
         var y = Math.min(42, y1 + y2 * 1.2);
         var x = publictaInsuranceSystem2;
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+        // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+
+        var w = x * Math.min(0.9, y3) + 930 + x * 2 * Math.min(0.7, y2 * 0.02);
+        var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
+        document.getElementById("lifeGet").innerHTML = "$" + Math.round(v);
     }
 
 }else if ("functionary" == vocation) {
@@ -875,7 +892,7 @@ if("labor" == vocation){
     var functionaryInsuranceSystem = document.getElementById("functionaryInsuranceSystem").value;
     var functionaryInsuranceSystem2 = document.getElementById("functionaryInsuranceSystem2").value;
 
-    if ("公保&公務人員退休金新制(40歲以下)" == functionaryInsuranceSystem) {
+    if ("公保&公務人員退休金新制(40歲以下)" == functionaryInsuranceSystem || "公保&公務人員退休金含新舊制(40歲以上)，退撫舊制年資=0" == functionaryInsuranceSystem) {
 
         var z = c - b;
         var y = Math.min(42, z * 1.2);
@@ -883,12 +900,17 @@ if("labor" == vocation){
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+
+        // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+
+        var w = x * 2 * Math.min(0.7, z * 0.02);
+        var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
+        document.getElementById("lifeGet").innerHTML = "$" + Math.round(v);
  
-    }else if ("公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem || "公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem) {
+    }else if ("公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem) {
 
         var e = currentAge;
         var z = c - b;
@@ -903,16 +925,29 @@ if("labor" == vocation){
         }else if (u >20) {
             var y1 = 36;
         }
+
+        if(u <= 15){
+            var y3 = u * 0.05;
+        }else if(u > 15){
+            var y3 = 0.75 + (u - 15) * 0.01;
+        }
+
         var y2 = z - u;
         var y = Math.min(42, y1 + y2 * 1.2);
         var x = functionaryInsuranceSystem2;
         var v = y * x; 
 
         //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+
+        // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
+
+        var w = x * Math.min(0.9, y3) + 930 + x * 2 * Math.min(0.7, y2 * 0.02);
+        var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
+        document.getElementById("lifeGet").innerHTML = "$" + Math.round(v);
+
     }
 
 }else if ("farmer" == vocation) {
