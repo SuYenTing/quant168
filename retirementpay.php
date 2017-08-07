@@ -302,7 +302,7 @@ include("navbar.html");
             <button onclick="calculate()" class="button button4">計算</button>
 
             <p>output</p>
-            <table>
+            <table id="output">
                 <tr>
                     <td>月領金額</td>
                     <td>
@@ -509,6 +509,18 @@ function functionaryFunc(){
         functionaryOption2.text = functionaryArray2[i];
         functionaryList2.appendChild(functionaryOption2);
     }
+
+
+    var output = document.getElementById("output");
+    var outputRow = output.insertRow();
+
+    var td = outputRow.insertCell();
+    td.appendChild(document.createTextNode("一生可領退休金"));
+    var td2 = outputRow.insertCell();
+    td2.appendChild(document.createTextNode("$0"));
+    td2.id = "lifeGet";
+
+
 
 }
 function laborFunc(){
