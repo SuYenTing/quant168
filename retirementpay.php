@@ -144,6 +144,8 @@ include("navbar.html");
                 </div></td>
                 <td id="c"></td>
                 <td id="d"></td>
+                <td id="privatetaTd"></td>
+                <td id="privatetaRoi"></td>
                 </tr>
                 <tr>
                 <td>開始工作年齡</td>
@@ -344,6 +346,7 @@ function farmerFunc(){
 
     document.getElementById('f').innerHTML = "";
 
+    document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "欲投保年資";
     document.getElementById("c").innerHTML = "";
 
@@ -359,6 +362,11 @@ function farmerFunc(){
     var output = document.getElementById("output");
     while(output.hasChildNodes()){
                 output.removeChild(output.firstChild);
+            }
+
+    var privatetaRoi = document.getElementById("privatetaRoi");
+    while(privatetaRoi.hasChildNodes()){
+                privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
     //Create array of options to be added
@@ -382,6 +390,7 @@ function militaryFunc(){
 
     document.getElementById('f').innerHTML = "";
 
+    document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
@@ -397,6 +406,11 @@ function militaryFunc(){
     var output = document.getElementById("output");
     while(output.hasChildNodes()){
                 output.removeChild(output.firstChild);
+            }
+
+    var privatetaRoi = document.getElementById("privatetaRoi");
+    while(privatetaRoi.hasChildNodes()){
+                privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
     //Create array of options to be added
@@ -439,6 +453,7 @@ function publictaFunc(){
 
     document.getElementById('f').innerHTML = "";
 
+    document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
@@ -455,6 +470,11 @@ function publictaFunc(){
     var output = document.getElementById("output");
     while(output.hasChildNodes()){
                 output.removeChild(output.firstChild);
+            }
+
+    var privatetaRoi = document.getElementById("privatetaRoi");
+    while(privatetaRoi.hasChildNodes()){
+                privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
     //Create array of options to be added
@@ -501,6 +521,7 @@ function functionaryFunc(){
 
     document.getElementById('f').innerHTML = "";
 
+    document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
@@ -517,6 +538,11 @@ function functionaryFunc(){
     var output = document.getElementById("output");
     while(output.hasChildNodes()){
                 output.removeChild(output.firstChild);
+            }
+
+    var privatetaRoi = document.getElementById("privatetaRoi");
+    while(privatetaRoi.hasChildNodes()){
+                privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
     //Create array of options to be added
@@ -570,6 +596,7 @@ function laborFunc(){
     f.appendChild(changePageBtn);
 
 
+    document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
 
     var b = document.getElementById("b");
@@ -585,6 +612,11 @@ function laborFunc(){
     var output = document.getElementById("output");
     while(output.hasChildNodes()){
                 output.removeChild(output.firstChild);
+            }
+
+    var privatetaRoi = document.getElementById("privatetaRoi");
+    while(privatetaRoi.hasChildNodes()){
+                privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
     //Create array of options to be added
@@ -611,6 +643,7 @@ function privatetaFunc(){
 
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退保前10年平均保俸";
+    document.getElementById("privatetaTd").innerHTML = "預估私校退撫報酬率";
 
 
     var b = document.getElementById("b");
@@ -628,10 +661,19 @@ function privatetaFunc(){
                 output.removeChild(output.firstChild);
             }
 
+
+    var privatetaRoi = document.getElementById("privatetaRoi");
+    while(privatetaRoi.hasChildNodes()){
+                privatetaRoi.removeChild(privatetaRoi.firstChild);
+            }
+
+
     //Create array of options to be added
     var privatetaArray = ["公保&私校退撫新制(25歲以下)","公保&私校退撫新制(25歲以下)","公保&私校退撫舊制(25歲以上)"];
 
     var privatetaArray2 = [53075, 52410 ,51745 ,49745 ,48415 ,47080 ,45750 ,44420 ,43085 ,41755 ,40420 ,39090 ,36425 ,35425 ,34430 ,33430 ,32430 ,31430 ,30430 ,29435 ,28435 ,27435 ,26435 ,25435 ,24440 ,23770 ,23105 ,22440 ,21775 ,21110 ,20440 ,19775 ,19110 ,18445 ,17780 ,17110 ,16445 ,15780 ,15115 ,14450 ,13980 ,13510 ,13040 ,12570 ,12105 ,11635];
+
+    var privatetaArray3 = [0.02, 0.04, 0.06];
 
     //Create and append select list
     var privatetaList = document.createElement("select");
@@ -641,6 +683,10 @@ function privatetaFunc(){
     var privatetaList2 = document.createElement("select");
     privatetaList2.id = "privatetaInsuranceSystem2";
     d.appendChild(privatetaList2);
+
+    var privatetaList3 = document.createElement("select");
+    privatetaList3.id = "r";
+    privatetaRoi.appendChild(privatetaList3);
 
     //Create and append the options
     for (var i = 0; i < privatetaArray.length; i++) {
@@ -655,6 +701,13 @@ function privatetaFunc(){
         privatetaOption2.value = privatetaArray2[i];
         privatetaOption2.text = privatetaArray2[i];
         privatetaList2.appendChild(privatetaOption2);
+    }
+
+    for (var i = 0; i < privatetaArray3.length; i++) {
+        var privatetaOption3 = document.createElement("option");
+        privatetaOption3.value = privatetaArray3[i];
+        privatetaOption3.text = privatetaArray3[i];
+        privatetaList3.appendChild(privatetaOption3);
     }
 
 
@@ -673,6 +726,8 @@ function popularFunc(){
 
     document.getElementById("a").innerHTML = "";
     document.getElementById("c").innerHTML = "";
+    document.getElementById("privatetaTd").innerHTML = "";
+
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
@@ -686,6 +741,11 @@ function popularFunc(){
     var output = document.getElementById("output");
     while(output.hasChildNodes()){
                 output.removeChild(output.firstChild);
+            }
+
+    var privatetaRoi = document.getElementById("privatetaRoi");
+    while(privatetaRoi.hasChildNodes()){
+                privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
 }
@@ -740,6 +800,7 @@ if("labor" == vocation){
 }else if ("privateta" == vocation) {
 
     var privatetaInsuranceSystem2 = document.getElementById("privatetaInsuranceSystem2").value;
+    var r = document.getElementById("r").value;
 
     var z = c - b;
     // var x1 = a * Math.pow((1 + g), (z - 9));
@@ -756,10 +817,15 @@ if("labor" == vocation){
     // var x = (x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10) / 10;
     var x = privatetaInsuranceSystem2;
     var w = x * 0.013 * z;
-    var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
+    // var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
+
+    var v = x * 2 * 0.12 * 12 * (Math.pow((1 + r), z) - 1)/r;
+    var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
     document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+    document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
+    document.getElementById("lifeGet").innerHTML = "$" + Math.round(v);
+
 
 }else if ("farmer" == vocation) {
 
