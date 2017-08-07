@@ -1,7 +1,3 @@
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-</head>
 <style>
 table {
     border-collapse: collapse;
@@ -24,10 +20,9 @@ th {
 }
 </style>
 </head>
-<div style="width:80%;">
+<div>
 <h3 align="center">今日最佳表現</h3>
-<p align="right">今日最佳表現   今日最差表現</p>
-    <table align="center" >
+    <table align="center">
         <tr>
             <th>名次</th>
             <th>基金名稱</th>
@@ -151,4 +146,3 @@ th {
         </tr>
     </table>
 </div>
-</html>

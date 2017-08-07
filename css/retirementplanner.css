@@ -4,16 +4,16 @@
 	padding: 1.5em;
 	color: white;
 }
-#form1 {
-	background-color: #F3FAB6;
-	border-radius: 2em;
-	margin-left: 5em;
-	margin-right:5em;
-	padding: 1.5em;
-	border-color: black;
-	border-style: dotted;
 
+.row.match-my-cols {
+    overflow: hidden; 
 }
+
+.row.match-my-cols [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
 
 .chartitem {
 	font-size: 12px;
@@ -30,7 +30,7 @@
 } 
 
 input[type=number]{
-    width: 120px;
+    width: 60px;
 } 
 select option{
 	font-size: 15px;
@@ -46,8 +46,8 @@ option {
 
 
 svg {
-	width:80%;
-  height:80%;
+	width:85%;
+  height:85%;
 }
 
 .axisX {
