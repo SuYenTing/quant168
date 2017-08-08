@@ -592,8 +592,8 @@ function selectStockSbFormSubmit(){
     for (var i = 0; i < tablearr.length; i++) {
         table = table + " INNER JOIN "+tablearr[i]+" ON stock_tech.code="+tablearr[i]+".code ";
     }
-    document.getElementById("sql").value = "SELECT DISTINCT stock_tech.code FROM web_data.stock_tech "+table+" where 1=1 "+sql+" order by stock_tech.code ";
-    alert(document.getElementById("sql").value);
+    document.getElementById("sql").value = "SELECT DISTINCT stock_tech.code FROM web_data.stock_tech "+table+" where 1=1 and stock_tech.date=(select max(stock_tech.date) from stock_tech)"+sql+" order by stock_tech.code ";
+    //alert(document.getElementById("sql").value);
     document.getElementById("selectStockSbForm").submit();
 }
 </script>
