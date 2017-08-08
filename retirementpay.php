@@ -59,7 +59,7 @@ include("navbar.html");
 <body>
     <style>
         .container {
-            width: 70%;
+            width: 90%;
         }
     </style>
 
@@ -298,6 +298,20 @@ include("navbar.html");
                         </select>
                     </td>
                 </tr>
+                <tr id="forLabor">
+                    <td>雇主提撥</td>
+                    <td>6%</td>
+                    <td>自行提撥(0%-6%)</td>
+                    <td>
+                        <select name="selfWithdraw" id="selfWithdraw" >
+                        <option value="1.0">1</option>
+                        <option value="2.0">2</option>
+                        <option value="3.0">3</option>
+                        <option value="4.0">4</option>
+                        <option value="5.0">5</option>
+                        <option value="6.0">6</option>
+                    </td>
+                </tr>
 
             </form>
             </table>
@@ -320,7 +334,7 @@ include("navbar.html");
                 </tr>
             </table>
             <div id="f">
-            <button onclick="changePage()" class="button button4">知道更多(點擊即可計算雇主提撥及自行提撥的退休金)</button>
+            <button onclick="changePage()" class="button button4">知道更多(點擊即可計算個人財務規劃)</button>
             </div>
            </body>
 
@@ -329,7 +343,7 @@ include("navbar.html");
 
 function changePage(){
 
-    document.getElementById('form').action = "laborRetirementPay.php";
+    document.getElementById('form').action = "cashflowsite.php";
     document.getElementById('form').submit();
 
 }
@@ -367,6 +381,11 @@ function farmerFunc(){
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
+            }
+
+    var laborRow = document.getElementById("forLabor");
+    while(laborRow.hasChildNodes()){
+                laborRow.removeChild(laborRow.firstChild);
             }
 
     //Create array of options to be added
@@ -411,6 +430,11 @@ function militaryFunc(){
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
+            }
+
+    var laborRow = document.getElementById("forLabor");
+    while(laborRow.hasChildNodes()){
+                laborRow.removeChild(laborRow.firstChild);
             }
 
     //Create array of options to be added
@@ -475,6 +499,11 @@ function publictaFunc(){
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
+            }
+
+    var laborRow = document.getElementById("forLabor");
+    while(laborRow.hasChildNodes()){
+                laborRow.removeChild(laborRow.firstChild);
             }
 
     //Create array of options to be added
@@ -543,6 +572,11 @@ function functionaryFunc(){
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
+            }
+
+    var laborRow = document.getElementById("forLabor");
+    while(laborRow.hasChildNodes()){
+                laborRow.removeChild(laborRow.firstChild);
             }
 
     //Create array of options to be added
@@ -619,6 +653,12 @@ function laborFunc(){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
+    var laborRow = document.getElementById("forLabor");
+    while(laborRow.hasChildNodes()){
+                laborRow.removeChild(laborRow.firstChild);
+            }
+
+
     //Create array of options to be added
     var laborArray = ["勞保年金&勞保退新制(30歲以下)","勞保年金&全新制(30歲以上)","勞保年金&選擇勞退新制(30歲以上)"];
 
@@ -634,6 +674,36 @@ function laborFunc(){
         laborOption.text = laborArray[i];
         laborList.appendChild(laborOption);
     }
+
+
+    // var laborRow = document.getElementById("forLabor");
+    var laborTd1 = laborRow.insertCell();
+    laborTd1.appendChild(document.createTextNode('雇主提撥'));
+    var laborTd2 = laborRow.insertCell();
+    laborTd2.appendChild(document.createTextNode('6%'));
+    var laborTd3 = laborRow.insertCell();
+    laborTd3.appendChild(document.createTextNode('自行提撥(0%-6%)'));
+    var laborTd4 = laborRow.insertCell();
+    laborTd4.id = "selfWithdrawCell";
+    var selfWithdrawCell = document.getElementById("selfWithdrawCell");
+
+
+    var laborWithdraArray = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
+
+    //Create and append select list
+    var laborWithdrawList = document.createElement("select");
+    laborWithdrawList.id = "selfWithdraw";
+    selfWithdrawCell.appendChild(laborWithdrawList);
+
+    //Create and append the options
+    for (var i = 0; i < laborWithdraArray.length; i++) {
+        var laborWithdrawOption = document.createElement("option");
+        laborWithdrawOption.value = laborWithdraArray[i];
+        laborWithdrawOption.text = laborWithdraArray[i];
+        laborWithdrawList.appendChild(laborWithdrawOption);
+    }
+
+
 
 
 }
@@ -665,6 +735,11 @@ function privatetaFunc(){
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
+            }
+
+    var laborRow = document.getElementById("forLabor");
+    while(laborRow.hasChildNodes()){
+                laborRow.removeChild(laborRow.firstChild);
             }
 
 
@@ -746,6 +821,11 @@ function popularFunc(){
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
+            }
+
+    var laborRow = document.getElementById("forLabor");
+    while(laborRow.hasChildNodes()){
+                laborRow.removeChild(laborRow.firstChild);
             }
 
 }
@@ -880,8 +960,6 @@ if("labor" == vocation){
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
         document.getElementById("lifeGet").innerHTML = "$" + Math.round(v + v1);
-
-        alert(v1);
 
  
     }else if ("軍保&軍職人員退休金含新舊制(軍人, 40歲以上)" == militaryInsuranceSystem) {
