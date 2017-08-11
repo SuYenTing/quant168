@@ -880,7 +880,7 @@ if("labor" == vocation){
 }else if ("privateta" == vocation) {
 
     var privatetaInsuranceSystem2 = document.getElementById("privatetaInsuranceSystem2").value;
-    var r = document.getElementById("r").value;
+    var r = parseFloat(document.getElementById("r").value);
 
     var z = c - b;
     // var x1 = a * Math.pow((1 + g), (z - 9));
