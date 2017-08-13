@@ -70,7 +70,7 @@ $roi = $_POST['roi'];
 <body>
     <style>
         .container {
-            width: 70%;
+            width: 85%;
         }
     </style>
 
@@ -81,7 +81,7 @@ $roi = $_POST['roi'];
         <table>
         <form method="post" action="" name="form" id="form" >
             <tr>
-                <td>現在年齡</td>
+                <td>年齡</td>
                 <td>
                     <select name="currentAge" id="currentAge">
                     <option value="20" <?php if($currentAge ==20) {echo "selected";}?>>20</option>
@@ -132,8 +132,6 @@ $roi = $_POST['roi'];
                             <input type="radio" name="gender" id="gender" value="female" <?php if($gender == "female"){echo "checked";}?> onchange="genderFunc('female')"> 女
                             <input type="hidden" name="genders" id="genders" value="male">
                 </td>
-                </tr>
-                <tr>
                 <td>職業別</td>
                 <td>
                 <select name="vocation" id="vocation">
@@ -155,63 +153,10 @@ $roi = $_POST['roi'];
                             <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular'); popularFunc()"> 一般民眾
                             <input type="hidden" name="vocations" id="vocations" value="labor"> -->
                 </td>
-                <td id="a">退休金制度</td>
-                <td><div id="b">
-                    <select>
-                        <option>勞保年金&勞保退新制(30歲以下)</option>
-                        <option>勞保年金&全新制(30歲以上)</option>
-                        <option>勞保年金&選擇勞退新制(30歲以上)</option>
-                    </select>
-                </div></td>
-                <td id="c"></td>
-                <td id="d"></td>
+                <td></td>
+                <td></td>
                 </tr>
                 <tr>
-                <td>開始工作年齡</td>
-                <td>
-                    <select name="workAge" id="workAge">
-                    <option value="20" <?php if($workAge ==20) {echo "selected";}?>>20</option>
-                    <option value="21" <?php if($workAge ==21) {echo "selected";}?>>21</option>
-                    <option value="23" <?php if($workAge ==23) {echo "selected";}?>>23</option>
-                    <option value="24" <?php if($workAge ==24) {echo "selected";}?>>24</option>
-                    <option value="25" <?php if($workAge ==25) {echo "selected";}?>>25</option>
-                    <option value="26" <?php if($workAge ==26) {echo "selected";}?>>26</option>
-                    <option value="27" <?php if($workAge ==27) {echo "selected";}?>>27</option>
-                    <option value="28" <?php if($workAge ==28) {echo "selected";}?>>28</option>
-                    <option value="29" <?php if($workAge ==29) {echo "selected";}?>>29</option>
-                    <option value="30" <?php if($workAge ==30) {echo "selected";}?>>30</option>
-                    <option value="31" <?php if($workAge ==31) {echo "selected";}?>>31</option>
-                    <option value="32" <?php if($workAge ==32) {echo "selected";}?>>32</option>
-                    <option value="33" <?php if($workAge ==33) {echo "selected";}?>>33</option>
-                    <option value="34" <?php if($workAge ==34) {echo "selected";}?>>34</option>
-                    <option value="35" <?php if($workAge ==35) {echo "selected";}?>>35</option>
-                    <option value="36" <?php if($workAge ==36) {echo "selected";}?>>36</option>
-                    <option value="37" <?php if($workAge ==37) {echo "selected";}?>>37</option>
-                    <option value="38" <?php if($workAge ==38) {echo "selected";}?>>38</option>
-                    <option value="39" <?php if($workAge ==39) {echo "selected";}?>>39</option>
-                    <option value="40" <?php if($workAge ==40) {echo "selected";}?>>40</option>
-                    <option value="41" <?php if($workAge ==41) {echo "selected";}?>>41</option>
-                    <option value="42" <?php if($workAge ==42) {echo "selected";}?>>42</option>
-                    <option value="43" <?php if($workAge ==43) {echo "selected";}?>>43</option>
-                    <option value="44" <?php if($workAge ==44) {echo "selected";}?>>44</option>
-                    <option value="45" <?php if($workAge ==45) {echo "selected";}?>>45</option>
-                    <option value="46" <?php if($workAge ==46) {echo "selected";}?>>46</option>
-                    <option value="47" <?php if($workAge ==47) {echo "selected";}?>>47</option>
-                    <option value="48" <?php if($workAge ==48) {echo "selected";}?>>48</option>
-                    <option value="49" <?php if($workAge ==49) {echo "selected";}?>>49</option>
-                    <option value="50" <?php if($workAge ==50) {echo "selected";}?>>50</option>
-                    <option value="51" <?php if($workAge ==51) {echo "selected";}?>>51</option>
-                    <option value="52" <?php if($workAge ==52) {echo "selected";}?>>52</option>
-                    <option value="53" <?php if($workAge ==53) {echo "selected";}?>>53</option>
-                    <option value="54" <?php if($workAge ==54) {echo "selected";}?>>54</option>
-                    <option value="55" <?php if($workAge ==55) {echo "selected";}?>>55</option>
-                    <option value="56" <?php if($workAge ==56) {echo "selected";}?>>56</option>
-                    <option value="57" <?php if($workAge ==57) {echo "selected";}?>>57</option>
-                    <option value="58" <?php if($workAge ==58) {echo "selected";}?>>58</option>
-                    <option value="59" <?php if($workAge ==59) {echo "selected";}?>>59</option>
-                    <option value="60" <?php if($workAge ==60) {echo "selected";}?>>60</option>
-                    </select>
-                歲</td>
                 <td>預計退休年齡</td>
                 <td>
                     <select id="retireAge" onchange="lifeLeftFunc()">
@@ -233,146 +178,192 @@ $roi = $_POST['roi'];
                         <option value="70" <?php if($retireAge ==70) {echo "selected";}?>>70</option>
                     </select>
                 歲</td>
-                
-                <tr>
-                        <td>起薪</td>
-                        <td>$
-                            <input type="number" id="wage" value=<?php echo $wage?>>
-                        </td>
-                        <td>薪資成長率</td>
-                        <td>
-                            <select id="wageGrowth" >
-                            <option value="0.5" <?php if($wageGrowth ==0.5) {echo "selected";}?>>0.5%</option>
-                            <option value="1.0" <?php if($wageGrowth ==1.0) {echo "selected";}?>>1.0%</option>
-                            <option value="1.5" <?php if($wageGrowth ==1.5) {echo "selected";}?>>1.5%</option>
-                            <option value="2.0" <?php if($wageGrowth ==2.0) {echo "selected";}?>>2.0%</option>
-                            <option value="2.5" <?php if($wageGrowth ==2.5) {echo "selected";}?>>2.5%</option>
-                            <option value="3.0" <?php if($wageGrowth ==3.0) {echo "selected";}?>>3.0%</option>
-                            <option value="3.5" <?php if($wageGrowth ==3.5) {echo "selected";}?>>3.5%</option>
-                            <option value="4.0" <?php if($wageGrowth ==4.0) {echo "selected";}?>>4.0%</option>
-                            <option value="4.5" <?php if($wageGrowth ==4.5) {echo "selected";}?>>4.5%</option>
-                            <option value="5.0" <?php if($wageGrowth ==5.0) {echo "selected";}?>>5.0%</option>
-                        </select>
-                        </td>
-                </tr>
-                <tr>
-                    <td>退休時平均餘命</td>
-                    <td>
-                    <input type="number" id="lifeLeft" value=13 readonly>歲</td>
-                    <td>投資報酬率</td>
-                <td>
-                    <select id="roi" >
-                        <option value="0.2" <?php if($roi ==0.2) {echo "selected";}?>>0.2%</option>
-                        <option value="0.4" <?php if($roi ==0.4) {echo "selected";}?>>0.4%</option>
-                        <option value="0.6" <?php if($roi ==0.6) {echo "selected";}?>>0.6%</option>
-                        <option value="0.8" <?php if($roi ==0.8) {echo "selected";}?>>0.8%</option>
-                        <option value="1.0" <?php if($roi ==1.0) {echo "selected";}?>>1.0%</option>
-                        <option value="1.2" <?php if($roi ==1.2) {echo "selected";}?>>1.2%</option>
-                        <option value="1.4" <?php if($roi ==1.4) {echo "selected";}?>>1.4%</option>
-                        <option value="1.6" <?php if($roi ==1.6) {echo "selected";}?>>1.6%</option>
-                        <option value="1.8" <?php if($roi ==1.8) {echo "selected";}?>>1.8%</option>
-                        <option value="2.0" <?php if($roi ==2.0) {echo "selected";}?>>2.0%</option>
-                        <option value="2.2" <?php if($roi ==2.2) {echo "selected";}?>>2.2%</option>
-                        <option value="2.4" <?php if($roi ==2.4) {echo "selected";}?>>2.4%</option>
-                        <option value="2.6" <?php if($roi ==2.6) {echo "selected";}?>>2.6%</option>
-                        <option value="2.8" <?php if($roi ==2.8) {echo "selected";}?>>2.8%</option>
-                        <option value="3.0" <?php if($roi ==3.0) {echo "selected";}?>>3.0%</option>
-                        <option value="3.2" <?php if($roi ==3.2) {echo "selected";}?>>3.2%</option>
-                        <option value="3.4" <?php if($roi ==3.4) {echo "selected";}?>>3.4%</option>
-                        <option value="3.6" <?php if($roi ==3.6) {echo "selected";}?>>3.6%</option>
-                        <option value="3.8" <?php if($roi ==3.8) {echo "selected";}?>>3.8%</option>
-                        <option value="4.0" <?php if($roi ==4.0) {echo "selected";}?>>4.0%</option>
-                        <option value="4.2" <?php if($roi ==4.2) {echo "selected";}?>>4.2%</option>
-                        <option value="4.4" <?php if($roi ==4.4) {echo "selected";}?>>4.4%</option>
-                        <option value="4.6" <?php if($roi ==4.6) {echo "selected";}?>>4.6%</option>
-                        <option value="4.8" <?php if($roi ==4.8) {echo "selected";}?>>4.8%</option>
-                        <option value="5.0" <?php if($roi ==5.0) {echo "selected";}?>>5.0%</option>
-                        <option value="5.2" <?php if($roi ==5.2) {echo "selected";}?>>5.2%</option>
-                        <option value="5.4" <?php if($roi ==5.4) {echo "selected";}?>>5.4%</option>
-                        <option value="5.6" <?php if($roi ==5.6) {echo "selected";}?>>5.6%</option>
-                        <option value="5.8" <?php if($roi ==5.8) {echo "selected";}?>>5.8%</option>
-                        <option value="6.0" <?php if($roi ==6.0) {echo "selected";}?>>6.0%</option>
-                        <option value="6.2" <?php if($roi ==6.2) {echo "selected";}?>>6.2%</option>
-                        <option value="6.4" <?php if($roi ==6.4) {echo "selected";}?>>6.4%</option>
-                        <option value="6.6" <?php if($roi ==6.6) {echo "selected";}?>>6.6%</option>
-                        <option value="6.8" <?php if($roi ==6.8) {echo "selected";}?>>6.8%</option>
-                        <option value="7.0" <?php if($roi ==7.0) {echo "selected";}?>>7.0%</option>
-                        <option value="7.2" <?php if($roi ==7.2) {echo "selected";}?>>7.2%</option>
-                        <option value="7.4" <?php if($roi ==7.4) {echo "selected";}?>>7.4%</option>
-                        <option value="7.6" <?php if($roi ==7.6) {echo "selected";}?>>7.6%</option>
-                        <option value="7.8" <?php if($roi ==7.8) {echo "selected";}?>>7.8%</option>
-                        <option value="8.0" <?php if($roi ==8.0) {echo "selected";}?>>8.0%</option>
-                        <option value="8.2" <?php if($roi ==8.2) {echo "selected";}?>>8.2%</option>
-                        <option value="8.4" <?php if($roi ==8.4) {echo "selected";}?>>8.4%</option>
-                        <option value="8.6" <?php if($roi ==8.6) {echo "selected";}?>>8.6%</option>
-                        <option value="8.8" <?php if($roi ==8.8) {echo "selected";}?>>8.8%</option>
-                        <option value="9.0" <?php if($roi ==9.0) {echo "selected";}?>>9.0%</option>
-                        <option value="9.2" <?php if($roi ==9.2) {echo "selected";}?>>9.2%</option>
-                        <option value="9.4" <?php if($roi ==9.4) {echo "selected";}?>>9.4%</option>
-                        <option value="9.6" <?php if($roi ==9.6) {echo "selected";}?>>9.6%</option>
-                        <option value="9.8" <?php if($roi ==9.8) {echo "selected";}?>>9.8%</option>
-                        <option value="10.0" <?php if($roi ==10.0) {echo "selected";}?>>10.0%</option>
-                    </select>
-                </td>
-                </tr>
-                <tr>
-                    <td>雇主提撥</td>
-                    <td>6%</td>
-                    <td>自行提撥(0%-6%)</td>
-                    <td>
-                        <select name="selfWithdraw" id="selfWithdraw" >
-                        <option value="1.0">1.0%</option>
-                        <option value="2.0">2.0%</option>
-                        <option value="3.0">3.0%</option>
-                        <option value="4.0">4.0%</option>
-                        <option value="5.0">5.0%</option>
-                        <option value="6.0">6.0%</option>
+                    <td>薪資/年</td>
+                    <td>$
+                        <input name="wage" type="number" id="wage" value=<?php echo $wage?>>
                     </td>
-                </tr>
+                    <td>合理預期10年後薪資</td>
+                    <td>$
+                        <input name="10yrwage" type="number" id="10yrwage" value=1200000>
+                    </td>
+                    <td>合理預期20年後薪資</td>
+                    <td>$
+                        <input name="20yrwage" type="number" id="20yrwage" value=2000000>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>婚姻狀況</td>
+                        <td>
+                            <select id="marriageState">
+                                <option value="married">已婚</option>
+                                <option value="planning">有計劃結婚</option>
+                                <option value="none">無結婚打算</option>
+                            </select>
+                        </td>
+                        <td>預計幾年後結婚</td>
+                        <td>
+                            <input name="yearsToMarriage" type="number" id="yearsToMarriage" value=5>
+                        </td>
+                        <td>每月開銷(不含房屋相關費用)</td>
+                        <td>
+                            <input name="monthlyExp" type="number" id="monthlyExp" value=20000>
+                        </td>
+                        <td>目前存款</td>
+                        <td>
+                            <input name="currentSaving" type="number" id="currentSaving" value=100000>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>投資金額</td>
+                        <td>
+                            <input name="investedMoney" type="number" id="investedMoney" value=1000000>
+                        </td>
+                        <td>投資報酬率</td>
+                        <td>
+                            <select id="roi" >
+                                <option value="0.2" <?php if($roi ==0.2) {echo "selected";}?>>0.2%</option>
+                                <option value="0.4" <?php if($roi ==0.4) {echo "selected";}?>>0.4%</option>
+                                <option value="0.6" <?php if($roi ==0.6) {echo "selected";}?>>0.6%</option>
+                                <option value="0.8" <?php if($roi ==0.8) {echo "selected";}?>>0.8%</option>
+                                <option value="1.0" <?php if($roi ==1.0) {echo "selected";}?>>1.0%</option>
+                                <option value="1.2" <?php if($roi ==1.2) {echo "selected";}?>>1.2%</option>
+                                <option value="1.4" <?php if($roi ==1.4) {echo "selected";}?>>1.4%</option>
+                                <option value="1.6" <?php if($roi ==1.6) {echo "selected";}?>>1.6%</option>
+                                <option value="1.8" <?php if($roi ==1.8) {echo "selected";}?>>1.8%</option>
+                                <option value="2.0" <?php if($roi ==2.0) {echo "selected";}?>>2.0%</option>
+                                <option value="2.2" <?php if($roi ==2.2) {echo "selected";}?>>2.2%</option>
+                                <option value="2.4" <?php if($roi ==2.4) {echo "selected";}?>>2.4%</option>
+                                <option value="2.6" <?php if($roi ==2.6) {echo "selected";}?>>2.6%</option>
+                                <option value="2.8" <?php if($roi ==2.8) {echo "selected";}?>>2.8%</option>
+                                <option value="3.0" <?php if($roi ==3.0) {echo "selected";}?>>3.0%</option>
+                                <option value="3.2" <?php if($roi ==3.2) {echo "selected";}?>>3.2%</option>
+                                <option value="3.4" <?php if($roi ==3.4) {echo "selected";}?>>3.4%</option>
+                                <option value="3.6" <?php if($roi ==3.6) {echo "selected";}?>>3.6%</option>
+                                <option value="3.8" <?php if($roi ==3.8) {echo "selected";}?>>3.8%</option>
+                                <option value="4.0" <?php if($roi ==4.0) {echo "selected";}?>>4.0%</option>
+                                <option value="4.2" <?php if($roi ==4.2) {echo "selected";}?>>4.2%</option>
+                                <option value="4.4" <?php if($roi ==4.4) {echo "selected";}?>>4.4%</option>
+                                <option value="4.6" <?php if($roi ==4.6) {echo "selected";}?>>4.6%</option>
+                                <option value="4.8" <?php if($roi ==4.8) {echo "selected";}?>>4.8%</option>
+                                <option value="5.0" <?php if($roi ==5.0) {echo "selected";}?>>5.0%</option>
+                                <option value="5.2" <?php if($roi ==5.2) {echo "selected";}?>>5.2%</option>
+                                <option value="5.4" <?php if($roi ==5.4) {echo "selected";}?>>5.4%</option>
+                                <option value="5.6" <?php if($roi ==5.6) {echo "selected";}?>>5.6%</option>
+                                <option value="5.8" <?php if($roi ==5.8) {echo "selected";}?>>5.8%</option>
+                                <option value="6.0" <?php if($roi ==6.0) {echo "selected";}?>>6.0%</option>
+                                <option value="6.2" <?php if($roi ==6.2) {echo "selected";}?>>6.2%</option>
+                                <option value="6.4" <?php if($roi ==6.4) {echo "selected";}?>>6.4%</option>
+                                <option value="6.6" <?php if($roi ==6.6) {echo "selected";}?>>6.6%</option>
+                                <option value="6.8" <?php if($roi ==6.8) {echo "selected";}?>>6.8%</option>
+                                <option value="7.0" <?php if($roi ==7.0) {echo "selected";}?>>7.0%</option>
+                                <option value="7.2" <?php if($roi ==7.2) {echo "selected";}?>>7.2%</option>
+                                <option value="7.4" <?php if($roi ==7.4) {echo "selected";}?>>7.4%</option>
+                                <option value="7.6" <?php if($roi ==7.6) {echo "selected";}?>>7.6%</option>
+                                <option value="7.8" <?php if($roi ==7.8) {echo "selected";}?>>7.8%</option>
+                                <option value="8.0" <?php if($roi ==8.0) {echo "selected";}?>>8.0%</option>
+                                <option value="8.2" <?php if($roi ==8.2) {echo "selected";}?>>8.2%</option>
+                                <option value="8.4" <?php if($roi ==8.4) {echo "selected";}?>>8.4%</option>
+                                <option value="8.6" <?php if($roi ==8.6) {echo "selected";}?>>8.6%</option>
+                                <option value="8.8" <?php if($roi ==8.8) {echo "selected";}?>>8.8%</option>
+                                <option value="9.0" <?php if($roi ==9.0) {echo "selected";}?>>9.0%</option>
+                                <option value="9.2" <?php if($roi ==9.2) {echo "selected";}?>>9.2%</option>
+                                <option value="9.4" <?php if($roi ==9.4) {echo "selected";}?>>9.4%</option>
+                                <option value="9.6" <?php if($roi ==9.6) {echo "selected";}?>>9.6%</option>
+                                <option value="9.8" <?php if($roi ==9.8) {echo "selected";}?>>9.8%</option>
+                                <option value="10.0" <?php if($roi ==10.0) {echo "selected";}?>>10.0%</option>
+                            </select>
+                        </td>
+                        <td>貸款金額(房貸除外)</td>
+                        <td>
+                            <input name="loan" type="number" id="loan" value=100000>
+                        </td>
+                        <td>貸款剩餘年數</td>
+                        <td>
+                            <input name="loanLeftYear" type="number" id="loanLeftYear" value=5>
+                        </td>
+                    </tr>
+                    <div id="marriedForm">
+                        
+                        <tr>
+                            <td>(配偶/預計結婚對象)目前年齡</td>
+                            <td>
+                                <select name="mateAge" id="mateAge">
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24" selected>24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                                <option value="60">60</option>
+                                </select>
+                            歲</td>
+                            <td>(配偶/預計結婚對象)年收入</td>
+                            <td>
+                            <input name="mateYearRevenue" type="number" id="mateYearRevenue" value=400000>
+                            </td>
+                            <td>預計退休年齡</td>
+                            <td>
+                            <select name="mateRetireAge" id="mateRetireAge">
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                                <option value="60" selected>60</option>
+                                <option value="61">61</option>
+                                <option value="62">62</option>
+                                <option value="63">63</option>
+                                <option value="64">64</option>
+                                <option value="65">65</option>
+                                <option value="66">66</option>
+                                <option value="67">67</option>
+                                <option value="68">68</option>
+                                <option value="69">69</option>
+                                <option value="70">70</option>
+                            </select>
+                            歲</td>
+                        </tr>
+
+                    </div>
             </form>
             </table>
             <button onclick="calculate()" class="button button4">計算</button>
 
-            <p>output</p>
-            <table>
-                <tr>
-                    <td></td>
-                    <td>政府退休金</td>
-                    <td>雇主提撥</td>
-                    <td>自行提撥</td>
-                    <td>加總</td>
-                </tr>
-                <tr>
-                    <td>月領金額</td>
-                    <td>
-                        <p id="monthlyAmount">$0</p>
-                    </td>
-                    <td>
-                        <p id="u">$0</p>
-                    </td>
-                    <td>
-                        <p id="s">$0</p>
-                    </td>
-                    <td>
-                        <p id="monthSum">$0</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>累積金額</td>
-                    <td>
-                        <p id="amountAccum">$0</p>
-                    </td>
-                    <td>
-                        <p id="t">$0</p>
-                    </td>
-                    <td>
-                        <p id="r">$0</p>
-                    </td>
-                    <td>
-                        <p id="totalSum">$0</p>
-                    </td>
-                </tr>
-            </table>
+
             <p><button onclick="window.location.href='retirementpay.php'" class="button button4">回去上頁</button>(點擊即可回上一頁重新輸入)</p>
             <p><button onclick="changePage()" class="button button4">知道更多</button>(點擊即可計算個人財務規劃)</p>
 
