@@ -143,14 +143,6 @@ $roi = $_POST['roi'];
                     <option value="popular" onchange="vocationFunc('popular'); popularFunc()" <?php if($vocation == 'popular') {echo "selected";}?>>一般民眾</option>
                     <option type="hidden" name="vocations" id="vocations" value="labor"></option>
                 </select>
-                            <!-- <input type="radio" name="vocation" id="vocation" value="labor" checked onchange="vocationFunc('labor'); laborFunc()"> 勞工
-                            <input type="radio" name="vocation" id="vocation" value="functionary" onchange="vocationFunc('functionary'); functionaryFunc()"> 公務員
-                            <input type="radio" name="vocation" id="vocation" value="publicta" onchange="vocationFunc('publicta'); publictaFunc()"> 公立教職
-                            <input type="radio" name="vocation" id="vocation" value="privateta" onchange="vocationFunc('privateta'); privatetaFunc()"> 私立教職
-                            <input type="radio" name="vocation" id="vocation" value="military" onchange="vocationFunc('military'); militaryFunc()"> 軍人
-                            <input type="radio" name="vocation" id="vocation" value="farmer" onchange="vocationFunc('farmer'); farmerFunc()"> 農民
-                            <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular'); popularFunc()"> 一般民眾
-                            <input type="hidden" name="vocations" id="vocations" value="labor"> -->
                 </td>
                 <td></td>
                 <td></td>
@@ -424,11 +416,11 @@ $roi = $_POST['roi'];
                 <tr>
                     <td>預計幾年後購屋</td>
                     <td>
-                        <input name="yearToBoughtHouse" type="number" id="yearToBoughtHouse" value="10">
+                        <input name="yearsToBuyHouse" type="number" id="yearsToBuyHouse" value="10">
                     </td>
                     <td>預計幾年後開始為購屋做準備(若希望現在就開始準備請填0)</td>
                     <td>
-                        <input name="yearPlanToBoughtHouse" type="number" id="yearPlanToBoughtHouse" value="0">
+                        <input name="yearsPlanToBuyHouse" type="number" id="yearsPlanToBuyHouse" value="0">
                     </td>
                     <td>預購房屋現值</td>
                     <td>
@@ -467,13 +459,6 @@ $roi = $_POST['roi'];
 
 
 <script type="text/javascript">
-
-function changePage(){
-
-    document.getElementById('form').action = "cashflowsite.php";
-    document.getElementById('form').submit();
-
-}
 
 function genderFunc(gender) {
     document.getElementById("genders").value = gender;
@@ -520,23 +505,121 @@ function laborFunc(){
 function calculate(){
 
     var currentAge = parseInt(document.getElementById("currentAge").value);
-    var retireAge = parseInt(document.getElementById("retireAge").value);
-    var workAge = parseInt(document.getElementById("workAge").value);
     var gender = document.getElementById("genders").value;
-    var wage = document.getElementById("wage").value;
-    var wageGrowth = parseFloat(document.getElementById("wageGrowth").value) / 100;
-    var roi = parseFloat(document.getElementById("roi").value) / 100;
-    var lifeLeft = parseInt(document.getElementById("lifeLeft").value);
     var vocation = document.getElementById("vocations").value;
-    var selfWithdraw = document.getElementById("selfWithdraw").value;
+    var retireAge = parseInt(document.getElementById("retireAge").value);
+    var wage = parseFloat(document.getElementById("wage").value);
+    var 10yrwage = parseFloat(document.getElementById("10yrwage").value);
+    var 20yrwage = parseFloat(document.getElementById("20yrwage").value);
+    var marriageState = document.getElementById("marriageState").value;
+    var yearsToMarriage = document.getElementById("yearsToMarriage").value;
+    var monthlyExp = document.getElementById("monthlyExp").value;
+    var currentSaving = document.getElementById("currentSaving").value;
+    var investedMoney = document.getElementById("investedMoney").value;
+    var roi = parseFloat(document.getElementById("roi").value) / 100;
+    var loan = document.getElementById("loan").value;
+    var loanLeftYear = document.getElementById("loanLeftYear").value;
 
-    var a = wage;
-    var i = roi;
-    var g = wageGrowth;
-    var b = workAge;
-    var c = retireAge;
-    var d = lifeLeft;
-    var j = selfWithdraw;
+    var B2 = currentAge;
+    var D2 = genders;
+    var F2 = vocations;
+    var B3 = retireAge;
+    var D3 = wage;
+    var F3 = 10yrwage;
+    var H3 = 20yrwage;
+    var B5 = marriageState;
+    var D5 = yearsToMarriage;
+    var F5 = monthlyExp;
+    var H5 = currentSaving;
+    var B7 = investedMoney;
+    var D7 = roi;
+    var F7 = loan;
+    var H7 = loanLeftYear;
+
+
+    var mateAge = parseInt(document.getElementById("mateAge").value);
+    var mateYearRevenue = document.getElementById("mateYearRevenue").value;
+    var mateRetireAge = document.getElementById("mateRetireAge").value;
+    var childrenNum = document.getElementById("childrenNum").value;
+    var child1Age = document.getElementById("child1Age").value;
+    var child2Age = document.getElementById("child2Age").value;
+    var childPlan = document.getElementById("childPlan").value;
+    var yearToBirth = document.getElementById("yearToBirth").value;
+    var howManyChildren = document.getElementById("howManyChildren").value;
+
+    var B11 = mateAge;
+    var D11 = mateYearRevenue;
+    var F11 = mateRetireAge;
+    var B12 = childrenNum;
+    var D12 = child1Age;
+    var F12 = child2Age;
+    var B14 = childPlan;
+    var D14 = yearToBirth;
+    var F14 = howManyChildren;
+
+
+    var housePlan = document.getElementById("housePlan").value;
+    var houseRent = document.getElementById("houseRent").value;
+    var yearsToBuyHouse = document.getElementById("yearsToBuyHouse").value;
+    var yearsPlanToBuyHouse = document.getElementById("yearsPlanToBuyHouse").value;
+    var houseCurrentValue = document.getElementById("houseCurrentValue").value;
+    var loanProportion = parseFloat(document.getElementById("loanProportion").value) / 100;
+    var loanYearSpan = document.getElementById("loanYearSpan").value;
+    var houseLoanCost = document.getElementById("houseLoanCost").value;
+    var houseLoanYearLeft = document.getElementById("houseLoanYearLeft").value;
+
+    var B18 = housePlan;
+    var D18 = houseRent;
+    var B20 = yearsToBuyHouse;
+    var D20 = yearsPlanToBuyHouse;
+    var F20 = houseCurrentValue;
+    var B21 = loanProportion;
+    var D21 = loanYearSpan;
+    var B24 = houseLoanCost;
+    var D24 = houseLoanYearLeft;
+
+
+    
+    var lifeLeft = parseInt(document.getElementById("lifeLeft").value);
+
+
+    var G28 = 0.015;
+    var G29 = 0.03;
+    var G30 = 0.03;
+    var G31 = 0.05;
+    var G32 = 0.02;
+
+    if ((Math.pow((F3/D3),0.1) - 1) > 0) {
+        var G33 = Math.pow((F3/D3),0.1) - 1;
+    }else{
+        var G33 = 0;
+    }
+
+    if (F3 == 0 ) {
+        var G34 = 0;
+    }else{
+        if ((Math.pow((H3/F3),0.1) - 1) > 0) {
+            var G34 = Math.pow((H3/F3),0.1) - 1;
+        }else{
+            var G34 = 0;
+        } 
+    }
+
+    var G60 = F20 * (Math.pow((1 + G32), B20));
+    var G61 = G60 * (1 - B21);
+
+    if (B20 == 0) {
+        var G62 = 0;
+    }else{
+        var G62 = G61 * (G32/12) * (1/(Math.pow((1 + (G32/12)), 12 * (B20 - D20)) - 1));
+    }
+    var G63 = G60 * B21 * (G32/12) * (1/(1 - Math.pow((1 + (G32/12)) , (-D21 * 12))));
+
+    
+
+
+
+
 
 
 if("labor" == vocation){
