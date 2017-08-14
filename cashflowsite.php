@@ -144,8 +144,10 @@ $roi = $_POST['roi'];
                     <option type="hidden" name="vocations" id="vocations" value="labor"></option>
                 </select>
                 </td>
-                <td></td>
-                <td></td>
+                <td>退休時平均餘命</td>
+                <td>
+                    <input name="lifeLeft" type="number" id="lifeLeft" value=13 readonly>歲
+                </td>
                 </tr>
                 <tr>
                 <td>預計退休年齡</td>
@@ -175,11 +177,11 @@ $roi = $_POST['roi'];
                     </td>
                     <td>合理預期10年後薪資</td>
                     <td>
-                        <input name="10yrwage" type="number" id="10yrwage" value=1200000>
+                        <input name="tenyrwage" type="number" id="tenyrwage" value=1200000>
                     </td>
                     <td>合理預期20年後薪資</td>
                     <td>
-                        <input name="20yrwage" type="number" id="20yrwage" value=2000000>
+                        <input name="twenyrwage" type="number" id="twenyrwage" value=2000000>
                     </td>
                     </tr>
                     <tr>
@@ -373,7 +375,7 @@ $roi = $_POST['roi'];
                         <tr>
                             <td>是否預計生小孩</td>
                             <td>
-                                <select name="childPlan">
+                                <select name="childPlan" id="childPlan">
                                     <option value="yes">是</option>
                                     <option value="no">否</option>
                                 </select>
@@ -509,8 +511,8 @@ function calculate(){
     var vocation = document.getElementById("vocations").value;
     var retireAge = parseInt(document.getElementById("retireAge").value);
     var wage = parseFloat(document.getElementById("wage").value);
-    var 10yrwage = parseFloat(document.getElementById("10yrwage").value);
-    var 20yrwage = parseFloat(document.getElementById("20yrwage").value);
+    var tenyrwage = parseFloat(document.getElementById("tenyrwage").value);
+    var twenyrwage = parseFloat(document.getElementById("twenyrwage").value);
     var marriageState = document.getElementById("marriageState").value;
     var yearsToMarriage = document.getElementById("yearsToMarriage").value;
     var monthlyExp = document.getElementById("monthlyExp").value;
@@ -525,8 +527,8 @@ function calculate(){
     var F2 = vocations;
     var B3 = retireAge;
     var D3 = wage;
-    var F3 = 10yrwage;
-    var H3 = 20yrwage;
+    var F3 = tenyrwage;
+    var H3 = twenyrwage;
     var B5 = marriageState;
     var D5 = yearsToMarriage;
     var F5 = monthlyExp;
@@ -580,7 +582,7 @@ function calculate(){
 
 
     
-    var lifeLeft = parseInt(document.getElementById("lifeLeft").value);
+    var B33 = parseInt(document.getElementById("lifeLeft").value);
 
 
     var G28 = 0.015;
@@ -595,6 +597,7 @@ function calculate(){
         var G33 = 0;
     }
 
+
     if (F3 == 0 ) {
         var G34 = 0;
     }else{
@@ -605,6 +608,7 @@ function calculate(){
         } 
     }
 
+
     var G60 = F20 * (Math.pow((1 + G32), B20));
     var G61 = G60 * (1 - B21);
 
@@ -613,251 +617,23 @@ function calculate(){
     }else{
         var G62 = G61 * (G32/12) * (1/(Math.pow((1 + (G32/12)), 12 * (B20 - D20)) - 1));
     }
-    var G63 = G60 * B21 * (G32/12) * (1/(1 - Math.pow((1 + (G32/12)) , (-D21 * 12))));
 
-    
+    var G63 = G60 * B21 * (G32/12) * (1/(1-(Math.pow(1 + (G32/12) , D21 * (-12)))));
 
 
 
+    var B57 = (D3/12) * 0.06 * (Math.pow(1 + ( ((1 + G33)*(1 + G28) - 1) /12) , (B3 - B2) * 12) - 1) * (12/((1 + G33)*(1 + G28) - 1));
+    var B58 = B57 * (G28/12) * Math.pow((1 - Math.pow( (1 + (G28/12)) , -B33 * 12)), -1);
 
 
-
-if("labor" == vocation){
-
-    // alert(a);
-
-    var z = c - b;
-    var y1 = Math.min( a * Math.pow((1 + g), z), 45800);
-    var y2 = Math.min( a * Math.pow((1 + g), z - 1), 45800);
-    var y3 = Math.min( a * Math.pow((1 + g), z - 2), 45800);
-    var y4 = Math.min( a * Math.pow((1 + g), z - 3), 45800);
-    var y5 = Math.min( a * Math.pow((1 + g), z - 4), 45800);
-    var x = (y1 + y2 + y3 + y4 + y5)/5;
-    var w = Math.max(((x * z * 0.00775) + 3000), (x * z * 0.0155));
-    var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
-
-    // alert(y1);
-
-    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-
-
-    var t = a * 0.06 * ((Math.pow((1 + (i - g)/12),(z * 12)) - 1)/((i - g)/12));
-    var u = (t/12) * (i/(1-(1/Math.pow((1 + (i/12)),12*d))));
-
-    // alert(i - g);
-
-    document.getElementById("t").innerHTML = "$" + Math.round(t);
-    document.getElementById("u").innerHTML = "$" + Math.round(u);
-
-
-    var r = a * j * ((Math.pow((1 + ((i-g)/12)), z * 12) - 1)/((i - g)/12));
-    var s = (r / 12) * (i/(1 - (1/(Math.pow((1 + (i/12)),12 * d)))));
-
-    document.getElementById("r").innerHTML = "$" + Math.round(r);
-    document.getElementById("s").innerHTML = "$" + Math.round(s);
-
-    var monthSum = w + u + s;
-    var totalSum = v + t + r;
-
-    document.getElementById("monthSum").innerHTML = "$" + Math.round(monthSum);
-    document.getElementById("totalSum").innerHTML = "$" + Math.round(totalSum);
-
-
-}else if ("popular" == vocation) {
-
-    var z = c - b;
-    var w = Math.max(18282 * z * 0.0065 + 3628, 18282 * z * 0.013);
-    var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
-
-    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-
-}else if ("privateta" == vocation) {
-
-    var privatetaInsuranceSystem2 = document.getElementById("privatetaInsuranceSystem2").value;
-
-    var z = c - b;
-    // var x1 = a * Math.pow((1 + g), (z - 9));
-    // var x2 = a * Math.pow((1 + g), (z - 8));
-    // var x3 = a * Math.pow((1 + g), (z - 7));
-    // var x4 = a * Math.pow((1 + g), (z - 6));
-    // var x5 = a * Math.pow((1 + g), (z - 5));
-    // var x6 = a * Math.pow((1 + g), (z - 4));
-    // var x7 = a * Math.pow((1 + g), (z - 3));
-    // var x8 = a * Math.pow((1 + g), (z - 2));
-    // var x9 = a * Math.pow((1 + g), (z - 1));
-    // var x10 = a * Math.pow((1 + g), z);
-
-    // var x = (x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10) / 10;
-    var x = privatetaInsuranceSystem2;
-    var w = x * 0.013 * z;
-    var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
-
-    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-
-}else if ("farmer" == vocation) {
-
-    var insuranceYear = document.getElementById("insuranceYear").value;
-
-    if (">=15" == insuranceYear) {
-        var w = 7256;
-        var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-    }else if ("<15" == insuranceYear) {
-        var w = 3628;
-        var v = w * (1 - Math.pow( (1/(1 + (i/12))), d))/(i/12);
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-    }
-
-}else if ("military" == vocation) {
-
-    var militaryInsuranceSystem = document.getElementById("militaryInsuranceSystem").value;
-    var militaryInsuranceSystem2 = document.getElementById("militaryInsuranceSystem2").value;
-
-
-    if ("軍保&公務人員退休金新制(40歲以下)" == militaryInsuranceSystem || "軍保&公務人員退休金新制(40歲以上)" == militaryInsuranceSystem) {
-
-        var z = c - b;
-        var y = Math.min(42, z * 1.2);
-        var x = militaryInsuranceSystem2;
-        var v = y * x; 
-
-        //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
-
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
- 
-    }else if ("軍保&軍職人員退休金含新舊制(軍人, 40歲以上)" == militaryInsuranceSystem) {
-
-        var e = currentAge;
-        var z = c - b;
-        var u = Math.max(0, e - b - 2017 - 1911 - 88);
-
-        if (u <= 10) {
-            var y1 = u;
-        }else if (u > 10 && u <=15) {
-            var y1 = 10 + (u - 10) * 2;
-        }else if (u > 15 && u <=20) {
-            var y1 = 20 + (u - 15) * 3;
-        }else if (u >20) {
-            var y1 = 36;
-        }
-        var y2 = z - u;
-        var y = Math.min(42, y1 + y2 * 1.2);
-        var x = militaryInsuranceSystem2;
-        var v = y * x; 
-
-        //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
-
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-
-    }
-
-}else if ("publicta" == vocation) {
-
-    var publictaInsuranceSystem = document.getElementById("publictaInsuranceSystem").value;
-    var publictaInsuranceSystem2 = document.getElementById("publictaInsuranceSystem2").value;
-
-
-    if ("公保&公教人員退休撫卹金新制(40歲以下)" == publictaInsuranceSystem || "公保&公教人員退休撫卹金新制(40歲以上)" == publictaInsuranceSystem) {
-
-        var z = c - b;
-        var y = Math.min(42, z * 1.2);
-        var x = publictaInsuranceSystem2;
-        var v = y * x; 
-
-        //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
-
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
- 
-    }else if ("公保&公教人員退休撫卹金新舊制(40歲以上)" == publictaInsuranceSystem) {
-
-        var e = currentAge;
-        var z = c - b;
-        var u = Math.max(0, e - b - 2017 - 1911 - 88);
-
-        if (u <= 10) {
-            var y1 = u;
-        }else if (u > 10 && u <=15) {
-            var y1 = 10 + (u - 10) * 2;
-        }else if (u > 15 && u <=20) {
-            var y1 = 20 + (u - 15) * 3;
-        }else if (u >20) {
-            var y1 = 36;
-        }
-        var y2 = z - u;
-        var y = Math.min(42, y1 + y2 * 1.2);
-        var x = publictaInsuranceSystem2;
-        var v = y * x; 
-
-        //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
-
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-    }
-
-}else if ("functionary" == vocation) {
-
-    var functionaryInsuranceSystem = document.getElementById("functionaryInsuranceSystem").value;
-    var functionaryInsuranceSystem2 = document.getElementById("functionaryInsuranceSystem2").value;
-
-    if ("公保&公務人員退休金新制(40歲以下)" == functionaryInsuranceSystem) {
-
-        var z = c - b;
-        var y = Math.min(42, z * 1.2);
-        var x = functionaryInsuranceSystem2;
-        var v = y * x; 
-
-        //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
-
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
- 
-    }else if ("公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem || "公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem) {
-
-        var e = currentAge;
-        var z = c - b;
-        var u = Math.max(0, e - b - 2017 - 1911 - 88);
-
-        if (u <= 10) {
-            var y1 = u;
-        }else if (u > 10 && u <=15) {
-            var y1 = 10 + (u - 10) * 2;
-        }else if (u > 15 && u <=20) {
-            var y1 = 20 + (u - 15) * 3;
-        }else if (u >20) {
-            var y1 = 36;
-        }
-        var y2 = z - u;
-        var y = Math.min(42, y1 + y2 * 1.2);
-        var x = functionaryInsuranceSystem2;
-        var v = y * x; 
-
-        //有問題(c-d)?(d-c)?
-        var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
-
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-    }
-
-}else if ("farmer" == vocation) {
-
-
+    alert(-B33);
 
 }
 
-}
+
+
+
+
 
 function lifeLeftFunc() {
         var retireAge = parseInt(document.getElementById("retireAge").value);
