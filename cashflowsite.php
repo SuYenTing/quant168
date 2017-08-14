@@ -8,6 +8,7 @@ $vocation = $_POST['vocation'];
 $workAge = $_POST['workAge'];
 $retireAge = $_POST['retireAge'];
 $wage = $_POST['wage'];
+$wageYear = $wage * 14;
 $wageGrowth = $_POST['wageGrowth'];
 $lifeLeft = $_POST['lifeLeft'];
 $roi = $_POST['roi'];
@@ -173,7 +174,7 @@ $roi = $_POST['roi'];
                 歲</td>
                     <td>薪資/年</td>
                     <td>
-                        <input name="wage" type="number" id="wage" value=<?php echo $wage?>>
+                        <input name="wageYear" type="number" id="wageYear" value=<?php echo $wageYear?>>
                     </td>
                     <td>合理預期10年後薪資</td>
                     <td>
@@ -510,7 +511,7 @@ function calculate(){
     var gender = document.getElementById("genders").value;
     var vocation = document.getElementById("vocations").value;
     var retireAge = parseInt(document.getElementById("retireAge").value);
-    var wage = parseFloat(document.getElementById("wage").value);
+    var wageYear = parseFloat(document.getElementById("wageYear").value);
     var tenyrwage = parseFloat(document.getElementById("tenyrwage").value);
     var twenyrwage = parseFloat(document.getElementById("twenyrwage").value);
     var marriageState = document.getElementById("marriageState").value;
@@ -526,7 +527,7 @@ function calculate(){
     var D2 = genders;
     var F2 = vocations;
     var B3 = retireAge;
-    var D3 = wage;
+    var D3 = wageYear;
     var F3 = tenyrwage;
     var H3 = twenyrwage;
     var B5 = marriageState;
@@ -627,7 +628,7 @@ function calculate(){
     // var B59 = F5 * 12 * Math.pow((1 + F3),(B3 - B2)) * (1 - Math.pow(((1 + F3)/(1 + F2)),B7)) /(((1 + F2)/(1 + F3)) - 1);
     // var B60 = B59 * ((((1 + G28)/(1 + G29))- 1)/12) * (1/(Math.pow((1 + (((1 + G28)/(1 + G29) - 1) /12)) , 12 * (B3 - B2))) - 1);
 
-    alert(B5);
+    // alert(B58);
 
 
 
