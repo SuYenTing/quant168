@@ -2,70 +2,245 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>retirement test</title>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Include D3 min-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href="css/navbar.css">
-
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 </head>
 
-<body>  
-    
-    <nav class="menu navbar navbar-default" >
+<body>
+    <nav class="menu navbar navbar-default">
         <div class="container-fluid">
             <div class="row">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1"> 
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>  
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand logo">快樂退休理財網</a>
                 </div>
             </div>
-            <div class="row">      
-                <div class="collapse navbar-collapse" id="navbar1"> 
+            <div class="row">
+                <div class="collapse navbar-collapse" id="navbar1">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php"><span class="glyphicon glyphicon-home"></span></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">量化基金<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="dropdown-header">投資基金</li>
-                                <li><a href="investfundprofit1m.php">獲利基金</a></li>
-                                <li><a href="investfundgrowth1m.php">成長基金</a></li>
-                                <li><a href="investfundpayout1m.php">股利基金</a></li>
-                                <li><a href="investfundsafety1m.php">穩健基金</a></li>
-                                <li><a href="investfundquality1m.php">品質基金</a></li>
-                                <li><a href="investfundoo1m.php">嚴選基金</a></li>
-                                <li><a href="investfundor1m.php">風險預警基金</a></li>
-                                <li><a href="investfundot1m.php">技術嚴選基金</a></li>
-                                <li><a href="investfundof1m.php">價值嚴選基金</a></li>
-                                <li class="dropdown-header">退休基金</li>
-                                <li><a href="retirefundprofit10m.php">獲利型基金</a></li>
-                                <li><a href="retirefundgrowth10m.php">成長型基金</a></li>
-                                <li><a href="retirefundpayout10m.php">股利型基金</a></li>
-                                <li><a href="retirefundsafety10m.php">穩健型基金</a></li>
-                                <li><a href="retirefundquality10m.php">品質型基金</a></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">投資基金</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="#">獲利基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">未避險</a></li>
+                                                <li><a href="#">期貨避險</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">成長基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">未避險</a></li>
+                                                <li><a href="#">期貨避險</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">股利基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">未避險</a></li>
+                                                <li><a href="#">期貨避險</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">穩健基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">未避險</a></li>
+                                                <li><a href="#">期貨避險</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">品質基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">未避險</a></li>
+                                                <li><a href="#">期貨避險</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">嚴選基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">未避險</a></li>
+                                                <li><a href="#">期貨避險</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">風險預警基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">未避險</a></li>
+                                                <li><a href="#">期貨避險</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">價值嚴選基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">未避險</a></li>
+                                                <li><a href="#">期貨避險</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">退休基金</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="#">獲利基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">風險分散</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最大化報酬</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最小化風險</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">成長基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">風險分散</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最大化報酬</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最小化風險</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">股利基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">風險分散</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最大化報酬</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最小化風險</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">穩健基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">風險分散</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最大化報酬</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最小化風險</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">品質基金</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">風險分散</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最大化報酬</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">最小化風險</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">未避險</a></li>
+                                                        <li><a href="#">期貨避險</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">個股診斷<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-header">基本分析</li>
-                                <li ><a href="sbscore.php">SB分數</a></li>
+                                <li><a href="sbscore.php">SB分數</a></li>
                                 <li><a href="stock-tech.php">技術分析</a></li>
                                 <li><a href="chip-anal.php">籌碼分析</a></li>
                             </ul>
@@ -74,16 +249,16 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">理財規劃<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li> <a href="psnpl.php" >個人規劃</a> </li>
-                                <li> <a href="psnpl.php" >理財小工具</a> </li>
-                                <li> <a href="retirementpay.php" >退休金</a> </li>
+                                <li> <a href="psnpl.php">個人規劃</a> </li>
+                                <li> <a href="psnpl.php">理財小工具</a> </li>
+                                <li> <a href="retirementpay.php">退休金</a> </li>
                             </ul>
                         </li>
                         <li><a href="convertiblebond.php">可轉換債</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">共同基金<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li> <a href="fundsearch.php" >基金搜尋</a> </li>
+                                <li> <a href="fundsearch.php">基金搜尋</a> </li>
                             </ul>
                         </li>
                         <li><a href="retirementplanner.php">退休計畫</a></li>
@@ -91,14 +266,13 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">保險專區<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li> <a href="insuranceinfo.php" >險種簡介</a> </li>
-                                <li> <a href="#" >商品查詢</a> </li>
-                                <li> <a href="#" >商品比較</a> </li>
-                                <li> <a href="insuranceplan.php" >保險規劃</a> </li>
-                                <li> <a href="#" >FAQ</a> </li>
+                                <li> <a href="insuranceinfo.php">險種簡介</a> </li>
+                                <li> <a href="#">商品查詢</a> </li>
+                                <li> <a href="#">商品比較</a> </li>
+                                <li> <a href="insuranceplan.php">保險規劃</a> </li>
+                                <li> <a href="#">FAQ</a> </li>
                             </ul>
                         </li>
-
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
@@ -108,5 +282,3 @@
             </div>
         </div>
     </nav>
-
-
