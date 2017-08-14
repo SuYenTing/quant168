@@ -75,11 +75,10 @@ $roi = $_POST['roi'];
     </style>
 
     <div class="container">
-    <h4>現金流網頁</h4>
-        
-        <p>input</p>
+
+        <p>基本資料</p>
         <table>
-        <form method="post" action="" name="form" id="form" >
+        <form method="post" action="" name="form1" id="form1" >
             <tr>
                 <td>年齡</td>
                 <td>
@@ -179,15 +178,15 @@ $roi = $_POST['roi'];
                     </select>
                 歲</td>
                     <td>薪資/年</td>
-                    <td>$
+                    <td>
                         <input name="wage" type="number" id="wage" value=<?php echo $wage?>>
                     </td>
                     <td>合理預期10年後薪資</td>
-                    <td>$
+                    <td>
                         <input name="10yrwage" type="number" id="10yrwage" value=1200000>
                     </td>
                     <td>合理預期20年後薪資</td>
-                    <td>$
+                    <td>
                         <input name="20yrwage" type="number" id="20yrwage" value=2000000>
                     </td>
                     </tr>
@@ -282,6 +281,14 @@ $roi = $_POST['roi'];
                             <input name="loanLeftYear" type="number" id="loanLeftYear" value=5>
                         </td>
                     </tr>
+                    </form>
+                    </table>
+
+                    <br>
+
+                    <p>婚姻狀況(若無結婚打算請跳過此段)</p>
+                    <table>
+                    <form method="post" action="" name="form2" id="form2">
                     <div id="marriedForm">
                         
                         <tr>
@@ -357,15 +364,104 @@ $roi = $_POST['roi'];
                             </select>
                             歲</td>
                         </tr>
+                        <tr>
+                            <td>目前小孩人數</td>
+                            <td>
+                            <input name="childrenNum" type="number" id="childrenNum" value="2">
+                            </td>
+                            <td>小孩年齡1</td>
+                            <td>
+                            <input name="child1Age" type="number" id="child1Age" value="5">
+                            </td>
+                            <td>小孩年齡2</td>
+                            <td>
+                            <input name="child2Age" type="number" id="child2Age" value="2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>是否預計生小孩</td>
+                            <td>
+                                <select name="childPlan">
+                                    <option value="yes">是</option>
+                                    <option value="no">否</option>
+                                </select>
+                            </td>
+                            <td>預計幾年後生小孩</td>
+                            <td>
+                            <input name="yearToBirth" type="number" id="yearToBirth" value="8">
+                            </td>
+                            <td>預計生幾個小孩</td>
+                            <td>
+                            <input name="howManyChildren" type="number" id="howManyChildren" value="2">
+                            </td>
+                        </tr>
 
                     </div>
             </form>
             </table>
+
+            <br>
+
+            <p>購屋計畫</p>
+            <table>
+                <form method="post" action="" name="form3" id="form3">
+                <tr>
+                    <td>是否有購屋計畫</td>
+                    <td>
+                        <select id="housePlan" name="housePlan">
+                            <option value="yes">是</option>
+                            <option value="no">否</option>
+                            <option value="bought">已購屋</option>
+                        </select>
+                    </td>
+                    <td>目前房屋租金/月</td>
+                    <td>
+                        <input name="houseRent" type="number" id="houseRent" value="15000">
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>預計幾年後購屋</td>
+                    <td>
+                        <input name="yearToBoughtHouse" type="number" id="yearToBoughtHouse" value="10">
+                    </td>
+                    <td>預計幾年後開始為購屋做準備(若希望現在就開始準備請填0)</td>
+                    <td>
+                        <input name="yearPlanToBoughtHouse" type="number" id="yearPlanToBoughtHouse" value="0">
+                    </td>
+                    <td>預購房屋現值</td>
+                    <td>
+                        <input name="houseCurrentValue" type="number" id="houseCurrentValue" value="15000000">
+                    </td>
+                </tr>
+                <tr>
+                    <td>貸款比例</td>
+                    <td>
+                        <input name="loanProportion" type="number" id="loanProportion" value="80">%
+                    </td>
+                    <td>貸款年期（年）</td>
+                    <td>
+                        <input name="loanYearSpan" type="number" id="loanYearSpan" value="20">
+                    </td>
+                </tr>
+                <tr>
+                    <td>房屋貸款金額/月</td>
+                    <td>
+                        <input name="houseLoanCost" type="number" id="houseLoanCost" value="60000">
+                    </td>
+                    <td>房屋貸款剩餘期數</td>
+                    <td>
+                        <input name="houseLoanYearLeft" type="number" id="houseLoanYearLeft" value="193">
+                    </td>
+                </tr>
+                </form>
+            </table>
+
             <button onclick="calculate()" class="button button4">計算</button>
 
 
             <p><button onclick="window.location.href='retirementpay.php'" class="button button4">回去上頁</button>(點擊即可回上一頁重新輸入)</p>
-            <p><button onclick="changePage()" class="button button4">知道更多</button>(點擊即可計算個人財務規劃)</p>
 
            </body>
 
