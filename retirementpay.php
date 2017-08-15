@@ -156,12 +156,12 @@ include("navbar.html");
                         <option value="22">22</option>
                         <option value="23">23</option>
                         <option value="24">24</option>
-                        <option value="25" selected>25</option>
+                        <option value="25">25</option>
                         <option value="26">26</option>
                         <option value="27">27</option>
                         <option value="28">28</option>
                         <option value="29">29</option>
-                        <option value="30">30</option>
+                        <option value="30" selected>30</option>
                         <option value="31">31</option>
                         <option value="32">32</option>
                         <option value="33">33</option>
@@ -207,12 +207,12 @@ include("navbar.html");
                         <option value="62">62</option>
                         <option value="63">63</option>
                         <option value="64">64</option>
-                        <option value="65">65</option>
+                        <option value="65" selected>65</option>
                         <option value="66">66</option>
                         <option value="67">67</option>
                         <option value="68">68</option>
                         <option value="69">69</option>
-                        <option value="70"selected>70</option>
+                        <option value="70">70</option>
                     </select>
                 歲</td>
                 
@@ -225,7 +225,7 @@ include("navbar.html");
                         <td>
                             <select name="wageGrowth" id="wageGrowth" >
                             <option value="0.5">0.5%</option>
-                            <option value="1.0">1.0%</option>
+                            <option value="1.0" selected>1.0%</option>
                             <option value="1.5">1.5%</option>
                             <option value="2.0">2.0%</option>
                             <option value="2.5">2.5%</option>
@@ -233,14 +233,14 @@ include("navbar.html");
                             <option value="3.5">3.5%</option>
                             <option value="4.0">4.0%</option>
                             <option value="4.5">4.5%</option>
-                            <option value="5.0"selected>5.0%</option>
+                            <option value="5.0">5.0%</option>
                         </select>
                         </td>
                 </tr>
                 <tr>
                     <td>退休時平均餘命</td>
                     <td>
-                    <input name="lifeLeft" type="number" id="lifeLeft" value=13 readonly>歲</td>
+                    <input name="lifeLeft" type="number" id="lifeLeft" value=17 readonly>歲</td>
                     <td>投資報酬率</td>
                 <td>
                     <select name="roi" id="roi" >
@@ -259,7 +259,7 @@ include("navbar.html");
                         <option value="2.4">2.4%</option>
                         <option value="2.6">2.6%</option>
                         <option value="2.8">2.8%</option>
-                        <option value="3.0">3.0%</option>
+                        <option value="3.0" selected>3.0%</option>
                         <option value="3.2">3.2%</option>
                         <option value="3.4">3.4%</option>
                         <option value="3.6">3.6%</option>
@@ -279,7 +279,7 @@ include("navbar.html");
                         <option value="6.4">6.4%</option>
                         <option value="6.6">6.6%</option>
                         <option value="6.8">6.8%</option>
-                        <option value="7.0" selected>7.0%</option>
+                        <option value="7.0" >7.0%</option>
                         <option value="7.2">7.2%</option>
                         <option value="7.4">7.4%</option>
                         <option value="7.6">7.6%</option>
@@ -309,7 +309,7 @@ include("navbar.html");
                         <option value="3.0">3</option>
                         <option value="4.0">4</option>
                         <option value="5.0">5</option>
-                        <option value="6.0">6</option>
+                        <option value="6.0" selected>6</option>
                     </td>
                 </tr>
 
@@ -840,6 +840,8 @@ function calculate(){
     var roi = parseFloat(document.getElementById("roi").value) / 100;
     var lifeLeft = parseInt(document.getElementById("lifeLeft").value);
     var vocation = document.getElementById("vocations").value;
+    var selfWithdraw = parseFloat(document.getElementById("selfWithdraw").value) / 100;
+
 
     var a = wage;
     var i = roi;
@@ -847,6 +849,7 @@ function calculate(){
     var b = workAge;
     var c = retireAge;
     var d = lifeLeft;
+    var j = selfWithdraw;
 
 
 if("labor" == vocation){
@@ -865,8 +868,29 @@ if("labor" == vocation){
 
     // alert(y1);
 
-    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+    // var t = a * 0.06 * ((i * Math.pow((1 + i),(13/12)))/(Math.pow((1 + i), (1/12)) - 1) * ((Math.pow((1 + g),(z -1)) - (Math.pow((1 + g), (z - 1))))/(g - i)));
+
+    // var t = a * 0.06 * ((i * Math.pow((1 + i), (13/12)))/(Math.pow((1 + i),(1/12)) - 1) ) * (Math.pow((1 + g), (z -1)) – Math.pow((1 + i),(z -1)))/(g - i);
+
+
+    var t = a * 0.06 * (i * Math.pow((1+i),(13/12)))/(Math.pow((1+i),(1/12))-1) * (Math.pow((1+g),(z-1)) - Math.pow((1+i),(z-1)))/(g - i);
+
+    // var t = 3430000;
+
+    var u = (t/12) * (i/(1-(1/Math.pow((1 + (i/12)),12*d))));
+
+    var r = a * j * (i * Math.pow((1+i),(13/12)))/(Math.pow((1+i),(1/12))-1) * (Math.pow((1+g),(z-1)) - Math.pow((1+i),(z-1)))/(g - i);
+
+    var s = (r / 12) * (i/(1 - (1/(Math.pow((1 + (i/12)),12 * d)))));
+
+    var monthlyAmount = w + u + s;
+    var amountAccum = v + t + r;
+
+    alert(t);
+
+
+    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w + u + s);
+    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v + t + r);
 
 }else if ("popular" == vocation) {
 
