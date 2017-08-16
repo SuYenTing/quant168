@@ -54,7 +54,7 @@ table, th, td {
             <table>
                 <tr class="header">
                     <td></td>
-                    <td>基金</td>
+                    <td>成長基金</td>
                     <td>調整後台灣加權指數</td>
                 </tr>
 <?php
@@ -123,7 +123,7 @@ $rs2=mysql_fetch_row($stock2);
             </table>
         </div>
     </div>
-    <div>
+    <div >
         <h4>最新持股</h4>
         <div>
             <table>
@@ -148,6 +148,7 @@ $rs=mysql_fetch_row($stock);
             </table>
         </div>
     </div>
+
 </div>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');

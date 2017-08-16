@@ -55,7 +55,7 @@ table, th, td {
             <table>
                 <tr class="header">
                     <td></td>
-                    <td>基金</td>
+                    <td>穩健基金</td>
                     <td>調整後台灣加權指數</td>
                 </tr>
 <?php
