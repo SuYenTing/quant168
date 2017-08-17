@@ -59,7 +59,7 @@ table, th, td {
                     <td>調整後台灣加權指數</td>
                 </tr>
 <?php
-$stock1=mysql_query("SELECT * FROM web_data.strategies_performance where code='safety.1m';");
+$stock1=mysql_query("SELECT * FROM web_data.hedge_strategies_performance where code='safety.1m';");
 $stock2=mysql_query("SELECT * FROM web_data.strategies_performance where code='y9997';");
 $rs1=mysql_fetch_row($stock1);
 $rs2=mysql_fetch_row($stock2);
@@ -197,7 +197,7 @@ $rs=mysql_fetch_row($FundTrendData);
     datasets: [{
       label: '基金走勢圖',
       data: [<?php
-$FundTrendData=mysql_query("select date, nav/1000000 from web_data.strategies_nav where name = 'safety.1m' ");
+$FundTrendData=mysql_query("select date, nav/1000000 from web_data.hedge_strategies_nav where name = 'safety.1m' ");
 $tmp = 0;
 for($i=1;$i<=mysql_num_rows($FundTrendData);$i++){
 $rs=mysql_fetch_row($FundTrendData);
