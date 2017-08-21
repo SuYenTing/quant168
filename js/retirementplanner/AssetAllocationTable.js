@@ -2,7 +2,7 @@ function AssetAllocationTable() {
 	var table = d3.select("#assetallocationtable").append('table');
 	var thead = table.append("thead");
 	var tbody = table.append("tbody");
-	var columns = ['年', '股票','債券','現金'];
+	var columns = ['年', '股票','債券','貨幣'];
 	var columnsEN = ['year','stock_weight','bonds_weight', 'money_weight'];
 	var rows = tbody.selectAll('tr');
 

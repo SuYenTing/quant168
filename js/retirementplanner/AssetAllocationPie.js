@@ -12,7 +12,7 @@ function AssetAllocationPie() {
 	var parseData = function(data,year) {
 		var pieData = [
 			{"label":"股票", "value": parseFloat(data[year]["stock_weight"])},
-			{"label":"現金", "value": parseFloat(data[year]["money_weight"])},
+			{"label":"貨幣", "value": parseFloat(data[year]["money_weight"])},
 			{"label":"債券", "value": parseFloat(data[year]["bonds_weight"])}
 		];
 		return pieData;
