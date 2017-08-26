@@ -713,55 +713,6 @@ function privatetaFunc(){
 
 }
 
-function farmerFunc(){
-
-    document.getElementById('f').innerHTML = "";
-
-    document.getElementById("privatetaTd").innerHTML = "";
-    document.getElementById("a").innerHTML = "欲投保年資";
-    document.getElementById("c").innerHTML = "";
-
-    var b = document.getElementById("b");
-    while(b.hasChildNodes()){
-                b.removeChild(b.firstChild);
-            }
-    var d = document.getElementById("d");
-    while(d.hasChildNodes()){
-                d.removeChild(d.firstChild);
-            }
-
-    var output = document.getElementById("output");
-    while(output.hasChildNodes()){
-                output.removeChild(output.firstChild);
-            }
-
-    var privatetaRoi = document.getElementById("privatetaRoi");
-    while(privatetaRoi.hasChildNodes()){
-                privatetaRoi.removeChild(privatetaRoi.firstChild);
-            }
-
-    var laborRow = document.getElementById("forLabor");
-    while(laborRow.hasChildNodes()){
-                laborRow.removeChild(laborRow.firstChild);
-            }
-
-    //Create array of options to be added
-    var farmerArray = [">=15","<15"];
-
-    //Create and append select list
-    var farmerList = document.createElement("select");
-    farmerList.id = "insuranceYear";
-    b.appendChild(farmerList);
-
-    //Create and append the options
-    for (var i = 0; i < farmerArray.length; i++) {
-        var farmerOption = document.createElement("option");
-        farmerOption.value = farmerArray[i];
-        farmerOption.text = farmerArray[i];
-        farmerList.appendChild(farmerOption);
-    }
-
-}
 function militaryFunc(){
 
     document.getElementById('f').innerHTML = "";
@@ -769,6 +720,10 @@ function militaryFunc(){
     document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
+
+    document.getElementById("output1").innerHTML = "公務人員退休撫卹基金(月領)";
+    document.getElementById("output2").innerHTML = "公務人員退休撫卹基金(一次領)";
+    document.getElementById("output3").innerHTML = "加總後每月可領";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
@@ -828,6 +783,56 @@ function militaryFunc(){
     td2.appendChild(document.createTextNode("$0"));
     td2.id = "lifeGet";
 
+
+}
+
+function farmerFunc(){
+
+    document.getElementById('f').innerHTML = "";
+
+    document.getElementById("privatetaTd").innerHTML = "";
+    document.getElementById("a").innerHTML = "欲投保年資";
+    document.getElementById("c").innerHTML = "";
+
+    var b = document.getElementById("b");
+    while(b.hasChildNodes()){
+                b.removeChild(b.firstChild);
+            }
+    var d = document.getElementById("d");
+    while(d.hasChildNodes()){
+                d.removeChild(d.firstChild);
+            }
+
+    var output = document.getElementById("output");
+    while(output.hasChildNodes()){
+                output.removeChild(output.firstChild);
+            }
+
+    var privatetaRoi = document.getElementById("privatetaRoi");
+    while(privatetaRoi.hasChildNodes()){
+                privatetaRoi.removeChild(privatetaRoi.firstChild);
+            }
+
+    var laborRow = document.getElementById("forLabor");
+    while(laborRow.hasChildNodes()){
+                laborRow.removeChild(laborRow.firstChild);
+            }
+
+    //Create array of options to be added
+    var farmerArray = [">=15","<15"];
+
+    //Create and append select list
+    var farmerList = document.createElement("select");
+    farmerList.id = "insuranceYear";
+    b.appendChild(farmerList);
+
+    //Create and append the options
+    for (var i = 0; i < farmerArray.length; i++) {
+        var farmerOption = document.createElement("option");
+        farmerOption.value = farmerArray[i];
+        farmerOption.text = farmerArray[i];
+        farmerList.appendChild(farmerOption);
+    }
 
 }
 
