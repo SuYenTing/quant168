@@ -125,11 +125,11 @@ include("navbar.html");
                 <tr>
                 <td>職業別</td>
                 <td>
-                            <input type="radio" name="vocation" id="vocation" value="labor" checked onchange="vocationFunc('labor'); laborFunc()"> 勞工
-                            <input type="radio" name="vocation" id="vocation" value="functionary" onchange="vocationFunc('functionary'); functionaryFunc()"> 公務員
-                            <input type="radio" name="vocation" id="vocation" value="publicta" onchange="vocationFunc('publicta'); publictaFunc()"> 公立教職
-                            <input type="radio" name="vocation" id="vocation" value="privateta" onchange="vocationFunc('privateta'); privatetaFunc()"> 私立教職
-                            <input type="radio" name="vocation" id="vocation" value="military" onchange="vocationFunc('military'); militaryFunc()"> 軍人
+                            <input type="radio" name="vocation" id="vocation" value="labor" checked onchange="vocationFunc('labor'); laborFunc(); initOutput()"> 勞工
+                            <input type="radio" name="vocation" id="vocation" value="functionary" onchange="vocationFunc('functionary'); functionaryFunc(); initOutput()"> 公務員
+                            <input type="radio" name="vocation" id="vocation" value="publicta" onchange="vocationFunc('publicta'); publictaFunc(); initOutput()"> 公立教職
+                            <input type="radio" name="vocation" id="vocation" value="privateta" onchange="vocationFunc('privateta'); privatetaFunc(); initOutput()"> 私立教職
+                            <input type="radio" name="vocation" id="vocation" value="military" onchange="vocationFunc('military'); militaryFunc(); initOutput()"> 軍人
                             <input type="radio" name="vocation" id="vocation" value="farmer" onchange="vocationFunc('farmer'); farmerFunc()"> 農民
                             <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular'); popularFunc()"> 一般民眾
                             <input type="hidden" name="vocations" id="vocations" value="labor">
@@ -371,10 +371,15 @@ function vocationFunc(vocation) {
     document.getElementById("vocations").value = vocation;
     // alert(vocation);
 
+    
+
+}
+
+function initOutput(){
+
     document.getElementById("monthlyAmount").innerHTML = "$0";
     document.getElementById("inOnce").innerHTML = "$0";
     document.getElementById("amountAccum").innerHTML = "$0";
-
 }
 
 function laborFunc(){
