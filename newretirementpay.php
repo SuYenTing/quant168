@@ -343,6 +343,10 @@ include("navbar.html");
                         <p id="amountAccum">$0</p>
                     </td>
                 </tr>
+                <tr id="outputRow4">
+                    
+                </tr>
+
             </table>
             <div id="f">
             <button onclick="changePage()" class="button button4">知道更多(點擊即可計算個人財務規劃)</button>
@@ -405,6 +409,11 @@ function laborFunc(){
     // while(output.hasChildNodes()){
     //             output.removeChild(output.firstChild);
     //         }
+
+    var militaryRow = document.getElementById("outputRow4");
+    while(militaryRow.hasChildNodes()){
+                militaryRow.removeChild(militaryRow.firstChild);
+            }
 
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
@@ -491,6 +500,11 @@ function functionaryFunc(){
     //             output.removeChild(output.firstChild);
     //         }
 
+    var militaryRow = document.getElementById("outputRow4");
+    while(militaryRow.hasChildNodes()){
+                militaryRow.removeChild(militaryRow.firstChild);
+            }
+
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
@@ -567,6 +581,11 @@ function publictaFunc(){
     // while(output.hasChildNodes()){
     //             output.removeChild(output.firstChild);
     //         }
+
+    var militaryRow = document.getElementById("outputRow4");
+    while(militaryRow.hasChildNodes()){
+                militaryRow.removeChild(militaryRow.firstChild);
+            }
 
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
@@ -647,6 +666,11 @@ function privatetaFunc(){
     // while(output.hasChildNodes()){
     //             output.removeChild(output.firstChild);
     //         }
+
+    var militaryRow = document.getElementById("outputRow4");
+    while(militaryRow.hasChildNodes()){
+                militaryRow.removeChild(militaryRow.firstChild);
+            }
 
 
     var privatetaRoi = document.getElementById("privatetaRoi");
@@ -734,9 +758,9 @@ function militaryFunc(){
                 d.removeChild(d.firstChild);
             }
 
-    var output = document.getElementById("output");
-    while(output.hasChildNodes()){
-                output.removeChild(output.firstChild);
+    var militaryRow = document.getElementById("outputRow4");
+    while(militaryRow.hasChildNodes()){
+                militaryRow.removeChild(militaryRow.firstChild);
             }
 
     var privatetaRoi = document.getElementById("privatetaRoi");
@@ -777,11 +801,20 @@ function militaryFunc(){
     }
 
 
-    var td = output.insertCell();
-    td.appendChild(document.createTextNode("退休時可領一次金"));
-    var td2 = output.insertCell();
-    td2.appendChild(document.createTextNode("$0"));
-    td2.id = "lifeGet";
+    // var td = output.insertCell();
+    // td.appendChild(document.createTextNode("退休時可領一次金"));
+    // var td2 = output.insertCell();
+    // td2.appendChild(document.createTextNode("$0"));
+    // td2.id = "lifeGet";
+
+
+    // var militaryRow = document.getElementById("outputRow4");
+    var militaryTd1 = militaryRow.insertCell();
+    militaryTd1.appendChild(document.createTextNode('軍人保險(一次金)'));
+    var militaryTd2 = militaryRow.insertCell();
+    militaryTd2.appendChild(document.createTextNode('$0'));
+    militaryTd2.id = "militaryInsurance";
+
 
 
 }
@@ -803,10 +836,10 @@ function farmerFunc(){
                 d.removeChild(d.firstChild);
             }
 
-    var output = document.getElementById("output");
-    while(output.hasChildNodes()){
-                output.removeChild(output.firstChild);
-            }
+    // var output = document.getElementById("output");
+    // while(output.hasChildNodes()){
+    //             output.removeChild(output.firstChild);
+    //         }
 
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
@@ -816,6 +849,11 @@ function farmerFunc(){
     var laborRow = document.getElementById("forLabor");
     while(laborRow.hasChildNodes()){
                 laborRow.removeChild(laborRow.firstChild);
+            }
+
+    var militaryRow = document.getElementById("outputRow4");
+    while(militaryRow.hasChildNodes()){
+                militaryRow.removeChild(militaryRow.firstChild);
             }
 
     //Create array of options to be added
@@ -867,6 +905,11 @@ function popularFunc(){
     var laborRow = document.getElementById("forLabor");
     while(laborRow.hasChildNodes()){
                 laborRow.removeChild(laborRow.firstChild);
+            }
+
+    var militaryRow = document.getElementById("outputRow4");
+    while(militaryRow.hasChildNodes()){
+                militaryRow.removeChild(militaryRow.firstChild);
             }
 
 }
@@ -1121,31 +1164,6 @@ if("labor" == vocation){
     document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
 
 
-}else if ("popular" == vocation) {
-
-    var z = c - b;
-    var w = Math.max(18282 * z * 0.0065 + 3628, 18282 * z * 0.013);
-    var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
-
-    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-
-}else if ("farmer" == vocation) {
-
-    var insuranceYear = document.getElementById("insuranceYear").value;
-
-    if (">=15" == insuranceYear) {
-        var w = 7256;
-        var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-    }else if ("<15" == insuranceYear) {
-        var w = 3628;
-        var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
-        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-    }
-
 }else if ("military" == vocation) {
 
     var militaryInsuranceSystem = document.getElementById("militaryInsuranceSystem").value;
@@ -1174,15 +1192,18 @@ if("labor" == vocation){
             var w = x * 2 * Math.min(0.7, z * 0.02);
         }
 
-        var all = v + v1 + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
+        // var all = v + v1 + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
 
         //有問題(c-d)?(d-c)?
         // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
 
+        var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
-        document.getElementById("lifeGet").innerHTML = "$" + Math.round(v + v1);
+        document.getElementById("inOnce").innerHTML = "$" + Math.round(v1);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
+        document.getElementById("militaryInsurance").innerHTML = "$" + Math.round(v);
 
  
     }else if ("軍保&軍職人員退休金含新舊制(軍人, 40歲以上)" == militaryInsuranceSystem) {
@@ -1240,17 +1261,43 @@ if("labor" == vocation){
             var v1 = 0;
         }
 
-        var all = v + v1 + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
+        // var all = v + v1 + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
         //有問題(c-d)?(d-c)?
         // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
 
+        var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(all);
-        document.getElementById("lifeGet").innerHTML = "$" + Math.round(v + v1);
+        document.getElementById("inOnce").innerHTML = "$" + Math.round(v1);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
+        document.getElementById("militaryInsurance").innerHTML = "$" + Math.round(v);
 
-        alert(v);
+    }
 
+}else if ("popular" == vocation) {
+
+    var z = c - b;
+    var w = Math.max(18282 * z * 0.0065 + 3628, 18282 * z * 0.013);
+    var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
+
+    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+
+}else if ("farmer" == vocation) {
+
+    var insuranceYear = document.getElementById("insuranceYear").value;
+
+    if (">=15" == insuranceYear) {
+        var w = 7256;
+        var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
+        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+    }else if ("<15" == insuranceYear) {
+        var w = 3628;
+        var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
+        document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
     }
 
 }else if ("farmer" == vocation) {
