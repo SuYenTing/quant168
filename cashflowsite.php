@@ -200,7 +200,11 @@ $roi = $_POST['roi'];
                         </td>
                         <td>每月開銷(不含房屋相關費用)</td>
                         <td>
-                            <input name="monthlyExp" type="number" id="monthlyExp" value=20000>
+                            <input name="monthlyExp" type="number" id="monthlyExp" value=30000>
+                        </td>
+                        <td>孝親費/月</td>
+                        <td>
+                            <input name="parentsExp" type="number" id="parentsExp" value=20000>
                         </td>
                         <td>目前存款</td>
                         <td>
@@ -517,6 +521,7 @@ function calculate(){
     var marriageState = document.getElementById("marriageState").value;
     var yearsToMarriage = document.getElementById("yearsToMarriage").value;
     var monthlyExp = document.getElementById("monthlyExp").value;
+    var parentsExp = document.getElementById("parentsExp").value;
     var currentSaving = document.getElementById("currentSaving").value;
     var investedMoney = document.getElementById("investedMoney").value;
     var roi = parseFloat(document.getElementById("roi").value) / 100;
@@ -533,7 +538,8 @@ function calculate(){
     var B5 = marriageState;
     var D5 = yearsToMarriage;
     var F5 = monthlyExp;
-    var H5 = currentSaving;
+    var H5 = parentsExp;
+    var J5 = currentSaving;
     var B7 = investedMoney;
     var D7 = roi;
     var F7 = loan;
