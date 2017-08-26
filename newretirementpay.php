@@ -215,8 +215,7 @@ include("navbar.html");
                         <option value="70">70</option>
                     </select>
                 歲</td>
-                
-                <tr>
+                <tr id="wageRow">
                         <td>目前薪資</td>
                         <td>$
                             <input name="wage" type="number" id="wage" value=40000>
@@ -496,6 +495,9 @@ function laborFunc(){
     document.getElementById("output2").innerHTML = "勞工退休金(一次領)";
     document.getElementById("output3").innerHTML = "加總後每月可領";
 
+    var wageRow = document.getElementById("wageRow");
+    wageRow.style.display="table-row";
+
 
 }
 
@@ -595,6 +597,8 @@ function functionaryFunc(){
     document.getElementById("output3").innerHTML = "加總後每月可領";
 
 
+    var wageRow = document.getElementById("wageRow");
+    wageRow.style.display="none";
 
 }
 
@@ -694,6 +698,9 @@ function publictaFunc(){
     document.getElementById("output2").innerHTML = "公教人員保險(一次金)";
     document.getElementById("output3").innerHTML = "加總後每月可領";
 
+
+    var wageRow = document.getElementById("wageRow");
+    wageRow.style.display="none";
 
 
 }
@@ -811,6 +818,9 @@ function privatetaFunc(){
     document.getElementById("output3").innerHTML = "加總後每月可領";
 
 
+    var wageRow = document.getElementById("wageRow");
+    wageRow.style.display="none";
+
 }
 
 function militaryFunc(){
@@ -909,6 +919,10 @@ function militaryFunc(){
     document.getElementById("output3").innerHTML = "加總後每月可領";
 
 
+    var wageRow = document.getElementById("wageRow");
+    wageRow.style.display="none";
+
+
 }
 
 function farmerFunc(){
@@ -973,6 +987,11 @@ function farmerFunc(){
         document.getElementById("outputRow3").removeChild(document.getElementById("outputRow3").firstChild);
     }
 
+
+    var wageRow = document.getElementById("wageRow");
+    wageRow.style.display="none";
+
+
 }
 
 function popularFunc(){
@@ -1020,6 +1039,11 @@ function popularFunc(){
     while(document.getElementById("outputRow3").hasChildNodes()){
         document.getElementById("outputRow3").removeChild(document.getElementById("outputRow3").firstChild);
     }
+
+
+    var wageRow = document.getElementById("wageRow");
+    wageRow.style.display="none";
+
 
 }
 function calculate(){
