@@ -130,8 +130,8 @@ include("navbar.html");
                             <input type="radio" name="vocation" id="vocation" value="publicta" onchange="vocationFunc('publicta'); publictaFunc(); initOutput()"> 公立教職
                             <input type="radio" name="vocation" id="vocation" value="privateta" onchange="vocationFunc('privateta'); privatetaFunc(); initOutput()"> 私立教職
                             <input type="radio" name="vocation" id="vocation" value="military" onchange="vocationFunc('military'); militaryFunc(); initOutput()"> 軍人
-                            <input type="radio" name="vocation" id="vocation" value="farmer" onchange="vocationFunc('farmer'); farmerFunc()"> 農民
-                            <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular'); popularFunc()"> 一般民眾
+                            <input type="radio" name="vocation" id="vocation" value="farmer" onchange="vocationFunc('farmer'); farmerFunc(); initOutput2()"> 農民
+                            <input type="radio" name="vocation" id="vocation" value="popular" onchange="vocationFunc('popular'); popularFunc(); initOutput2()"> 一般民眾
                             <input type="hidden" name="vocations" id="vocations" value="labor">
                 </td>
                 <td id="a">退休金制度</td>
@@ -327,7 +327,7 @@ include("navbar.html");
                         <p id="monthlyAmount">$0</p>
                     </td>
                 </tr>
-                <tr id="output">
+                <tr id="outputRow2">
                     <td>
                         <p id="output2">勞工退休金(一次領)</p>
                     </td>
@@ -335,7 +335,7 @@ include("navbar.html");
                         <p id="inOnce">$0</p>
                     </td>
                 </tr>
-                <tr>
+                <tr id="outputRow3">
                     <td>
                         <p id="output3">加總後每月可領</p>
                     </td>
@@ -382,6 +382,10 @@ function initOutput(){
     document.getElementById("amountAccum").innerHTML = "$0";
 }
 
+function initOutput2(){
+    document.getElementById("monthlyAmount").innerHTML = "$0";
+}
+
 function laborFunc(){
 
     var changePageBtn = document.createElement("button");
@@ -396,9 +400,7 @@ function laborFunc(){
 
     document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
-    document.getElementById("output1").innerHTML = "勞工保險(月領)";
-    document.getElementById("output2").innerHTML = "勞工退休金(一次領)";
-    document.getElementById("output3").innerHTML = "加總後每月可領";
+
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
@@ -476,6 +478,25 @@ function laborFunc(){
     }
 
 
+    var outputRow2 = document.getElementById("outputRow2");
+    while(!outputRow2.hasChildNodes()){
+                var outputRow2Td1 = outputRow2.insertCell();
+                outputRow2Td1.id = "output2";
+                var outputRow2Td2 = outputRow2.insertCell();
+                outputRow2Td2.id = "inOnce";
+
+                var outputRow3 = document.getElementById("outputRow3");
+                var outputRow3Td1 = outputRow3.insertCell();
+                outputRow3Td1.id = "output3";
+                var outputRow3Td2 = outputRow3.insertCell();
+                outputRow3Td2.id = "amountAccum";
+            }
+
+    document.getElementById("output1").innerHTML = "勞工保險(月領)";
+    document.getElementById("output2").innerHTML = "勞工退休金(一次領)";
+    document.getElementById("output3").innerHTML = "加總後每月可領";
+
+
 }
 
 function functionaryFunc(){
@@ -486,9 +507,6 @@ function functionaryFunc(){
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
-    document.getElementById("output1").innerHTML = "公務人員退休撫卹基金(月領)";
-    document.getElementById("output2").innerHTML = "公務人員保險(一次金)";
-    document.getElementById("output3").innerHTML = "加總後每月可領";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
@@ -557,6 +575,26 @@ function functionaryFunc(){
     // td2.id = "lifeGet";
 
 
+    var outputRow2 = document.getElementById("outputRow2");
+    while(!outputRow2.hasChildNodes()){
+                var outputRow2Td1 = outputRow2.insertCell();
+                outputRow2Td1.id = "output2";
+                var outputRow2Td2 = outputRow2.insertCell();
+                outputRow2Td2.id = "inOnce";
+
+                var outputRow3 = document.getElementById("outputRow3");
+                var outputRow3Td1 = outputRow3.insertCell();
+                outputRow3Td1.id = "output3";
+                var outputRow3Td2 = outputRow3.insertCell();
+                outputRow3Td2.id = "amountAccum";
+            }
+
+
+    document.getElementById("output1").innerHTML = "公務人員退休撫卹基金(月領)";
+    document.getElementById("output2").innerHTML = "公務人員保險(一次金)";
+    document.getElementById("output3").innerHTML = "加總後每月可領";
+
+
 
 }
 
@@ -568,9 +606,6 @@ function publictaFunc(){
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
-    document.getElementById("output1").innerHTML = "公教人員退休撫卹基金(月領)";
-    document.getElementById("output2").innerHTML = "公教人員保險(一次金)";
-    document.getElementById("output3").innerHTML = "加總後每月可領";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
@@ -640,6 +675,26 @@ function publictaFunc(){
     // td2.id = "lifeGet";
 
 
+    var outputRow2 = document.getElementById("outputRow2");
+    while(!outputRow2.hasChildNodes()){
+                var outputRow2Td1 = outputRow2.insertCell();
+                outputRow2Td1.id = "output2";
+                var outputRow2Td2 = outputRow2.insertCell();
+                outputRow2Td2.id = "inOnce";
+
+                var outputRow3 = document.getElementById("outputRow3");
+                var outputRow3Td1 = outputRow3.insertCell();
+                outputRow3Td1.id = "output3";
+                var outputRow3Td2 = outputRow3.insertCell();
+                outputRow3Td2.id = "amountAccum";
+            }
+
+
+    document.getElementById("output1").innerHTML = "公教人員退休撫卹基金(月領)";
+    document.getElementById("output2").innerHTML = "公教人員保險(一次金)";
+    document.getElementById("output3").innerHTML = "加總後每月可領";
+
+
 
 }
 
@@ -652,9 +707,6 @@ function privatetaFunc(){
     document.getElementById("c").innerHTML = "預估退保前10年平均保俸";
     document.getElementById("privatetaTd").innerHTML = "預估私校退撫報酬率";
 
-    document.getElementById("output1").innerHTML = "公教人員保險(月領)";
-    document.getElementById("output2").innerHTML = "私校退休撫卹基金(一次金)";
-    document.getElementById("output3").innerHTML = "加總後每月可領";
 
 
     var b = document.getElementById("b");
@@ -739,6 +791,25 @@ function privatetaFunc(){
     // td2.id = "lifeGet";
 
 
+    var outputRow2 = document.getElementById("outputRow2");
+    while(!outputRow2.hasChildNodes()){
+                var outputRow2Td1 = outputRow2.insertCell();
+                outputRow2Td1.id = "output2";
+                var outputRow2Td2 = outputRow2.insertCell();
+                outputRow2Td2.id = "inOnce";
+
+                var outputRow3 = document.getElementById("outputRow3");
+                var outputRow3Td1 = outputRow3.insertCell();
+                outputRow3Td1.id = "output3";
+                var outputRow3Td2 = outputRow3.insertCell();
+                outputRow3Td2.id = "amountAccum";
+            }
+
+
+    document.getElementById("output1").innerHTML = "公教人員保險(月領)";
+    document.getElementById("output2").innerHTML = "私校退休撫卹基金(一次金)";
+    document.getElementById("output3").innerHTML = "加總後每月可領";
+
 
 }
 
@@ -750,9 +821,6 @@ function militaryFunc(){
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
 
-    document.getElementById("output1").innerHTML = "公務人員退休撫卹基金(月領)";
-    document.getElementById("output2").innerHTML = "公務人員退休撫卹基金(一次領)";
-    document.getElementById("output3").innerHTML = "加總後每月可領";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
@@ -821,6 +889,25 @@ function militaryFunc(){
     militaryTd2.id = "militaryInsurance";
 
 
+    var outputRow2 = document.getElementById("outputRow2");
+    while(!outputRow2.hasChildNodes()){
+                var outputRow2Td1 = outputRow2.insertCell();
+                outputRow2Td1.id = "output2";
+                var outputRow2Td2 = outputRow2.insertCell();
+                outputRow2Td2.id = "inOnce";
+
+                var outputRow3 = document.getElementById("outputRow3");
+                var outputRow3Td1 = outputRow3.insertCell();
+                outputRow3Td1.id = "output3";
+                var outputRow3Td2 = outputRow3.insertCell();
+                outputRow3Td2.id = "amountAccum";
+            }
+
+
+    document.getElementById("output1").innerHTML = "公務人員退休撫卹基金(月領)";
+    document.getElementById("output2").innerHTML = "公務人員退休撫卹基金(一次領)";
+    document.getElementById("output3").innerHTML = "加總後每月可領";
+
 
 }
 
@@ -831,6 +918,8 @@ function farmerFunc(){
     document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "欲投保年資";
     document.getElementById("c").innerHTML = "";
+
+    document.getElementById("output1").innerHTML = "農保每月可領";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
@@ -877,6 +966,13 @@ function farmerFunc(){
         farmerList.appendChild(farmerOption);
     }
 
+    while(document.getElementById("outputRow2").hasChildNodes()){
+        document.getElementById("outputRow2").removeChild(document.getElementById("outputRow2").firstChild);
+    }
+    while(document.getElementById("outputRow3").hasChildNodes()){
+        document.getElementById("outputRow3").removeChild(document.getElementById("outputRow3").firstChild);
+    }
+
 }
 
 function popularFunc(){
@@ -887,6 +983,7 @@ function popularFunc(){
     document.getElementById("c").innerHTML = "";
     document.getElementById("privatetaTd").innerHTML = "";
 
+    document.getElementById("output1").innerHTML = "國民年金每月可領";
 
     var b = document.getElementById("b");
     while(b.hasChildNodes()){
@@ -897,10 +994,10 @@ function popularFunc(){
                 d.removeChild(d.firstChild);
             }
 
-    var output = document.getElementById("output");
-    while(output.hasChildNodes()){
-                output.removeChild(output.firstChild);
-            }
+    // var output = document.getElementById("output");
+    // while(output.hasChildNodes()){
+    //             output.removeChild(output.firstChild);
+    //         }
 
     var privatetaRoi = document.getElementById("privatetaRoi");
     while(privatetaRoi.hasChildNodes()){
@@ -916,6 +1013,13 @@ function popularFunc(){
     while(militaryRow.hasChildNodes()){
                 militaryRow.removeChild(militaryRow.firstChild);
             }
+
+    while(document.getElementById("outputRow2").hasChildNodes()){
+        document.getElementById("outputRow2").removeChild(document.getElementById("outputRow2").firstChild);
+    }
+    while(document.getElementById("outputRow3").hasChildNodes()){
+        document.getElementById("outputRow3").removeChild(document.getElementById("outputRow3").firstChild);
+    }
 
 }
 function calculate(){
@@ -1280,15 +1384,6 @@ if("labor" == vocation){
 
     }
 
-}else if ("popular" == vocation) {
-
-    var z = c - b;
-    var w = Math.max(18282 * z * 0.0065 + 3628, 18282 * z * 0.013);
-    var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
-
-    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-    document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
-
 }else if ("farmer" == vocation) {
 
     var insuranceYear = document.getElementById("insuranceYear").value;
@@ -1297,17 +1392,22 @@ if("labor" == vocation){
         var w = 7256;
         var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+        // document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
     }else if ("<15" == insuranceYear) {
         var w = 3628;
         var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
-        document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+        // document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
     }
 
-}else if ("farmer" == vocation) {
+}else if ("popular" == vocation) {
 
+    var z = c - b;
+    var w = Math.max(18282 * z * 0.0065 + 3628, 18282 * z * 0.013);
+    var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
 
+    document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
+    // document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
 
 }
 
