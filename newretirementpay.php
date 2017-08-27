@@ -1120,7 +1120,7 @@ if("labor" == vocation){
     var t = k * 12;
 
 
-    var mon = w + t * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+    var mon = w + t * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
     // alert(t);
 
@@ -1149,7 +1149,7 @@ if("labor" == vocation){
         var w = x * 2 * Math.min(0.7, z * 0.02);
         // var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
-        var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+        var mon = w + v * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
 
 
@@ -1191,7 +1191,7 @@ if("labor" == vocation){
         var w = x * Math.min(0.9, y3) + 930 + x * 2 * Math.min(0.7, y2 * 0.02);
         // var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
-        var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+        var mon = w + v * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
@@ -1218,7 +1218,7 @@ if("labor" == vocation){
         var w = x * 2 * Math.min(0.7, z * 0.02);
         // var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
-        var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+        var mon = w + v * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
@@ -1258,7 +1258,7 @@ if("labor" == vocation){
         var w = x * Math.min(0.9, y3) + 930 + x * 2 * Math.min(0.7, y2 * 0.02);
         // var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
-        var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+        var mon = w + v * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
@@ -1290,7 +1290,7 @@ if("labor" == vocation){
     var v = x * 2 * 0.12 * 12 * (Math.pow((1 + r), z) - 1)/r;
     // var all = v + w * 12 * (1 - Math.pow((1 + (i/12)),((-d) * 12)))/i;
 
-    var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+    var mon = w + v * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
     document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
     document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
@@ -1331,7 +1331,7 @@ if("labor" == vocation){
         //有問題(c-d)?(d-c)?
         // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
 
-        var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+        var mon = w + v * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v1);
@@ -1399,7 +1399,7 @@ if("labor" == vocation){
         //有問題(c-d)?(d-c)?
         // var w = (v * (i/12))/(1 - (1/(Math.pow((1 + (i/12)),(d*12)))));
 
-        var mon = w + v * 12 * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+        var mon = w + v * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v1);
