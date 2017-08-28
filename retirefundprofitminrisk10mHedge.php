@@ -11,6 +11,30 @@ $FundTrendData=mysql_query("select date, nav/10000000 from web_data.strategies_n
 $IndexTrendData=mysql_query("select date, close/(select close from stock_market.y9997 where date = 20050503) from stock_market.y9997 where date >= 20050503 ");
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      width:'auto'
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+
+    $( "#dialog1" ).dialog({
+      autoOpen: false,
+      width:'auto'
+    });
+ 
+    $( "#opener1" ).click(function() {
+      $( "#dialog1" ).dialog( "open" );
+    });
+  });
+</script>
 <style>
 .container {
     width: 80%;
