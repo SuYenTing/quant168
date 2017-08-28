@@ -125,59 +125,70 @@ $rs2=mysql_fetch_row($stock2);
             </table>
         </div>
     </div>
-    <div style="float:left;">
-        <h4>最新持股</h4>
-        <div>
-           
-            <table>
+        <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div id="dialog" title="近一年交易紀錄">
+              <table>
                 <tr class="header">
+                    <td>交易日</td>
+                    <td>購別</td>
+                    <td>多空方</td>
                     <td>股票代碼</td>
-                    <td>購入日期</td>
-                    <td>操作方向</td>
                     <td>權重</td>
                 </tr>
 <?php
-$stock=mysql_query("SELECT * FROM web_data.hedge_strategies_holding where trade_date=(select max(trade_date) from web_data.hedge_strategies_holding where name='payout.minrisk.10m' and type = '股票') and name='payout.minrisk.10m' and type = '股票';");
+$stock=mysql_query("SELECT * FROM web_data.hedge_strategies_holding where YEAR(trade_date) = YEAR(CURDATE()) and name='payout.minrisk.10m';");
 for($i=1;$i<=mysql_num_rows($stock);$i++){
 $rs=mysql_fetch_row($stock);
 ?>
                 <tr class="content">
-                    <td><?php echo $rs[4]?></td>
                     <td><?php echo $rs[1]?></td>
+                    <td><?php echo $rs[2]?></td>
                     <td><?php echo $rs[3]?></td>
+                    <td><?php echo $rs[4]?></td>
                     <td><?php echo $rs[7]?></td>
                 </tr>
 <?php
 }
 ?>
             </table>
-        </div>
-    </div>
-    <div style="float:left;margin-left:200px;">
-        <h4>最新持倉 </h4>
-        <div>
-           
-            <table>
+</div>
+ 
+<button id="opener">近一年交易紀錄 </button>
+
+<div id="dialog1" title="今天使用此策略的話，該怎麼買?">
+              <table>
                 <tr class="header">
+                    <td>交易日</td>
+                    <td>購別</td>
+                    <td>多空方</td>
                     <td>股票代碼</td>
-                    <td>購入日期</td>
-                    <td>操作方向</td>
                     <td>權重</td>
                 </tr>
 <?php
-$stock=mysql_query("SELECT * FROM web_data.hedge_strategies_holding where trade_date=(select max(trade_date) from web_data.hedge_strategies_holding where name='payout.minrisk.10m' and type = '期貨') and name='payout.minrisk.10m' and type = '期貨';");
+$stock=mysql_query("SELECT * FROM web_data.ifiwanttobuytoday_hedge_fund where name='payout.minrisk.10m';");
+for($i=1;$i<=mysql_num_rows($stock);$i++){
 $rs=mysql_fetch_row($stock);
 ?>
                 <tr class="content">
-                    <td><?php echo $rs[4]?></td>
                     <td><?php echo $rs[1]?></td>
+                    <td><?php echo $rs[2]?></td>
                     <td><?php echo $rs[3]?></td>
+                    <td><?php echo $rs[4]?></td>
                     <td><?php echo $rs[7]?></td>
                 </tr>
-
+<?php
+}
+?>
             </table>
-        </div>
-    </div>
+</div>
+ 
+<button id="opener1">今天使用此策略的話,該怎麼買……</button>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
 </div>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');

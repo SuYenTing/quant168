@@ -11,6 +11,30 @@ $FundTrendData=mysql_query("select date, nav/1000000 from web_data.strategies_na
 $IndexTrendData=mysql_query("select date, close/(select close from stock_market.y9997 where date = 20050503) from stock_market.y9997 where date >= 20050503 ");
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      width:'auto'
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+
+    $( "#dialog1" ).dialog({
+      autoOpen: false,
+      width:'auto'
+    });
+ 
+    $( "#opener1" ).click(function() {
+      $( "#dialog1" ).dialog( "open" );
+    });
+  });
+</script>
 <style>
 .container {
     width: 80%;
@@ -54,7 +78,7 @@ table, th, td {
             <table>
                 <tr class="header">
                     <td></td>
-                    <td>價值嚴選基金</td>
+                    <td>成長基金</td>
                     <td>調整後台灣加權指數</td>
                 </tr>
 <?php
@@ -123,59 +147,70 @@ $rs2=mysql_fetch_row($stock2);
             </table>
         </div>
     </div>
-    <div style="float:left;">
-        <h4>最新持股</h4>
-        <div>
-           
-            <table>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div id="dialog" title="近一年交易紀錄">
+              <table>
                 <tr class="header">
+                    <td>交易日</td>
+                    <td>購別</td>
+                    <td>多空方</td>
                     <td>股票代碼</td>
-                    <td>購入日期</td>
-                    <td>操作方向</td>
                     <td>權重</td>
                 </tr>
 <?php
-$stock=mysql_query("SELECT * FROM web_data.hedge_strategies_holding where trade_date=(select max(trade_date) from web_data.hedge_strategies_holding where name='of.1m' and type = '股票') and name='of.1m' and type = '股票';");
+$stock=mysql_query("SELECT * FROM web_data.hedge_strategies_holding where YEAR(trade_date) = YEAR(CURDATE()) and name='of.1m';");
 for($i=1;$i<=mysql_num_rows($stock);$i++){
 $rs=mysql_fetch_row($stock);
 ?>
                 <tr class="content">
-                    <td><?php echo $rs[4]?></td>
                     <td><?php echo $rs[1]?></td>
+                    <td><?php echo $rs[2]?></td>
                     <td><?php echo $rs[3]?></td>
+                    <td><?php echo $rs[4]?></td>
                     <td><?php echo $rs[7]?></td>
                 </tr>
 <?php
 }
 ?>
             </table>
-        </div>
-    </div>
-    <div style="float:left;margin-left:200px;">
-        <h4>最新持倉 </h4>
-        <div>
-           
-            <table>
+</div>
+ 
+<button id="opener">近一年交易紀錄 </button>
+
+<div id="dialog1" title="今天使用此策略的話，該怎麼買?">
+              <table>
                 <tr class="header">
+                    <td>交易日</td>
+                    <td>購別</td>
+                    <td>多空方</td>
                     <td>股票代碼</td>
-                    <td>購入日期</td>
-                    <td>操作方向</td>
                     <td>權重</td>
                 </tr>
 <?php
-$stock=mysql_query("SELECT * FROM web_data.hedge_strategies_holding where trade_date=(select max(trade_date) from web_data.hedge_strategies_holding where name='of.1m' and type = '期貨') and name='of.1m' and type = '期貨';");
+$stock=mysql_query("SELECT * FROM web_data.ifiwanttobuytoday_hedge_fund where name='of.1m';");
+for($i=1;$i<=mysql_num_rows($stock);$i++){
 $rs=mysql_fetch_row($stock);
 ?>
                 <tr class="content">
-                    <td><?php echo $rs[4]?></td>
                     <td><?php echo $rs[1]?></td>
+                    <td><?php echo $rs[2]?></td>
                     <td><?php echo $rs[3]?></td>
+                    <td><?php echo $rs[4]?></td>
                     <td><?php echo $rs[7]?></td>
                 </tr>
-
+<?php
+}
+?>
             </table>
-        </div>
-    </div>
+</div>
+ 
+<button id="opener1">今天使用此策略的話,該怎麼買……</button>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
 </div>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');

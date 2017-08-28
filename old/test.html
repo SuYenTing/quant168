@@ -1,154 +1,45 @@
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
+  <meta charset="utf-8">
+  <title>jQuery UI 对话框（Dialog） - 动画</title>
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+
+    $( "#dialog1" ).dialog({
+      autoOpen: false,
+    });
+ 
+    $( "#opener1" ).click(function() {
+      $( "#dialog1" ).dialog( "open" );
+    });
+  });
+  </script>
 </head>
-<style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th,
-td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
-</head>
-<div style="width:80%;">
-<h3 align="center">今日最佳表現</h3>
-<p align="right">今日最佳表現   今日最差表現</p>
-    <table align="center" >
-        <tr>
-            <th>名次</th>
-            <th>基金名稱</th>
-            <th>今日漲幅</th>
-            <th>近一年報酬率</th>
-        </tr>
-
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-        <tr class="content">
-          <td>1</td>
-          <td>群益店頭市場</td>
-          <td>1.21</td>
-          <td>17.44</td>
-        </tr>
-    </table>
+<body>
+ 
+<div id="dialog" title="近一年交易紀錄">
+  <p>这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，默认可通过 'x' 图标关闭。</p>
 </div>
+ 
+<button id="opener">近一年交易紀錄 </button>
+
+<div id="dialog1" title="今天使用此策略的話，該怎麼買?">
+  <p>222这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，默认可通过 'x' 图标关闭。</p>
+</div>
+ 
+<button id="opener1">今天使用此策略的話,該怎麼買……</button>
+ 
+ 
+</body>
 </html>

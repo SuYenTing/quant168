@@ -11,6 +11,28 @@ $FundTrendData=mysql_query("select date, nav/1000000 from web_data.strategies_na
 $IndexTrendData=mysql_query("select date, close/(select close from stock_market.y9997 where date = 20050503) from stock_market.y9997 where date >= 20050503 ");
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+
+    $( "#dialog1" ).dialog({
+      autoOpen: false,
+    });
+ 
+    $( "#opener1" ).click(function() {
+      $( "#dialog1" ).dialog( "open" );
+    });
+  });
+</script>
 <style>
 .container {
     width: 80%;
@@ -161,36 +183,18 @@ $rs2=mysql_fetch_row($stock2);
             </table>
         </div>
     </div>
-    <div>
-        <h4>最新持股</h4>
-        <div>
-            <style type="text/css">
-            td {
-                text-align: center;
-                vertical-align: middle;
-                height: 30px;
-            }
-            
-            .header {
-                background-color: #409ad5
-            }
-            
-            .subheader {
-                background-color: #AAD1E4
-            }
-            
-            .content {
-                background-color: #D9EDF7
-            }
-            </style>
-            <table>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div id="dialog" title="近一年交易紀錄">
+              <table>
                 <tr class="header">
                     <td>股票代碼</td>
                     <td>購入日期</td>
                     <td>權重</td>
                 </tr>
 <?php
-$stock=mysql_query("SELECT * FROM web_data.strategies_holding where start_date=(select max(start_date) from web_data.strategies_holding where name='profit.1m') and name='profit.1m';");
+$stock=mysql_query("SELECT * FROM web_data.strategies_holding where YEAR(start_date) = YEAR(CURDATE()) and name='profit.1m';");
 for($i=1;$i<=mysql_num_rows($stock);$i++){
 $rs=mysql_fetch_row($stock);
 ?>
@@ -203,8 +207,38 @@ $rs=mysql_fetch_row($stock);
 }
 ?>
             </table>
-        </div>
-    </div>
+</div>
+ 
+<button id="opener">近一年交易紀錄 </button>
+
+<div id="dialog1" title="今天使用此策略的話，該怎麼買?">
+              <table>
+                <tr class="header">
+                    <td>股票代碼</td>
+                    <td>購入日期</td>
+                    <td>權重</td>
+                </tr>
+<?php
+$stock=mysql_query("SELECT * FROM web_data.ifiwanttobuytoday_fund where name='profit.1m';");
+for($i=1;$i<=mysql_num_rows($stock);$i++){
+$rs=mysql_fetch_row($stock);
+?>
+                <tr class="content">
+                    <td><?php echo $rs[3]?></td>
+                    <td><?php echo $rs[1]?></td>
+                    <td><?php echo $rs[4]?></td>
+                </tr>
+<?php
+}
+?>
+            </table>
+</div>
+ 
+<button id="opener1">今天使用此策略的話,該怎麼買……</button>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
 </div>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
