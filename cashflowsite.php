@@ -556,7 +556,7 @@ function calculate(){
     var monthlyExp = parseInt(document.getElementById("monthlyExp").value);
     var parentsExp = document.getElementById("parentsExp").value;
     var currentSaving = parseInt(document.getElementById("currentSaving").value);
-    var investedMoney = parseInt(document.getElementById("investedMoney").value);
+    var investedMoney = parseFloat(document.getElementById("investedMoney").value);
     var roi = parseFloat(document.getElementById("roi").value) / 100;
     var loan = document.getElementById("loan").value;
     var loanLeftYear = document.getElementById("loanLeftYear").value;
@@ -671,7 +671,7 @@ function calculate(){
 
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7);
 
 }
 
@@ -908,7 +908,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7){
 
     var rowAge;
 
@@ -919,6 +919,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33){
     while (rows.length > 2) {
         rows[2].parentNode.removeChild(rows[2]);
     }
+
 
 
     for (rowAge = B2; rowAge <= 80; rowAge++) {
@@ -937,9 +938,6 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33){
             D3 = D3 * (1+G33);
             D11 = D11 * (1+G33);
 
-            // row.insertCell(6).innerHTML = Math.round(F5 * 12);
-            // F5 = F5 * (1+G29);
-
         }
         else if (B5 == "planning") {
             if (rowAge < (B2 + D5)) {
@@ -948,20 +946,14 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33){
                 row.insertCell(2).innerHTML = Math.round(D3);
                 D3 = D3 * (1+G33);
 
-                // row.insertCell(6).innerHTML = Math.round(F5 * 12);
-                // F5 = F5 * (1+G29);
-
             }else if(rowAge >= (B2 + D5)) {
-                // alert("yes");
+
                 row.insertCell(1).innerHTML = B11;
                 B11++;
 
                 row.insertCell(2).innerHTML = Math.round(D3 + D11);
                 D3 = D3 * (1+G33);
                 D11 = D11 * (1+G33);
-
-                // row.insertCell(6).innerHTML = Math.round(F5 * 24);
-                // F5 = F5 * (1+G29);
 
             }
         }
@@ -971,23 +963,50 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33){
             row.insertCell(2).innerHTML = Math.round(D3);
             D3 = D3 * (1+G33);
 
-            // row.insertCell(6).innerHTML = Math.round(F5 * 12);
-            // F5 = F5 * (1+G29);
-
         }
 
         row.insertCell(3).innerHTML = Math.round(J5);
         J5 = J5 * (1+G28);
 
 
+        row.insertCell(4).innerHTML = Math.round(B7);
+        B7 = B7 * getRandom((1 - (0.7 * D7)),(1 + D7));
 
 
+        row.insertCell(5).innerHTML = "-";
 
 
+        row.insertCell(6).innerHTML = "-";
+
+
+        if (B5 == "married") {
+            
+            row.insertCell(7).innerHTML = Math.round(F5 * 12);
+            F5 = F5 * (1+G29);
+
+        }
+        else if (B5 == "planning") {
+            if (rowAge < (B2 + D5)) {
+
+                row.insertCell(7).innerHTML = Math.round(F5 * 12);
+                F5 = F5 * (1+G29);
+
+            }else if(rowAge >= (B2 + D5)) {
+
+                row.insertCell(7).innerHTML = Math.round(F5 * 24);
+                F5 = F5 * (1+G29);
+
+            }
+        }
+        else if (B5 == "none") {
+
+            row.insertCell(7).innerHTML = Math.round(F5 * 12);
+            F5 = F5 * (1+G29);
+
+        }
 
 
         result.appendChild(row);
-
 
     }
 
@@ -997,13 +1016,9 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33){
 
 
 
-
-
-
-
-
-
-
+function getRandom(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 
 
