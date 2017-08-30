@@ -462,6 +462,18 @@ $roi = $_POST['roi'];
 
             <p><button onclick="window.location.href='retirementpay.php'" class="button button4">回去上頁</button>(點擊即可回上一頁重新輸入)</p>
 
+
+                <table id="result" style="visibility: hidden">
+                    <tr>
+                        <td colspan="1">年齡</td>
+                        <td colspan="1">配偶年齡</td>
+                        <td colspan="5">收入（單位：元/年）</td>
+                        <td colspan="8">支出（單位：元/年）</td>
+                        <td colspan="4">結果</td>
+                    </tr>
+                </table>
+
+
            </body>
 
 
@@ -638,7 +650,7 @@ function calculate(){
 
 
 
-
+    showResult(B2, B5, B11, D5);
 
 }
 
@@ -868,6 +880,67 @@ function lifeLeftFunc() {
         }
         document.getElementById("lifeLeft").value = lifeLeft;
         }
+
+
+
+
+
+
+
+function showResult(B2, B5, B11, D5){
+
+    var rowAge = B2;
+
+    var result = document.getElementById("result");
+    result.style.visibility="";
+
+
+    for (rowAge; rowAge <= 80; i++) {
+
+
+        var row = document.createElement("tr");
+        // row.innerHTML = '<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+
+        row.insertCell(0).innerHTML = rowAge;
+
+        if (B5 == "married") {
+            row.insertCell(1).innerHTML = B11;
+        }
+            else if (B5 == "planning") {
+
+                if (B2 + D5 > rowAge) {
+                    row.insertCell(1).innerHTML = "NA";
+                }else (B2 + D5 == rowAge) {
+                    row.insertCell(1).innerHTML = B11;
+                }
+
+            }
+                else if (B5 == "none") {
+                    row.insertCell(1).innerHTML = "NA";
+                }
+
+
+        result.appendChild(row);
+
+        B11++;
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
