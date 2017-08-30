@@ -555,7 +555,7 @@ function calculate(){
     var yearsToMarriage = parseInt(document.getElementById("yearsToMarriage").value);
     var monthlyExp = document.getElementById("monthlyExp").value;
     var parentsExp = document.getElementById("parentsExp").value;
-    var currentSaving = document.getElementById("currentSaving").value;
+    var currentSaving = parseInt(document.getElementById("currentSaving").value);
     var investedMoney = document.getElementById("investedMoney").value;
     var roi = parseFloat(document.getElementById("roi").value) / 100;
     var loan = document.getElementById("loan").value;
@@ -671,7 +671,7 @@ function calculate(){
 
 
 
-    showResult(B2, B5, B11, D5, D3, D11);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28);
 
 }
 
@@ -908,7 +908,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28){
 
     var rowAge;
 
@@ -957,6 +957,8 @@ function showResult(B2, B5, B11, D5, D3, D11){
             row.insertCell(2).innerHTML = D3;
         }
 
+        row.insertCell(3).innerHTML = Math.round(J5);
+        J5 = J5 * (1+G28);
 
 
 
