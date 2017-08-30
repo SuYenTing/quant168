@@ -523,6 +523,14 @@ function laborFunc(){
 
 function calculate(){
 
+
+    // var resultOutput = document.getElementById("resultOutput");
+
+    // while(resultOutput.hasChildNodes()){
+    //             resultOutput.removeChild(resultOutput.firstChild);
+    //         }
+
+
     var currentAge = parseInt(document.getElementById("currentAge").value);
     var gender = document.getElementById("genders").value;
     var vocation = document.getElementById("vocations").value;
@@ -531,7 +539,7 @@ function calculate(){
     var tenyrwage = parseFloat(document.getElementById("tenyrwage").value);
     var twenyrwage = parseFloat(document.getElementById("twenyrwage").value);
     var marriageState = document.getElementById("marriageState").value;
-    var yearsToMarriage = document.getElementById("yearsToMarriage").value;
+    var yearsToMarriage = parseInt(document.getElementById("yearsToMarriage").value);
     var monthlyExp = document.getElementById("monthlyExp").value;
     var parentsExp = document.getElementById("parentsExp").value;
     var currentSaving = document.getElementById("currentSaving").value;
@@ -889,13 +897,18 @@ function lifeLeftFunc() {
 
 function showResult(B2, B5, B11, D5){
 
-    var rowAge = B2;
+    var rowAge;
 
     var result = document.getElementById("result");
     result.style.visibility="";
 
+    var rows = result.getElementsByTagName("tr");
+    while (rows.length > 1) {
+        rows[1].parentNode.removeChild(rows[1]);
+    }
 
-    for (rowAge; rowAge <= 80; i++) {
+
+    for (rowAge = B2; rowAge <= 80; rowAge++) {
 
 
         var row = document.createElement("tr");
@@ -905,24 +918,26 @@ function showResult(B2, B5, B11, D5){
 
         if (B5 == "married") {
             row.insertCell(1).innerHTML = B11;
+            B11++;
         }
-            else if (B5 == "planning") {
-
-                if (B2 + D5 > rowAge) {
-                    row.insertCell(1).innerHTML = "NA";
-                }else (B2 + D5 == rowAge) {
-                    row.insertCell(1).innerHTML = B11;
-                }
-
+        else if (B5 == "planning") {
+            if (rowAge < (B2 + D5)) {
+                row.insertCell(1).innerHTML = "-";
+            }else if(rowAge >= (B2 + D5)) {
+                // alert("yes");
+                row.insertCell(1).innerHTML = B11;
+                B11++;
             }
-                else if (B5 == "none") {
-                    row.insertCell(1).innerHTML = "NA";
-                }
+        }
+        else if (B5 == "none") {
+            row.insertCell(1).innerHTML = "-";
+        }
+
+
 
 
         result.appendChild(row);
 
-        B11++;
 
     }
 
