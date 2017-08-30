@@ -553,10 +553,10 @@ function calculate(){
     var twenyrwage = parseFloat(document.getElementById("twenyrwage").value);
     var marriageState = document.getElementById("marriageState").value;
     var yearsToMarriage = parseInt(document.getElementById("yearsToMarriage").value);
-    var monthlyExp = document.getElementById("monthlyExp").value;
+    var monthlyExp = parseInt(document.getElementById("monthlyExp").value);
     var parentsExp = document.getElementById("parentsExp").value;
     var currentSaving = parseInt(document.getElementById("currentSaving").value);
-    var investedMoney = document.getElementById("investedMoney").value;
+    var investedMoney = parseInt(document.getElementById("investedMoney").value);
     var roi = parseFloat(document.getElementById("roi").value) / 100;
     var loan = document.getElementById("loan").value;
     var loanLeftYear = document.getElementById("loanLeftYear").value;
@@ -671,7 +671,7 @@ function calculate(){
 
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33);
 
 }
 
@@ -908,7 +908,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33){
 
     var rowAge;
 
@@ -933,32 +933,53 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28){
             row.insertCell(1).innerHTML = B11;
             B11++;
 
-            row.insertCell(2).innerHTML = D3 + D11;
+            row.insertCell(2).innerHTML = Math.round(D3 + D11);
+            D3 = D3 * (1+G33);
+            D11 = D11 * (1+G33);
+
+            // row.insertCell(6).innerHTML = Math.round(F5 * 12);
+            // F5 = F5 * (1+G29);
 
         }
         else if (B5 == "planning") {
             if (rowAge < (B2 + D5)) {
                 row.insertCell(1).innerHTML = "-";
 
-                row.insertCell(2).innerHTML = D3;
+                row.insertCell(2).innerHTML = Math.round(D3);
+                D3 = D3 * (1+G33);
+
+                // row.insertCell(6).innerHTML = Math.round(F5 * 12);
+                // F5 = F5 * (1+G29);
 
             }else if(rowAge >= (B2 + D5)) {
                 // alert("yes");
                 row.insertCell(1).innerHTML = B11;
                 B11++;
 
-                row.insertCell(2).innerHTML = D3 + D11;
+                row.insertCell(2).innerHTML = Math.round(D3 + D11);
+                D3 = D3 * (1+G33);
+                D11 = D11 * (1+G33);
+
+                // row.insertCell(6).innerHTML = Math.round(F5 * 24);
+                // F5 = F5 * (1+G29);
 
             }
         }
         else if (B5 == "none") {
             row.insertCell(1).innerHTML = "-";
 
-            row.insertCell(2).innerHTML = D3;
+            row.insertCell(2).innerHTML = Math.round(D3);
+            D3 = D3 * (1+G33);
+
+            // row.insertCell(6).innerHTML = Math.round(F5 * 12);
+            // F5 = F5 * (1+G29);
+
         }
 
         row.insertCell(3).innerHTML = Math.round(J5);
         J5 = J5 * (1+G28);
+
+
 
 
 
