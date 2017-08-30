@@ -554,7 +554,7 @@ function calculate(){
     var marriageState = document.getElementById("marriageState").value;
     var yearsToMarriage = parseInt(document.getElementById("yearsToMarriage").value);
     var monthlyExp = parseInt(document.getElementById("monthlyExp").value);
-    var parentsExp = document.getElementById("parentsExp").value;
+    var parentsExp = parseInt(document.getElementById("parentsExp").value);
     var currentSaving = parseInt(document.getElementById("currentSaving").value);
     var investedMoney = parseFloat(document.getElementById("investedMoney").value);
     var roi = parseFloat(document.getElementById("roi").value) / 100;
@@ -671,7 +671,7 @@ function calculate(){
 
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5);
 
 }
 
@@ -908,7 +908,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5){
 
     var rowAge;
 
@@ -1004,6 +1004,10 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7){
             F5 = F5 * (1+G29);
 
         }
+
+
+        row.insertCell(8).innerHTML = Math.round(H5 * 12);
+        H5 = H5 * (1+G29);
 
 
         result.appendChild(row);
