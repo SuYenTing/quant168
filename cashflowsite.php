@@ -471,6 +471,27 @@ $roi = $_POST['roi'];
                         <td colspan="8">支出（單位：元/年）</td>
                         <td colspan="4">結果</td>
                     </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>薪資</td>
+                        <td>現有存款</td>
+                        <td>投資&其他</td>
+                        <td>勞保</td>
+                        <td>勞退</td>
+                        <td>生活費</td>
+                        <td>孝親費</td>
+                        <td>小孩支出</td>
+                        <td>房租</td>
+                        <td>頭期款準備</td>
+                        <td>房貸</td>
+                        <td>車貸</td>
+                        <td>其他借款</td>
+                        <td>當年收入-支出</td>
+                        <td>累計餘額</td>
+                        <td>退休提存</td>
+                        <td>累積餘額</td>
+                    </tr>
                 </table>
 
 
@@ -522,14 +543,6 @@ function laborFunc(){
 }
 
 function calculate(){
-
-
-    // var resultOutput = document.getElementById("resultOutput");
-
-    // while(resultOutput.hasChildNodes()){
-    //             resultOutput.removeChild(resultOutput.firstChild);
-    //         }
-
 
     var currentAge = parseInt(document.getElementById("currentAge").value);
     var gender = document.getElementById("genders").value;
@@ -903,8 +916,8 @@ function showResult(B2, B5, B11, D5){
     result.style.visibility="";
 
     var rows = result.getElementsByTagName("tr");
-    while (rows.length > 1) {
-        rows[1].parentNode.removeChild(rows[1]);
+    while (rows.length > 2) {
+        rows[2].parentNode.removeChild(rows[2]);
     }
 
 
