@@ -580,7 +580,7 @@ function calculate(){
 
 
     var mateAge = parseInt(document.getElementById("mateAge").value);
-    var mateYearRevenue = document.getElementById("mateYearRevenue").value;
+    var mateYearRevenue = parseFloat(document.getElementById("mateYearRevenue").value);
     var mateRetireAge = document.getElementById("mateRetireAge").value;
     var childrenNum = document.getElementById("childrenNum").value;
     var child1Age = document.getElementById("child1Age").value;
@@ -671,7 +671,7 @@ function calculate(){
 
 
 
-    showResult(B2, B5, B11, D5);
+    showResult(B2, B5, B11, D5, D3, D11);
 
 }
 
@@ -908,7 +908,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5){
+function showResult(B2, B5, B11, D5, D3, D11){
 
     var rowAge;
 
@@ -932,19 +932,33 @@ function showResult(B2, B5, B11, D5){
         if (B5 == "married") {
             row.insertCell(1).innerHTML = B11;
             B11++;
+
+            row.insertCell(2).innerHTML = D3 + D11;
+
         }
         else if (B5 == "planning") {
             if (rowAge < (B2 + D5)) {
                 row.insertCell(1).innerHTML = "-";
+
+                row.insertCell(2).innerHTML = D3;
+
             }else if(rowAge >= (B2 + D5)) {
                 // alert("yes");
                 row.insertCell(1).innerHTML = B11;
                 B11++;
+
+                row.insertCell(2).innerHTML = D3 + D11;
+
             }
         }
         else if (B5 == "none") {
             row.insertCell(1).innerHTML = "-";
+
+            row.insertCell(2).innerHTML = D3;
         }
+
+
+
 
 
 
