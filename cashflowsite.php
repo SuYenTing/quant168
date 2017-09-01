@@ -912,8 +912,9 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
     var rowAge;
 
-    var child1;
+    var child1 = D12;
     var child2;
+    var childYearToBirth = 0;
 
     var result = document.getElementById("result");
     result.style.visibility="";
@@ -1019,13 +1020,43 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             
             if(D12 != 0){
                 
-                child1 = D12;
+                // child1 = D12;
                 if(child1 <= 25){
                     row.insertCell(9).innerHTML = Math.round(240000);
+                    child1 = child1 + 1;
+                }else if(child1 > 25){
+                    row.insertCell(9).innerHTML = "0";
                 }
-                child1++;
+
+            }else if(D12 == 0){
+
+                if (B14 = "yes") {
+
+                    // childYearToBirth = 0;
+                    if(childYearToBirth < D14){
+                        row.insertCell(9).innerHTML = "0";
+                        childYearToBirth++;
+                    }else if(childYearToBirth >= D14){
+
+                        // child1 = D12+1;
+                        if(child1 <= 25){
+                            row.insertCell(9).innerHTML = Math.round(240000);
+                            child1 = child1 + 1;
+                        }else if(child1 > 25){
+                            row.insertCell(9).innerHTML = "0";
+                        }
+
+                    }
+
+                }else if (B14 = "no"){
+                    row.insertCell(9).innerHTML = "-";
+                }
 
             }
+
+
+
+
 
             // row.insertCell(9).innerHTML = Math.round(B12 * 240000);
 
@@ -1033,17 +1064,17 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         else if (B5 == "planning") {
             if (rowAge < (B2 + D5)) {
 
-                row.insertCell(9).innerHTML = Math.round(B12 * 240000);
+                // row.insertCell(9).innerHTML = Math.round(B12 * 240000);
 
             }else if(rowAge >= (B2 + D5)) {
 
-                row.insertCell(9).innerHTML = Math.round(B12 * 240000);
+                // row.insertCell(9).innerHTML = Math.round(B12 * 240000);
 
             }
         }
         else if (B5 == "none") {
 
-            row.insertCell(9).innerHTML = "-";
+            // row.insertCell(9).innerHTML = "-";
 
         }
 
