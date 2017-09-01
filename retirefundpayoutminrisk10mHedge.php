@@ -6,11 +6,33 @@ set_time_limit(0);
 mysql_connect("140.119.86.174","nccu","nccu");//連結伺服器
 mysql_select_db("web_data");//選擇資料庫
 mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中文
-$FundTrendData=mysql_query("select date, nav/10000000 from web_data.strategies_nav where name = 'payout.minrisk.10m' ");//從contact資料庫中選擇所有的資料表
-
 $IndexTrendData=mysql_query("select date, close/(select close from stock_market.y9997 where date = 20050503) from stock_market.y9997 where date >= 20050503 ");
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      width:'auto'
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+
+    $( "#dialog1" ).dialog({
+      autoOpen: false,
+      width:'auto'
+    });
+ 
+    $( "#opener1" ).click(function() {
+      $( "#dialog1" ).dialog( "open" );
+    });
+  });
+</script>
 <style>
 .container {
     width: 80%;
@@ -51,11 +73,10 @@ table, th, td {
     </div>
     <div>
         <div>
-            
             <table>
                 <tr class="header">
                     <td></td>
-                    <td>穩健基金</td>
+                    <td>成長基金</td>
                     <td>調整後台灣加權指數</td>
                 </tr>
 <?php
@@ -90,7 +111,6 @@ $rs2=mysql_fetch_row($stock2);
     <div>
         <h4>淨值比較表</h4>
         <div>
-           
             <table>
                 <tr class="header">
                     <td>期間報酬(%)</td>
@@ -125,7 +145,7 @@ $rs2=mysql_fetch_row($stock2);
             </table>
         </div>
     </div>
-        <div><br></div>
+    <div><br></div>
     <div><br></div>
     <div><br></div>
     <div id="dialog" title="近一年交易紀錄">
