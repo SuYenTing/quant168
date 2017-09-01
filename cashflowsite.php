@@ -582,12 +582,12 @@ function calculate(){
     var mateAge = parseInt(document.getElementById("mateAge").value);
     var mateYearRevenue = parseFloat(document.getElementById("mateYearRevenue").value);
     var mateRetireAge = document.getElementById("mateRetireAge").value;
-    var childrenNum = document.getElementById("childrenNum").value;
-    var child1Age = document.getElementById("child1Age").value;
-    var child2Age = document.getElementById("child2Age").value;
+    var childrenNum = parseInt(document.getElementById("childrenNum").value);
+    var child1Age = parseInt(document.getElementById("child1Age").value);
+    var child2Age = parseInt(document.getElementById("child2Age").value);
     var childPlan = document.getElementById("childPlan").value;
-    var yearToBirth = document.getElementById("yearToBirth").value;
-    var howManyChildren = document.getElementById("howManyChildren").value;
+    var yearToBirth = parseInt(document.getElementById("yearToBirth").value);
+    var howManyChildren = parseInt(document.getElementById("howManyChildren").value);
 
     var B11 = mateAge;
     var D11 = mateYearRevenue;
@@ -671,7 +671,7 @@ function calculate(){
 
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12);
 
 }
 
@@ -908,9 +908,12 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12){
 
     var rowAge;
+
+    var child1;
+    var child2;
 
     var result = document.getElementById("result");
     result.style.visibility="";
@@ -1008,6 +1011,44 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5)
 
         row.insertCell(8).innerHTML = Math.round(H5 * 12);
         H5 = H5 * (1+G29);
+
+
+
+
+        if (B5 == "married") {
+            
+            if(D12 != 0){
+                
+                child1 = D12;
+                if(child1 <= 25){
+                    row.insertCell(9).innerHTML = Math.round(240000);
+                }
+                child1++;
+
+            }
+
+            // row.insertCell(9).innerHTML = Math.round(B12 * 240000);
+
+        }
+        else if (B5 == "planning") {
+            if (rowAge < (B2 + D5)) {
+
+                row.insertCell(9).innerHTML = Math.round(B12 * 240000);
+
+            }else if(rowAge >= (B2 + D5)) {
+
+                row.insertCell(9).innerHTML = Math.round(B12 * 240000);
+
+            }
+        }
+        else if (B5 == "none") {
+
+            row.insertCell(9).innerHTML = "-";
+
+        }
+
+
+
 
 
         result.appendChild(row);
