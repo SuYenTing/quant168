@@ -1070,30 +1070,36 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
                 }else if (B14 = "no"){
                     row.insertCell(9).innerHTML = "0";
                 }
-
             }
-
-
-
-
-
-            // row.insertCell(9).innerHTML = Math.round(B12 * 240000);
-
         }
         else if (B5 == "planning") {
-            if (rowAge < (B2 + D5)) {
+            
+            if (B14 = "yes") {
 
-                // row.insertCell(9).innerHTML = Math.round(B12 * 240000);
+                    // childYearToBirth = 0;
+                    if(childYearToBirth < D14){
+                        row.insertCell(9).innerHTML = "0";
+                        childYearToBirth++;
+                    }else if(childYearToBirth >= D14){
 
-            }else if(rowAge >= (B2 + D5)) {
+                        // child1 = D12+1;
+                        if(child1 <= 25){
+                            row.insertCell(9).innerHTML = Math.round(240000 * B12);
+                            child1 = child1 + 1;
+                        }else if(child1 > 25){
+                            row.insertCell(9).innerHTML = "0";
+                        }
 
-                // row.insertCell(9).innerHTML = Math.round(B12 * 240000);
+                    }
 
-            }
+                }else if (B14 = "no"){
+                    row.insertCell(9).innerHTML = "0";
+                }
+
         }
         else if (B5 == "none") {
 
-            // row.insertCell(9).innerHTML = "-";
+            row.insertCell(9).innerHTML = "0";
 
         }
 
