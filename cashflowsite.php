@@ -1143,10 +1143,13 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
             row.insertCell(10).innerHTML = "0";
             row.insertCell(11).innerHTML = "0";
-            row.insertCell(12).innerHTML = Math.round(B24 * 12)
+            row.insertCell(12).innerHTML = Math.round(B24 * 12);
 
         }
 
+
+        //車貸
+        row.insertCell(13).innerHTML = "-";
 
 
 
