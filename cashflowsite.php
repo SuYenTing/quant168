@@ -601,9 +601,9 @@ function calculate(){
 
 
     var housePlan = document.getElementById("housePlan").value;
-    var houseRent = document.getElementById("houseRent").value;
-    var yearsToBuyHouse = document.getElementById("yearsToBuyHouse").value;
-    var yearsPlanToBuyHouse = document.getElementById("yearsPlanToBuyHouse").value;
+    var houseRent = parseInt(document.getElementById("houseRent").value);
+    var yearsToBuyHouse = parseInt(document.getElementById("yearsToBuyHouse").value);
+    var yearsPlanToBuyHouse = parseInt(document.getElementById("yearsPlanToBuyHouse").value);
     var houseCurrentValue = document.getElementById("houseCurrentValue").value;
     var loanProportion = parseFloat(document.getElementById("loanProportion").value) / 100;
     var loanYearSpan = document.getElementById("loanYearSpan").value;
@@ -671,7 +671,7 @@ function calculate(){
 
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20);
 
 }
 
@@ -908,13 +908,14 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20){
 
     var rowAge;
 
     var child1 = D12;
     var child2 = F12;
     var childYearToBirth = 0;
+    var yearToBuyHouse = 0;
 
     var result = document.getElementById("result");
     result.style.visibility="";
@@ -924,7 +925,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         rows[2].parentNode.removeChild(rows[2]);
     }
 
-
+    alert(B18);
 
     for (rowAge = B2; rowAge <= 80; rowAge++) {
 
@@ -1049,7 +1050,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
             }else if(D12 == 0){
 
-                if (B14 = "yes") {
+                if (B14 == "yes") {
 
                     // childYearToBirth = 0;
                     if(childYearToBirth < D14){
@@ -1067,14 +1068,14 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                     }
 
-                }else if (B14 = "no"){
+                }else if (B14 == "no"){
                     row.insertCell(9).innerHTML = "0";
                 }
             }
         }
         else if (B5 == "planning") {
             
-            if (B14 = "yes") {
+            if (B14 == "yes") {
 
                     // childYearToBirth = 0;
                     if(childYearToBirth < D14){
@@ -1092,7 +1093,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                     }
 
-                }else if (B14 = "no"){
+                }else if (B14 == "no"){
                     row.insertCell(9).innerHTML = "0";
                 }
 
@@ -1103,6 +1104,31 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
         }
 
+
+
+        //房租
+        if (B18 == "yes") {
+
+            if (yearToBuyHouse < B20) {
+                row.insertCell(10).innerHTML = Math.round(D18);
+                D18 = D18 * (1 + G29);
+                yearToBuyHouse++;
+            }else if (yearToBuyHouse >= B20) {
+                row.insertCell(10).innerHTML = "0";
+            }
+
+
+        }else if (B18 == "no") {
+
+            row.insertCell(10).innerHTML = Math.round(D18 * 12);
+            D18 = D18 * (1 + G29);
+            row.insertCell(11).innerHTML = "0";
+            row.insertCell(12).innerHTML = "0";
+
+
+        }else if (B18 == "bought"){
+
+        }
 
 
 
