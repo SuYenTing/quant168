@@ -607,7 +607,7 @@ function calculate(){
     var houseCurrentValue = document.getElementById("houseCurrentValue").value;
     var loanProportion = parseFloat(document.getElementById("loanProportion").value) / 100;
     var loanYearSpan = document.getElementById("loanYearSpan").value;
-    var houseLoanCost = document.getElementById("houseLoanCost").value;
+    var houseLoanCost = parseInt(document.getElementById("houseLoanCost").value);
     var houseLoanYearLeft = document.getElementById("houseLoanYearLeft").value;
 
     var B18 = housePlan;
@@ -671,7 +671,7 @@ function calculate(){
 
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24);
 
 }
 
@@ -908,7 +908,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24){
 
     var rowAge;
 
@@ -916,6 +916,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
     var child2 = F12;
     var childYearToBirth = 0;
     var yearToBuyHouse = 0;
+    var yearPlanToBuyHouse = 0;
 
     var result = document.getElementById("result");
     result.style.visibility="";
@@ -925,7 +926,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         rows[2].parentNode.removeChild(rows[2]);
     }
 
-    alert(B18);
+    // alert(B18);
 
     for (rowAge = B2; rowAge <= 80; rowAge++) {
 
@@ -1110,13 +1111,25 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         if (B18 == "yes") {
 
             if (yearToBuyHouse < B20) {
-                row.insertCell(10).innerHTML = Math.round(D18);
+                row.insertCell(10).innerHTML = Math.round(D18 * 12);
                 D18 = D18 * (1 + G29);
                 yearToBuyHouse++;
+
+                if (yearPlanToBuyHouse < D20) {
+                    row.insertCell(11).innerHTML = "0";
+                    row.insertCell(12).innerHTML = "0";
+                    yearPlanToBuyHouse++;
+                }else if (yearPlanToBuyHouse >= D20) {
+                    row.insertCell(11).innerHTML = Math.round(G62 * 12);
+                    row.insertCell(12).innerHTML = "0";
+                }
+
             }else if (yearToBuyHouse >= B20) {
                 row.insertCell(10).innerHTML = "0";
-            }
+                row.insertCell(11).innerHTML = "0";
+                row.insertCell(12).innerHTML = Math.round(G63 * 12);
 
+            }
 
         }else if (B18 == "no") {
 
@@ -1127,6 +1140,10 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         }else if (B18 == "bought"){
+
+            row.insertCell(10).innerHTML = "0";
+            row.insertCell(11).innerHTML = "0";
+            row.insertCell(12).innerHTML = Math.round(B24 * 12)
 
         }
 
