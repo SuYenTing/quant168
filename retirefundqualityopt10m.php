@@ -18,7 +18,6 @@ $IndexTrendData=mysql_query("select date, close/(select close from stock_market.
   $(function() {
     $( "#dialog" ).dialog({
       autoOpen: false,
-      width:'auto'
     });
  
     $( "#opener" ).click(function() {
@@ -27,7 +26,6 @@ $IndexTrendData=mysql_query("select date, close/(select close from stock_market.
 
     $( "#dialog1" ).dialog({
       autoOpen: false,
-      width:'auto'
     });
  
     $( "#opener1" ).click(function() {
@@ -75,10 +73,29 @@ table, th, td {
     </div>
     <div>
         <div>
+            <style type="text/css">
+            td {
+                text-align: center;
+                vertical-align: middle;
+                height: 30px;
+            }
+            
+            .header {
+                background-color: #409ad5
+            }
+            
+            .subheader {
+                background-color: #AAD1E4
+            }
+            
+            .content {
+                background-color: #D9EDF7
+            }
+            </style>
             <table>
                 <tr class="header">
                     <td></td>
-                    <td>基金</td>
+                    <td>獲利基金</td>
                     <td>調整後台灣加權指數</td>
                 </tr>
 <?php
@@ -113,6 +130,25 @@ $rs2=mysql_fetch_row($stock2);
     <div>
         <h4>淨值比較表</h4>
         <div>
+            <style type="text/css">
+            td {
+                text-align: center;
+                vertical-align: middle;
+                height: 30px;
+            }
+            
+            .header {
+                background-color: #409ad5
+            }
+            
+            .subheader {
+                background-color: #AAD1E4
+            }
+            
+            .content {
+                background-color: #D9EDF7
+            }
+            </style>
             <table>
                 <tr class="header">
                     <td>期間報酬(%)</td>
@@ -147,17 +183,18 @@ $rs2=mysql_fetch_row($stock2);
             </table>
         </div>
     </div>
-    <div>
-        <h4>最新持股</h4>
-        <div>
-            <table>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div id="dialog" title="近一年交易紀錄">
+              <table>
                 <tr class="header">
                     <td>股票代碼</td>
                     <td>購入日期</td>
                     <td>權重</td>
                 </tr>
 <?php
-$stock=mysql_query("SELECT * FROM web_data.strategies_holding where start_date=(select max(start_date) from web_data.strategies_holding where name='quality.opt.10m') and name='quality.opt.10m';");
+$stock=mysql_query("SELECT * FROM web_data.strategies_holding where YEAR(start_date) = YEAR(CURDATE()) and name='quality.opt.10m';");
 for($i=1;$i<=mysql_num_rows($stock);$i++){
 $rs=mysql_fetch_row($stock);
 ?>
@@ -170,8 +207,38 @@ $rs=mysql_fetch_row($stock);
 }
 ?>
             </table>
-        </div>
-    </div>
+</div>
+ 
+<button id="opener">近一年交易紀錄 </button>
+
+<div id="dialog1" title="今天使用此策略的話，該怎麼買?">
+              <table>
+                <tr class="header">
+                    <td>股票代碼</td>
+                    <td>購入日期</td>
+                    <td>權重</td>
+                </tr>
+<?php
+$stock=mysql_query("SELECT * FROM web_data.ifiwanttobuytoday_fund where name='quality.opt.10m';");
+for($i=1;$i<=mysql_num_rows($stock);$i++){
+$rs=mysql_fetch_row($stock);
+?>
+                <tr class="content">
+                    <td><?php echo $rs[3]?></td>
+                    <td><?php echo $rs[1]?></td>
+                    <td><?php echo $rs[4]?></td>
+                </tr>
+<?php
+}
+?>
+            </table>
+</div>
+ 
+<button id="opener1">今天使用此策略的話,該怎麼買……</button>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
 </div>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -201,7 +268,7 @@ $tmp = $tmp+$rs[1];
 <?php
 }
 ?>],
-    backgroundColor: "rgba(0,0,0,0)",
+      backgroundColor: "rgba(0,0,0,0)",
       borderColor: "rgba(153,255,51,1)"
     },
 {
@@ -217,7 +284,7 @@ $tmp = $tmp+$rs[1];
 <?php
 }
 ?>],
-    backgroundColor: "rgba(0,0,0,0)",
+      backgroundColor: "rgba(0,0,0,0)",
       borderColor: "rgba(255,153,0,1)"
     }
     ]
