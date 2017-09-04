@@ -50,6 +50,7 @@ function interactivedashboardSetUp(yur0,rts0,iar0,fr75,fr50,fr25) {
 $(document).ready(function(){
 
 	var ALMData,
+		EFData,
 		yur,
 		rts,
 		age,
@@ -60,7 +61,8 @@ $(document).ready(function(){
 		AssetAllocationPie0 = new AssetAllocationPie();
 		FundReturnChart0 = new FundReturnChart();
 		AssetAllocationTable0 = new AssetAllocationTable();
-		AssetAllocationChart0 = new AssetAllocationChart()
+		AssetAllocationChart0 = new AssetAllocationChart();
+		EFChart0 = new EFChart()
 
 	$("#interactivedashboard").hide();
 
@@ -82,6 +84,11 @@ $(document).ready(function(){
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
 			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
+		});
+		$.post('db/ef.php',{yur: yur}, function(data){
+			//alert(data);
+			EFData = JSON.parse(data);
+			EFChart0.create(EFData, rts);
 		});
 		$("#form1").hide();
 		$("#description").hide();
@@ -109,6 +116,11 @@ $(document).ready(function(){
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
 			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);		
 		});
+		$.post('db/ef.php',{yur: yur}, function(data){
+			//alert(data);
+			EFData = JSON.parse(data);
+			EFChart0.create(EFData, rts);
+		});
 		$("#form1").hide();
 		// $("#description").html("資產配置建議");
 		$("#interactivedashboard").show();
@@ -131,6 +143,12 @@ $(document).ready(function(){
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
 			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
+		$.post('db/ef.php',{yur: yur}, function(data){
+			//alert(data);
+			EFData = JSON.parse(data);
+			EFChart0.update(EFData, rts);
+			console.log("updating ef")
+		});
 	});
 
 
@@ -144,6 +162,7 @@ $(document).ready(function(){
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
 			AssetAllocationChart0.update(ALMData);
+			EFChart0.update(EFData, rts);			
 			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
@@ -161,6 +180,7 @@ $(document).ready(function(){
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
 			interactivedashboardSetUp(yur,rts,iar,fr75,fr50,fr25);
 		});
+
 	});
 
 	$("#calculateRTS").on("click",function(){
@@ -178,8 +198,9 @@ $(document).ready(function(){
 			ALMData = JSON.parse(data);
 			AssetAllocationPie0.update(ALMData);
 			FundReturnChart0.update(ALMData,iar);
-			AssetAllocationTable0.create(ALMData);
+			AssetAllocationTable0.update(ALMData);
 			AssetAllocationChart0.update(ALMData);
+			EFChart0.update(EFData, rts);
 			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;

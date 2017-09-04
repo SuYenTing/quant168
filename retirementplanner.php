@@ -175,6 +175,7 @@ fr_graph: fund return graph,
 			<div class="col-md-4">			
 				<div class="chartitem">
 					<h3><b>效率前沿</b></h3>
+					<div id="efchart"></div>
 				</div>	
 			</div>				
 		</div>
@@ -307,6 +308,7 @@ fr_graph: fund return graph,
 <script src="js/retirementplanner/AssetAllocationTable.js"></script>
 <script src="js/retirementplanner/AssetAllocationPie.js"></script>
 <script src="js/retirementplanner/FundReturnChart.js"></script>
+<script src="js/retirementplanner/EFChart.js"></script>
 <script src="js/retirementplanner/retirementplanner.js"></script>
 
 </body>

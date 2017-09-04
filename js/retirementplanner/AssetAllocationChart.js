@@ -57,12 +57,14 @@ function AssetAllocationChart() {
 			})
 			.attr("transform", function(d){
 				yPosition = y(d[d.length-1].value);
-				if (yPositionList.indexOf(yPosition) > -1) {
-					if (y(d[d.length-3].value) > y(d[d.length-3].value)) {
-						yPosition = yPosition + 30;
-					}
-					else {
-						yPosition = yPosition - 30;
+				for (var i = 0; i < yPositionList.length; i++) {
+					if (Math.abs(yPosition-yPositionList[i]) < 10){
+						if (y(d[d.length-1].value) > y(d[d.length-3].value)) {
+							yPosition = yPosition - 30;
+						}
+						else {
+							yPosition = yPosition + 30;
+						}
 					}
 				}
 				yPositionList.push(yPosition);
