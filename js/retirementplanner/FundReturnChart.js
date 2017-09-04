@@ -84,6 +84,14 @@ function FundReturnChart() {
 							// "rgba(0,90,49,0.8)",
 						]
 
+		var labelList = [
+			"95%",
+			"75%",
+			"50%",
+			"25%",
+			"5%"
+		]
+
 		ReturnChart.select(".area1")
 			.attr("d",area1)
 			.style("fill","rgba(0,90,49,0.9)");
@@ -97,13 +105,30 @@ function FundReturnChart() {
 			.attr("d",area4)
 			.style("fill","rgba(0,90,49,0.3)");
 
-		ReturnChart.select(".linegroup").selectAll("path")
+		var i = -1;
+		ReturnChart.select(".linegroup")
+			.selectAll("path")
 			.attr("d",line)
-			.style("stroke", function (d, i) {
-					console.log(i);
+			.style("stroke", function (d) {
+					i = i + 1;
 					return colorList[i];
                 })
 			.attr("stroke-width",4);
+
+				var i = -1
+		ReturnChart.select(".linegroup")
+			.selectAll("text")
+			.attr("font-size",22)
+			.text(function(d){
+				i = i + 1;
+				return labelList[i];	
+			})
+			.attr("transform", function(d){
+				return "translate(" + x(new Date(d[d.length-1].year.toString())) + "," + y(d[d.length-1].value) + ")";
+			})
+			.attr("dx","10px")
+
+
 		ReturnChart.select(".iarline")
 					.attr("d",line)
 					.style("stroke", "black")
@@ -189,10 +214,13 @@ function FundReturnChart() {
 		//create plot lines
 		var linegroup = frg.append("g")
 							.attr("class","linegroup");
-		var linepaths = linegroup.selectAll("path")
+		var linepaths = linegroup.selectAll("g")
 							.data(chartdata)
 							.enter()
+							.append("g")
 							.append("path")
+		linegroup.selectAll("g")
+			.append("text")
 
 		var iardata = []
 		for (var i = 0; i < chartdata[0].length; i++){
@@ -299,6 +327,9 @@ function FundReturnChart() {
     	ReturnChart.select(".area4")
     		.datum(data);
     	ReturnChart.select(".linegroup").selectAll("path")
+    		.data(chartdata);
+
+    	ReturnChart.select(".linegroup").selectAll("text")
     		.data(chartdata);
     	ReturnChart.select(".iarline")
     				.datum(iardata);

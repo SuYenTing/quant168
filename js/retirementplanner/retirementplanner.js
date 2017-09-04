@@ -74,7 +74,7 @@ $(document).ready(function(){
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			//alert(data);
 			ALMData = JSON.parse(data);
-			AssetAllocationPie0.create(ALMData,0);
+			AssetAllocationPie0.create(ALMData);
 			FundReturnChart0.create(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);
 			AssetAllocationChart0.create(ALMData);
@@ -100,7 +100,7 @@ $(document).ready(function(){
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			//alert(data);
 			ALMData = JSON.parse(data);
-			AssetAllocationPie0.create(ALMData,0);
+			AssetAllocationPie0.create(ALMData);
 			FundReturnChart0.create(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);	
 			AssetAllocationChart0.create(ALMData);
@@ -122,7 +122,7 @@ $(document).ready(function(){
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			//alert(data);
 			ALMData = JSON.parse(data);
-			AssetAllocationPie0.update(ALMData,0);
+			AssetAllocationPie0.update(ALMData);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
 			AssetAllocationChart0.update(ALMData);
@@ -140,7 +140,7 @@ $(document).ready(function(){
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			//alert(data);
 			ALMData = JSON.parse(data);
-			AssetAllocationPie0.update(ALMData,0);
+			AssetAllocationPie0.update(ALMData);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
 			AssetAllocationChart0.update(ALMData);
@@ -176,7 +176,7 @@ $(document).ready(function(){
 		interactivedashboardSetUp(yur,rts,iar);
 		$.post('db/alm.php',{yur: yur, rts: rts}, function(data){
 			ALMData = JSON.parse(data);
-			AssetAllocationPie0.update(ALMData,0);
+			AssetAllocationPie0.update(ALMData);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);
 			AssetAllocationChart0.update(ALMData);
