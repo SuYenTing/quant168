@@ -60,6 +60,7 @@ $(document).ready(function(){
 		AssetAllocationPie0 = new AssetAllocationPie();
 		FundReturnChart0 = new FundReturnChart();
 		AssetAllocationTable0 = new AssetAllocationTable();
+		AssetAllocationChart0 = new AssetAllocationChart()
 
 	$("#interactivedashboard").hide();
 
@@ -76,6 +77,7 @@ $(document).ready(function(){
 			AssetAllocationPie0.create(ALMData,0);
 			FundReturnChart0.create(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);
+			AssetAllocationChart0.create(ALMData);
 			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
@@ -101,6 +103,7 @@ $(document).ready(function(){
 			AssetAllocationPie0.create(ALMData,0);
 			FundReturnChart0.create(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);	
+			AssetAllocationChart0.create(ALMData);
 			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
@@ -122,6 +125,7 @@ $(document).ready(function(){
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
+			AssetAllocationChart0.update(ALMData);
 			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
@@ -139,6 +143,7 @@ $(document).ready(function(){
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.update(ALMData);
+			AssetAllocationChart0.update(ALMData);
 			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;
@@ -174,6 +179,7 @@ $(document).ready(function(){
 			AssetAllocationPie0.update(ALMData,0);
 			FundReturnChart0.update(ALMData,iar);
 			AssetAllocationTable0.create(ALMData);
+			AssetAllocationChart0.update(ALMData);
 			fr75 = ALMData[ALMData.length-1].seventyfive_percentile;
 			fr50 = ALMData[ALMData.length-1].fifty_percentile;
 			fr25 = ALMData[ALMData.length-1].twentyfive_percentile;

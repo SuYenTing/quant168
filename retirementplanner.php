@@ -165,6 +165,19 @@ fr_graph: fund return graph,
 				</div>	
 			</div>				
 		</div>
+		<div class="row">				
+			<div class="col-md-8">
+				<div class="chartitem">
+					<h3><b>未來資產配置</b></h3>
+					<div id="assetallocationchart"></div>				
+				</div>
+			</div>
+			<div class="col-md-4">			
+				<div class="chartitem">
+					<h3><b>效率前沿</b></h3>
+				</div>	
+			</div>				
+		</div>
 	</div>
 </div>
 
@@ -290,6 +303,7 @@ fr_graph: fund return graph,
 	</div>
 	</div>
 </div>
+<script src="js/retirementplanner/AssetAllocationChart.js"></script>
 <script src="js/retirementplanner/AssetAllocationTable.js"></script>
 <script src="js/retirementplanner/AssetAllocationPie.js"></script>
 <script src="js/retirementplanner/FundReturnChart.js"></script>
