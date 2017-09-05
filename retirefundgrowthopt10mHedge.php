@@ -6,6 +6,7 @@ set_time_limit(0);
 mysql_connect("140.119.86.174","nccu","nccu");//連結伺服器
 mysql_select_db("web_data");//選擇資料庫
 mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中文
+$FundTrendData=mysql_query("select date, nav/10000000 from web_data.hedge_strategies_nav where name = 'growth.opt.10m' ");//從contact資料庫中選擇所有的資料表
 $IndexTrendData=mysql_query("select date, close/(select close from stock_market.y9997 where date = 20050503) from stock_market.y9997 where date >= 20050503 ");
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>

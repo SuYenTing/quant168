@@ -7,9 +7,10 @@ function AssetAllocationPie() {
 	    height_g = height - margin.top - margin.bottom,
 		radius = Math.min(width, height) / 2;
 	var color = d3.scaleOrdinal()
-		.range(["#005A31","#A8CD1B","#CBE32D"]);
+		.range(["#CBE32D","#A8CD1B","#005A31"]);
 	
-	var parseData = function(data,year) {
+	var parseData = function(data) {
+		var year = data.length - 1;
 		var pieData = [
 			{"label":"股票", "value": parseFloat(data[year]["stock_weight"])},
 			{"label":"貨幣", "value": parseFloat(data[year]["money_weight"])},
@@ -72,8 +73,8 @@ function AssetAllocationPie() {
 
 
 
-	this.create = function(data,year) {
-		var pieData = parseData(data,year);
+	this.create = function(data) {
+		var pieData = parseData(data);
 		var $PieChart = $("#allocation-pie");
 		var svg = PieChart.append("svg")
 		.attr("viewBox","0 0 500 500")
@@ -101,9 +102,9 @@ function AssetAllocationPie() {
 		updatePie();
 	}
 
-	this.update = function(data,year) {
+	this.update = function(data) {
 
-		var pieData = parseData(data,year);
+		var pieData = parseData(data);
 
 		PieChart.selectAll("path")
 		.data(pie(pieData));
