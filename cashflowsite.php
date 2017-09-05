@@ -941,7 +941,10 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             row.insertCell(1).innerHTML = B11;
             B11++;
 
-            row.insertCell(2).innerHTML = Math.round(D3 + D11);
+
+            var income1 = D3 + D11;
+
+            row.insertCell(2).innerHTML = Math.round(income1);
             D3 = D3 * (1+G33);
             D11 = D11 * (1+G33);
 
@@ -950,7 +953,10 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             if (rowAge < (B2 + D5)) {
                 row.insertCell(1).innerHTML = "-";
 
-                row.insertCell(2).innerHTML = Math.round(D3);
+
+                var income1 = D3;
+
+                row.insertCell(2).innerHTML = Math.round(income1);
                 D3 = D3 * (1+G33);
 
             }else if(rowAge >= (B2 + D5)) {
@@ -958,7 +964,10 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
                 row.insertCell(1).innerHTML = B11;
                 B11++;
 
-                row.insertCell(2).innerHTML = Math.round(D3 + D11);
+
+                var income1 = D3 + D11;
+
+                row.insertCell(2).innerHTML = Math.round(income1);
                 D3 = D3 * (1+G33);
                 D11 = D11 * (1+G33);
 
@@ -967,58 +976,96 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         else if (B5 == "none") {
             row.insertCell(1).innerHTML = "-";
 
-            row.insertCell(2).innerHTML = Math.round(D3);
+
+            var income1 = D3;
+
+            row.insertCell(2).innerHTML = Math.round(income1);
             D3 = D3 * (1+G33);
 
         }
 
-        row.insertCell(3).innerHTML = Math.round(J5);
+
+
+        //現有存款
+        var income2 = J5;
+
+        row.insertCell(3).innerHTML = Math.round(income2);
         J5 = J5 * (1+G28);
 
 
-        row.insertCell(4).innerHTML = Math.round(B7);
+
+        //投資&其他
+        var income3 = B7;
+
+        row.insertCell(4).innerHTML = Math.round(income3);
         B7 = B7 * getRandom((1 - (0.7 * D7)),(1 + D7));
 
+
+
+        //勞保
+        var income4 = 0;
 
         row.insertCell(5).innerHTML = "-";
 
 
+
+        //勞退
+        var income5 = 0;
+
         row.insertCell(6).innerHTML = "-";
 
 
+
+        var totalIncome = Math.round(income1 + income2 + income3 + income4 + income5);
+
+
+
+        //生活費
         if (B5 == "married") {
             
-            row.insertCell(7).innerHTML = Math.round(F5 * 12);
+            var expense1 = F5 * 12;
+
+            row.insertCell(7).innerHTML = Math.round(expense1);
             F5 = F5 * (1+G29);
 
         }
         else if (B5 == "planning") {
             if (rowAge < (B2 + D5)) {
 
-                row.insertCell(7).innerHTML = Math.round(F5 * 12);
+                var expense1 = F5 * 12;
+
+                row.insertCell(7).innerHTML = Math.round(expense1);
                 F5 = F5 * (1+G29);
 
             }else if(rowAge >= (B2 + D5)) {
 
-                row.insertCell(7).innerHTML = Math.round(F5 * 24);
+                var expense1 = F5 * 24;
+
+                row.insertCell(7).innerHTML = Math.round(expense1);
                 F5 = F5 * (1+G29);
 
             }
         }
         else if (B5 == "none") {
 
-            row.insertCell(7).innerHTML = Math.round(F5 * 12);
+            var expense1 = F5 * 12;
+
+            row.insertCell(7).innerHTML = Math.round(expense1);
             F5 = F5 * (1+G29);
 
         }
 
+
+
+        //孝親費
+        var expense2 = H5 * 12;
 
         row.insertCell(8).innerHTML = Math.round(H5 * 12);
         H5 = H5 * (1+G29);
 
 
 
-
+        //小孩支出
         if (B5 == "married") {
             
             if(D12 != 0){
@@ -1027,9 +1074,15 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                     // child1 = D12;
                     if(child1 <= 25){
-                        row.insertCell(9).innerHTML = Math.round(240000);
+
+                        var expense3 = 240000;
+
+                        row.insertCell(9).innerHTML = Math.round(expense3);
                         child1 = child1 + 1;
                     }else if(child1 > 25){
+
+                        var expense3 = 0;
+
                         row.insertCell(9).innerHTML = "0";
                     }
 
@@ -1037,13 +1090,22 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                     // child1 = D12;
                     if(child1 <= 25 && child2 <= 25){
-                        row.insertCell(9).innerHTML = Math.round(240000 * 2);
+
+                        var expense3 = 240000 * 2;
+
+                        row.insertCell(9).innerHTML = Math.round(expense3);
                         child1 = child1 + 1;
                         child2 = child2 + 1;
                     }else if(child1 > 25 && child2 <= 25){
-                        row.insertCell(9).innerHTML = Math.round(240000);
+
+                        var expense3 = 240000;
+
+                        row.insertCell(9).innerHTML = Math.round(expense3);
                         child2 = child2 + 1;
                     }else if(child1 > 25 && child2 > 25){
+
+                        var expense3 = 0;
+
                         row.insertCell(9).innerHTML = "0";
                     }
 
@@ -1056,21 +1118,33 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                     // childYearToBirth = 0;
                     if(childYearToBirth < D14){
+
+                        var expense3 = 0;
+
                         row.insertCell(9).innerHTML = "0";
                         childYearToBirth++;
                     }else if(childYearToBirth >= D14){
 
                         // child1 = D12+1;
                         if(child1 <= 25){
-                            row.insertCell(9).innerHTML = Math.round(240000 * B12);
+
+                            var expense3 = 240000 * B12;
+
+                            row.insertCell(9).innerHTML = Math.round(expense3);
                             child1 = child1 + 1;
                         }else if(child1 > 25){
+
+                            var expense3 = 0;
+
                             row.insertCell(9).innerHTML = "0";
                         }
 
                     }
 
                 }else if (B14 == "no"){
+
+                    var expense3 = 0;
+
                     row.insertCell(9).innerHTML = "0";
                 }
             }
@@ -1081,26 +1155,40 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                     // childYearToBirth = 0;
                     if(childYearToBirth < D14){
+
+                        var expense3 = 0;
+
                         row.insertCell(9).innerHTML = "0";
                         childYearToBirth++;
                     }else if(childYearToBirth >= D14){
 
                         // child1 = D12+1;
                         if(child1 <= 25){
-                            row.insertCell(9).innerHTML = Math.round(240000 * B12);
+
+                            var expense3 = 240000 * B12;
+
+                            row.insertCell(9).innerHTML = Math.round(expense3);
                             child1 = child1 + 1;
                         }else if(child1 > 25){
+
+                            var expense3 = 0;
+
                             row.insertCell(9).innerHTML = "0";
                         }
 
                     }
 
                 }else if (B14 == "no"){
+
+                    var expense3 = 0;
+
                     row.insertCell(9).innerHTML = "0";
                 }
 
         }
         else if (B5 == "none") {
+
+            var expense3 = 0;
 
             row.insertCell(9).innerHTML = "0";
 
@@ -1112,29 +1200,49 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         if (B18 == "yes") {
 
             if (yearToBuyHouse < B20) {
-                row.insertCell(10).innerHTML = Math.round(D18 * 12);
+
+                var expense4 = D18 * 12;
+
+                row.insertCell(10).innerHTML = Math.round(expense4);
                 D18 = D18 * (1 + G29);
                 yearToBuyHouse++;
 
                 if (yearPlanToBuyHouse < D20) {
+
+                    var expense5 = 0;
+                    var expense6 = 0;
+
                     row.insertCell(11).innerHTML = "0";
                     row.insertCell(12).innerHTML = "0";
                     yearPlanToBuyHouse++;
                 }else if (yearPlanToBuyHouse >= D20) {
-                    row.insertCell(11).innerHTML = Math.round(G62 * 12);
+
+                    var expense5 = G62 * 12;
+                    var expense6 = 0;
+
+                    row.insertCell(11).innerHTML = Math.round(expense5);
                     row.insertCell(12).innerHTML = "0";
                 }
 
             }else if (yearToBuyHouse >= B20) {
+
+                var expense4 = 0;
+                var expense5 = 0;
+                var expense6 = G63 * 12;
+
                 row.insertCell(10).innerHTML = "0";
                 row.insertCell(11).innerHTML = "0";
-                row.insertCell(12).innerHTML = Math.round(G63 * 12);
+                row.insertCell(12).innerHTML = Math.round(expense6);
 
             }
 
         }else if (B18 == "no") {
 
-            row.insertCell(10).innerHTML = Math.round(D18 * 12);
+            var expense4 = D18 * 12;
+            var expense5 = 0;
+            var expense6 = 0;
+
+            row.insertCell(10).innerHTML = Math.round(expense4);
             D18 = D18 * (1 + G29);
             row.insertCell(11).innerHTML = "0";
             row.insertCell(12).innerHTML = "0";
@@ -1142,18 +1250,37 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
         }else if (B18 == "bought"){
 
+            var expense4 = 0;
+            var expense5 = 0;
+            var expense6 = B24 * 12;
+
             row.insertCell(10).innerHTML = "0";
             row.insertCell(11).innerHTML = "0";
-            row.insertCell(12).innerHTML = Math.round(B24 * 12);
+            row.insertCell(12).innerHTML = Math.round(expense6);
 
         }
 
 
+
         //車貸
+        var expense7 = 0;
+
         row.insertCell(13).innerHTML = "-";
 
+
+
         //其他借款
+        var expense8 = 0;
+
         row.insertCell(14).innerHTML = "-";
+
+
+        var totalExpense = Math.round(expense1 + expense2 + expense3 + expense4 + expense5 + expense6 + expense7 + expense8);
+
+
+
+        //當年收入-支出
+        row.insertCell(15).innerHTML = totalIncome - totalExpense;
 
 
 
