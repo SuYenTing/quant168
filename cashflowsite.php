@@ -932,8 +932,9 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         var row = document.createElement("tr");
-        // row.innerHTML = '<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
 
+
+        //年齡＆配偶年齡＆薪資
         row.insertCell(0).innerHTML = rowAge;
 
         if (B5 == "married") {
@@ -1150,6 +1151,9 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
         //車貸
         row.insertCell(13).innerHTML = "-";
+
+        //其他借款
+        row.insertCell(14).innerHTML = "-";
 
 
 
