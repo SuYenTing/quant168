@@ -1280,7 +1280,25 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //當年收入-支出
-        row.insertCell(15).innerHTML = totalIncome - totalExpense;
+        var revenue = totalIncome - totalExpense;
+
+        if(rowAge == B2){
+            var totalRevenue = revenue;
+        }
+        
+        row.insertCell(15).innerHTML = revenue;
+
+
+
+        //累計餘額
+        // var totalRevenue = revenue + clean;
+
+        if (rowAge != B2) {
+            var totalRevenue = totalRevenue + revenue;
+        }
+
+        row.insertCell(16).innerHTML = totalRevenue;
+        // clean = revenue;
 
 
 
