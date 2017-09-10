@@ -20,16 +20,16 @@ th {
 }
 </style>
 <div style="text-align:center;">
-    <h1>夏普指數</h1>
+    <h1>Upside Potential Ratio</h1>
     <table align="center" >
         <tr>
             <th>名次</th>
             <th>基金名稱</th>
-            <th>年化Sharpe</th>
+            <th>Upside Potential Ratio</th>
             <th>近一年報酬率</th>
         </tr>
 <?php
-$result=mysql_query("SELECT all_fund_performance.name,sr1y,Return1y FROM web_data.all_fund_performance where not sr1y='999999' and not Return1y='999999' order by sr1y desc limit 20;");
+$result=mysql_query("SELECT all_fund_performance.name,UpsidePotentialRatio,Return1y FROM web_data.all_fund_performance where not UpsidePotentialRatio='999999' and not Return1y='999999' order by UpsidePotentialRatio desc limit 20;");
     for($i=1;$i<=mysql_num_rows($result);$i++){
         $rs=mysql_fetch_row($result);
 ?>
