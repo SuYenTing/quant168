@@ -32,7 +32,7 @@ for ($i = 1; $i <= mysql_num_rows($fundName); $i++) {
                 <input class="button" type="button" name="button" id="name" onclick="normalSearch()" value="搜尋">
                 <select name="invest_type" id="invest_type" class="button" onchange="advanceSearch()">
                     <option disabled selected value> 進階搜尋 </option>
-                    <!--<option value="all">全部基金</option>-->
+                    <option value="all">全部基金</option>
                     <option value="invest_place_in">境內</option>
                     <option value="invest_place_out">境外</option>
                 </select>

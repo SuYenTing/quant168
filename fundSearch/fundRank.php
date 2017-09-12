@@ -33,8 +33,8 @@ $result1=mysql_query("SELECT all_fund_performance.name,roc,Return1y FROM web_dat
             <td>
                 <table class="table" align="center" style="width:80%;">
                     <tr class="tr">
-                        <th class="th thBigWord">近1月波動最小</th>
-                        <th class="th">全期間標準差</th>
+                        <th class="th thBigWord">近一月波動最小</th>
+                        <th class="th">近一月標準差</th>
                         <th class="th">近一年報酬率</th>
                     </tr>
 <?php
@@ -58,8 +58,8 @@ $result2=mysql_query("SELECT all_fund_performance.name,std1m,Return1y FROM web_d
             <td>
                 <table class="table" align="center" style="width:80%;">
                     <tr class="tr">
-                        <th class="th thBigWord">近1月賺很大</th>
-                        <th class="th">近三年報酬率</th>
+                        <th class="th thBigWord">近一月賺很大</th>
+                        <th class="th">近一月報酬率</th>
                         <th class="th">近一年報酬率</th>
                     </tr>
 <?php
@@ -98,6 +98,127 @@ $result4=mysql_query("SELECT all_fund_performance.name,sr1y,Return1y FROM web_da
 <?php } ?>
                     <tr class="tr">
                         <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table" align="center" style="width:80%;">
+                    <tr class="tr">
+                        <th class="th thBigWord">調整後夏普</th>
+                        <th class="th">調整後夏普</th>
+                        <th class="th">近一年報酬率</th>
+                    </tr>
+<?php
+$result3=mysql_query("SELECT all_fund_performance.name,adjsr,Return1y FROM web_data.all_fund_performance where not adjsr='999999' and not Return1y='999999' order by adjsr desc limit 3;");
+    for($i=1;$i<=3;$i++){
+        $rs3=mysql_fetch_row($result3);
+?>
+                    <tr class="tr">
+                        <td class="td"><?php echo $rs3[0];?></td>
+                        <td class="td"><?php echo $rs3[1];?></td>
+                        <td class="td"><?php echo $rs3[2];?></td>
+                    </tr>
+<?php } ?>
+                    <tr class="tr">
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="table" align="center" style="width:80%;">
+                    <tr class="tr">
+                        <th class="th thBigWord">索提諾指數</th>
+                        <th class="th">索提諾指數</th>
+                        <th class="th">近一年報酬率</th>
+                    </tr>
+<?php
+$result4=mysql_query("SELECT all_fund_performance.name,sortinoratio,Return1y FROM web_data.all_fund_performance where not sortinoratio='999999' and not Return1y='999999' order by sortinoratio desc limit 3;");
+    for($i=1;$i<=3;$i++){
+        $rs4=mysql_fetch_row($result4);
+?>
+                    <tr class="tr">
+                        <td class="td"><?php echo $rs4[0];?></td>
+                        <td class="td"><?php echo $rs4[1];?></td>
+                        <td class="td"><?php echo $rs4[2];?></td>
+                    </tr>
+<?php } ?>
+                    <tr class="tr">
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table" align="center" style="width:80%;">
+                    <tr class="tr">
+                        <th class="th thBigWord">最大回落</th>
+                        <th class="th">最大回落</th>
+                        <th class="th">近一年報酬率</th>
+                    </tr>
+<?php
+$result3=mysql_query("SELECT all_fund_performance.name,MDD,Return1y FROM web_data.all_fund_performance where not MDD='999999' and not Return1y='999999' order by MDD desc limit 3;");
+    for($i=1;$i<=3;$i++){
+        $rs3=mysql_fetch_row($result3);
+?>
+                    <tr class="tr">
+                        <td class="td"><?php echo $rs3[0];?></td>
+                        <td class="td"><?php echo $rs3[1];?></td>
+                        <td class="td"><?php echo $rs3[2];?></td>
+                    </tr>
+<?php } ?>
+                    <tr class="tr">
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="table" align="center" style="width:80%;">
+                    <tr class="tr">
+                        <th class="th thBigWord">Upside Potential</th>
+                        <th class="th">Upside Potential</th>
+                        <th class="th">近一年報酬率</th>
+                    </tr>
+<?php
+$result4=mysql_query("SELECT all_fund_performance.name,UpsidePotentialRatio,Return1y FROM web_data.all_fund_performance where not UpsidePotentialRatio='999999' and not Return1y='999999' order by UpsidePotentialRatio desc limit 3;");
+    for($i=1;$i<=3;$i++){
+        $rs4=mysql_fetch_row($result4);
+?>
+                    <tr class="tr">
+                        <td class="td"><?php echo $rs4[0];?></td>
+                        <td class="td"><?php echo $rs4[1];?></td>
+                        <td class="td"><?php echo $rs4[2];?></td>
+                    </tr>
+<?php } ?>
+                    <tr class="tr">
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table class="table" align="center" style="width:40%;">
+                    <tr class="tr">
+                        <th class="th thBigWord">Burke Ratio</th>
+                        <th class="th">Burke Ratio</th>
+                        <th class="th">近一年報酬率</th>
+                    </tr>
+<?php
+$result3=mysql_query("SELECT all_fund_performance.name,BurkeRatio,Return1y FROM web_data.all_fund_performance where not BurkeRatio='999999' and not Return1y='999999' order by BurkeRatio desc limit 3;");
+    for($i=1;$i<=3;$i++){
+        $rs3=mysql_fetch_row($result3);
+?>
+                    <tr class="tr">
+                        <td class="td"><?php echo $rs3[0];?></td>
+                        <td class="td"><?php echo $rs3[1];?></td>
+                        <td class="td"><?php echo $rs3[2];?></td>
+                    </tr>
+<?php } ?>
+                    <tr class="tr">
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
