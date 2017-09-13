@@ -278,7 +278,7 @@ include("navbar.html");
                         <option value="6.4">6.4%</option>
                         <option value="6.6">6.6%</option>
                         <option value="6.8">6.8%</option>
-                        <option value="7.0" >7.0%</option>
+                        <option value="7.0">7.0%</option>
                         <option value="7.2">7.2%</option>
                         <option value="7.4">7.4%</option>
                         <option value="7.6">7.6%</option>

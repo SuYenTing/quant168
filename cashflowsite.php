@@ -12,6 +12,7 @@ $wageYear = $wage * 14;
 $wageGrowth = $_POST['wageGrowth'];
 $lifeLeft = $_POST['lifeLeft'];
 $roi = $_POST['roi'];
+$selfWithdraw = $_POST['selfWithdraw'];
 
 
 ?>
@@ -149,6 +150,51 @@ $roi = $_POST['roi'];
                 <td>
                     <input name="lifeLeft" type="number" id="lifeLeft" value=13 readonly>歲
                 </td>
+                <td>開始工作年齡</td>
+                <td>
+                    <select name="workAge" id="workAge">
+                    <option value="20" <?php if($workAge ==20) {echo "selected";}?>>20</option>
+                    <option value="21" <?php if($workAge ==21) {echo "selected";}?>>21</option>
+                    <option value="23" <?php if($workAge ==23) {echo "selected";}?>>23</option>
+                    <option value="24" <?php if($workAge ==24) {echo "selected";}?>>24</option>
+                    <option value="25" <?php if($workAge ==25) {echo "selected";}?>>25</option>
+                    <option value="26" <?php if($workAge ==26) {echo "selected";}?>>26</option>
+                    <option value="27" <?php if($workAge ==27) {echo "selected";}?>>27</option>
+                    <option value="28" <?php if($workAge ==28) {echo "selected";}?>>28</option>
+                    <option value="29" <?php if($workAge ==29) {echo "selected";}?>>29</option>
+                    <option value="30" <?php if($workAge ==30) {echo "selected";}?>>30</option>
+                    <option value="31" <?php if($workAge ==31) {echo "selected";}?>>31</option>
+                    <option value="32" <?php if($workAge ==32) {echo "selected";}?>>32</option>
+                    <option value="33" <?php if($workAge ==33) {echo "selected";}?>>33</option>
+                    <option value="34" <?php if($workAge ==34) {echo "selected";}?>>34</option>
+                    <option value="35" <?php if($workAge ==35) {echo "selected";}?>>35</option>
+                    <option value="36" <?php if($workAge ==36) {echo "selected";}?>>36</option>
+                    <option value="37" <?php if($workAge ==37) {echo "selected";}?>>37</option>
+                    <option value="38" <?php if($workAge ==38) {echo "selected";}?>>38</option>
+                    <option value="39" <?php if($workAge ==39) {echo "selected";}?>>39</option>
+                    <option value="40" <?php if($workAge ==40) {echo "selected";}?>>40</option>
+                    <option value="41" <?php if($workAge ==41) {echo "selected";}?>>41</option>
+                    <option value="42" <?php if($workAge ==42) {echo "selected";}?>>42</option>
+                    <option value="43" <?php if($workAge ==43) {echo "selected";}?>>43</option>
+                    <option value="44" <?php if($workAge ==44) {echo "selected";}?>>44</option>
+                    <option value="45" <?php if($workAge ==45) {echo "selected";}?>>45</option>
+                    <option value="46" <?php if($workAge ==46) {echo "selected";}?>>46</option>
+                    <option value="47" <?php if($workAge ==47) {echo "selected";}?>>47</option>
+                    <option value="48" <?php if($workAge ==48) {echo "selected";}?>>48</option>
+                    <option value="49" <?php if($workAge ==49) {echo "selected";}?>>49</option>
+                    <option value="50" <?php if($workAge ==50) {echo "selected";}?>>50</option>
+                    <option value="51" <?php if($workAge ==51) {echo "selected";}?>>51</option>
+                    <option value="52" <?php if($workAge ==52) {echo "selected";}?>>52</option>
+                    <option value="53" <?php if($workAge ==53) {echo "selected";}?>>53</option>
+                    <option value="54" <?php if($workAge ==54) {echo "selected";}?>>54</option>
+                    <option value="55" <?php if($workAge ==55) {echo "selected";}?>>55</option>
+                    <option value="56" <?php if($workAge ==56) {echo "selected";}?>>56</option>
+                    <option value="57" <?php if($workAge ==57) {echo "selected";}?>>57</option>
+                    <option value="58" <?php if($workAge ==58) {echo "selected";}?>>58</option>
+                    <option value="59" <?php if($workAge ==59) {echo "selected";}?>>59</option>
+                    <option value="60" <?php if($workAge ==60) {echo "selected";}?>>60</option>
+                    </select>
+                    歲</td>
                 </tr>
                 <tr>
                 <td>預計退休年齡</td>
@@ -183,6 +229,16 @@ $roi = $_POST['roi'];
                     <td>合理預期20年後薪資</td>
                     <td>
                         <input name="twenyrwage" type="number" id="twenyrwage" value=2000000>
+                    </td>
+                    <td>自行提撥(0%-6%)</td>
+                    <td>
+                        <select name="selfWithdraw" id="selfWithdraw" >
+                        <option value="1.0" <?php if($selfWithdraw ==1.0) {echo "selected";}?>>1</option>
+                        <option value="2.0" <?php if($selfWithdraw ==2.0) {echo "selected";}?>>2</option>
+                        <option value="3.0" <?php if($selfWithdraw ==3.0) {echo "selected";}?>>3</option>
+                        <option value="4.0" <?php if($selfWithdraw ==4.0) {echo "selected";}?>>4</option>
+                        <option value="5.0" <?php if($selfWithdraw ==5.0) {echo "selected";}?>>5</option>
+                        <option value="6.0" <?php if($selfWithdraw ==6.0) {echo "selected";}?>>6</option>
                     </td>
                     </tr>
                     <tr>
@@ -553,6 +609,7 @@ function calculate(){
     var twenyrwage = parseFloat(document.getElementById("twenyrwage").value);
     var marriageState = document.getElementById("marriageState").value;
     var yearsToMarriage = parseInt(document.getElementById("yearsToMarriage").value);
+    var workAge = parseInt(document.getElementById("workAge").value);
     var monthlyExp = parseInt(document.getElementById("monthlyExp").value);
     var parentsExp = parseInt(document.getElementById("parentsExp").value);
     var currentSaving = parseInt(document.getElementById("currentSaving").value);
@@ -670,12 +727,65 @@ function calculate(){
     var B59 = (D3/12) * 0.06 * (Math.pow(1 + ( ((1 + G33)*(1 + G28) - 1) /12) , (B3 - B2) * 12) - 1) * (12/((1 + G33)*(1 + G28) - 1));
     var B60 = B57 * (G28/12) * Math.pow((1 - Math.pow( (1 + (G28/12)) , -B33 * 12)), -1);
 
-    var B61 = Math.max(((F5 * 12 * Math.pow((1+G29),(B3-B2)) * (1-Math.pow(((1+G29)/(1+G28)),B33)))/(((1 + G28)/(1 + G29)) - 1)) - C58 - B59 - (J5 * Math.pow((1+G28),(B3-B2))) - ((B7 + B49)*Math.pow((1+31),(B3-B2))), 0);
+
+    var a = D3/12;
+    var i = roi;
+    var g = (F3/D3)/10;
+    var b = workAge;
+    var c = retireAge;
+    var d = B33;
+
+    var selfWithdraw = parseFloat(document.getElementById("selfWithdraw").value) / 100;
+    var j = selfWithdraw;
+
+    // alert(j);
+
+    // alert(a);
+
+    var z = c - b;
+    var y1 = Math.min( a * Math.pow((1 + g), z), 45800);
+    var y2 = Math.min( a * Math.pow((1 + g), z - 1), 45800);
+    var y3 = Math.min( a * Math.pow((1 + g), z - 2), 45800);
+    var y4 = Math.min( a * Math.pow((1 + g), z - 3), 45800);
+    var y5 = Math.min( a * Math.pow((1 + g), z - 4), 45800);
+    var x = (y1 + y2 + y3 + y4 + y5)/5;
+    var w = Math.max(((x * z * 0.00775) + 3000), (x * z * 0.0155));
+
+    var k = 0;
+
+    for (var h = 0; h < z ; h++) {
+        // var l = Math.min(( a * Math.pow((1+g),h)), 150000);
+        var l = a * Math.pow((1+g),h);
+        if (l<150000) {
+
+        }else{
+            l = 150000;
+        }
+        k = k + l * (0.06 + j) * Math.pow(1.03,(z-h));
+
+        // alert("l = "+l+", k = "+k)
+    }
+
+    // alert(k);
+
+    var t = k * 12;
+
+
+    var mon = w + t * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
+
+    var B58 = mon * 12;
+
+
+
+    var C58 = B58 * (1- Math.pow((1+(G28/12)),(12 * (-B33)))) * (12/G28); 
+
+    var B61 = Math.max(((F5 * 12 * Math.pow((1+G29),(B3-B2)) * (1-Math.pow(((1+G29)/(1+G28)),B33)))/(((1 + G28)/(1 + G29)) - 1)) - C58 - B59 - (J5 * Math.pow((1+G28),(B3-B2))) - (B7*Math.pow((1+G31),(B3-B2))), 0);
     var B62 = B61 * ((((1+G28)/(1+G29))-1)/12) * (1/((Math.pow((1+((((1+G28)/(1+G29))-1)/(12))),(12*(B3-B2))))-1));
 
+    alert(B61);
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62);
 
 }
 
@@ -912,7 +1022,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62){
 
     var rowAge;
 
@@ -1307,6 +1417,14 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         if (rowAge > B3) {
             row.insertCell(17).innerHTML = "0";
         } else if (rowAge <= B3) {
+
+            if (totalRevenue < 0) {
+                row.insertCell(17).innerHTML = "0";
+            } else if (totalRevenue < (B62 * 12)) {
+                row.insertCell(17).innerHTML = totalRevenue;
+            } else if (totalRevenue > (B62 * 12)) {
+                row.insertCell(17).innerHTML = Math.round(B62 * 12);
+            }
 
         }
 
