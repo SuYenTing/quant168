@@ -329,7 +329,7 @@ $selfWithdraw = $_POST['selfWithdraw'];
                         </td>
                         <td>貸款金額(房貸除外)</td>
                         <td>
-                            <input name="loan" type="number" id="loan" value=100000>
+                            <input name="loan" type="number" id="loan" value=10000>
                         </td>
                         <td>貸款剩餘年數</td>
                         <td>
@@ -615,8 +615,8 @@ function calculate(){
     var currentSaving = parseInt(document.getElementById("currentSaving").value);
     var investedMoney = parseFloat(document.getElementById("investedMoney").value);
     var roi = parseFloat(document.getElementById("roi").value) / 100;
-    var loan = document.getElementById("loan").value;
-    var loanLeftYear = document.getElementById("loanLeftYear").value;
+    var loan = parseFloat(document.getElementById("loan").value);
+    var loanLeftYear = parseFloat(document.getElementById("loanLeftYear").value);
 
     var B2 = currentAge;
     var D2 = genders;
@@ -782,10 +782,10 @@ function calculate(){
     var B61 = Math.max(((F5 * 12 * Math.pow((1+G29),(B3-B2)) * (1-Math.pow(((1+G29)/(1+G28)),B33)))/(((1 + G28)/(1 + G29)) - 1)) - C58 - B59 - (J5 * Math.pow((1+G28),(B3-B2))) - (B7*Math.pow((1+G31),(B3-B2))), 0);
     var B62 = B61 * ((((1+G28)/(1+G29))-1)/12) * (1/((Math.pow((1+((((1+G28)/(1+G29))-1)/(12))),(12*(B3-B2))))-1));
 
-    alert(B61);
+    // alert(F7);
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7);
 
 }
 
@@ -1022,7 +1022,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7){
 
     var rowAge;
 
@@ -1384,9 +1384,11 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //其他借款
-        var expense8 = 0;
+        var expense8 = F7 * G28 * (1/(1-Math.pow((1+G28),(-1*F7))));
 
-        row.insertCell(14).innerHTML = "-";
+        row.insertCell(14).innerHTML = Math.round(expense8);
+
+
 
 
         var totalExpense = Math.round(expense1 + expense2 + expense3 + expense4 + expense5 + expense6 + expense7 + expense8);
@@ -1434,6 +1436,8 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         result.appendChild(row);
 
     }
+
+    alert(1/(1-Math.pow((1+G28),(-1*F7))));
 
 }
 
