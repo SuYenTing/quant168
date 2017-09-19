@@ -782,10 +782,10 @@ function calculate(){
     var B61 = Math.max(((F5 * 12 * Math.pow((1+G29),(B3-B2)) * (1-Math.pow(((1+G29)/(1+G28)),B33)))/(((1 + G28)/(1 + G29)) - 1)) - C58 - B59 - (J5 * Math.pow((1+G28),(B3-B2))) - (B7*Math.pow((1+G31),(B3-B2))), 0);
     var B62 = B61 * ((((1+G28)/(1+G29))-1)/12) * (1/((Math.pow((1+((((1+G28)/(1+G29))-1)/(12))),(12*(B3-B2))))-1));
 
-    // alert(F7);
+    // alert(B61);
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t);
 
 }
 
@@ -1022,7 +1022,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t){
 
     var rowAge;
 
@@ -1117,16 +1117,29 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //勞保
-        var income4 = 0;
+        if(rowAge < B3){
+            var income4 = 0;
 
-        row.insertCell(5).innerHTML = "-";
+            row.insertCell(5).innerHTML = Math.round(income4);
+        }else if(rowAge >= B3){
+            var income4 = w;
+
+            row.insertCell(5).innerHTML = Math.round(income4);
+
+        }
 
 
 
         //勞退
-        var income5 = 0;
+        if(rowAge < B3){
+            var income5 = 0;
 
-        row.insertCell(6).innerHTML = "-";
+            row.insertCell(6).innerHTML = Math.round(income5);
+        }else if(rowAge >= B3){
+            var income5 = t;
+
+            row.insertCell(6).innerHTML = Math.round(income5);
+        }
 
 
 
@@ -1386,7 +1399,15 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         //其他借款
         var expense8 = F7 * G28 * (1/(1-Math.pow((1+G28),(-1*F7))));
 
-        row.insertCell(14).innerHTML = Math.round(expense8);
+
+
+        if (rowAge <= B2 + H7) {
+            row.insertCell(14).innerHTML = Math.round(expense8);
+        }else if (rowAge > B2 + H7) {
+            row.insertCell(14).innerHTML = "0";
+        }
+
+        
 
 
 
@@ -1417,18 +1438,31 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
         //退休提存
         if (rowAge > B3) {
-            row.insertCell(17).innerHTML = "0";
+            var R = 0;
+
+            row.insertCell(17).innerHTML = R;
         } else if (rowAge <= B3) {
 
             if (totalRevenue < 0) {
-                row.insertCell(17).innerHTML = "0";
+                var R = 0;
+
+                row.insertCell(17).innerHTML = R;
             } else if (totalRevenue < (B62 * 12)) {
-                row.insertCell(17).innerHTML = totalRevenue;
+                var R = totalRevenue;
+
+                row.insertCell(17).innerHTML = R;
             } else if (totalRevenue > (B62 * 12)) {
-                row.insertCell(17).innerHTML = Math.round(B62 * 12);
+                var R = B62 * 12;
+
+                row.insertCell(17).innerHTML = R;
             }
 
         }
+
+
+
+        //累積餘額
+        row.insertCell(18).innerHTML = totalRevenue - R;
 
 
 
@@ -1437,7 +1471,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
     }
 
-    alert(1/(1-Math.pow((1+G28),(-1*F7))));
+    // alert(B61);
 
 }
 
