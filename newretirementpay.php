@@ -240,8 +240,10 @@ include("navbar.html");
                     <td>退休時平均餘命</td>
                     <td>
                     <input name="lifeLeft" type="number" id="lifeLeft" value=17 readonly>歲</td>
-                    <td>投資報酬率</td>
-                <td>
+                    <td>折現率(30年期公債利率)</td>
+                    <td>1.64%</td>
+                    <td id="roiHeader">投資報酬率</td>
+                <td id="roiOption">
                     <select name="roi" id="roi" >
                         <option value="0.2">0.2%</option>
                         <option value="0.2">0.2%</option>
@@ -498,6 +500,12 @@ function laborFunc(){
     var wageRow = document.getElementById("wageRow");
     wageRow.style.display="table-row";
 
+    var roiHeader = document.getElementById("roiHeader");
+    roiHeader.style.display="table-cell";
+
+    var roiOption = document.getElementById("roiOption");
+    roiOption.style.display="table-cell";
+
 
 }
 
@@ -600,6 +608,12 @@ function functionaryFunc(){
     var wageRow = document.getElementById("wageRow");
     wageRow.style.display="none";
 
+    var roiOption = document.getElementById("roiOption");
+    roiOption.style.display="none";
+
+    var roiHeader = document.getElementById("roiHeader");
+    roiHeader.style.display="none";
+
 }
 
 function publictaFunc(){
@@ -701,6 +715,13 @@ function publictaFunc(){
 
     var wageRow = document.getElementById("wageRow");
     wageRow.style.display="none";
+
+    var roiOption = document.getElementById("roiOption");
+    roiOption.style.display="none";
+
+    var roiHeader = document.getElementById("roiHeader");
+    roiHeader.style.display="none";
+
 
 
 }
@@ -821,6 +842,13 @@ function privatetaFunc(){
     var wageRow = document.getElementById("wageRow");
     wageRow.style.display="none";
 
+    var roiOption = document.getElementById("roiOption");
+    roiOption.style.display="none";
+
+    var roiHeader = document.getElementById("roiHeader");
+    roiHeader.style.display="none";
+
+
 }
 
 function militaryFunc(){
@@ -922,6 +950,12 @@ function militaryFunc(){
     var wageRow = document.getElementById("wageRow");
     wageRow.style.display="none";
 
+    var roiOption = document.getElementById("roiOption");
+    roiOption.style.display="none";
+
+    var roiHeader = document.getElementById("roiHeader");
+    roiHeader.style.display="none";
+
 
 }
 
@@ -991,6 +1025,13 @@ function farmerFunc(){
     var wageRow = document.getElementById("wageRow");
     wageRow.style.display="none";
 
+    var roiOption = document.getElementById("roiOption");
+    roiOption.style.display="none";
+
+    var roiHeader = document.getElementById("roiHeader");
+    roiHeader.style.display="none";
+
+
 
 }
 
@@ -1043,6 +1084,13 @@ function popularFunc(){
 
     var wageRow = document.getElementById("wageRow");
     wageRow.style.display="none";
+
+    var roiOption = document.getElementById("roiOption");
+    roiOption.style.display="none";
+
+    var roiHeader = document.getElementById("roiHeader");
+    roiHeader.style.display="none";
+
 
 
 }
@@ -1110,7 +1158,7 @@ if("labor" == vocation){
         }else{
             l = 150000;
         }
-        k = k + l * (0.06 + j) * Math.pow(1.03,(z-h));
+        k = k + l * (0.06 + j) * Math.pow((1+i),(z-h));
 
         // alert("l = "+l+", k = "+k)
     }

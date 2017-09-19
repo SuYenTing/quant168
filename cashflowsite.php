@@ -761,7 +761,7 @@ function calculate(){
         }else{
             l = 150000;
         }
-        k = k + l * (0.06 + j) * Math.pow(1.03,(z-h));
+        k = k + l * (0.06 + j) * Math.pow((1+i),(z-h));
 
         // alert("l = "+l+", k = "+k)
     }
