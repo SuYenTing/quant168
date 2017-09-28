@@ -10,7 +10,7 @@ function AssetAllocationPie() {
 		.range(["#CBE32D","#A8CD1B","#005A31"]);
 	
 	var parseData = function(data) {
-		var year = data.length - 1;
+		var year = 0;
 		var pieData = [
 			{"label":"股票", "value": parseFloat(data[year]["stock_weight"])},
 			{"label":"貨幣", "value": parseFloat(data[year]["money_weight"])},
