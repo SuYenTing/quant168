@@ -526,7 +526,7 @@ function addcondition(type) {
         sqlarr.push("stock_tech."+document.getElementById("correlation").value+"=\""+document.getElementById("sign").value+"\"");
     }else if(type == 'kbar'){
         condition.push("K棒組合"+document.getElementById("kbar").options[document.getElementById("kbar").selectedIndex].text);
-        sqlarr.push("stock_tech.KBar_combination"+"like \"%"+document.getElementById("kbar").value+"%\"");
+        sqlarr.push("stock_tech.KBar_combination"+" like \"%"+document.getElementById("kbar").value+"%\"");
     }else if(type == 'order_angle'){
         condition.push("強勢股排名"+document.getElementById("order").options[document.getElementById("order").selectedIndex].text+document.getElementById("percent").options[document.getElementById("percent").selectedIndex].text);
         if (document.getElementById("order").value<1) {
@@ -592,8 +592,8 @@ function selectStockSbFormSubmit(){
     for (var i = 0; i < tablearr.length; i++) {
         table = table + " INNER JOIN "+tablearr[i]+" ON stock_tech.code="+tablearr[i]+".code ";
     }
-    document.getElementById("sql").value = "SELECT DISTINCT stock_tech.code FROM web_data.stock_tech "+table+" where 1=1 and stock_tech.date=(select max(stock_tech.date) from stock_tech)"+sql+" order by stock_tech.code ";
-    //alert(document.getElementById("sql").value);
+    document.getElementById("sql").value = "SELECT DISTINCT stock_tech.code FROM web_data.stock_tech "+table+" where 1=1 and stock_tech.date=(select max(stock_tech.date) from web_data.stock_tech)"+sql+" order by stock_tech.code ";
+    alert(document.getElementById("sql").value);
     document.getElementById("selectStockSbForm").submit();
 }
 </script>
