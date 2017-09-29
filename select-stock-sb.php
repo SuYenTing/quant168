@@ -526,7 +526,7 @@ function addcondition(type) {
         sqlarr.push("stock_tech."+document.getElementById("correlation").value+"=\""+document.getElementById("sign").value+"\"");
     }else if(type == 'kbar'){
         condition.push("K棒組合"+document.getElementById("kbar").options[document.getElementById("kbar").selectedIndex].text);
-        sqlarr.push("stock_tech.KBar_combination"+"=\""+document.getElementById("kbar").value+"\"");
+        sqlarr.push("stock_tech.KBar_combination"+"like \"%"+document.getElementById("kbar").value+"%\"");
     }else if(type == 'order_angle'){
         condition.push("強勢股排名"+document.getElementById("order").options[document.getElementById("order").selectedIndex].text+document.getElementById("percent").options[document.getElementById("percent").selectedIndex].text);
         if (document.getElementById("order").value<1) {
