@@ -26,7 +26,27 @@ th {
         <th colspan="2">基金風險評等</th>
     </tr>
     <tr>
-        <td>基金標的</td>
+        <td>境外/境內</td>
+        <td>
+            <select name="invest_type" id="invest_type" >
+                <option value="all">全部基金</option>
+                <option value="invest_place_in">境內</option>
+                <option value="invest_place_out">境外</option>
+            </select>
+        </td>
+        <td>一年年化標準差</td>
+        <td>
+            <select name="std1y" id="std1y">
+                <option value="all">不限</option>
+                <option value="std1y1">0 &#60;=SD &#60;0.3</option>
+                <option value="std1y2">0.3 &#60;=SD &#60;0.6</option>
+                <option value="std1y3">0.6 &#60;=SD &#60;0.9</option>
+                <option value="std1y4">0.9 &#60;=SD</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>投資標的</td>
         <td>
             <select name="subject" id="subject">
                 <option value="all">不限</option>
@@ -51,14 +71,13 @@ th {
                 <option value="其他">其他</option>
             </select>
         </td>
-        <td>一年年化標準差</td>
+        <td>一年年化Sharp Ratio</td>
         <td>
-            <select name="std1y" id="std1y">
+            <select name="sr1y" id="sr1y">
                 <option value="all">不限</option>
-                <option value="std1y1">0 &#60;=SD &#60;0.3</option>
-                <option value="std1y2">0.3 &#60;=SD &#60;0.6</option>
-                <option value="std1y3">0.6 &#60;=SD &#60;0.9</option>
-                <option value="std1y4">0.9 &#60;=SD</option>
+                <option value="sr1y1">0&#60;SR</option>
+                <option value="sr1y2">0 &#60;=SR&#60;1</option>
+                <option value="sr1y3">1 &#60;=SR</option>
             </select>
         </td>
     </tr>
@@ -115,17 +134,19 @@ th {
                 <option value="美洲                ">美洲                </option>
             </select>
         </td>
-        <td>一年年化Sharp Ratio</td>
+        <td>晨星評等</td>
         <td>
-            <select name="sr1y" id="sr1y">
+            <select name="risk_level" id="risk_level">
                 <option value="all">不限</option>
-                <option value="sr1y1">0&#60;SR</option>
-                <option value="sr1y2">0 &#60;=SR&#60;1</option>
-                <option value="sr1y3">1 &#60;=SR</option>
+                <option value="RR5">PR5適合積極投資人</option>
+                <option value="RR4">PR4適合成長投資人</option>
+                <option value="RR3">PR3適合穩健投資人</option>
+                <option value="RR2">PR2適合安穩投資人</option>
+                <option value="RR1">PR1適合保守投資人</option>
             </select>
         </td>
     </tr>
-    <tr>
+        <tr>
         <td>計價幣別</td>
         <td>
             <select id="currency" name="currency">
@@ -147,20 +168,9 @@ th {
                 <option value="瑞法郎">瑞法郎</option>
             </select>
         </td>
-        <td>晨星評等</td>
-        <td>
-            <select name="risk_level" id="risk_level">
-                <option value="all">不限</option>
-                <option value="RR5">PR5適合積極投資人</option>
-                <option value="RR4">PR4適合成長投資人</option>
-                <option value="RR3">PR3適合穩健投資人</option>
-                <option value="RR2">PR2適合安穩投資人</option>
-                <option value="RR1">PR1適合保守投資人</option>
-            </select>
-        </td>
     </tr>
     <tr>
-        <td colspan="4">
+        <td colspan="4" style="text-align:center;">
             <input class="button" type="button" value="確認送出" onclick="fundAdvanceSearchSubmit()">
         </td>
     </tr>
@@ -169,44 +179,40 @@ th {
 function fundAdvanceSearchSubmit() {
     sql = "";
     if (document.getElementById("subject").value != "all") {
-        sql = sql + "and (foreign_fund_performance.subject='" + document.getElementById("subject").value + "' or fund_performance.subject='" + document.getElementById("subject").value + "') ";
+        sql = sql + "and all_fund_performance.subject='" + document.getElementById("subject").value + "' ";
     }
     if (document.getElementById("country").value != "all") {
-      if (document.getElementById("country").value == "taiwan") {
-        sql = sql + "and (foreign_fund_performance.invest_place = '投資國內'  or foreign_fund_performance.invest_place='投資國內外' or fund_performance.invest_place = '投資國內'  or fund_performance.invest_place='投資國內外') ";
-      }else{
-        sql = sql + "and (foreign_fund_performance.invest_place='" + document.getElementById("country").value + "' or fund_performance.invest_place='" + document.getElementById("country").value + "') ";
-      }
+        sql = sql + "and all_fund_performance.invest_place='" + document.getElementById("country").value + "' ";
     }
     if (document.getElementById("currency").value != "all") {
-        sql = sql + "and (foreign_fund_performance.currency='" + document.getElementById("currency").value + "' or fund_performance.currency='" + document.getElementById("currency").value + "') ";
+        sql = sql + "and all_fund_performance.currency='" + document.getElementById("currency").value + "' ";
     }
     if (document.getElementById("std1y").value != "all") {
         if (document.getElementById("std1y").value == "std1y1") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=0  and foreign_fund_performance.std1y <0.3) or (fund_performance.std1y >=0  and fund_performance.std1y <0.3))";
+            sql = sql + "and (all_fund_performance.std1y >=0  and all_fund_performance.std1y <0.3)";
         } else if (document.getElementById("std1y").value == "std1y2") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=0.3  and foreign_fund_performance.std1y <0.6) or (fund_performance.std1y >=0.3  and fund_performance.std1y <0.6)) ";
+            sql = sql + "and (all_fund_performance.std1y >=0.3  and all_fund_performance.std1y <0.6)";
         } else if (document.getElementById("std1y").value == "std1y3") {
-            sql = sql + "and ((foreign_fund_performance.std1y >=0.6  and foreign_fund_performance.std1y <0.9) or (fund_performance.std1y >=0.6  and fund_performance.std1y <0.9)) ";
+            sql = sql + "and (all_fund_performance.std1y >=0.6  and all_fund_performance.std1y <0.9)";
         } else if (document.getElementById("std1y").value == "std1y4") {
-            sql = sql + "and (foreign_fund_performance.std1y >=0.9   or fund_performance.std1y >=0.9  )";
+            sql = sql + "and all_fund_performance.std1y >=0.9 ";
         }
     }
     if (document.getElementById("sr1y").value != "all") {
         if (document.getElementById("sr1y").value == "sr1y1") {
-            sql = sql + "and (foreign_fund_performance.sr1y <0 or fund_performance.sr1y <0)";
+            sql = sql + "and all_fund_performance.sr1y <0 ";
         } else if (document.getElementById("sr1y").value == "sr1y2") {
-            sql = sql + "and (foreign_fund_performance.sr1y >=0 or fund_performance.sr1y >=0)  and (foreign_fund_performance.sr1y <1 or fund_performance.sr1y <1) ";
+            sql = sql + "and all_fund_performance.sr1y >=0   and all_fund_performance.sr1y <1  ";
         } else if (document.getElementById("sr1y").value == "sr1y3") {
-            sql = sql + "and (foreign_fund_performance.sr1y >=1 or fund_performance.sr1y >=1)  ";
+            sql = sql + "and all_fund_performance.sr1y >=1  ";
         }
     }
     if (document.getElementById("risk_level").value != "all") {
-        sql = sql + "and (foreign_fund_performance.risk_level='" + document.getElementById("risk_level").value + "' or fund_performance.risk_level='" + document.getElementById("risk_level").value + "') ";
+        sql = sql + "and all_fund_performance.risk_level='" + document.getElementById("risk_level").value + "' ";
         
     }
     
-    document.getElementById("sql").value = "SELECT fund_performance.name,fund_performance.net_value,fund_performance.date,fund_performance.roc,fund_performance.change,fund_performance.currency,fund_performance.std1y,fund_performance.sr1y,fund_performance.risk_level,fund_performance.Return3m,fund_performance.Return6m,fund_performance.Return1y,fund_performance.Return3y,fund_performance.Return5y,fund_performance.Returnall,fund_performance.adjSR,fund_performance.BurkeRatio,fund_performance.BernardoLedoitRatio,fund_performance.DRatio,fund_performance.MDD,fund_performance.OmegaSR,fund_performance.PainRatio,fund_performance.SkewnessKurtosisRatio,fund_performance.SortinoRatio,fund_performance.UpsidePotentialRatio FROM web_data.fund_performance where 1=1 "+sql+" union SELECT foreign_fund_performance.name,foreign_fund_performance.net_value,foreign_fund_performance.date,foreign_fund_performance.roc,foreign_fund_performance.change,foreign_fund_performance.currency,foreign_fund_performance.std1y,foreign_fund_performance.sr1y,foreign_fund_performance.risk_level,foreign_fund_performance.Return3m,foreign_fund_performance.Return6m,foreign_fund_performance.Return1y,foreign_fund_performance.Return3y,foreign_fund_performance.Return5y,foreign_fund_performance.Returnall,foreign_fund_performance.adjSR,foreign_fund_performance.BurkeRatio,foreign_fund_performance.BernardoLedoitRatio,foreign_fund_performance.DRatio,foreign_fund_performance.MDD,foreign_fund_performance.OmegaSR,foreign_fund_performance.PainRatio,foreign_fund_performance.SkewnessKurtosisRatio,foreign_fund_performance.SortinoRatio,foreign_fund_performance.UpsidePotentialRatio  FROM web_data.foreign_fund_performance where 1=1 "+sql;
+    document.getElementById("sql").value = "SELECT all_fund_performance.name,all_fund_performance.net_value,all_fund_performance.date,all_fund_performance.roc,all_fund_performance.change,all_fund_performance.currency,all_fund_performance.std1y,all_fund_performance.sr1y,all_fund_performance.risk_level,all_fund_performance.Return3m,all_fund_performance.Return6m,all_fund_performance.Return1y,all_fund_performance.Return3y,all_fund_performance.Return5y,all_fund_performance.Returnall,all_fund_performance.adjSR,all_fund_performance.BurkeRatio,all_fund_performance.BernardoLedoitRatio,all_fund_performance.DRatio,all_fund_performance.MDD,all_fund_performance.OmegaSR,all_fund_performance.PainRatio,all_fund_performance.SkewnessKurtosisRatio,all_fund_performance.SortinoRatio,all_fund_performance.UpsidePotentialRatio FROM web_data.all_fund_performance where 1=1 "+sql;
     //alert(document.getElementById("sql").value);
     document.getElementById("searchType").value = "advanceResult";
     document.getElementById("fundsearch").submit();
