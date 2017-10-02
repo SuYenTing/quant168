@@ -86,7 +86,7 @@ th {
         <td>
             <select name="country" id="country">
                 <option value="all">不限</option>
-                <option value="taiwan">台灣</option>
+                <option value="台灣">台灣</option>
                 <option value="全球">全球</option>
                 <option value="已開發歐洲">已開發歐洲</option>
                 <option value="美國">美國</option>
@@ -151,10 +151,7 @@ th {
         <td>
             <select id="currency" name="currency">
                 <option value="all">不限</option>
-                <option value="NTD">NTD</option>
-                <option value="RMB">RMB</option>
-                <option value="USD">USD</option>
-                <option value="AUD">AUD</option>
+                <option value="NTD">台幣</option>
                 <option value="美元  ">美元  </option>
                 <option value="歐元  ">歐元  </option>
                 <option value="澳幣  ">澳幣  </option>

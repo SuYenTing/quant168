@@ -122,7 +122,7 @@ $result3=mysql_query("SELECT all_fund_performance.name,adjsr,Return1y FROM web_d
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType5.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -145,7 +145,7 @@ $result4=mysql_query("SELECT all_fund_performance.name,sortinoratio,Return1y FRO
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType6.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -170,7 +170,7 @@ $result3=mysql_query("SELECT all_fund_performance.name,MDD,Return1y FROM web_dat
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType7.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -193,7 +193,7 @@ $result4=mysql_query("SELECT all_fund_performance.name,UpsidePotentialRatio,Retu
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType8.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -218,7 +218,7 @@ $result3=mysql_query("SELECT all_fund_performance.name,BurkeRatio,Return1y FROM 
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType9.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
