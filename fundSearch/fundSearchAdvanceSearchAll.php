@@ -30,8 +30,8 @@ th {
         <td>
             <select name="invest_type" id="invest_type" >
                 <option value="all">全部基金</option>
-                <option value="invest_place_in">境內</option>
-                <option value="invest_place_out">境外</option>
+                <option value="境內">境內</option>
+                <option value="境外">境外</option>
             </select>
         </td>
         <td>一年年化標準差</td>
@@ -175,6 +175,9 @@ th {
 <script type="text/javascript">
 function fundAdvanceSearchSubmit() {
     sql = "";
+    if (document.getElementById("invest_type").value != "all") {
+        sql = sql + "and all_fund_performance.classify='" + document.getElementById("invest_type").value + "' ";
+    }
     if (document.getElementById("subject").value != "all") {
         sql = sql + "and all_fund_performance.subject='" + document.getElementById("subject").value + "' ";
     }
