@@ -11,21 +11,24 @@ include("navbar.html");
     <meta charset="UTF-8">
     <style>
         table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
+    border-collapse: collapse;
+    width: 100%;
+}
 
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
 
 
    
@@ -53,7 +56,6 @@ include("navbar.html");
         .button4:hover {background-color: #e7e7e7;}
         </style>
         
-    </style>
 </head>
 
 <body>
@@ -65,9 +67,12 @@ include("navbar.html");
 
     <div class="container">
         
-        <p>input</p>
+        
         <table>
         <form method="post" action="" name="form" id="form">
+            <tr>
+                <th colspan="4" style="text-align:center;">基本資料</th>
+            </tr>
             <tr>
                 <td>現在年齡</td>
                 <td>
@@ -318,8 +323,10 @@ include("navbar.html");
             </table>
             <button onclick="calculate()" class="button button4">計算</button>
 
-            <p>output</p>
             <table>
+            <tr>
+                <th colspan="2" style="text-align:center;">計算結果</th>
+            </tr>
                 <tr>
                     <td>
                         <p id="output1">勞工保險(月領)</p>

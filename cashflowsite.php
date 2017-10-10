@@ -29,8 +29,7 @@ $selfWithdraw = $_POST['selfWithdraw'];
             width: 100%;
         }
 
-        td,
-        th {
+        td{
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
@@ -38,6 +37,12 @@ $selfWithdraw = $_POST['selfWithdraw'];
 
         tr:nth-child(even) {
             background-color: #dddddd;
+        }
+        th{
+            text-align: left;
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
         }
 
 
@@ -64,7 +69,6 @@ $selfWithdraw = $_POST['selfWithdraw'];
         }
 
         .button4:hover {background-color: #e7e7e7;}
-        </style>
         
     </style>
 </head>
@@ -78,9 +82,11 @@ $selfWithdraw = $_POST['selfWithdraw'];
 
     <div class="container">
 
-        <p>基本資料</p>
         <table>
         <form method="post" action="" name="form1" id="form1" >
+            <tr>
+                <th colspan="10" style="text-align:center;">基本資料</th>
+            </tr>
             <tr>
                 <td>年齡</td>
                 <td>
@@ -341,10 +347,12 @@ $selfWithdraw = $_POST['selfWithdraw'];
 
                     <br>
 
-                    <p>婚姻狀況(若無結婚打算請跳過此段)</p>
                     <table>
                     <form method="post" action="" name="form2" id="form2">
                     <div id="marriedForm">
+                    <tr>
+                        <th colspan="6" style="text-align:center;">婚姻狀況(若無結婚打算請跳過此段)</th>
+                    </tr>
                         
                         <tr>
                             <td>(配偶/預計結婚對象)目前年齡</td>
@@ -457,9 +465,11 @@ $selfWithdraw = $_POST['selfWithdraw'];
 
             <br>
 
-            <p>購屋計畫</p>
             <table>
                 <form method="post" action="" name="form3" id="form3">
+                <tr>
+                <th colspan="6" style="text-align:center;">購屋計畫</th>
+                </tr>
                 <tr>
                     <td>是否有購屋計畫</td>
                     <td>
