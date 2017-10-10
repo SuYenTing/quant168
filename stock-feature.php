@@ -61,15 +61,26 @@ th {
 </head>
 <div class="container">
 <?php
-include "stockFeature/stockFeatureTypeList.php";
-include "stockFeature/stockFeatureKbarList.php";
-include "stockFeature/stockFeatureForeInvesList.php";
-include "stockFeature/stockFeatureSecuInvesList.php";
-include "stockFeature/stockFeatureSelfEmplList.php";
+ if ($_POST['searchType'] == 'detail') {
+    include $_POST['searchUrl'];
+} else {   
+    include "stockFeature/stockFeatureTypeList.php";
+    include "stockFeature/stockFeatureKbarList.php";
+    include "stockFeature/stockFeatureForeInvesList.php";
+    include "stockFeature/stockFeatureSecuInvesList.php";
+    include "stockFeature/stockFeatureSelfEmplList.php";
+}
 ?>
 
-
-
-
+<form id="moreInformForm" name="moreInformForm" method="post" action="stock-feature.php">
+    <input type="hidden" name="searchType" id="searchType" value="detail">
+    <input type="hidden" name="searchUrl" id="searchUrl">
+</form>
 
 </div>
+<script type="text/javascript">
+function moreInformSubmit(classname) {
+    document.getElementById("searchUrl").value = classname;
+    document.getElementById("moreInformForm").submit();
+}
+</script>

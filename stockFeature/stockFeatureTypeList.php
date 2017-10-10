@@ -26,7 +26,7 @@ $result1=mysql_query("SELECT stock_tech.code,today_price,order_angle FROM web_da
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType1.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureType/stockFeatureTypeGood1.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -49,7 +49,7 @@ $result2=mysql_query("SELECT stock_tech.code,today_price,order_angle FROM web_da
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType2.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureType/stockFeatureTypeGood2.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -74,7 +74,7 @@ $result3=mysql_query("SELECT stock_tech.code,today_price,order_angle FROM web_da
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureType/stockFeatureTypeGood3.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -97,7 +97,7 @@ $result4=mysql_query("SELECT stock_tech.code,today_price,order_angle FROM web_da
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureType/stockFeatureTypeGood4.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -132,7 +132,7 @@ $result1=mysql_query("SELECT stock_tech.code,today_price,order_angle FROM web_da
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType1.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureType/stockFeatureTypeBad1.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -155,7 +155,7 @@ $result2=mysql_query("SELECT stock_tech.code,today_price,order_angle FROM web_da
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType2.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureType/stockFeatureTypeBad2.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -180,7 +180,7 @@ $result3=mysql_query("SELECT stock_tech.code,today_price,order_angle FROM web_da
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureType/stockFeatureTypeBad3.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -203,7 +203,7 @@ $result4=mysql_query("SELECT stock_tech.code,today_price,order_angle FROM web_da
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureType/stockFeatureTypeBad4.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>

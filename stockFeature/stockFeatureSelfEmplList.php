@@ -13,7 +13,7 @@
                         <th class="th">淨買超金額</th>
                     </tr>
 <?php
-$result1=mysql_query("SELECT ins_bs_con.code,d_con_buy_days,f_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by d_con_buy_days desc limit 3;");
+$result1=mysql_query("SELECT ins_bs_con.code,d_con_buy_days,d_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by d_con_buy_days desc limit 3;");
     for($i=1;$i<=3;$i++){
         $rs1=mysql_fetch_row($result1);
 ?>
@@ -24,7 +24,7 @@ $result1=mysql_query("SELECT ins_bs_con.code,d_con_buy_days,f_net_buy_value FROM
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType1.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureSelfEmpl/stockFeatureSelfEmpl1.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -36,7 +36,7 @@ $result1=mysql_query("SELECT ins_bs_con.code,d_con_buy_days,f_net_buy_value FROM
                         <th class="th">淨買超金額</th>
                     </tr>
 <?php
-$result2=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by f_net_buy_volume desc limit 3;");
+$result2=mysql_query("SELECT ins_bs_con.code,d_net_buy_volume,d_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by d_net_buy_volume desc limit 3;");
     for($i=1;$i<=3;$i++){
         $rs2=mysql_fetch_row($result2);
 ?>
@@ -47,7 +47,7 @@ $result2=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FR
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType2.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureSelfEmpl/stockFeatureSelfEmpl2.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -61,7 +61,7 @@ $result2=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FR
                         <th class="th">淨買超金額</th>
                     </tr>
 <?php
-$result3=mysql_query("SELECT ins_bs_con.code,d_con_sell_days,f_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by d_con_sell_days desc limit 3;");
+$result3=mysql_query("SELECT ins_bs_con.code,d_con_sell_days,d_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by d_con_sell_days desc limit 3;");
     for($i=1;$i<=3;$i++){
         $rs3=mysql_fetch_row($result3);
 ?>
@@ -72,7 +72,7 @@ $result3=mysql_query("SELECT ins_bs_con.code,d_con_sell_days,f_net_buy_value FRO
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureSelfEmpl/stockFeatureSelfEmpl3.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -84,7 +84,7 @@ $result3=mysql_query("SELECT ins_bs_con.code,d_con_sell_days,f_net_buy_value FRO
                         <th class="th">淨買超金額</th>
                     </tr>
 <?php
-$result4=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by f_net_buy_volume  limit 3;");
+$result4=mysql_query("SELECT ins_bs_con.code,d_net_buy_volume,d_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by d_net_buy_volume  limit 3;");
     for($i=1;$i<=3;$i++){
         $rs4=mysql_fetch_row($result4);
 ?>
@@ -95,7 +95,7 @@ $result4=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FR
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureSelfEmpl/stockFeatureSelfEmpl4.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
