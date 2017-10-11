@@ -50,13 +50,9 @@ th {
         <td>
             <select name="subject" id="subject">
                 <option value="all">不限</option>
-                <option value="貨幣">貨幣</option>
-                <option value="股票">股票</option>
-                <option value="股票+債券">股票+債券</option>
                 <option value="小型股">小型股</option>
                 <option value="科技股">科技股</option>
                 <option value="指數型基金">指數型基金</option>
-                <option value="債券">債券</option>
                 <option value="基金">基金</option>
                 <option value="股票型">股票型</option>
                 <option value="債券型">債券型</option>
