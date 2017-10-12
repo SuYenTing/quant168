@@ -310,6 +310,7 @@ th {
                     <td>自行提撥(0%-6%)</td>
                     <td>
                         <select name="selfWithdraw" id="selfWithdraw" >
+                        <option value="0.0">0</option>
                         <option value="1.0">1</option>
                         <option value="2.0">2</option>
                         <option value="3.0">3</option>
