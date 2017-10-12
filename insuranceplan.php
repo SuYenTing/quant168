@@ -22,7 +22,7 @@ table, th, td {
 
 <h2><b>保險組合</b></h2>
 
-<img id="insuranceCombination" src="/images/insurance_combination.png" width="304" height="228">
+<img id="insuranceCombination" src="/quant168/images/insurance_combination.png">
 <br>
 
 <h4>組合I（<b>社會新鮮人</b>）：</h4>
