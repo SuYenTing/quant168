@@ -26,7 +26,7 @@ $result1=mysql_query("SELECT ins_bs_con.code,f_con_buy_days,f_net_buy_value FROM
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType1.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureForeInves/stockFeatureForeInves1.php');">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -49,7 +49,7 @@ $result2=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FR
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType2.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureForeInves/stockFeatureForeInves2.php">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -74,7 +74,7 @@ $result3=mysql_query("SELECT ins_bs_con.code,f_con_sell_days,f_net_buy_value FRO
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType3.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureForeInves/stockFeatureForeInves3.php">更多...</a></td>
                     </tr>
                 </table>
             </td>
@@ -97,7 +97,7 @@ $result4=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FR
                     </tr>
 <?php } ?>
                     <tr class="tr">
-                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:rankPerformSubmit('fundSearch/fundRank/fundRankType4.php');">更多...</a></td>
+                        <td colspan="3" style="text-align:right;color: orange;"><a href="javascript:moreInformSubmit('stockFeature/stockFeatureForeInves/stockFeatureForeInves4.php">更多...</a></td>
                     </tr>
                 </table>
             </td>
