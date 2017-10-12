@@ -38,9 +38,29 @@ th {
 <form id="insuranceSearch" name="insuranceSearch" method="post" action="insuranceResult.php">
 <table>
     <tr>
-        <th colspan="6" style="text-align:center;">保險查詢</th>
+        <th colspan="8" style="text-align:center;">保險查詢</th>
     </tr>
     <tr>
+        <td>保險類別</td>
+        <td>
+            <select name="insuranceType" id="insuranceType">
+
+            <?php
+            
+            $typeQuery="SELECT distinct (type) FROM web_data.insurance_premium";
+            $typeResult=mysql_query($typeQuery) or die ("Query to get data from firsttable failed: ".mysql_error());
+            
+            while ($typeRow=mysql_fetch_array($typeResult)) {
+            $type=$typeRow["type"];
+                echo "<option value=\"$type\">
+                    $type
+                </option>";
+            }
+                
+            ?>
+                
+            </select>
+        </td>
     	<td>公司名稱</td>
         <td>
         	<select name="company" id="company">
@@ -117,7 +137,7 @@ th {
     </tr>
     
     <tr>
-        <td colspan="6" style="text-align:center;">
+        <td colspan="8" style="text-align:center;">
             <input class="button" type="button" value="確認送出" onclick="insuranceSearchSubmit()">
         </td>
     </tr>
@@ -130,6 +150,7 @@ function insuranceSearchSubmit() {
 
 	sql = "";
 
+    sql = sql + "and insurance_premium.type ='" + document.getElementById("insuranceType").value + "' ";
 	sql = sql + "and insurance_premium.company = '" + document.getElementById("company").value + "' ";
 	sql = sql + "and insurance_premium.gender = '" + document.getElementById("gender").value + "' ";
 	sql = sql + "and insurance_premium.age = '" + document.getElementById("currentAge").value + "' ";
