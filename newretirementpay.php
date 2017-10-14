@@ -357,9 +357,7 @@ th {
                 </tr>
 
             </table>
-            <div id="f">
             <button onclick="changePage()" class="button button4">知道更多(點擊即可計算個人財務規劃)</button>
-            </div>
            </body>
 
 
@@ -396,16 +394,6 @@ function initOutput2(){
 }
 
 function laborFunc(){
-
-    var changePageBtn = document.createElement("button");
-    changePageBtn.id = "changePageBtn";
-    changePageBtn.onclick = changePage;
-    changePageBtn.className = "button button4";
-    var changePageBtnText = document.createTextNode("知道更多(點擊即可計算雇主提撥及自行提撥的退休金)");
-    changePageBtn.appendChild(changePageBtnText);
-    var f = document.getElementById('f');
-    f.appendChild(changePageBtn);
-
 
     document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
@@ -519,8 +507,6 @@ function laborFunc(){
 
 function functionaryFunc(){
 
-    document.getElementById('f').innerHTML = "";
-
     document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
@@ -625,8 +611,6 @@ function functionaryFunc(){
 }
 
 function publictaFunc(){
-
-    document.getElementById('f').innerHTML = "";
 
     document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
@@ -736,8 +720,6 @@ function publictaFunc(){
 
 
 function privatetaFunc(){
-
-    document.getElementById('f').innerHTML = "";
 
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退保前10年平均保俸";
@@ -861,8 +843,6 @@ function privatetaFunc(){
 
 function militaryFunc(){
 
-    document.getElementById('f').innerHTML = "";
-
     document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "退休金制度";
     document.getElementById("c").innerHTML = "預估退休前最後投保本俸(月)";
@@ -969,8 +949,6 @@ function militaryFunc(){
 
 function farmerFunc(){
 
-    document.getElementById('f').innerHTML = "";
-
     document.getElementById("privatetaTd").innerHTML = "";
     document.getElementById("a").innerHTML = "欲投保年資";
     document.getElementById("c").innerHTML = "";
@@ -1044,8 +1022,6 @@ function farmerFunc(){
 }
 
 function popularFunc(){
-
-    document.getElementById('f').innerHTML = "";
 
     document.getElementById("a").innerHTML = "";
     document.getElementById("c").innerHTML = "";
