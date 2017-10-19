@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+    <!-- Numeric -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    <!-- Numeral.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+    <!-- jStat -->
+    <script src="https://cdn.jsdelivr.net/jstat/latest/jstat.min.js"></script>
+    
+    <!-- Finally add formula.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/formulajs/1.0.8/formula.js"></script>
+</head>
+    <body>
+        <p><b>基金試算(單筆投資)</b></p>
+        <input type="radio" name="flavorGroup" value="1" data-bind="checked: duringFlavor"  /> 計算年投資金額
+        <input type="radio" name="flavorGroup" value="2" data-bind="checked: duringFlavor" /> 計算年報酬率
+        <input type="radio" name="flavorGroup" value="3" data-bind="checked: duringFlavor" /> 計算期末金額
+        <div data-bind="visible: showOne">
+            <p>報酬率：<input data-bind="value: TextBox1" /></p>
+            <p>期末金額：<input data-bind="value: TextBox2"/> 元</p>
+            <p>計算結果</p>
+            <p>每年投資金額：<strong data-bind="text: TextBox3" ></strong> 元</p>                       
+        </div>
+        <div data-bind="visible: showTwo">        
+            <p>投資金額：<input data-bind="value: TextBox1" /> 元</p>
+            <p>期末金額：<input data-bind="value: TextBox2"/> 元</p>
+            <p>計算結果</p>
+            <p>報酬率：<strong data-bind="text: TextBox3" ></strong></p>
+        </div>
+        <div data-bind="visible: showThree">        
+            <p>投資金額：<input data-bind="value: TextBox1" /> 元</p>
+            <p>報酬率：<input data-bind="value: TextBox2" /></p>
+            <p>計算結果</p>
+            <p>期末金額：<strong data-bind="text: TextBox3"></strong> 元</p>
+        </div>
+
+
+
+        <script type='text/javascript'>             
+            // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+            function AppViewModel() {
+                //投資期間：
+                this.TextBox1 = ko.observable("30");
+                //報酬率：
+                this.TextBox2 = ko.observable("5");
+
+                //duringFlavor：textbox6
+                this.duringFlavor = ko.observable("1");
+                
+                this.showOne =  ko.computed(function() {
+                    if ( this.duringFlavor() == "1") {
+                        this.TextBox1("15");
+                        this.TextBox2("150000");
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+                
+                this.showTwo =  ko.computed(function() {
+                    if ( this.duringFlavor() == "2") {
+                        this.TextBox1("100000");
+                        this.TextBox2("150000");
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+
+                this.showThree =  ko.computed(function() {
+                    if ( this.duringFlavor() == "3") {
+                        this.TextBox1("100000");
+                        this.TextBox2("15");
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+
+                this.TextBox3 = ko.computed(function() {
+                    if ( this.duringFlavor() === "1") {
+                        var i = this.TextBox1() / 100;
+                        var b = this.TextBox2() * 1;
+                       
+                        var result= b / (1 + i);
+                        return result.toFixed(2);
+                    } else if ( this.duringFlavor() === "2") { 
+                        var a = this.TextBox1();
+                        var b = this.TextBox2();
+
+                        var result =(b / a - 1) * 100;
+                        return result.toFixed(2);
+
+                    } else if ( this.duringFlavor() === "3") { 
+                        var a = 1 * this.TextBox1();
+                        var i = this.TextBox2() / 100;
+                    
+                        var result = a * (1 + i);
+ 
+                        return result.toFixed(2);
+
+                    } else {
+                       return 0;
+                    }
+                        
+                }, this);
+    
+        
+            }
+    
+            // Activates knockout.js
+            ko.applyBindings(new AppViewModel());
+
+        </script>
+    </body>
+
+</html>

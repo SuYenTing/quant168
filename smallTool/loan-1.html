@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+</head>
+
+<body>
+	    <p><b>購屋需準備多少錢</b></p>
+        <p>欲購房屋價格現值：<input data-bind="value: TextBox1" /></p>
+        <p>預估幾年後購屋：<input data-bind="value: TextBox2" /></p>
+        <p>預估房價上漲率：<input data-bind="value: TextBox3" /></p>
+        <p>貸款成數：<input data-bind="value: TextBox4" /></p>
+        <p>貸款年利率：<input data-bind="value: TextBox5" /></p>
+        <p>房貸年限：<input data-bind="value: TextBox6" /></p>
+        <p>計算結果</p>
+        <p>屆時房屋總價：<strong data-bind="text: TextBox7"></strong></p>
+        <p>需要準備自備款：<strong data-bind="text: TextBox8"></strong></p>
+        <p>達成自備款每月需要儲蓄：<strong data-bind="text: TextBox9"></strong></p>
+        <p>每月負擔房貸金額：<strong data-bind="text: TextBox10"></strong></p>
+
+
+        <script type='text/javascript'>
+            // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+            function AppViewModel() {
+            //欲購房屋價格現值：textbox1
+            this.TextBox1 = ko.observable("12000000");
+            //預估幾年後購屋：textbox2
+            this.TextBox2 = ko.observable("2");
+            //預估房價上漲率：textbox3
+            this.TextBox3 = ko.observable("1.0");
+            //貸款成數：textbox4
+            this.TextBox4 = ko.observable("7");
+            //貸款年利率：TextBox5
+            this.TextBox5 = ko.observable("2.0");
+            //房貸年限：TextBox6
+            this.TextBox6 = ko.observable("25");
+	
+            this.TextBox7 = ko.computed(function() {
+                var p = this.TextBox1();
+                var n = this.TextBox2();
+                var g = this.TextBox3() / 100;
+                var k = this.TextBox4() / 10;
+                var i = this.TextBox5() / 100;
+                var m = this.TextBox6();
+                
+                var result=  p* Math.pow(1+g, n); // p * (1 + g) ** n;
+                return result.toFixed(3);
+            }, this);
+	
+            this.TextBox8 = ko.computed(function() {
+                var p = this.TextBox1();
+                var n = this.TextBox2();
+                var g = this.TextBox3() / 100;
+                var k = this.TextBox4() / 10;
+                var i = this.TextBox5() / 100;
+                var m = this.TextBox6();
+                
+                var result= this.TextBox7() * (1 - k);
+                return result.toFixed(3);
+            }, this);
+            
+            this.TextBox9 = ko.computed(function() {
+                var p = this.TextBox1();
+                var n = this.TextBox2();
+                var g = this.TextBox3() / 100;
+                var k = this.TextBox4() / 10;
+                var i = this.TextBox5() / 100;
+                var m = this.TextBox6();
+                var j = Math.pow(1+i, 1/12) - 1;  // (1 + i) ** (1 / 12) - 1;
+                var d = j / (1 + j);
+                
+                var result= this.TextBox8() * d / (Math.pow(1 + j, n * 12) -1); // this.TextBox8() * d / ((1 + j) ** (n * 12) - 1);
+                return result.toFixed(3);
+            }, this);
+            
+            this.TextBox10 = ko.computed(function() {
+                var p = this.TextBox1();
+                var n = this.TextBox2();
+                var g = this.TextBox3() / 100;
+                var k = this.TextBox4() / 10;
+                var i = this.TextBox5() / 100;
+                var m = this.TextBox6();
+                var j = Math.pow(1+i, 1/12) - 1;  // (1 + i) ** (1 / 12) - 1;
+                var d = j / (1 + j);
+                
+                var result= this.TextBox7() * k * d / (1 - Math.pow(1/(1+j), m*12))  // this.TextBox7() * k * d / (1 - (1 / (1 + j)) ** (m * 12));
+                return result.toFixed(3);
+            }, this);
+        
+        }
+
+        // Activates knockout.js
+        ko.applyBindings(new AppViewModel());
+
+        </script>
+    </body>
+
+</html>

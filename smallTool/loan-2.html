@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+    </head>
+    <body>
+        <p><b>房貸(本金平均攤還)</b></p>
+        <p>房貸金額：<input data-bind="value: TextBox1" /> 元</p>
+        <p>房貸年限：<input data-bind="value: TextBox2" /> 年</p>
+        <p>貸款年利率：<input data-bind="value: TextBox3" /></p>
+		
+        <p>計算結果</p>
+        <p>每月償還本金：<strong data-bind="text: TextBox4"></strong> 元</p>
+        <p>總共利息費用：<strong data-bind="text: TextBox5"></strong> 元</p>
+
+
+        <script type='text/javascript'>
+            // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+            function AppViewModel() {
+            //房貸金額：textbox1
+            this.TextBox1 = ko.observable("12000000");
+            //房貸年限：textbox2
+            this.TextBox2 = ko.observable("30");
+            //貸款年利率：textbox3
+            this.TextBox3 = ko.observable("2.0");
+	
+            this.TextBox4 = ko.computed(function() {
+                var p = this.TextBox1();
+                var n = this.TextBox2();
+                var i = this.TextBox3() / 100;
+                var j = Math.pow(1+i, 1/12) - 1;
+                var result= p / (n * 12);
+                return result.toFixed(3);
+            }, this);
+	
+            this.TextBox5 = ko.computed(function() {
+                var p = this.TextBox1();
+                var n = this.TextBox2();
+                var i = this.TextBox3() / 100;
+                var j = Math.pow(1+i, 1 / 12) - 1;  
+                var result= j * (n * 12 * p - (12 * n - 1) * p / 2);
+                return result.toFixed(3);
+            }, this);
+        
+        }
+
+        // Activates knockout.js
+        ko.applyBindings(new AppViewModel());
+
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,96 @@
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+</head>
+    <body>
+        input
+
+        <p>本金：<input data-bind="value: textbox1" /></p>
+
+        <p>存款期間：<input data-bind="value: textbox2" />    
+            <input type="radio" name="flavorGroup" value="year" data-bind="checked: duringFlavor"  /> 年
+            <input type="radio" name="flavorGroup" value="month" data-bind="checked: duringFlavor" /> 月 </p>
+
+        <p>年利率：<input data-bind="value: textbox3" /></p>
+
+        <p>期初匯率：<input data-bind="value: textbox4" /></p>
+
+        <p>到期匯率：<input data-bind="value: textbox5" /></p>
+
+
+        Output
+
+        <p>報酬率：<strong data-bind="text: textbox6"></strong></p>
+
+        <p>外幣本利和：<strong data-bind="text: textbox7"></strong></p>
+
+        <p>轉換成台幣本利和：<strong data-bind="text: textbox8"></strong></p>
+
+
+
+
+        <script type='text/javascript'>
+            // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+            function AppViewModel() {
+
+
+                //本金：textbox1
+                this.textbox1 = ko.observable("30000");
+
+                //存款期間：textbox2
+                this.textbox2 = ko.observable("30");
+
+                //年利率：textbox3
+                this.textbox3 = ko.observable("1.05");
+
+                //期初匯率：textbox4
+                this.textbox4 = ko.observable("30");
+
+                //到期匯率：textbox5
+                this.textbox5 = ko.observable("35");
+
+                //duringFlavor：textbox6
+                this.duringFlavor = ko.observable("year");
+
+                this.textbox7 = ko.computed(function() {
+                    if ( this.duringFlavor() == "year") {
+                        console.log("textbox1:"+this.textbox1())
+                        console.log("textbox4:"+this.textbox4())
+                        console.log("1 + (this.textbox3() / 100):"+(1 + (this.textbox3() / 100)))
+                        console.log("textBox2:"+this.textbox2())
+                        var result=this.textbox1() / this.textbox4() * ((1 + (this.textbox3() / 100)) ** this.textbox2());
+                        return result.toFixed(3);
+                        //return result.toLocaleString('zh-TW', { style:'currency',currency: 'twd'});
+                    } else { 
+                        console.log("textbox1:"+this.textbox1())
+                        console.log("textbox4:"+this.textbox4())
+                        console.log("1 + (this.textbox3() / 100):"+(1 + (this.textbox3() / 100)))
+                        console.log("textBox2:"+this.textbox2())
+                        var j = (1 + this.textbox3() / 100) ** (1 / 12) - 1;
+                        var result =this.textbox1() / this.textbox4() * (1 + j) ** this.textbox2();
+                        return result.toFixed(3);
+                        //return result.toLocaleString('zh-TW', { style:'currency',currency: 'twd'});
+                    }              
+            }, this);
+
+           this.textbox8 = ko.computed(function() {
+                      var result= this.textbox7() * this.textbox5();
+                      return result.toFixed(3);
+            }, this);
+	
+            this.textbox6 = ko.computed(function() {
+                      var result= (this.textbox7() / (this.textbox1() / this.textbox4()) - 1) * 100;
+                      return result.toFixed(3);
+            }, this);
+	
+        }
+
+        // Activates knockout.js
+        ko.applyBindings(new AppViewModel());
+
+        </script>
+    </body>
+
+</html>
