@@ -526,7 +526,7 @@ $selfWithdraw = $_POST['selfWithdraw'];
             <button onclick="calculate()" class="button button4">計算</button>
 
 
-            <p><button onclick="window.location.href='retirementpay.php'" class="button button4">回去上頁</button>(點擊即可回上一頁重新輸入)</p>
+            <p><button onclick="window.location.href='newretirementpay.php'" class="button button4">回去上頁</button>(點擊即可回上一頁重新輸入)</p>
 
 
                 <table id="result" style="visibility: hidden">

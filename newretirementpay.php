@@ -459,7 +459,7 @@ function laborFunc(){
     var selfWithdrawCell = document.getElementById("selfWithdrawCell");
 
 
-    var laborWithdraArray = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
+    var laborWithdraArray = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
 
     //Create and append select list
     var laborWithdrawList = document.createElement("select");
