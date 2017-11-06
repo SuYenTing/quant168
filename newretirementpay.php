@@ -424,12 +424,6 @@ function laborFunc(){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
-    var laborRow = document.getElementById("forLabor");
-    while(laborRow.hasChildNodes()){
-                laborRow.removeChild(laborRow.firstChild);
-            }
-
-
     //Create array of options to be added
     var laborArray = ["勞保年金&勞保退新制(30歲以下)","勞保年金&全新制(30歲以上)","勞保年金&選擇勞退新制(30歲以上)"];
 
@@ -446,33 +440,8 @@ function laborFunc(){
         laborList.appendChild(laborOption);
     }
 
-
-    // var laborRow = document.getElementById("forLabor");
-    var laborTd1 = laborRow.insertCell();
-    laborTd1.appendChild(document.createTextNode('雇主提撥'));
-    var laborTd2 = laborRow.insertCell();
-    laborTd2.appendChild(document.createTextNode('6%'));
-    var laborTd3 = laborRow.insertCell();
-    laborTd3.appendChild(document.createTextNode('自行提撥(0%-6%)'));
-    var laborTd4 = laborRow.insertCell();
-    laborTd4.id = "selfWithdrawCell";
-    var selfWithdrawCell = document.getElementById("selfWithdrawCell");
-
-
-    var laborWithdraArray = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
-
-    //Create and append select list
-    var laborWithdrawList = document.createElement("select");
-    laborWithdrawList.id = "selfWithdraw";
-    selfWithdrawCell.appendChild(laborWithdrawList);
-
-    //Create and append the options
-    for (var i = 0; i < laborWithdraArray.length; i++) {
-        var laborWithdrawOption = document.createElement("option");
-        laborWithdrawOption.value = laborWithdraArray[i];
-        laborWithdrawOption.text = laborWithdraArray[i];
-        laborWithdrawList.appendChild(laborWithdrawOption);
-    }
+    var laborRow = document.getElementById("forLabor");
+    laborRow.style.display="table-row";
 
 
     var outputRow2 = document.getElementById("outputRow2");
@@ -537,10 +506,9 @@ function functionaryFunc(){
                 privatetaRoi.removeChild(privatetaRoi.firstChild);
             }
 
+
     var laborRow = document.getElementById("forLabor");
-    while(laborRow.hasChildNodes()){
-                laborRow.removeChild(laborRow.firstChild);
-            }
+    laborRow.style.display="none";
 
     //Create array of options to be added
     var functionaryArray = ["公保&公務人員退休金新制(40歲以下)","公保&公務人員退休金含新舊制(40歲以上)，退撫舊制年資=0","公保&公務人員退休金含新舊制(40歲以上)"];
@@ -643,9 +611,7 @@ function publictaFunc(){
             }
 
     var laborRow = document.getElementById("forLabor");
-    while(laborRow.hasChildNodes()){
-                laborRow.removeChild(laborRow.firstChild);
-            }
+    laborRow.style.display="none";
 
     //Create array of options to be added
     var publictaArray = ["公保&公教人員退休撫卹金新制(40歲以下)","公保&公教人員退休撫卹金新制(40歲以上)","公保&公教人員退休撫卹金新舊制(40歲以上)"];
@@ -754,9 +720,7 @@ function privatetaFunc(){
             }
 
     var laborRow = document.getElementById("forLabor");
-    while(laborRow.hasChildNodes()){
-                laborRow.removeChild(laborRow.firstChild);
-            }
+    laborRow.style.display="none";
 
 
     //Create array of options to be added
@@ -868,9 +832,7 @@ function militaryFunc(){
             }
 
     var laborRow = document.getElementById("forLabor");
-    while(laborRow.hasChildNodes()){
-                laborRow.removeChild(laborRow.firstChild);
-            }
+    laborRow.style.display="none";
 
     //Create array of options to be added
     var militaryArray = ["軍保&公務人員退休金新制(40歲以下)","軍保&公務人員退休金新制(40歲以上)","軍保&軍職人員退休金含新舊制(軍人, 40歲以上)"];
@@ -975,9 +937,7 @@ function farmerFunc(){
             }
 
     var laborRow = document.getElementById("forLabor");
-    while(laborRow.hasChildNodes()){
-                laborRow.removeChild(laborRow.firstChild);
-            }
+    laborRow.style.display="none";
 
     var militaryRow = document.getElementById("outputRow4");
     while(militaryRow.hasChildNodes()){
@@ -1049,9 +1009,7 @@ function popularFunc(){
             }
 
     var laborRow = document.getElementById("forLabor");
-    while(laborRow.hasChildNodes()){
-                laborRow.removeChild(laborRow.firstChild);
-            }
+    laborRow.style.display="none";
 
     var militaryRow = document.getElementById("outputRow4");
     while(militaryRow.hasChildNodes()){
