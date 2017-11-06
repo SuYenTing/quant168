@@ -13,6 +13,7 @@ $wageGrowth = $_POST['wageGrowth'];
 $lifeLeft = $_POST['lifeLeft'];
 $roi = $_POST['roi'];
 $selfWithdraw = $_POST['selfWithdraw'];
+$monthlyAmountValue = $_POST['monthlyAmountValue'];
 
 
 ?>
@@ -794,8 +795,12 @@ function calculate(){
 
     // alert(B61);
 
+    var monthlyAmountValue = <?php echo $monthlyAmountValue ;?>;
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t);
+    alert(monthlyAmountValue);
+
+
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue);
 
 }
 
@@ -1032,7 +1037,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue){
 
     var rowAge;
 
@@ -1132,7 +1137,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
             row.insertCell(5).innerHTML = Math.round(income4);
         }else if(rowAge >= B3){
-            var income4 = w;
+            var income4 = monthlyAmountValue * 12;
 
             row.insertCell(5).innerHTML = Math.round(income4);
 
@@ -1144,11 +1149,11 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         if(rowAge < B3){
             var income5 = 0;
 
-            row.insertCell(6).innerHTML = Math.round(income5);
+            row.insertCell(6).innerHTML = "-";
         }else if(rowAge >= B3){
-            var income5 = t;
+            var income5 = 0;
 
-            row.insertCell(6).innerHTML = Math.round(income5);
+            row.insertCell(6).innerHTML = "-";
         }
 
 
@@ -1195,10 +1200,16 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //孝親費
-        var expense2 = H5 * 12;
+        if(rowAge < 54){
+            var expense2 = H5 * 12;
 
-        row.insertCell(8).innerHTML = Math.round(H5 * 12);
-        H5 = H5 * (1+G29);
+            row.insertCell(8).innerHTML = Math.round(H5 * 12);
+            H5 = H5 * (1+G29);
+        }else if(rowAge >= 54){
+            var expense2 = 0;
+
+            row.insertCell(8).innerHTML = 0;
+        }
 
 
 

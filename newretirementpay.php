@@ -67,9 +67,9 @@ th {
 
     <div class="container">
         
-        
-        <table>
         <form method="post" action="" name="form" id="form">
+        <table>
+        
             <tr>
                 <th colspan="4" style="text-align:center;">基本資料</th>
             </tr>
@@ -303,6 +303,9 @@ th {
                         <option value="10.0">10.0%</option>
                         </select>
                     </td>
+                    <td style="hidden">
+                        <input name="monthlyAmountValue" type="number" id="monthlyAmountValue" value=0>
+                    </td>
                 </tr>
                 <tr id="forLabor">
                     <td>雇主提撥</td>
@@ -320,10 +323,11 @@ th {
                     </td>
                 </tr>
 
-            </form>
+            
             </table>
+            </form>
             <button onclick="calculate()" class="button button4">計算</button>
-
+            
             <table>
             <tr>
                 <th colspan="2" style="text-align:center;">計算結果</th>
@@ -365,6 +369,7 @@ th {
 
 function changePage(){
 
+    // alert(document.getElementById("monthlyAmountValue").value);
     document.getElementById('form').action = "cashflowsite.php";
     document.getElementById('form').submit();
 
@@ -1119,6 +1124,8 @@ if("labor" == vocation){
     document.getElementById("inOnce").innerHTML = "$" + Math.round(t);
     document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
 
+    document.getElementById("monthlyAmountValue").value = Math.round(w);
+
 }else if ("functionary" == vocation) {
 
     var functionaryInsuranceSystem = document.getElementById("functionaryInsuranceSystem").value;
@@ -1146,6 +1153,8 @@ if("labor" == vocation){
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
+
+        document.getElementById("monthlyAmountValue").value = Math.round(w);
  
     }else if ("公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem) {
 
@@ -1186,6 +1195,8 @@ if("labor" == vocation){
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
+
+        document.getElementById("monthlyAmountValue").value = Math.round(w);
         
     }
 
@@ -1213,6 +1224,8 @@ if("labor" == vocation){
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
+
+        document.getElementById("monthlyAmountValue").value = Math.round(w);
 
  
     }else if ("公保&公教人員退休撫卹金新舊制(40歲以上)" == publictaInsuranceSystem) {
@@ -1253,6 +1266,8 @@ if("labor" == vocation){
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
+
+        document.getElementById("monthlyAmountValue").value = Math.round(w);
     }
 
 }else if ("privateta" == vocation) {
@@ -1285,6 +1300,8 @@ if("labor" == vocation){
     document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
     document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
     document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
+
+    document.getElementById("monthlyAmountValue").value = Math.round(w);
 
 
 }else if ("military" == vocation) {
@@ -1327,6 +1344,8 @@ if("labor" == vocation){
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v1);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
         document.getElementById("militaryInsurance").innerHTML = "$" + Math.round(v);
+
+        document.getElementById("monthlyAmountValue").value = Math.round(w);
 
  
     }else if ("軍保&軍職人員退休金含新舊制(軍人, 40歲以上)" == militaryInsuranceSystem) {
@@ -1396,6 +1415,8 @@ if("labor" == vocation){
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
         document.getElementById("militaryInsurance").innerHTML = "$" + Math.round(v);
 
+        document.getElementById("monthlyAmountValue").value = Math.round(w);
+
     }
 
 }else if ("farmer" == vocation) {
@@ -1407,11 +1428,16 @@ if("labor" == vocation){
         var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         // document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+
+        document.getElementById("monthlyAmountValue").value = Math.round(w);
+
     }else if ("<15" == insuranceYear) {
         var w = 3628;
         var v = w * (1 - Math.pow( (1/(1 + (i/12))), (d*12)))/(i/12);
         document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
         // document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+
+        document.getElementById("monthlyAmountValue").value = Math.round(w);
     }
 
 }else if ("popular" == vocation) {
@@ -1422,6 +1448,8 @@ if("labor" == vocation){
 
     document.getElementById("monthlyAmount").innerHTML = "$" + Math.round(w);
     // document.getElementById("amountAccum").innerHTML = "$" + Math.round(v);
+
+    document.getElementById("monthlyAmountValue").value = Math.round(w);
 
 }
 
