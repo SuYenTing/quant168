@@ -1,0 +1,204 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+    <!-- Numeric -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    <!-- Numeral.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+    <!-- jStat -->
+    <script src="https://cdn.jsdelivr.net/jstat/latest/jstat.min.js"></script>
+    
+    <!-- Finally add formula.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/formulajs/1.0.8/formula.js"></script>
+</head>
+    <body>
+        <p><b>基金試算(每月定期定額)</b></p>
+        <input type="radio" name="flavorGroup" value="1" data-bind="checked: duringFlavor"  /> 計算每月投資金額
+        <input type="radio" name="flavorGroup" value="2" data-bind="checked: duringFlavor" /> 計算投資期間
+        <input type="radio" name="flavorGroup" value="3" data-bind="checked: duringFlavor" /> 計算年報酬率
+        <input type="radio" name="flavorGroup" value="4" data-bind="checked: duringFlavor" /> 計算期末金額
+        <div data-bind="visible: showOne">
+            <p>投資期間：<input data-bind="value: TextBox1" /> 年</p>
+            <p>報酬率：<input data-bind="value: TextBox2" /></p>
+            <p>期末金額：<input data-bind="value: TextBox3"/> 元</p>
+            <p>計算結果</p>
+            <p>每月投資金額：<strong data-bind="text: TextBox4" ></strong> 元</p>                       
+        </div>
+        <div data-bind="visible: showTwo">        
+            <p>每月投資金額：<input data-bind="value: TextBox1" /> 元</p> 
+            <p>報酬率：<input data-bind="value: TextBox2" /></p>
+            <p>期末金額：<input data-bind="value: TextBox3"/> 元</p>
+            <p>計算結果</p>
+            <p>投資期間：<strong data-bind="text: TextBox4" ></strong> 年</p>
+        </div>
+        <div data-bind="visible: showThree">        
+            <p>每月投資金額：<input data-bind="value: TextBox1" /> 元</p>
+            <p>投資期間：<input data-bind="value: TextBox2" /> 年</p>
+            <p>期末金額：<input data-bind="value: TextBox3"/> 元</p>
+            <p>計算結果</p>
+            <p>報酬率：<strong data-bind="text: TextBox4" ></strong></p>
+        </div>
+        <div data-bind="visible: showFour">        
+            <p>每月投資金額：<input data-bind="value: TextBox1" /> 元</p>
+            <p>投資期間：<input data-bind="value: TextBox2" /> 年</p>
+            <p>報酬率：<input data-bind="value: TextBox3" /></p>
+            <p>計算結果</p>
+            <p>期末金額：<strong data-bind="text: TextBox4"></strong> 元</p>
+        </div>
+
+
+
+        <script type='text/javascript'>             
+            var RATE = function(periods, payment, present, future, type, guess) {
+                // Credits: rabugento
+            
+                guess = (guess === undefined) ? 0.01 : guess;
+                future = (future === undefined) ? 0 : future;
+                type = (type === undefined) ? 0 : type;
+            
+                // Set maximum epsilon for end of iteration
+                var epsMax = 1e-6;
+            
+                // Set maximum number of iterations
+                var iterMax = 100;
+                var iter = 0;
+                var close = false;
+                var rate = guess;
+            
+                while (iter < iterMax && !close) {
+                    var t1 = Math.pow(rate + 1, periods);
+                    var t2 = Math.pow(rate + 1, periods - 1);
+            
+                    var f1 = future + t1 * present + payment * (t1 - 1) * (rate * type + 1) / rate;
+                    var f2 = periods * t2 * present - payment * (t1 - 1) *(rate * type + 1) / Math.pow(rate,2);
+                    var f3 = periods * payment * t2 * (rate * type + 1) / rate + payment * (t1 - 1) * type / rate;
+            
+                    var newRate = rate - f1 / (f2 + f3);
+            
+                    if (Math.abs(newRate - rate) < epsMax) close = true;
+                    iter++
+                    rate = newRate;
+                }
+            
+                if (!close) return Number.NaN + rate;
+                return rate;
+            };
+
+            // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+            function AppViewModel() {
+                //投資期間：
+                this.TextBox1 = ko.observable("30");
+                //報酬率：
+                this.TextBox2 = ko.observable("5");
+                //期末金額：
+                this.TextBox3 = ko.observable("1000000");
+
+                //duringFlavor：textbox6
+                this.duringFlavor = ko.observable("1");
+                
+                this.showOne =  ko.computed(function() {
+                    if ( this.duringFlavor() == "1") {
+                        this.TextBox1("30");
+                        this.TextBox2("5");
+                        this.TextBox3("1000000");
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+                
+                this.showTwo =  ko.computed(function() {
+                    if ( this.duringFlavor() == "2") {
+                        this.TextBox1("15000");
+                        this.TextBox2("5");
+                        this.TextBox3("1000000");
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+
+                this.showThree =  ko.computed(function() {
+                    if ( this.duringFlavor() == "3") {
+                        this.TextBox1("15000");
+                        this.TextBox2("20");
+                        this.TextBox3("10000000");
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+                
+                this.showFour =  ko.computed(function() {
+                    if ( this.duringFlavor() == "4") {
+                        this.TextBox1("15000");
+                        this.TextBox2("20");
+                        this.TextBox3("5");
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+
+                this.TextBox4 = ko.computed(function() {
+                    if ( this.duringFlavor() === "1") {
+                        var n = this.TextBox1() * 12;
+                        var i = this.TextBox2() / 100;
+                        var b = this.TextBox3();
+                        var j = Math.pow((1 + i) , (1 / 12)) - 1;
+                        var d = j / (1 + j);
+                        
+                        var result= b / (( Math.pow((1 + j) , n)  - 1 )  / d);
+                        return result.toFixed(2);
+                    } else if ( this.duringFlavor() === "2") { 
+                        var a = this.TextBox1();
+                        var i = this.TextBox2() / 100;
+                        var b = this.TextBox3();
+                        var j = Math.pow((1 + i) , (1 / 12)) - 1;
+                        var d = j / (1 + j);
+                    
+                        var result =(Math.log(b / a * d + 1) / Math.log(1 + j))  / 12 ;
+                        return result.toFixed(2);
+
+                    } else if ( this.duringFlavor() === "3") { 
+                        var a = -1 * this.TextBox1();
+                        var n = this.TextBox2() * 12;
+                        var b = 1 * this.TextBox3();
+                    
+                        var result = RATE(n,a,0,b,1) * 12 * 100 ;
+ 
+                        return result.toFixed(2);
+
+                    } else if ( this.duringFlavor() === "4") { 
+                        var a = this.TextBox1();
+                        var n = this.TextBox2() * 12;
+                        var i = this.TextBox3() / 100;
+
+                        var j = Math.pow((1 + i) , (1 / 12)) - 1;
+                        var d = j / (1 + j);
+                    
+                        var result = a * ( Math.pow((1 + j) , n) - 1) / d ;
+                        return result.toFixed(2);
+
+                    } else {
+                       return 0;
+                    }
+                        
+                }, this);
+    
+        
+            }
+    
+            // Activates knockout.js
+            ko.applyBindings(new AppViewModel());
+
+        </script>
+    </body>
+
+</html>

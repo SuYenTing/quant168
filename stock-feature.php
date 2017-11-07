@@ -60,15 +60,29 @@ th {
 </style>
 </head>
 <div class="container">
+<button onclick="rawInformSubmit('stockFeature/stockFeatureTypeList.php')">型態特色榜</button>
+<button onclick="rawInformSubmit('stockFeature/stockFeatureKbarList.php')">K棒組合特色榜</button>
+<button onclick="rawInformSubmit('stockFeature/stockFeatureForeInvesList.php')">外資動向排行榜</button>
+<button onclick="rawInformSubmit('stockFeature/stockFeatureSecuInvesList.php')">投信動向排行榜</button>
+<button onclick="rawInformSubmit('stockFeature/stockFeatureSelfEmplList.php')">自營商動向排行榜 </button>
+</div>
+<script>
+function myFunction(site) {
+    document.getElementById("iframe").src = site;
+}
+</script>
 <?php
  if ($_POST['searchType'] == 'detail') {
     include $_POST['searchUrl'];
-} else {   
-    include "stockFeature/stockFeatureTypeList.php";
+} else if($_POST['searchType'] == 'raw'){   
+    include $_POST['searchUrl'];
+    /*include "stockFeature/stockFeatureTypeList.php";
     include "stockFeature/stockFeatureKbarList.php";
     include "stockFeature/stockFeatureForeInvesList.php";
     include "stockFeature/stockFeatureSecuInvesList.php";
-    include "stockFeature/stockFeatureSelfEmplList.php";
+    include "stockFeature/stockFeatureSelfEmplList.php";*/
+}else{
+    include "stockFeature/stockFeatureTypeList.php";
 }
 ?>
 
@@ -76,10 +90,17 @@ th {
     <input type="hidden" name="searchType" id="searchType" value="detail">
     <input type="hidden" name="searchUrl" id="searchUrl">
 </form>
-
+<form id="rawInformForm" name="rawInformForm" method="post" action="stock-feature.php">
+    <input type="hidden" name="searchType" id="searchType" value="raw">
+    <input type="hidden" name="searchUrl" id="searchUrl">
+</form>
 </div>
 <script type="text/javascript">
 function moreInformSubmit(classname) {
+    document.getElementById("searchUrl").value = classname;
+    document.getElementById("moreInformForm").submit();
+}
+function rawInformSubmit(classname) {
     document.getElementById("searchUrl").value = classname;
     document.getElementById("moreInformForm").submit();
 }

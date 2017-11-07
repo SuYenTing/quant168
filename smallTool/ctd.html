@@ -1,0 +1,126 @@
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+</head>
+    <body>
+        input 
+        <br>
+        <input type="radio" name="flavorGroup" value="1" data-bind="checked: duringFlavor"  /> 整存整付
+        <input type="radio" name="flavorGroup" value="2" data-bind="checked: duringFlavor" /> 存本自取
+        <input type="radio" name="flavorGroup" value="3" data-bind="checked: duringFlavor" /> 零存整付
+        <div data-bind="visible: showOne">        
+            <p>本金：<input data-bind="value: textbox1" /></p>
+            <p>存款期間：<input data-bind="value: textbox2" /></p>
+            <p>年利率：<input data-bind="value: textbox3" /></p>
+            Output
+            <p>滿額共領取：<strong data-bind="text: textbox4"></strong></p>
+            <p>利息總和：<strong data-bind="text: textbox5"></strong></p>
+        </div>
+        <div data-bind="visible: showTwo">        
+            <p>本金：<input data-bind="value: textbox1" /></p>
+            <p>年利率：<input data-bind="value: textbox3" /></p>
+            Output
+            <p>每月利息收入：<strong data-bind="text: textbox6"></strong></p>
+        </div>
+        <div data-bind="visible: showThree">        
+            <p>每月存入金額：<input data-bind="value: textbox7" /></p>
+            <p>存款期間：<input data-bind="value: textbox2" /></p>
+            <p>年利率：<input data-bind="value: textbox3" /></p>
+            Output
+            <p>滿額共領取：<strong data-bind="text: textbox4"></strong></p>
+            <p>利息總和：<strong data-bind="text: textbox5"></strong></p>
+        </div>
+
+
+
+
+        <script type='text/javascript'>
+            // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+            function AppViewModel() {
+                //本金：textbox1
+                this.textbox1 = ko.observable("30000");
+                //存款期間：textbox2
+                this.textbox2 = ko.observable("30");
+                //年利率：textbox3
+                this.textbox3 = ko.observable("1.05");
+                //期初匯率：textbox4
+                this.textbox7 = ko.observable("3000");
+
+                //duringFlavor：textbox6
+                this.duringFlavor = ko.observable("1");
+                
+                this.showOne =  ko.computed(function() {
+                    if ( this.duringFlavor() == "1") {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+                
+                this.showTwo =  ko.computed(function() {
+                    if ( this.duringFlavor() == "2") {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+
+                this.showThree =  ko.computed(function() {
+                    if ( this.duringFlavor() == "3") {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }, this);
+
+                this.textbox4 = ko.computed(function() {
+                    if ( this.duringFlavor() == "1") {
+                        var result=this.textbox1() * (1 + this.textbox3() / 100) ** this.textbox2();
+                        return result.toFixed(3);
+                        //return result.toLocaleString('zh-TW', { style:'currency',currency: 'twd'});
+                    } else if ( this.duringFlavor() == "3") { 
+                        var j = (1 + this.textbox3() / 100) ** (1 / 12) - 1;
+                        var result =this.textbox7() * ((1 + j) ** (this.textbox2() * 12) - 1) / j;
+                        return result.toFixed(3);
+                        //return result.toLocaleString('zh-TW', { style:'currency',currency: 'twd'});
+                    } else {
+                       return 0;
+                    }
+                        
+            }, this);
+
+           this.textbox5 = ko.computed(function() {
+                    if ( this.duringFlavor() == "1") {
+                        var result=this.textbox4() - this.textbox1();
+                        return result.toFixed(3);
+                        //return result.toLocaleString('zh-TW', { style:'currency',currency: 'twd'});
+                    } else if ( this.duringFlavor() == "3") { 
+                        var result =this.textbox4() - this.textbox7() * this.textbox2() * 12 ;
+                        return result.toFixed(3);
+                        //return result.toLocaleString('zh-TW', { style:'currency',currency: 'twd'});
+                    } else {
+                       return 0;
+                    }
+            }, this);
+	
+            this.textbox6 = ko.computed(function() {
+                    var j = (1 + this.textbox3() / 100) ** (1 / 12) - 1;
+                    var result= this.textbox1() * j;
+                    return result.toFixed(3);
+            }, this);
+	
+        }
+
+        // Activates knockout.js
+        ko.applyBindings(new AppViewModel());
+
+        </script>
+    </body>
+
+</html>

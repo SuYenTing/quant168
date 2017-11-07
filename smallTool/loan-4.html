@@ -1,0 +1,143 @@
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+
+    <body>
+        <p><b>房貸-多段利率</b></p>
+        <p>貸款金額：<input data-bind="value: TextBox1" /> 元</p>
+        <p>寬限期：<input data-bind="value: TextBox2" /> 月</p>
+        <p>第一段利率：<input data-bind="value: TextBox3" /></p>
+        <p>第一段期間：<input data-bind="value: TextBox4" /> 月</p>
+        <p>第二段利率：<input data-bind="value: TextBox5" /></p>
+        <p>第二段期間：<input data-bind="value: TextBox6" /> 月</p> 
+        <p>第三段利率：<input data-bind="value: TextBox7"/></p>
+        <p>第三段期間：<input data-bind="value: TextBox8"/> 月</p>
+       
+        <p>計算結果</p>
+        <p>總期數：<strong data-bind="text: TextBox9"></strong></p>
+        <p>寬限期-第一階段：每月<strong data-bind="text: TextBox10"></strong> 元</p>
+        <p>第一階段：每月<strong data-bind="text: TextBox11"></strong> 元</p>  
+        <p>第二階段：每月<strong data-bind="text: TextBox12"></strong> 元</p>  
+        <p>第三階段：每月<strong data-bind="text: TextBox13"></strong> 元</p>
+
+        <script type='text/javascript'>
+            // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI            
+            function AppViewModel() {
+                //貸款金額
+                this.TextBox1 = ko.observable("12000000");
+                //寬限期
+                this.TextBox2 = ko.observable("24");
+                //第一段利率
+                this.TextBox3 = ko.observable("1.0");
+                //第一段期間
+                this.TextBox4 = ko.observable("60");
+                //第二段利率
+                this.TextBox5 = ko.observable("2.0");
+                //第二段期間
+                this.TextBox6 = ko.observable("120");
+                //第三段利率
+                this.TextBox7 = ko.observable("2.5");
+                //第三段期間
+                this.TextBox8 = ko.observable("120");
+                //總期數
+                this.TextBox9 = ko.computed(function () {
+                    var p = this.TextBox1(); //貸款金額
+                    var m = parseInt(this.TextBox2()); //寬限期
+                    var a = parseFloat(this.TextBox3()); //第一段利率
+                    var d = parseInt(this.TextBox4()); //第一段期間
+                    var b = parseFloat(this.TextBox5()); //第二段利率
+                    var e = parseInt(this.TextBox6()); //第二段期間
+                    var c = parseFloat(this.TextBox7()); //第三段利率
+                    var f = parseInt(this.TextBox8()); //第三段期間
+                    var n = d + e + f;
+
+                    var result = n; //p* Math.pow(1+g, n); // p * (1 + g) ** n;
+                    return result;
+                }, this);
+                //寬限期-第一階段
+                this.TextBox10 = ko.computed(function () {
+                    var p = parseInt(this.TextBox1()); //貸款金額
+                    var m = parseInt(this.TextBox2()); //寬限期
+                    var a = parseFloat(this.TextBox3()); //第一段利率
+                    var d = parseInt(this.TextBox4()); //第一段期間
+                    var b = parseFloat(this.TextBox5()); //第二段利率
+                    var e = parseInt(this.TextBox6()); //第二段期間
+                    var c = parseFloat(this.TextBox7()); //第三段利率
+                    var f = parseInt(this.TextBox8()); //第三段期間
+                    var n = d + e + f;
+
+                    var j = Math.pow((1 + a / 100), (1 / 12)) - 1;
+
+                    var result = p * j;
+                    return result.toFixed(3);
+                }, this);
+                //第一階段
+                this.TextBox11 = ko.computed(function() {
+                    var p = parseInt(this.TextBox1()); //貸款金額
+                    var m = parseInt(this.TextBox2()); //寬限期
+                    var a = parseFloat(this.TextBox3()); //第一段利率
+                    var d = parseInt(this.TextBox4()); //第一段期間
+                    var b = parseFloat(this.TextBox5()); //第二段利率
+                    var e = parseInt(this.TextBox6()); //第二段期間
+                    var c = parseFloat(this.TextBox7()); //第三段利率
+                    var f = parseInt(this.TextBox8()); //第三段期間
+                    var n = d + e + f;
+                
+                    var j = Math.pow((1 + a / 100) , (1 / 12)) - 1;
+                    console.log("第一階段利率:"+j + " 預期每期:" + (p*j) +" 利率:"+( Math.pow((1 + j) , (-n + m)) ) );
+                 // var result= p * j / (1 - Math.pow(1/(1 + j), n*12) );
+                    var result= p * j / ( 1 - Math.pow((1 + j) , (-n + m)) );
+                    return result.toFixed(3);
+                }, this);
+                //第二階段
+                this.TextBox12 = ko.computed(function() {
+                    var p = parseInt(this.TextBox1()); //貸款金額
+                    var m = parseInt(this.TextBox2()); //寬限期
+                    var a = parseFloat(this.TextBox3()); //第一段利率
+                    var d = parseInt(this.TextBox4()); //第一段期間
+                    var b = parseFloat(this.TextBox5()); //第二段利率
+                    var e = parseInt(this.TextBox6()); //第二段期間
+                    var c = parseFloat(this.TextBox7()); //第三段利率
+                    var f = parseInt(this.TextBox8()); //第三段期間
+                    var n = d + e + f;
+                
+                    var j = Math.pow((1 + b / 100) , (1 / 12)) - 1; //換成實質月利率
+                    console.log("第二階段利率:"+j);
+                    
+                    var totalP1=this.TextBox10() * this.TextBox2() + this.TextBox11() * (this.TextBox4()- this.TextBox2());
+                    var last=this.TextBox1() - totalP1;
+                    console.log("totalP1:"+totalP1+" "+"last:"+last);
+                
+                    var result= last * j / (1 - Math.pow((1 + j) , (-e - f)));
+                    return result.toFixed(3);
+                }, this);
+                //第三階段
+                this.TextBox13 = ko.computed(function() {
+                    var p = parseInt(this.TextBox1()); //貸款金額
+                    var m = parseInt(this.TextBox2()); //寬限期
+                    var a = parseFloat(this.TextBox3()); //第一段利率
+                    var d = parseInt(this.TextBox4()); //第一段期間
+                    var b = parseFloat(this.TextBox5()); //第二段利率
+                    var e = parseInt(this.TextBox6()); //第二段期間
+                    var c = parseFloat(this.TextBox7()); //第三段利率
+                    var f = parseInt(this.TextBox8()); //第三段期間
+                    var n = d + e + f;
+                
+                    var j = Math.pow((1 + c / 100) , (1 / 12)) - 1;
+                
+                    var totalP2=this.TextBox10() * this.TextBox2() + this.TextBox11() * (this.TextBox4()- this.TextBox2()) + this.TextBox12() * this.TextBox6();
+                
+                    var result = (this.TextBox1() - totalP2) * j / (1 - Math.pow((1 + j) , (-f)));
+                    return result.toFixed(3);
+                }, this);
+        
+        }
+
+        // Activates knockout.js
+        ko.applyBindings(new AppViewModel());
+
+        </script>
+    </body>
+
+</html>

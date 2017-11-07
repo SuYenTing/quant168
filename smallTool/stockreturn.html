@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+</head>
+    <body>
+        <p><b>股票報酬率</b></p>
+
+        <p>買入張數：<input data-bind="value: TextBox1" /> 1張=1000股</p>
+        <p>買入價格：<input data-bind="value: TextBox2" />    
+        <p>賣出價格：<input data-bind="value: TextBox3" /></p>
+
+        <p>計算結果</p>
+        <p>報酬率：<strong data-bind="text: textbox4"></strong>%</p>
+
+        <script type='text/javascript'>
+            // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+            function AppViewModel() {
+                //買入張數：：textbox1
+                this.TextBox1 = ko.observable("10");
+                //買入價格：：textbox2
+                this.TextBox2 = ko.observable("30");
+                //賣出價格：：textbox3
+                this.TextBox3 = ko.observable("40");
+                //報酬率
+                this.textbox4 = ko.computed(function() {
+                    var result = (this.TextBox3() / this.TextBox2() - 1) * 100;
+                    return result.toFixed(2);
+                }, this);
+
+            }
+
+            // Activates knockout.js
+            ko.applyBindings(new AppViewModel());
+
+        </script>
+    </body>
+
+</html>
