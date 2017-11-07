@@ -304,7 +304,7 @@ th {
                         </select>
                     </td>
                     <td style="hidden">
-                        <input name="monthlyAmountValue" type="number" id="monthlyAmountValue" value=0>
+                        <input name="monthlyAmountValue" type="hidden" id="monthlyAmountValue" value=0>
                     </td>
                 </tr>
                 <tr id="forLabor">

@@ -797,7 +797,7 @@ function calculate(){
 
     var monthlyAmountValue = <?php echo $monthlyAmountValue ;?>;
 
-    alert(monthlyAmountValue);
+    // alert(monthlyAmountValue);
 
 
     showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue);
