@@ -13,18 +13,53 @@ table {
 
 th,
 td {
-    text-align: left;
-    padding: 8px;
+
+    text-align: center;
+    padding: 14px;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2
+.myButton {
+    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+    background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+    background-color:#ffffff;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    cursor:pointer;
+    color:#666666;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:20px 40px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+    background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
+    background-color:#f6f6f6;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
 }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-}
+
 </style>
 
 <head>
@@ -56,11 +91,40 @@ th {
 <h3 align="center"><b>公司名稱</b></h3>
 <br>
 <hr>
+<form>
 <table align="center">
     <tr>
+        <td><button class="myButton">台銀人壽</button></td>
+        <td><button class="myButton">台灣人壽</button></td>
+        <td><button class="myButton">保誠人壽</button></td>
+        <td><button class="myButton">國泰人壽</button></td>
+        <td><button class="myButton">中國人壽</button></td>
+        <td><button class="myButton">南山人壽</button></td>
+    </tr>
+    <tr>
+        <td><button class="myButton">新光人壽</button></td>
+        <td><button class="myButton">富邦人壽</button></td>
+        <td><button class="myButton">遠雄人壽</button></td>
+        <td><button class="myButton">安聯人壽</button></td>
+        <td><button class="myButton">中華郵政</button></td>
+        <td><button class="myButton">全球人壽</button></td>
+    </tr>
+    <tr>
+        <td><button class="myButton">元大人壽</button></td>
+        <td><button class="myButton">康健人壽</button></td>
+        <td><button class="myButton">友邦人壽</button></td>
+        <td><button class="myButton">安達人壽</button></td>
+        <td><button class="myButton">第一金人壽</button></td>
+        <td><button class="myButton">法國巴黎人壽</button></td>
+    </tr>
+    <tr>
+        <td><button class="myButton">蘇黎世人壽</button></td>
+        <td><button class="myButton">保德信人壽</button></td>
+        <td><button class="myButton">三商美邦人壽</button></td>
     </tr>
     
-</table>    
+</table>
+</form>
 </div>
 <script type="text/javascript">
 
