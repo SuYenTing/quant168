@@ -797,7 +797,7 @@ function calculate(){
 
     var monthlyAmountValue = <?php echo $monthlyAmountValue ;?>;
 
-    // alert(monthlyAmountValue);
+    // alert(toThousands(monthlyAmountValue));
 
 
     showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue);
@@ -1073,7 +1073,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
             var income1 = D3 + D11;
 
-            row.insertCell(2).innerHTML = Math.round(income1);
+            row.insertCell(2).innerHTML = toThousands(Math.round(income1));
             D3 = D3 * (1+G33);
             D11 = D11 * (1+G33);
 
@@ -1085,7 +1085,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                 var income1 = D3;
 
-                row.insertCell(2).innerHTML = Math.round(income1);
+                row.insertCell(2).innerHTML = toThousands(Math.round(income1));
                 D3 = D3 * (1+G33);
 
             }else if(rowAge >= (B2 + D5)) {
@@ -1096,7 +1096,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                 var income1 = D3 + D11;
 
-                row.insertCell(2).innerHTML = Math.round(income1);
+                row.insertCell(2).innerHTML = toThousands(Math.round(income1));
                 D3 = D3 * (1+G33);
                 D11 = D11 * (1+G33);
 
@@ -1108,7 +1108,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
             var income1 = D3;
 
-            row.insertCell(2).innerHTML = Math.round(income1);
+            row.insertCell(2).innerHTML = toThousands(Math.round(income1));
             D3 = D3 * (1+G33);
 
         }
@@ -1118,7 +1118,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         //現有存款
         var income2 = J5;
 
-        row.insertCell(3).innerHTML = Math.round(income2);
+        row.insertCell(3).innerHTML = toThousands(Math.round(income2));
         J5 = J5 * (1+G28);
 
 
@@ -1126,7 +1126,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         //投資&其他
         var income3 = B7;
 
-        row.insertCell(4).innerHTML = Math.round(income3);
+        row.insertCell(4).innerHTML = toThousands(Math.round(income3));
         B7 = B7 * getRandom((1 - (0.7 * D7)),(1 + D7));
 
 
@@ -1135,11 +1135,11 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         if(rowAge < B3){
             var income4 = 0;
 
-            row.insertCell(5).innerHTML = Math.round(income4);
+            row.insertCell(5).innerHTML = toThousands(Math.round(income4));
         }else if(rowAge >= B3){
             var income4 = monthlyAmountValue * 12;
 
-            row.insertCell(5).innerHTML = Math.round(income4);
+            row.insertCell(5).innerHTML = toThousands(Math.round(income4));
 
         }
 
@@ -1167,7 +1167,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             
             var expense1 = F5 * 12;
 
-            row.insertCell(7).innerHTML = Math.round(expense1);
+            row.insertCell(7).innerHTML = toThousands(Math.round(expense1));
             F5 = F5 * (1+G29);
 
         }
@@ -1176,14 +1176,14 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                 var expense1 = F5 * 12;
 
-                row.insertCell(7).innerHTML = Math.round(expense1);
+                row.insertCell(7).innerHTML = toThousands(Math.round(expense1));
                 F5 = F5 * (1+G29);
 
             }else if(rowAge >= (B2 + D5)) {
 
                 var expense1 = F5 * 24;
 
-                row.insertCell(7).innerHTML = Math.round(expense1);
+                row.insertCell(7).innerHTML = toThousands(Math.round(expense1));
                 F5 = F5 * (1+G29);
 
             }
@@ -1192,7 +1192,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
             var expense1 = F5 * 12;
 
-            row.insertCell(7).innerHTML = Math.round(expense1);
+            row.insertCell(7).innerHTML = toThousands(Math.round(expense1));
             F5 = F5 * (1+G29);
 
         }
@@ -1203,7 +1203,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         if(rowAge < 54){
             var expense2 = H5 * 12;
 
-            row.insertCell(8).innerHTML = Math.round(H5 * 12);
+            row.insertCell(8).innerHTML = toThousands(Math.round(H5 * 12));
             H5 = H5 * (1+G29);
         }else if(rowAge >= 54){
             var expense2 = 0;
@@ -1225,7 +1225,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                         var expense3 = 240000;
 
-                        row.insertCell(9).innerHTML = Math.round(expense3);
+                        row.insertCell(9).innerHTML = toThousands(Math.round(expense3));
                         child1 = child1 + 1;
                     }else if(child1 > 25){
 
@@ -1241,14 +1241,14 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                         var expense3 = 240000 * 2;
 
-                        row.insertCell(9).innerHTML = Math.round(expense3);
+                        row.insertCell(9).innerHTML = toThousands(Math.round(expense3));
                         child1 = child1 + 1;
                         child2 = child2 + 1;
                     }else if(child1 > 25 && child2 <= 25){
 
                         var expense3 = 240000;
 
-                        row.insertCell(9).innerHTML = Math.round(expense3);
+                        row.insertCell(9).innerHTML = toThousands(Math.round(expense3));
                         child2 = child2 + 1;
                     }else if(child1 > 25 && child2 > 25){
 
@@ -1278,7 +1278,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                             var expense3 = 240000 * B12;
 
-                            row.insertCell(9).innerHTML = Math.round(expense3);
+                            row.insertCell(9).innerHTML = toThousands(Math.round(expense3));
                             child1 = child1 + 1;
                         }else if(child1 > 25){
 
@@ -1315,7 +1315,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                             var expense3 = 240000 * B12;
 
-                            row.insertCell(9).innerHTML = Math.round(expense3);
+                            row.insertCell(9).innerHTML = toThousands(Math.round(expense3));
                             child1 = child1 + 1;
                         }else if(child1 > 25){
 
@@ -1351,7 +1351,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                 var expense4 = D18 * 12;
 
-                row.insertCell(10).innerHTML = Math.round(expense4);
+                row.insertCell(10).innerHTML = toThousands(Math.round(expense4));
                 D18 = D18 * (1 + G29);
                 yearToBuyHouse++;
 
@@ -1368,7 +1368,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
                     var expense5 = G62 * 12;
                     var expense6 = 0;
 
-                    row.insertCell(11).innerHTML = Math.round(expense5);
+                    row.insertCell(11).innerHTML = toThousands(Math.round(expense5));
                     row.insertCell(12).innerHTML = "0";
                 }
 
@@ -1380,7 +1380,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
                 row.insertCell(10).innerHTML = "0";
                 row.insertCell(11).innerHTML = "0";
-                row.insertCell(12).innerHTML = Math.round(expense6);
+                row.insertCell(12).innerHTML = toThousands(Math.round(expense6));
 
             }
 
@@ -1390,7 +1390,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             var expense5 = 0;
             var expense6 = 0;
 
-            row.insertCell(10).innerHTML = Math.round(expense4);
+            row.insertCell(10).innerHTML = toThousands(Math.round(expense4));
             D18 = D18 * (1 + G29);
             row.insertCell(11).innerHTML = "0";
             row.insertCell(12).innerHTML = "0";
@@ -1404,7 +1404,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
             row.insertCell(10).innerHTML = "0";
             row.insertCell(11).innerHTML = "0";
-            row.insertCell(12).innerHTML = Math.round(expense6);
+            row.insertCell(12).innerHTML = toThousands(Math.round(expense6));
 
         }
 
@@ -1423,7 +1423,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         if (rowAge <= B2 + H7) {
-            row.insertCell(14).innerHTML = Math.round(expense8);
+            row.insertCell(14).innerHTML = toThousands(Math.round(expense8));
         }else if (rowAge > B2 + H7) {
             row.insertCell(14).innerHTML = "0";
         }
@@ -1444,7 +1444,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             var totalRevenue = revenue;
         }
         
-        row.insertCell(15).innerHTML = revenue;
+        row.insertCell(15).innerHTML = toThousands(revenue);
 
 
 
@@ -1453,7 +1453,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             var totalRevenue = totalRevenue + revenue;
         }
 
-        row.insertCell(16).innerHTML = totalRevenue;
+        row.insertCell(16).innerHTML = toThousands(totalRevenue);
 
 
 
@@ -1467,15 +1467,15 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             if (totalRevenue < 0) {
                 var R = 0;
 
-                row.insertCell(17).innerHTML = R;
+                row.insertCell(17).innerHTML = toThousands(R);
             } else if (totalRevenue < (B62 * 12)) {
                 var R = totalRevenue;
 
-                row.insertCell(17).innerHTML = R;
+                row.insertCell(17).innerHTML = toThousands(R);
             } else if (totalRevenue > (B62 * 12)) {
                 var R = B62 * 12;
 
-                row.insertCell(17).innerHTML = R;
+                row.insertCell(17).innerHTML = toThousands(R);
             }
 
         }
@@ -1483,7 +1483,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //累積餘額
-        row.insertCell(18).innerHTML = totalRevenue - R;
+        row.insertCell(18).innerHTML = toThousands(totalRevenue - R);
 
 
 
@@ -1504,6 +1504,21 @@ function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+function toThousands(num) {
+    var num = (num || 0).toString(), re = /\d{3}$/, result = '';
+    while ( re.test(num) ) {
+        result = RegExp.lastMatch + result;
+        if (num !== RegExp.lastMatch) {
+            result = ',' + result;
+            num = RegExp.leftContext;
+        } else {
+            num = '';
+            break;
+        }
+    }
+    if (num) { result = num + result; }
+    return result;
+}
 
 
 
