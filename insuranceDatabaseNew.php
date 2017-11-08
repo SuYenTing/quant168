@@ -91,7 +91,7 @@ td {
 <h3 align="center"><b>公司名稱</b></h3>
 <br>
 <hr>
-<form id="insuranceSearch" name="insuranceSearch" method="post" action="insuranceResult.php">
+<form id="insuranceSearch" name="insuranceSearch" method="post" action="insuranceResultNew.php">
 <table align="center">
     <tr>
         <td>
@@ -206,7 +206,7 @@ td {
             </label>
         </td>
         <td>
-            <input type="hidden" id="company" />
+            <input type="hidden" id="company" name="company"/>
             <input type="hidden" name="sql" id="sql">
         </td>
     </tr>
