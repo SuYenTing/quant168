@@ -1,3 +1,6 @@
+<?php
+include "navbar.html";
+?>
 <style>
 .container {
     width: 80%;
