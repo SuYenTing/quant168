@@ -1124,7 +1124,7 @@ if("labor" == vocation){
     document.getElementById("inOnce").innerHTML = "$" + Math.round(t);
     document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
 
-    document.getElementById("monthlyAmountValue").value = Math.round(w);
+    document.getElementById("monthlyAmountValue").value = Math.round(mon);
 
 }else if ("functionary" == vocation) {
 
@@ -1154,7 +1154,7 @@ if("labor" == vocation){
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
 
-        document.getElementById("monthlyAmountValue").value = Math.round(w);
+        document.getElementById("monthlyAmountValue").value = Math.round(mon);
  
     }else if ("公保&公務人員退休金含新舊制(40歲以上)" == functionaryInsuranceSystem) {
 
@@ -1196,7 +1196,7 @@ if("labor" == vocation){
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
 
-        document.getElementById("monthlyAmountValue").value = Math.round(w);
+        document.getElementById("monthlyAmountValue").value = Math.round(mon);
         
     }
 
@@ -1225,7 +1225,7 @@ if("labor" == vocation){
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
 
-        document.getElementById("monthlyAmountValue").value = Math.round(w);
+        document.getElementById("monthlyAmountValue").value = Math.round(mon);
 
  
     }else if ("公保&公教人員退休撫卹金新舊制(40歲以上)" == publictaInsuranceSystem) {
@@ -1267,7 +1267,7 @@ if("labor" == vocation){
         document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
 
-        document.getElementById("monthlyAmountValue").value = Math.round(w);
+        document.getElementById("monthlyAmountValue").value = Math.round(mon);
     }
 
 }else if ("privateta" == vocation) {
@@ -1301,7 +1301,7 @@ if("labor" == vocation){
     document.getElementById("inOnce").innerHTML = "$" + Math.round(v);
     document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
 
-    document.getElementById("monthlyAmountValue").value = Math.round(w);
+    document.getElementById("monthlyAmountValue").value = Math.round(mon);
 
 
 }else if ("military" == vocation) {
@@ -1345,7 +1345,7 @@ if("labor" == vocation){
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
         document.getElementById("militaryInsurance").innerHTML = "$" + Math.round(v);
 
-        document.getElementById("monthlyAmountValue").value = Math.round(w);
+        document.getElementById("monthlyAmountValue").value = Math.round(mon);
 
  
     }else if ("軍保&軍職人員退休金含新舊制(軍人, 40歲以上)" == militaryInsuranceSystem) {
@@ -1415,7 +1415,7 @@ if("labor" == vocation){
         document.getElementById("amountAccum").innerHTML = "$" + Math.round(mon);
         document.getElementById("militaryInsurance").innerHTML = "$" + Math.round(v);
 
-        document.getElementById("monthlyAmountValue").value = Math.round(w);
+        document.getElementById("monthlyAmountValue").value = Math.round(mon);
 
     }
 

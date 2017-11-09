@@ -544,8 +544,8 @@ $monthlyAmountValue = $_POST['monthlyAmountValue'];
                         <td>薪資</td>
                         <td>現有存款</td>
                         <td>投資&其他</td>
-                        <td>勞保</td>
-                        <td>勞退</td>
+                        <td>退休金</td>
+                        <td>-</td>
                         <td>生活費</td>
                         <td>孝親費</td>
                         <td>小孩支出</td>
@@ -790,7 +790,7 @@ function calculate(){
 
     var C58 = B58 * (1- Math.pow((1+(G28/12)),(12 * (-B33)))) * (12/G28); 
 
-    var B61 = Math.max(((F5 * 12 * Math.pow((1+G29),(B3-B2)) * (1-Math.pow(((1+G29)/(1+G28)),B33)))/(((1 + G28)/(1 + G29)) - 1)) - C58 - B59 - (J5 * Math.pow((1+G28),(B3-B2))) - (B7*Math.pow((1+G31),(B3-B2))), 0);
+    var B61 = Math.max((((F5 * 12 * Math.pow((1+G29),(B3-B2)) * (1-Math.pow(((1+G29)/(1+G28)),B33)))/(((1 + G28)/(1 + G29)) - 1)) - C58 - B59 - (J5 * Math.pow((1+G28),(B3-B2))) - (B7*Math.pow((1+G31),(B3-B2)))), 0);
     var B62 = B61 * ((((1+G28)/(1+G29))-1)/12) * (1/((Math.pow((1+((((1+G28)/(1+G29))-1)/(12))),(12*(B3-B2))))-1));
 
     // alert(B61);
@@ -800,7 +800,7 @@ function calculate(){
     // alert(toThousands(monthlyAmountValue));
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue, F20, D21, B61);
 
 }
 
@@ -1037,7 +1037,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue, F20, D21, B61){
 
     var rowAge;
 
@@ -1055,7 +1055,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         rows[2].parentNode.removeChild(rows[2]);
     }
 
-    // alert(B62);
+    alert(B61);
 
     for (rowAge = B2; rowAge <= 80; rowAge++) {
 
@@ -1418,13 +1418,13 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //其他借款
-        var expense8 = F7 * G28 * (1/(1-Math.pow((1+G28),(-1*F7))));
+        var expense8 = F7 * G28 * (1/(1-Math.pow((1+G28),(-1*H7))));
 
 
 
-        if (rowAge <= B2 + H7) {
+        if (rowAge < B2 + H7) {
             row.insertCell(14).innerHTML = toThousands(Math.round(expense8));
-        }else if (rowAge > B2 + H7) {
+        }else if (rowAge >= B2 + H7) {
             row.insertCell(14).innerHTML = "0";
         }
 

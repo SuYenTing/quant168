@@ -40,7 +40,10 @@ table {
     width: 100%;
 }
 
-th,
+th {
+    text-align: center;
+    padding: 8px;
+}
 td {
     text-align: left;
     padding: 8px;
@@ -58,10 +61,12 @@ th {
 </head>
 
 <div class="container">
+    <h1 align="center"><?php echo $company?></h1>
+    <hr>
     <form id="productSearch" name="productSearch" method="post" action="productResultNew.php">
         <table>
             <tr>
-                <th>商品</th>
+                <th>商品名稱</th>
             </tr>
     <?php
     $sql=$_POST['sql'];
@@ -86,8 +91,8 @@ th {
 function productInfo(product){
     document.getElementById('product').value = product;
     document.getElementById('company').value = "<?php echo $company ?>";
-    alert(document.getElementById('product').value);
-    alert(document.getElementById('company').value);
+    // alert(document.getElementById('product').value);
+    // alert(document.getElementById('company').value);
     // alert(ya);
 
     sql = "";
