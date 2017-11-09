@@ -3,7 +3,7 @@ include "navbar.html";
 ?>
 <style>
 .container {
-    width: 80%;
+    width: 100%;
     margin: center;
 }
 
