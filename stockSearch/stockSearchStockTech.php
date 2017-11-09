@@ -63,7 +63,17 @@ td {
 
 </style>
 <div class="container">
-    <h1>個股診斷 技術分析</h1>
+    <form id="stock-techForm" name="stock-techForm" method="get" action="stockSearchStockTech.php">
+        <div>
+            <!--股票代碼-->
+            <input type="hidden" name="code" value="<?php echo $_GET['code']; ?>" >
+            <input type="hidden" id="stocktechtype" name="stocktechtype" >
+            <!--<input type="button" name="button" value="查詢開始"  onclick="formSubmit('stocktech1')">-->
+        </div>
+        <div>
+            <p></p>
+        </div>
+    </form>
     <div>
         <button onclick="formSubmit('stocktech1')">格局</button>
         <button onclick="formSubmit('stocktech2')">均線排列</button>
@@ -87,7 +97,7 @@ if (isset($_GET['code'])) {
 ?>
 
     <?PHP
-if (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech1')) {?>
+if (isset($_GET['code']) && ($_GET['stocktechtype'] == 'stocktech1')) {?>
     <div>
         <table>
             <col width="420">
@@ -107,7 +117,7 @@ if (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech1')) {?>
             </tr>
         </table>
     </div>
-    <?PHP } elseif (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech2')) {?>
+    <?PHP } elseif (isset($_GET['code']) && ($_GET['stocktechtype'] == 'stocktech2')) {?>
     <div>
         <table>
             <tr>
@@ -157,7 +167,7 @@ if (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech1')) {?>
             </tr>
         </table>
     </div>
-    <?PHP } elseif (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech3')) {
+    <?PHP } elseif (isset($_GET['code']) && ($_GET['stocktechtype'] == 'stocktech3')) {
 	?>
     <div>
         <table>
@@ -249,7 +259,7 @@ if (($rs[15] == '無背離') && ($rs[2] % 2 == 1)) {
             </tr>
         </table>
     </div>
-    <?PHP } elseif (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech4')) {
+    <?PHP } elseif (isset($_GET['code']) && ($_GET['stocktechtype'] == 'stocktech4')) {
 	?>
     <div>
         <table>
@@ -315,7 +325,7 @@ if (classify($rs[2]) == "classB") {
             </tr>
         </table>
     </div>
-    <?PHP } elseif (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech5')) {?>
+    <?PHP } elseif (isset($_GET['code']) && ($_GET['stocktechtype'] == 'stocktech5')) {?>
     <div>
         <table>
             <tr>
@@ -356,7 +366,7 @@ if (classify($rs[2]) == "classB") {
             </tr>
         </table>
     </div>
-    <?PHP } elseif (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech6')) {
+    <?PHP } elseif (isset($_GET['code']) && ($_GET['stocktechtype'] == 'stocktech6')) {
 	?>
     <div>
         <table>
@@ -559,7 +569,7 @@ if (classify($rs[2]) == "classB") {
             </tr>
         </table>
     </div>
-    <?PHP } elseif (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech7')) {
+    <?PHP } elseif (isset($_GET['code']) && ($_GET['stocktechtype'] == 'stocktech7')) {
 	?>
     <div>
         <table>
@@ -601,7 +611,7 @@ if (classify($rs[2]) == "classB") {
             </tr>
         </table>
     </div>
-    <?PHP } elseif (isset($_GET['code']) && ($_POST['stocktechtype'] == 'stocktech8')) {
+    <?PHP } elseif (isset($_GET['code']) && ($_GET['stocktechtype'] == 'stocktech8')) {
 	?>
     <div>
         <table>

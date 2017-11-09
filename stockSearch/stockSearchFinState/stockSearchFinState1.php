@@ -8,7 +8,5 @@ $code = $_GET['code'];
 //$rs = mysql_fetch_row($stock);
 ?>
 <div>
-    <button onclick="formSubmit('stocktech1')">損益表</button>
-    <button onclick="formSubmit('stocktech2')">資產負債表</button>
-    <button onclick="formSubmit('stocktech3')">現金流量表</button>
+    <p style="text-align: center;vertical-align:middle;"><span style="font-size:xx-large;">test2</span></p>
 </div>

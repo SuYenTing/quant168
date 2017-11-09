@@ -33,7 +33,7 @@ iframe {
             <td><img src="img/stockSearchFinState.png" height="42" onclick="changeIframe('FinState')"></td>
         </tr>
         <tr>
-            <td><img src="img/stockSearchStockTech.png" height="42" onclick="changeIframe('StockTech')"></td>
+            <td><img src="img/stockSearchStockTech.png" height="42" onclick="changeStockTech()"></td>
             <td rowspan="2">
                 <iframe src="stockSearchSmartBeta.php?code=<?php echo $code; ?>" height="100%" width="100%"></iframe>
             </td>
@@ -46,5 +46,8 @@ iframe {
 <script>
     function changeIframe(loadFrame) {
         document.getElementById("middleIframe").src = "stockSearch"+loadFrame+".php?code=<?php echo $code; ?>";
+    }
+    function changeStockTech(){
+        document.getElementById("middleIframe").src = "stockSearchStockTech.php?code=<?php echo $code; ?>&stocktechtype=stocktech1";
     }
 </script>
