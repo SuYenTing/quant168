@@ -1055,7 +1055,7 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         rows[2].parentNode.removeChild(rows[2]);
     }
 
-    alert(B61);
+    // alert(B61);
 
     for (rowAge = B2; rowAge <= 80; rowAge++) {
 
@@ -1070,23 +1070,35 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             row.insertCell(1).innerHTML = B11;
             B11++;
 
+            if (rowAge < B3) {
+                var income1 = D3 + D11;
 
-            var income1 = D3 + D11;
+                row.insertCell(2).innerHTML = toThousands(Math.round(income1));
+                D3 = D3 * (1+G33);
+                D11 = D11 * (1+G33);
 
-            row.insertCell(2).innerHTML = toThousands(Math.round(income1));
-            D3 = D3 * (1+G33);
-            D11 = D11 * (1+G33);
+            } else if (rowAge >= B3) {
+                var income1 = 0;
+
+                row.insertCell(2).innerHTML = 0;
+            }
 
         }
         else if (B5 == "planning") {
             if (rowAge < (B2 + D5)) {
                 row.insertCell(1).innerHTML = "-";
 
-
-                var income1 = D3;
+                if (rowAge < B3) {
+                    var income1 = D3;
 
                 row.insertCell(2).innerHTML = toThousands(Math.round(income1));
                 D3 = D3 * (1+G33);
+            } else if (rowAge >= B3) {
+                var income1 = 0;
+
+                row.insertCell(2).innerHTML = 0;
+            }
+                
 
             }else if(rowAge >= (B2 + D5)) {
 
@@ -1094,22 +1106,35 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
                 B11++;
 
 
+                if (rowAge < B3) {
                 var income1 = D3 + D11;
 
                 row.insertCell(2).innerHTML = toThousands(Math.round(income1));
                 D3 = D3 * (1+G33);
                 D11 = D11 * (1+G33);
 
+            } else if (rowAge >= B3) {
+                var income1 = 0;
+
+                row.insertCell(2).innerHTML = 0;
+            }
+
             }
         }
         else if (B5 == "none") {
             row.insertCell(1).innerHTML = "-";
 
-
-            var income1 = D3;
+            if (rowAge < B3) {
+                var income1 = D3;
 
             row.insertCell(2).innerHTML = toThousands(Math.round(income1));
             D3 = D3 * (1+G33);
+        }else if (rowAge >= B3) {
+            var income1 = 0;
+
+                row.insertCell(2).innerHTML = 0;
+        }
+            
 
         }
 
