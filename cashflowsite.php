@@ -691,6 +691,7 @@ function calculate(){
 
     
     var B33 = parseInt(document.getElementById("lifeLeft").value);
+    var B33 = 17.57;
 
 
     var G28 = 0.015;
@@ -784,13 +785,15 @@ function calculate(){
 
     var mon = w + t * (1/12) * (i/(1 - Math.pow((1 + (i/12)), (-d * 12))));
 
-    var B58 = mon * 12;
+    // var B58 = mon * 12;
+
+    var B58 = <?php echo $monthlyAmountValue?>;
 
 
 
     var C58 = B58 * (1- Math.pow((1+(G28/12)),(12 * (-B33)))) * (12/G28); 
 
-    var B61 = Math.max((((F5 * 12 * Math.pow((1+G29),(B3-B2)) * (1-Math.pow(((1+G29)/(1+G28)),B33)))/(((1 + G28)/(1 + G29)) - 1)) - C58 - B59 - (J5 * Math.pow((1+G28),(B3-B2))) - (B7*Math.pow((1+G31),(B3-B2)))), 0);
+    var B61 = Math.max((((F5 * 12 * Math.pow((1+G29),(B3-B2)) * (1-Math.pow(((1+G29)/(1+G28)),B33)))/(((1 + G28)/(1 + G29)) - 1)) - C58 - (J5 * Math.pow((1+G28),(B3-B2))) - (B7*Math.pow((1+G31),(B3-B2)))), 0);
     var B62 = B61 * ((((1+G28)/(1+G29))-1)/12) * (1/((Math.pow((1+((((1+G28)/(1+G29))-1)/(12))),(12*(B3-B2))))-1));
 
     // alert(B61);
@@ -800,7 +803,7 @@ function calculate(){
     // alert(toThousands(monthlyAmountValue));
 
 
-    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue, F20, D21, B61);
+    showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue, F20, D21, B61, B33, F5, C58, B59, J5, B7, B58);
 
 }
 
@@ -1037,7 +1040,7 @@ function lifeLeftFunc() {
 
 
 
-function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue, F20, D21, B61){
+function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5, D12, F12, B14, D14, F14, B12, B18, B20, D18, D20, G62, G63, B24, B3, B62, F7, H7, w, t, monthlyAmountValue, F20, D21, B61, B33, F5, C58, B59, J5, B7, B58){
 
     var rowAge;
 
@@ -1055,9 +1058,19 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
         rows[2].parentNode.removeChild(rows[2]);
     }
 
-    // alert(B61);
+    // alert("B33 = " + B33);
+    // alert("B61 = " + B61);
+    // alert("B62 = " + B62);
+    
+    // alert("B58= " + B58);
+    // alert("F5= " + F5);
+    // alert("C58= " + C58);
+    // alert("B59= " + B59);
+    // alert("J5= " + J5);
+    // alert("B7= " + B7);
 
-    for (rowAge = B2; rowAge <= 80; rowAge++) {
+
+    for (rowAge = B2; rowAge <= 105; rowAge++) {
 
 
         var row = document.createElement("tr");
@@ -1500,7 +1513,8 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             } else if (totalRevenue > (B62 * 12)) {
                 var R = B62 * 12;
 
-                row.insertCell(17).innerHTML = toThousands(R);
+                // row.insertCell(17).innerHTML = toThousands(R);
+                row.insertCell(17).innerHTML = Math.round(R);
             }
 
         }
@@ -1508,7 +1522,8 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //累積餘額
-        row.insertCell(18).innerHTML = toThousands(totalRevenue - R);
+        // row.insertCell(18).innerHTML = toThousands(totalRevenue - R);
+        row.insertCell(18).innerHTML = Math.round(totalRevenue - R);
 
 
 
