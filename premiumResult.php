@@ -87,7 +87,6 @@ th {
 <div class="container">
     <h1><?php echo $product?></h1>
     <hr>
-    <form id="productSearch" name="productSearch" method="post" action="premiumResult.php">
         <table>
             <tr>
                 <td>年齡：</td>
@@ -204,13 +203,20 @@ th {
                 <td>
                     <input type="number" name="insured" id="insured" value="5">萬
                 </td>
-                <input type="hidden" id="sql" name="sql">
                 <input type="hidden" id="product" name="product">
                 <input type="hidden" id="company" name="company">
-                <input type="hidden" id="type" name="type">
                 </tr>
             </table>
-            <button onclick="calculate()" class="button button4">計算</button>
+
+            <h1>
+                <?php
+                    $premiumResult = mysql_query("$sql");
+                    while ($premiumRow = mysql_fetch_array($premiumResult)) {
+                        $premium = $premiumRow["premium"];
+                        echo $premium;
+                    }
+                ?>
+            </h1>
 </div>
 </body>
 <script type="text/javascript">
@@ -219,45 +225,6 @@ function genderFunc(gender) {
     document.getElementById("genders").value = gender;
 }
 
-function calculate(){
-
-    document.getElementById('product').value = "<?php echo $product ?>";
-    document.getElementById('company').value = "<?php echo $company ?>";
-    document.getElementById('type').value = "<?php echo $type ?>";
-
-    sql = "";
-
-    sql = sql + "and insurance_premium.company = '" + "<?php echo $company ?>" + "' ";
-
-    sql = sql + "and insurance_premium.name = '" + "<?php echo $product ?>" + "' ";
-
-    sql = sql + "and insurance_premium.type = '" + "<?php echo $type ?>" + "' ";
-
-    sql = sql + "and insurance_premium.length = " + document.getElementById('length').value + " ";
-
-    sql = sql + "and insurance_premium.age = " + document.getElementById('currentAge').value + " "; 
-
-    sql = sql + "and insurance_premium.gender = " + document.getElementById('genders').value + " ";
-
-
-    document.getElementById("sql").value = "SELECT insurance_premium.premium FROM web_data.insurance_premium where 1=1 "+sql;
-
-    // alert(document.getElementById('sql').value);
-
-    document.getElementById("productSearch").action = "premiumResult.php";
-    document.getElementById("productSearch").submit();
-
-
-}
-
 </script>
 
 </html>
-
-
-
-
-
-
-
-
