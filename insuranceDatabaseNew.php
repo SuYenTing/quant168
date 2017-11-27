@@ -224,7 +224,7 @@ function companyFunc(company){
 
     sql = sql + "and insurance_premium.company = '" + document.getElementById('company').value + "' ";
 
-    document.getElementById("sql").value = "SELECT distinct insurance_premium.name FROM web_data.insurance_premium where 1=1 "+sql;
+    document.getElementById("sql").value = "SELECT distinct insurance_premium.type FROM web_data.insurance_premium where 1=1 "+sql;
 
     // alert(document.getElementById("sql").value);
 
