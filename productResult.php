@@ -6,6 +6,7 @@ mysql_select_db("web_data"); //選擇資料庫
 mysql_query("set names utf8"); //以utf8讀取資料，讓資料可以讀取中文
 $company = $_POST['company'];
 $product = $_POST['product'];
+$type = $_POST['type'];
 ?>
 </head>
 <!DOCTYPE html>
@@ -156,7 +157,7 @@ th {
                 </td>
                 </tr>
                 <tr>
-                <td>年期：</td>
+                <!-- <td>年期：</td>
                 <td>
                     <select name="year" id="year">
                         <option value="0">0</option>
@@ -166,6 +167,27 @@ th {
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
+                    </select>
+                年期</td> -->
+                <td>年期：</td>
+                <td>
+                    <select name="year" id="year">
+
+                    <?php
+                    
+                    $lengthQuery="SELECT distinct (length) FROM web_data.insurance_premium where 1=1 and insurance_premium.company = '$company' and insurance_premium.name = '$product' ";
+
+                    $lengthResult=mysql_query($lengthQuery) or die ("Query to get data from firsttable failed: ".mysql_error());
+                    
+                    while ($lengthRow=mysql_fetch_array($lengthResult)) {
+                    $length=$lengthRow["length"];
+                        echo "<option value=\"$length\">
+                            $length
+                        </option>";
+                    }
+                        
+                    ?>
+                        
                     </select>
                 年期</td>
                 <td>保額：</td>

@@ -69,7 +69,7 @@ td {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 </head>
 
-<div class="container">
+<!-- <div class="container">
 <h3 align="center"><b>保險類別</b></h3>
 <br>
 <hr>
@@ -86,8 +86,9 @@ td {
 <br>
 <br>
 <br>
-</div>
-<div class="container" style="background-color:#e0e1e2;">
+</div> -->
+<!-- <div class="container" style="background-color:#e0e1e2;"> -->
+<div class="container">
 <h3 align="center"><b>公司名稱</b></h3>
 <br>
 <hr>
