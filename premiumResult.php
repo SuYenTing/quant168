@@ -7,6 +7,7 @@ mysql_query("set names utf8"); //以utf8讀取資料，讓資料可以讀取中�
 $company = $_POST['company'];
 $product = $_POST['product'];
 $type = $_POST['type'];
+$insured = $_POST['insured'];
 $sql = $_POST['sql'];
 ?>
 </head>
@@ -91,7 +92,7 @@ th {
             <tr>
                 <td>年齡：</td>
                 <td>
-                    <select name="currentAge" id="currentAge">
+                    <select name="currentAge" id="currentAge" disabled="disabled">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -180,7 +181,7 @@ th {
                 <tr>
                 <td>年期：</td>
                 <td>
-                    <select name="length" id="length">
+                    <select name="length" id="length" disabled="disabled">
 
                     <?php
                     
@@ -201,7 +202,7 @@ th {
                 年期</td>
                 <td>保額：</td>
                 <td>
-                    <input type="number" name="insured" id="insured" value="5">萬
+                    <input type="number" name="insured" id="insured" value="5" disabled="disabled">萬
                 </td>
                 <input type="hidden" id="product" name="product">
                 <input type="hidden" id="company" name="company">
@@ -209,20 +210,29 @@ th {
             </table>
 
             <h1>
+                保費：
                 <?php
                     $premiumResult = mysql_query("$sql");
                     while ($premiumRow = mysql_fetch_array($premiumResult)) {
                         $premium = $premiumRow["premium"];
-                        echo $premium;
+                        $unit = $premiumRow["unit"];
+                        
+                        echo (($insured * 10000)/$unit)*$premium;
                     }
                 ?>
+                元
             </h1>
+            <button onclick="goBack()" class="button button4">回到上頁</button>
 </div>
 </body>
 <script type="text/javascript">
     
 function genderFunc(gender) {
     document.getElementById("genders").value = gender;
+}
+
+function goBack(){
+    window.history.back();
 }
 
 </script>

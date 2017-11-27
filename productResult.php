@@ -240,7 +240,7 @@ function calculate(){
     sql = sql + "and insurance_premium.gender = " + document.getElementById('genders').value + " ";
 
 
-    document.getElementById("sql").value = "SELECT insurance_premium.premium FROM web_data.insurance_premium where 1=1 "+sql;
+    document.getElementById("sql").value = "SELECT insurance_premium.premium, insurance_premium.unit FROM web_data.insurance_premium where 1=1 "+sql;
 
     // alert(document.getElementById('sql').value);
 
