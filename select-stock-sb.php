@@ -1,11 +1,11 @@
 <?php
-include("navbar.html");
+include "navbar.html";
 ?>
 <?php
 set_time_limit(0);
-mysql_connect("140.119.86.174","nccu","nccu");//連結伺服器
-mysql_select_db("web_data");//選擇資料庫
-mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中文
+mysql_connect("140.119.86.174", "nccu", "nccu"); //連結伺服器
+mysql_select_db("web_data"); //選擇資料庫
+mysql_query("set names utf8"); //以utf8讀取資料，讓資料可以讀取中文
 //從contact資料庫中選擇所有的資料表
 
 ?>
@@ -470,33 +470,33 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
                 <div id="resultDiv">
                     <table id="resultTable">
                         <?php
-                            if(isset($_POST['sql'])){
-                                $sql=$_POST['sql'];
-                                //$sql="SELECT DISTINCT stock_tech.code FROM web_data.stock_tech INNER JOIN sb_score ON stock_tech.code=sb_score.code INNER JOIN ins_bs_con ON stock_tech.code=ins_bs_con.code  INNER JOIN ins_bs_interval ON stock_tech.code=ins_bs_interval.code where 1=1 ".$sql." order by stock_tech.code";
-                                $data=mysql_query($sql);
-                        ?>
+if (isset($_POST['sql'])) {
+	$sql = $_POST['sql'];
+	//$sql="SELECT DISTINCT stock_tech.code FROM web_data.stock_tech INNER JOIN sb_score ON stock_tech.code=sb_score.code INNER JOIN ins_bs_con ON stock_tech.code=ins_bs_con.code  INNER JOIN ins_bs_interval ON stock_tech.code=ins_bs_interval.code where 1=1 ".$sql." order by stock_tech.code";
+	$data = mysql_query($sql);
+	?>
                         <tr>
                             <td colspan="5">股票代碼</td>
                         </tr>
                         <?php
-                            for($i=1;$i<=mysql_num_rows($data);$i=$i+5){
-                                
-                        ?>
+for ($i = 1; $i <= mysql_num_rows($data); $i = $i + 5) {
+
+		?>
                         <tr class="content">
                         <?php
-                            for($j=1;$j<=5;$j++){
-                                $rs=mysql_fetch_row($data);
-                        ?>
-                            <td><?php echo $rs[0]?>&nbsp</td>
+for ($j = 1; $j <= 5; $j++) {
+			$rs = mysql_fetch_row($data);
+			?>
+                            <td><a href="stockSearch.php?code=<?php echo $rs[0] ?>"><?php echo $rs[0] ?></a>&nbsp</td>
                         <?php
-                                }
-                        ?>
+}
+		?>
                         </tr>
                         <?php
-                                
-                            }
-                        }
-                        ?>
+
+	}
+}
+?>
                     </table>
                 </div>
             </td>
@@ -509,7 +509,7 @@ mysql_query("set names utf8");//以utf8讀取資料，讓資料可以讀取中�
 <script type="text/javascript">
 var condition = [];
 var sqlarr = [];
-var tablearr = []; 
+var tablearr = [];
 function addcondition(type) {
     if (type == 'sb') {
         condition.push(document.getElementById("sbtype").options[document.getElementById("sbtype").selectedIndex].text + document.getElementById("sbbigsmall").options[document.getElementById("sbbigsmall").selectedIndex].text + document.getElementById("sbscore").options[document.getElementById("sbscore").selectedIndex].text);
@@ -587,7 +587,7 @@ function selectStockSbFormSubmit(){
     for (var i = 0; i < sqlarr.length; i++) {
         sql = sql + " and " + sqlarr[i];
     }
-    
+
     table="";
     for (var i = 0; i < tablearr.length; i++) {
         table = table + " INNER JOIN "+tablearr[i]+" ON stock_tech.code="+tablearr[i]+".code ";
