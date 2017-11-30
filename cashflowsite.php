@@ -1154,18 +1154,31 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //現有存款
-        var income2 = J5;
-
-        row.insertCell(3).innerHTML = toThousands(Math.round(income2));
-        J5 = J5 * (1+G28);
+        if (rowAge == B2) {
+            var income2 = J5;
+            var lastYearIncome2 = income2;
+            row.insertCell(3).innerHTML = toThousands(Math.round(income2));
+            J5 = J5 * (1+G28);
+        } else if (rowAge > B2) {
+            var income2 = J5 - lastYearIncome2;
+            row.insertCell(3).innerHTML = toThousands(Math.round(J5));
+            J5 = J5 * (1+G28);
+        }
 
 
 
         //投資&其他
-        var income3 = B7;
 
-        row.insertCell(4).innerHTML = toThousands(Math.round(income3));
-        B7 = B7 * getRandom((1 - (0.7 * D7)),(1 + D7));
+        if (rowAge == B2) {
+            var income3 = B7;
+            var lastYearIncome3 = income3;
+            row.insertCell(4).innerHTML = toThousands(Math.round(income3));
+            B7 = B7 * getRandom((1 - (0.7 * D7)),(1 + D7));
+        } else if (rowAge > B2) {
+            var income3 = B7 - lastYearIncome3;
+            row.insertCell(4).innerHTML = toThousands(Math.round(B7));
+            B7 = B7 * getRandom((1 - (0.7 * D7)),(1 + D7));
+        }
 
 
 
@@ -1513,8 +1526,8 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
             } else if (totalRevenue > (B62 * 12)) {
                 var R = B62 * 12;
 
-                // row.insertCell(17).innerHTML = toThousands(R);
-                row.insertCell(17).innerHTML = Math.round(R);
+                row.insertCell(17).innerHTML = toThousands(R);
+                // row.insertCell(17).innerHTML = Math.round(R);
             }
 
         }
@@ -1522,8 +1535,8 @@ function showResult(B2, B5, B11, D5, D3, D11, J5, G28, F5, G29, G33, B7, D7, H5,
 
 
         //累積餘額
-        // row.insertCell(18).innerHTML = toThousands(totalRevenue - R);
-        row.insertCell(18).innerHTML = Math.round(totalRevenue - R);
+        row.insertCell(18).innerHTML = toThousands(totalRevenue - R);
+        // row.insertCell(18).innerHTML = Math.round(totalRevenue - R);
 
 
 
@@ -1544,23 +1557,25 @@ function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-function toThousands(num) {
-    var num = (num || 0).toString(), re = /\d{3}$/, result = '';
-    while ( re.test(num) ) {
-        result = RegExp.lastMatch + result;
-        if (num !== RegExp.lastMatch) {
-            result = ',' + result;
-            num = RegExp.leftContext;
-        } else {
-            num = '';
-            break;
-        }
-    }
-    if (num) { result = num + result; }
-    return result;
+// function toThousands(num) {
+//     var num = (num || 0).toString(), re = /\d{3}$/, result = '';
+//     while ( re.test(num) ) {
+//         result = RegExp.lastMatch + result;
+//         if (num !== RegExp.lastMatch) {
+//             result = ',' + result;
+//             num = RegExp.leftContext;
+//         } else {
+//             num = '';
+//             break;
+//         }
+//     }
+//     if (num) { result = num + result; }
+//     return result;
+// }
+
+function toThousands (num) {
+    return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
-
-
 
 </script>
 </html>
