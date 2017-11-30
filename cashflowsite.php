@@ -155,7 +155,7 @@ $monthlyAmountValue = $_POST['monthlyAmountValue'];
                 </td>
                 <td>退休時平均餘命</td>
                 <td>
-                    <input name="lifeLeft" type="number" id="lifeLeft" value=13 readonly>歲
+                    <input name="lifeLeft" type="number" id="lifeLeft" value=17 readonly>歲
                 </td>
                 <td>開始工作年齡</td>
                 <td>
