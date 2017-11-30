@@ -88,6 +88,10 @@ th {
 <div class="container">
     <h1><?php echo $product?></h1>
     <hr>
+    <button onclick="" class="button button4">商品DM</button>
+    <button onclick="" class="button button4">商品條款</button>
+    <button onclick="" class="button button4">商品費率</button>
+    <hr>
         <table>
             <tr>
                 <td>年齡：</td>

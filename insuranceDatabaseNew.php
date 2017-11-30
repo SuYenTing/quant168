@@ -89,7 +89,7 @@ td {
 </div> -->
 <!-- <div class="container" style="background-color:#e0e1e2;"> -->
 <div class="container">
-<h3 align="center"><b>公司名稱</b></h3>
+<h1 align="center">保險查詢</h1>
 <br>
 <hr>
 <form id="insuranceSearch" name="insuranceSearch" method="post" action="insuranceResultNew.php">
