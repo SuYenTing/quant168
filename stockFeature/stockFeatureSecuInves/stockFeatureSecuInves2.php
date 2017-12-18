@@ -29,16 +29,16 @@ th {
             <th>淨買超金額</th>
         </tr>
 <?php
-$result=mysql_query("SELECT ins_bs_con.code,t_net_buy_volume,t_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by t_net_buy_volume desc limit 20;");
-    for($i=1;$i<=mysql_num_rows($result);$i++){
-        $rs=mysql_fetch_row($result);
-?>
+$result = mysql_query("SELECT ins_bs_con.code,t_net_buy_volume,t_net_buy_value FROM web_data.ins_bs_con where  ins_bs_con.date=(select max(ins_bs_con.date) from web_data.ins_bs_con) order by t_net_buy_volume desc limit 20;");
+for ($i = 1; $i <= mysql_num_rows($result); $i++) {
+	$rs = mysql_fetch_row($result);
+	?>
                     <tr class="tr">
-                        <td class="td"><?php echo $i;?></td>
-                        <td class="td"><?php echo $rs[0];?></td>
-                        <td class="td"><?php echo $rs[1];?></td>
-                        <td class="td"><?php echo $rs[2];?></td>
+                        <td class="td"><?php echo $i; ?></td>
+                        <td class="td"><a href="stockSearch.php?code=<?php echo $rs[0] ?>"><?php echo $rs[0] ?></td>
+                        <td class="td"><?php echo $rs[1]; ?></td>
+                        <td class="td"><?php echo $rs[2]; ?></td>
                     </tr>
-<?php } ?>        
+<?php }?>
     </table>
 </div>

@@ -69,7 +69,7 @@ function updateSmtChart(trkidx,method) {
         },
         series: []
     };
-    $.getJSON("/data/DrawSmtChart.php",{trkidx:trkidx,method:method}, function (json) {
+    $.getJSON("/quant168/data/DrawSmtChart.php",{trkidx:trkidx,method:method}, function (json) {
         options.xAxis.categories = json[0]['data']; //xAxis: {categories: []}
         options.series[0] = json[1];
         options.series[1] = json[2];
@@ -103,7 +103,7 @@ function updateSmt(trkidx,method){
         updateSmtChart(trkidx,method);
 
         $.ajax({
-            url:"/data/updateSmt.php",
+            url:"/quant168/data/updateSmt.php",
             timeout:30000,
             method:"POST",
             data:{trkidx:trkidx,method:0},
@@ -117,7 +117,7 @@ function updateSmt(trkidx,method){
     {
 
         $.ajax({
-            url:"/data/updateSmt.php",
+            url:"/quant168/data/updateSmt.php",
             timeout:30000,
             method:"POST",
             data:{trkidx:trkidx,method:method},
