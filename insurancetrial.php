@@ -1,6 +1,13 @@
 <?php
 
 include("navbar.html");
+require_once 'reader.php';
+
+$data = new Spreadsheet_Excel_Reader();
+$data->setOutputEncoding('UTF-8');
+// $data->read('male1.xls');
+// $value = $data->sheets[0]['cells'][3][8];
+// echo $value;
 
 ?>
 
@@ -286,7 +293,7 @@ th {
 
 function genderFunc(gender) {
     document.getElementById("genders").value = gender;
-    alert(document.getElementById('genders').value);
+    // alert(document.getElementById('genders').value);
 }
 
 function insuranceTypeFunc(selectOption) {
@@ -376,6 +383,11 @@ function insuranceTypeFunc(selectOption) {
             break;
     }
 
+}
+
+function calculate(){
+    document.getElementById('form').action = "insurancetrialResult.php";
+    document.getElementById('form').submit();
 }
 
 </script>
