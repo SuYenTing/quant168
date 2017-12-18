@@ -20,7 +20,7 @@ $result1=mysql_query("SELECT ins_bs_con.code,f_con_buy_days,f_net_buy_value FROM
         $rs1=mysql_fetch_row($result1);
 ?>
                     <tr class="tr">
-                        <td class="td"><?php echo $rs1[0];?></td>
+                        <td class="td"><a href="stockSearch.php?code=<?php echo $rs[0] ?>"><?php echo $rs[0] ?></td>
                         <td class="td"><?php echo $rs1[1];?></td>
                         <td class="td"><?php echo $rs1[2];?></td>
                     </tr>
@@ -43,7 +43,7 @@ $result2=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FR
         $rs2=mysql_fetch_row($result2);
 ?>
                     <tr class="tr">
-                        <td class="td"><?php echo $rs2[0];?></td>
+                        <td class="td"><a href="stockSearch.php?code=<?php echo $rs[0] ?>"><?php echo $rs[0] ?></td>
                         <td class="td"><?php echo $rs2[1];?></td>
                         <td class="td"><?php echo $rs2[2];?></td>
                     </tr>
@@ -68,7 +68,7 @@ $result3=mysql_query("SELECT ins_bs_con.code,f_con_sell_days,f_net_buy_value FRO
         $rs3=mysql_fetch_row($result3);
 ?>
                     <tr class="tr">
-                        <td class="td"><?php echo $rs3[0];?></td>
+                        <td class="td"><a href="stockSearch.php?code=<?php echo $rs[0] ?>"><?php echo $rs[0] ?></td>
                         <td class="td"><?php echo $rs3[1];?></td>
                         <td class="td"><?php echo $rs3[2];?></td>
                     </tr>
@@ -91,7 +91,7 @@ $result4=mysql_query("SELECT ins_bs_con.code,f_net_buy_volume,f_net_buy_value FR
         $rs4=mysql_fetch_row($result4);
 ?>
                     <tr class="tr">
-                        <td class="td"><?php echo $rs4[0];?></td>
+                        <td class="td"><a href="stockSearch.php?code=<?php echo $rs[0] ?>"><?php echo $rs[0] ?></td>
                         <td class="td"><?php echo $rs4[1];?></td>
                         <td class="td"><?php echo $rs4[2];?></td>
                     </tr>
