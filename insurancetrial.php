@@ -66,6 +66,8 @@ th {
     </style>
 
     <div class="container">
+
+    <h1 align="center">保險試算</h1>
         
         <form method="post" action="" name="form" id="form">
         <table>
