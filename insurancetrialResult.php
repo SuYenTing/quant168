@@ -191,7 +191,7 @@ function func(){
             break;
         case 2:
 
-            //數值有誤
+            //完成
 
             annualyInsuranceRow.style.display = "none";
             survivalPayRow.style.display = "none";
