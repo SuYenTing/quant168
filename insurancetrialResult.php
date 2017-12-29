@@ -492,12 +492,87 @@ function func(){
             survivalPayRow.style.display = "none";
             annualySurvivalPayRow.style.display = "none";
             insurancePayRow.style.display = "none";
+
+            <?php $postponeTime = $_POST['postponeTime']; ?>
+
+            if (gender == "male") {
+                if (paymentType == 1) {
+
+                    var Nxu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
+                    var Dx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][7] ?>;
+                    var G = Nxu/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Nxu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
+                    var Nxs = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
+                    var G = Nxu/(Nx-Nxs);
+                    alert(G);
+                }
+            }else if (gender == "female") {
+                if (paymentType == 1) {
+
+                    var Nxu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
+                    var Dx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][7] ?>;
+                    var G = Nxu/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Nxu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
+                    var Nxs = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
+                    var G = Nxu/(Nx-Nxs);
+                    alert(G);
+                }
+            }
+
             break;
         case 9:
             monthlyInsuranceRow.style.display = "none";
             survivalPayRow.style.display = "none";
             annualySurvivalPayRow.style.display = "none";
             insurancePayRow.style.display = "none";
+
+            <?php $insuranceSpan = $_POST['insuranceSpan'];
+                  $postponeTime = $_POST['postponeTime']; ?>
+
+            if (gender == "male") {
+                if (paymentType == 1) {
+
+                    var Nxu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
+                    var Nxtu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime+$insuranceSpan][9] ?>;
+                    var Dx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][7] ?>;
+                    var G = (Nxu-Nxtu)/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Nxu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
+                    var Nxtu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime+$insuranceSpan][9] ?>;
+                    var Nxs = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
+                    var G = (Nxu-Nxtu)/(Nx-Nxs);
+                    alert(G);
+                }
+            }else if (gender == "female") {
+                if (paymentType == 1) {
+
+                    var Nxu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
+                    var Nxtu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime+$insuranceSpan][9] ?>;
+                    var Dx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][7] ?>;
+                    var G = (Nxu-Nxtu)/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Nxu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
+                    var Nxtu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime+$insuranceSpan][9] ?>;
+                    var Nxs = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
+                    var G = (Nxu-Nxtu)/(Nx-Nxs);
+                    alert(G);
+                }
+            }
+
             break;
     }
 
