@@ -5,7 +5,7 @@ require_once 'reader.php';
 
 $data = new Spreadsheet_Excel_Reader();
 $data->setOutputEncoding('UTF-8');
-// $data->read('male1.xls');
+$data->read('male1.xls');
 // $value = $data->sheets[0]['cells'][3][8];
 // echo $value;
 
@@ -132,6 +132,7 @@ th {
 function func(){
 
     var type = <?php echo $insuranceType ?>;
+    var paymentType = <?php echo $paymentType ?>;
 
     var annualyInsuranceRow = document.getElementById('annualyInsuranceRow');
     var monthlyInsuranceRow = document.getElementById('monthlyInsuranceRow');
@@ -146,6 +147,18 @@ function func(){
             survivalPayRow.style.display = "none";
             annualySurvivalPayRow.style.display = "none";
             annualyAmountRow.style.display = "none";
+
+            if (paymentType == 1) {
+
+                var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
+                var Dx = <?php echo $data->sheets[0]['cells'][3+$currentAge][9] ?>;
+                var G = Mx/Dx;
+
+            } else if (paymentType == 2) {
+                var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
+                var Nx = <?php echo $data->sheets[0]['cells'][3+$currentAge][11] ?>;
+            }
+
             break;
         case 2:
             annualyInsuranceRow.style.display = "none";
