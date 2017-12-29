@@ -1,9 +1,10 @@
-<?php 
+<?php
 include "navbar.html";
 set_time_limit(0);
 mysql_connect("140.119.86.174", "nccu", "nccu"); //連結伺服器
 mysql_select_db("web_data"); //選擇資料庫
 mysql_query("set names utf8"); //以utf8讀取資料，讓資料可以讀取中文
+$company = $_POST['company'];
 $type = $_POST['type'];
 ?>
 
@@ -61,36 +62,38 @@ th {
 </head>
 
 <div class="container">
-    <h1 align="center"><?php echo $type?></h1>
+    <h1 align="center"><?php echo $company ?></h1>
     <hr>
     <form id="productSearch" name="productSearch" method="post" action="productResultNew.php">
         <table>
             <tr>
-                <th>公司名稱</th>
+                <th><?php echo $type ?></th>
             </tr>
     <?php
-    $sql=$_POST['sql'];
-    $result=mysql_query("$sql");
-    for($i=0;$i<mysql_num_rows($result);$i++){
-    $rs=mysql_fetch_row($result);
-    ?>
-            <tr class="content" onclick="productInfo('<?php echo $rs[0]?>')">
-              <td><?php echo $rs[0]?></td>
+$sql = $_POST['sql'];
+$result = mysql_query("$sql");
+for ($i = 0; $i < mysql_num_rows($result); $i++) {
+	$rs = mysql_fetch_row($result);
+	?>
+            <tr class="content" onclick="productInfo('<?php echo $rs[0] ?>')">
+              <td><?php echo $rs[0] ?></td>
             </tr>
     <?php
-    }
-    ?>
+}
+?>
         </table>
     <input type="hidden" id="product" name="product">
     <input type="hidden" id="company" name="company">
+    <input type="hidden" id="type" name="type">
     <input type="hidden" name="sql" id="sql">
     </form>
 </div>
 <script type="text/javascript">
-    
+
 function productInfo(product){
     document.getElementById('product').value = product;
     document.getElementById('company').value = "<?php echo $company ?>";
+    document.getElementById('type').value = "<?php echo $type ?>";
     // alert(document.getElementById('product').value);
     // alert(document.getElementById('company').value);
     // alert(ya);
@@ -99,6 +102,7 @@ function productInfo(product){
 
     sql = sql + "and insurance_premium.company = '" + document.getElementById('company').value + "' ";
     sql = sql + "and insurance_premium.name = '" + document.getElementById('product').value + "' ";
+    sql = sql + "and insurance_premium.type = '" + document.getElementById('type').value + "' ";
 
     // alert(sql);
 
