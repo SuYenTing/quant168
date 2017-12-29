@@ -10,6 +10,14 @@ $data->read('male1.xls');
 $data2 = new Spreadsheet_Excel_Reader();
 $data2->setOutputEncoding('UTF-8');
 $data2->read('female1.xls');
+
+$data3 = new Spreadsheet_Excel_Reader();
+$data3->setOutputEncoding('UTF-8');
+$data3->read('male2.xls');
+
+$data4 = new Spreadsheet_Excel_Reader();
+$data4->setOutputEncoding('UTF-8');
+$data4->read('female2.xls');
 // $value = $data->sheets[0]['cells'][3][8];
 // echo $value;
 
@@ -404,12 +412,80 @@ function func(){
             survivalPayRow.style.display = "none";
             annualySurvivalPayRow.style.display = "none";
             insurancePayRow.style.display = "none";
+
+            if (gender == "male") {
+                if (paymentType == 1) {
+
+                    var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Dx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][7] ?>;
+                    var G = Nx/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Nxs = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
+                    var G = Nx/(Nx-Nxs);
+                    alert(G);
+                }
+            }else if (gender == "female") {
+                if (paymentType == 1) {
+
+                    var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Dx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][7] ?>;
+                    var G = Nx/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Nxs = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
+                    var G = Nx/(Nx-Nxs);
+                    alert(G);
+                }
+            }
+
             break;
         case 7:
             monthlyInsuranceRow.style.display = "none";
             survivalPayRow.style.display = "none";
             annualySurvivalPayRow.style.display = "none";
             insurancePayRow.style.display = "none";
+
+            <?php $insuranceSpan = $_POST['insuranceSpan']; ?>
+
+            if (gender == "male") {
+                if (paymentType == 1) {
+
+                    var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Dx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][7] ?>;
+                    var Nxt = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
+                    var G = (Nx-Nxt)/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Nxs = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
+                    var Nxt = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
+                    var G = (Nx-Nxt)/(Nx-Nxs);
+                    alert(G);
+                }
+            }else if (gender == "female") {
+                if (paymentType == 1) {
+
+                    var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Dx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][7] ?>;
+                    var Nxt = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
+                    var G = (Nx-Nxt)/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var Nxs = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
+                    var Nxt = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
+                    var G = (Nx-Nxt)/(Nx-Nxs);
+                    alert(G);
+                }
+            }
+
             break;
         case 8:
             monthlyInsuranceRow.style.display = "none";
