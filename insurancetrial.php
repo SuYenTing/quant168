@@ -88,7 +88,7 @@ th {
                     <select name="currentAge" id="currentAge">
                         <option value="18">18</option>
                         <option value="19">19</option>
-                        <option value="20">20</option>
+                        <option value="20"selected>20</option>
                         <option value="21">21</option>
                         <option value="22">22</option>
                         <option value="23">23</option>
@@ -98,7 +98,7 @@ th {
                         <option value="27">27</option>
                         <option value="28">28</option>
                         <option value="29">29</option>
-                        <option value="30"selected>30</option>
+                        <option value="30">30</option>
                         <option value="31">31</option>
                         <option value="32">32</option>
                         <option value="33">33</option>
