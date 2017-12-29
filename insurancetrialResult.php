@@ -6,6 +6,10 @@ require_once 'reader.php';
 $data = new Spreadsheet_Excel_Reader();
 $data->setOutputEncoding('UTF-8');
 $data->read('male1.xls');
+
+$data2 = new Spreadsheet_Excel_Reader();
+$data2->setOutputEncoding('UTF-8');
+$data2->read('female1.xls');
 // $value = $data->sheets[0]['cells'][3][8];
 // echo $value;
 
@@ -131,6 +135,7 @@ th {
 
 function func(){
 
+    var gender = "<?php echo $gender ?>";
     var type = <?php echo $insuranceType ?>;
     var paymentType = <?php echo $paymentType ?>;
 
@@ -148,15 +153,36 @@ function func(){
             annualySurvivalPayRow.style.display = "none";
             annualyAmountRow.style.display = "none";
 
-            if (paymentType == 1) {
+            if (gender == "male") {
+                if (paymentType == 1) {
 
-                var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
-                var Dx = <?php echo $data->sheets[0]['cells'][3+$currentAge][9] ?>;
-                var G = Mx/Dx;
+                    var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
+                    var Dx = <?php echo $data->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var G = Mx/Dx;
+                    alert(G);
 
-            } else if (paymentType == 2) {
-                var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
-                var Nx = <?php echo $data->sheets[0]['cells'][3+$currentAge][11] ?>;
+                } else if (paymentType == 2) {
+                    var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
+                    var Nx = <?php echo $data->sheets[0]['cells'][3+$currentAge][11] ?>;
+                    var Nxs = <?php echo $data->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
+                    var G = Mx/(Nx-Nxs);
+                    alert(G);
+                }
+            }else if (gender == "female") {
+                if (paymentType == 1) {
+
+                    var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
+                    var Dx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][9] ?>;
+                    var G = Mx/Dx;
+                    alert(G);
+
+                } else if (paymentType == 2) {
+                    var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
+                    var Nx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][11] ?>;
+                    var Nxs = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
+                    var G = Mx/(Nx-Nxs);
+                    alert(G);
+                }
             }
 
             break;
