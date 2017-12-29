@@ -172,7 +172,7 @@ th {
                             <option value="6">6</option>
                             <option value="10">10</option>
                             <option value="20">20</option>
-                            <option value="30">30</option>
+                            <option value="30" selected>30</option>
                         </select>
                     </td>
                 </tr>
@@ -181,7 +181,7 @@ th {
                     <td>
                         <select name="paymentType" id="paymentType">
                             <option value="1">躉繳</option>
-                            <option value="2">分期</option>
+                            <option value="2" selected>分期</option>
                         </select>
                     </td>
                 </tr>
@@ -192,7 +192,7 @@ th {
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
-                            <option value="20">20</option>
+                            <option value="20" selected>20</option>
                         </select>
                     </td>
                 </tr>
@@ -250,7 +250,7 @@ th {
                         <select id="postponeTime" name="postponeTime">
                             <option value="5">5</option>
                             <option value="10">10</option>
-                            <option value="20">20</option>
+                            <option value="20" selected>20</option>
                             <option value="30">30</option>
                         </select>
                     </td>
@@ -259,6 +259,7 @@ th {
                     <td>保險金額</td>
                     <td>
                         <select id="insuranceAmount" name="insuranceAmount">
+                            <option value="100000" selected>10</option>
                             <option value="200000">20</option>
                             <option value="300000">30</option>
                             <option value="400000">40</option>

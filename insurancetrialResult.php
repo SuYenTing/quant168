@@ -109,11 +109,11 @@ th {
                 </tr>
                 <tr id="annualyInsuranceRow" name="annualyInsuranceRow">
                     <td>年繳保費：</td>
-                    <td>元</td>
+                    <td id="annualyInsuranceAmount">元</td>
                 </tr>
                 <tr id="monthlyInsuranceRow" name="monthlyInsuranceRow">
                     <td>月繳保費：</td>
-                    <td>元</td>
+                    <td id="monthlyInsuranceAmount">元</td>
                 </tr>
                 <tr id="survivalPayRow" name="survivalPayRow">
                     <td>生存金：</td>
@@ -125,11 +125,11 @@ th {
                 </tr>
                 <tr id="insurancePayRow" name="insurancePayRow">
                     <td>保險金額：</td>
-                    <td>萬</td>
+                    <td><?php echo $insuranceAmount?>萬</td>
                 </tr>
                 <tr id="annualyAmountRow" name="annualyAmountRow">
                     <td>每年年金：</td>
-                    <td>萬</td>
+                    <td id="annualyAmount">萬</td>
                 </tr>
             
             </table>
@@ -146,6 +146,7 @@ function func(){
     var gender = "<?php echo $gender ?>";
     var type = <?php echo $insuranceType ?>;
     var paymentType = <?php echo $paymentType ?>;
+    var insuranceAmount = <?php echo $insuranceAmount?>;
 
     var annualyInsuranceRow = document.getElementById('annualyInsuranceRow');
     var monthlyInsuranceRow = document.getElementById('monthlyInsuranceRow');
@@ -167,34 +168,47 @@ function func(){
             if (gender == "male") {
                 if (paymentType == 1) {
 
+                    var loading = 0.25;
+
                     var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Dx = <?php echo $data->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var G = Mx/Dx;
-                    alert(G);
+                    // alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.25;
+
                     var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Nx = <?php echo $data->sheets[0]['cells'][3+$currentAge][11] ?>;
                     var Nxs = <?php echo $data->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
                     var G = Mx/(Nx-Nxs);
-                    alert(G);
+                    // alert(G);
                 }
             }else if (gender == "female") {
                 if (paymentType == 1) {
 
+                    var loading = 0.25;
+
                     var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Dx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var G = Mx/Dx;
-                    alert(G);
+                    // alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.25;
+
                     var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Nx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][11] ?>;
                     var Nxs = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
                     var G = Mx/(Nx-Nxs);
-                    alert(G);
+                    // alert(G);
                 }
             }
+
+            var annualyInsurance = Math.floor(G * insuranceAmount/(1-loading));
+            document.getElementById('annualyInsuranceAmount').innerHTML = annualyInsurance + "元";
 
             break;
         case 2:
@@ -211,38 +225,52 @@ function func(){
             if (gender == "male") {
                 if (paymentType == 1) {
 
+                    var loading = 0.45;
+
                     var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Mxt = <?php echo $data->sheets[0]['cells'][3+$currentAge+$insuranceSpan][10] ?>;
                     var Dx = <?php echo $data->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var G = (Mx - Mxt)/Dx;
-                    alert(G);
+                    // alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.5;
+
                     var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Mxt = <?php echo $data->sheets[0]['cells'][3+$currentAge+$insuranceSpan][10] ?>;
                     var Nx = <?php echo $data->sheets[0]['cells'][3+$currentAge][11] ?>;
                     var Nxs = <?php echo $data->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
                     var G = (Mx-Mxt)/(Nx-Nxs);
-                    alert(G);
+                    // alert(G);
                 }
             }else if (gender == "female") {
                 if (paymentType == 1) {
+
+                    var loading = 0.45;
 
                     var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Mxt = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$insuranceSpan][10] ?>;
                     var Dx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var G = (Mx - Mxt)/Dx;
-                    alert(G);
+                    // alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.5;
+
                     var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Mxt = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$insuranceSpan][10] ?>;
                     var Nx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][11] ?>;
                     var Nxs = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
                     var G = (Mx-Mxt)/(Nx-Nxs);
-                    alert(G);
+                    // alert(G);
                 }
             }
+
+            var annualyInsurance = Math.floor(G * insuranceAmount/(1-loading));
+            var monthlyInsurance = Math.floor(annualyInsurance*0.088);
+            document.getElementById('monthlyInsuranceAmount').innerHTML = monthlyInsurance + "元";
 
             break;
         case 3:
@@ -369,45 +397,61 @@ function func(){
             if (gender == "male") {
                 if (paymentType == 1) {
 
+                    var loading = 0.25;
+
                     var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Dx = <?php echo $data->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Mxt = <?php echo $data->sheets[0]['cells'][3+$currentAge+$insuranceSpan][10] ?>;
                     var Dxt = <?php echo $data->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
                     var G = (Mx - Mxt + Dxt)/Dx;
-                    alert(G);
+                    // alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.25;
+
                     var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Nx = <?php echo $data->sheets[0]['cells'][3+$currentAge][11] ?>;
                     var Nxs = <?php echo $data->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
                     var Mxt = <?php echo $data->sheets[0]['cells'][3+$currentAge+$insuranceSpan][10] ?>;
                     var Dxt = <?php echo $data->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
                     var G = (Mx - Mxt + Dxt)/(Nx-Nxs);
-                    alert(G);
+                    // alert(G);
                 }
             }else if (gender == "female") {
                 if (paymentType == 1) {
+
+                    var loading = 0.25;
 
                     var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Dx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Mxt = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$insuranceSpan][10] ?>;
                     var Dxt = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
                     var G = (Mx - Mxt + Dxt)/Dx;
-                    alert(G);
+                    // alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.25;
+
                     var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Nx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][11] ?>;
                     var Nxs = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
                     var Mxt = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$insuranceSpan][10] ?>;
                     var Dxt = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
                     var G = (Mx - Mxt + Dxt)/(Nx-Nxs);
-                    alert(G);
+                    // alert(G);
                 }
             }
 
+            var annualyInsurance = Math.floor(G * insuranceAmount/(1-loading));
+            document.getElementById('annualyInsuranceAmount').innerHTML = annualyInsurance + "元";
+
             break;
         case 6:
+
+            //6-9數值都差一點，不知道excel為啥有兩個G
+
             monthlyInsuranceRow.style.display = "none";
             survivalPayRow.style.display = "none";
             annualySurvivalPayRow.style.display = "none";
@@ -416,12 +460,17 @@ function func(){
             if (gender == "male") {
                 if (paymentType == 1) {
 
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Dx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][7] ?>;
                     var G = Nx/Dx;
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Nxs = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
                     var G = Nx/(Nx-Nxs);
@@ -430,18 +479,27 @@ function func(){
             }else if (gender == "female") {
                 if (paymentType == 1) {
 
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Dx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][7] ?>;
                     var G = Nx/Dx;
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Nxs = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
                     var G = Nx/(Nx-Nxs);
                     alert(G);
                 }
             }
+
+            var annualyInsurance = Math.floor(G * insuranceAmount/(1-loading));
+            document.getElementById('annualyInsuranceAmount').innerHTML = annualyInsurance + "元";
+            document.getElementById('annualyAmount').innerHTML = <?php echo $insuranceAmount?> + "元";
 
             break;
         case 7:
@@ -455,6 +513,8 @@ function func(){
             if (gender == "male") {
                 if (paymentType == 1) {
 
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Dx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][7] ?>;
                     var Nxt = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
@@ -462,6 +522,9 @@ function func(){
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Nxs = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
                     var Nxt = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
@@ -471,6 +534,8 @@ function func(){
             }else if (gender == "female") {
                 if (paymentType == 1) {
 
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Dx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][7] ?>;
                     var Nxt = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
@@ -478,6 +543,9 @@ function func(){
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Nxs = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
                     var Nxt = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$insuranceSpan][9] ?>;
@@ -485,6 +553,10 @@ function func(){
                     alert(G);
                 }
             }
+
+            var annualyInsurance = Math.floor(G * insuranceAmount/(1-loading));
+            document.getElementById('annualyInsuranceAmount').innerHTML = annualyInsurance + "元";
+            document.getElementById('annualyAmount').innerHTML = <?php echo $insuranceAmount?> + "元";
 
             break;
         case 8:
@@ -498,12 +570,17 @@ function func(){
             if (gender == "male") {
                 if (paymentType == 1) {
 
+                    var loading = 0.09;
+
                     var Nxu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
                     var Dx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][7] ?>;
                     var G = Nxu/Dx;
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Nxu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
                     var Nxs = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
@@ -513,12 +590,17 @@ function func(){
             }else if (gender == "female") {
                 if (paymentType == 1) {
 
+                    var loading = 0.09;
+
                     var Nxu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
                     var Dx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][7] ?>;
                     var G = Nxu/Dx;
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Nxu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
                     var Nxs = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$paymentSpan][9] ?>;
@@ -526,6 +608,10 @@ function func(){
                     alert(G);
                 }
             }
+
+            var annualyInsurance = Math.floor(G * insuranceAmount/(1-loading));
+            document.getElementById('annualyInsuranceAmount').innerHTML = annualyInsurance + "元";
+            document.getElementById('annualyAmount').innerHTML = <?php echo $insuranceAmount?> + "元";
 
             break;
         case 9:
@@ -540,6 +626,8 @@ function func(){
             if (gender == "male") {
                 if (paymentType == 1) {
 
+                    var loading = 0.09;
+
                     var Nxu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
                     var Nxtu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime+$insuranceSpan][9] ?>;
                     var Dx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][7] ?>;
@@ -547,6 +635,9 @@ function func(){
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data3->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Nxu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
                     var Nxtu = <?php echo $data3->sheets[0]['cells'][3+$currentAge+$postponeTime+$insuranceSpan][9] ?>;
@@ -557,6 +648,8 @@ function func(){
             }else if (gender == "female") {
                 if (paymentType == 1) {
 
+                    var loading = 0.09;
+
                     var Nxu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
                     var Nxtu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime+$insuranceSpan][9] ?>;
                     var Dx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][7] ?>;
@@ -564,6 +657,9 @@ function func(){
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.09;
+
                     var Nx = <?php echo $data4->sheets[0]['cells'][3+$currentAge][9] ?>;
                     var Nxu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime][9] ?>;
                     var Nxtu = <?php echo $data4->sheets[0]['cells'][3+$currentAge+$postponeTime+$insuranceSpan][9] ?>;
@@ -572,6 +668,11 @@ function func(){
                     alert(G);
                 }
             }
+
+            var annualyInsurance = Math.floor(G * insuranceAmount/(1-loading));
+            document.getElementById('annualyInsuranceAmount').innerHTML = annualyInsurance + "元";
+            document.getElementById('annualyAmount').innerHTML = <?php echo $insuranceAmount?> + "元";
+
 
             break;
     }
