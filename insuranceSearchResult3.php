@@ -83,16 +83,37 @@ th {
             color: black;
             border: 2px solid #e7e7e7;
         }
-
+        .button5 {
+            background-color: #e7e7e7;
+            color: black;
+            border: 2px solid #e7e7e7;
+        }
         .button4:hover {background-color: #e7e7e7;}
 </style>
 
 <div class="container">
     <h1><?php echo $product ?></h1>
     <hr>
-    <button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/DM.pdf" ?>'" class="button button4">商品DM</button>
-    <button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/條款.pdf" ?>'" class="button button4">商品條款</button>
-    <button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/rate.pdf" ?>'" class="button button4">商品費率</button>
+    <?php
+$dm = "insuranceDatabase/" . $type . $detail . "/" . $company . "/" . $product . "/DM.pdf";
+$contract = "insuranceDatabase/" . $type . $detail . "/" . $company . "/" . $product . "/條款.pdf";
+$rate = "insuranceDatabase/" . $type . $detail . "/" . $company . "/" . $product . "/rate.pdf";
+if (file_exists(iconv('UTF-8', 'BIG5', $dm))) {
+	?><button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/DM.pdf" ?>'" class="button button4">商品DM</button><?php
+} else {
+	?><button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/DM.pdf" ?>'" class="button button5" disabled>商品DM</button><?php
+}
+if (file_exists(iconv('UTF-8', 'BIG5', $contract))) {
+	?><button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/條款.pdf" ?>'" class="button button4">商品條款</button><?php
+} else {
+	?><button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/條款.pdf" ?>'" class="button button5" disabled>商品條款</button><?php
+}
+if (file_exists(iconv('UTF-8', 'BIG5', $rate))) {
+	?><button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/rate.pdf" ?>'" class="button button4">商品費率</button><?php
+} else {
+	?><button onclick="javascript:location.href='insuranceDatabase/<?php echo "$type$detail/$company/$product/rate.pdf" ?>'" class="button button5" disabled>商品費率</button><?php
+}
+?>
     <hr>
 <?php
 $existinsql = mysql_query("SELECT count(name) FROM web_data.insurance_premium where name='$product';");
@@ -216,6 +237,29 @@ if ($rs[0] > 0) {
                 <td>
                     <input type="number" name="insured" id="insured" value="5">萬
                 </td>
+                </tr>
+                <tr>
+                    <td>體位：</td>
+                <td>
+                    <select name="condition" id="condition">
+
+                    <?php
+
+	$lengthQuery = "SELECT distinct (insurance_premium.condition) FROM web_data.insurance_premium where 1=1 and insurance_premium.company = '$company' and insurance_premium.name = '$product' ";
+
+	$lengthResult = mysql_query($lengthQuery) or die("Query to get data from firsttable failed: " . mysql_error());
+
+	while ($lengthRow = mysql_fetch_array($lengthResult)) {
+		$condition = $lengthRow["condition"];
+		echo "<option value=\"$condition\">
+                            $condition
+                        </option>";
+	}
+
+	?>
+
+                    </select>
+                </td>
                 <input type="hidden" id="sql" name="sql">
                 <input type="hidden" id="product" name="product">
                 <input type="hidden" id="company" name="company">
@@ -245,6 +289,7 @@ function calculate(){
     sql = sql + "and insurance_premium.length = " + document.getElementById('length').value + " ";
     sql = sql + "and insurance_premium.age = " + document.getElementById('currentAge').value + " ";
     sql = sql + "and insurance_premium.gender = " + document.getElementById('genders').value + " ";
+    sql = sql + "and insurance_premium.condition = " + document.getElementById('condition').value + " ";
     document.getElementById("sql").value = "SELECT insurance_premium.premium, insurance_premium.unit FROM web_data.insurance_premium where 1=1 "+sql;
     // alert(document.getElementById('sql').value);
     document.getElementById("productSearch").action = "premiumResult.php";
