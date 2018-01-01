@@ -121,11 +121,11 @@ th {
                 </tr>
                 <tr id="annualySurvivalPayRow" name="annualySurvivalPayRow">
                     <td>每年生存金：</td>
-                    <td>萬</td>
+                    <td id="annualySurvivalAmount">萬</td>
                 </tr>
                 <tr id="insurancePayRow" name="insurancePayRow">
                     <td>保險金額：</td>
-                    <td><?php echo $insuranceAmount?>萬</td>
+                    <td><?php echo $insuranceAmount?>元</td>
                 </tr>
                 <tr id="annualyAmountRow" name="annualyAmountRow">
                     <td>每年年金：</td>
@@ -333,54 +333,73 @@ function func(){
             annualyAmountRow.style.display = "none";
 
             <?php $insuranceSpan = $_POST['insuranceSpan']; ?>
+            <?php $survivalPaybackTime = $_POST['survivalPaybackTime']?>
+            var b = <?php echo $_POST['yearlyPaidPropotion'];?>
 
             if (gender == "male") {
                 if (paymentType == 1) {
 
+                    var loading = 0.085;
+
                     var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Dx = <?php echo $data->sheets[0]['cells'][3+$currentAge][9] ?>;
                     //待解決
-                    var Nxm = <?php echo $data->sheets[0]['cells'][3+$currentAge     ][11] ?>;
+                    var Nxm = <?php echo $data->sheets[0]['cells'][3+$currentAge+$survivalPaybackTime][11] ?>;
 
                     var B = <?php echo $data->sheets[0]['cells'][3+$currentAge+$insuranceSpan][11] ?>;
-                    var G = (Mx + (B*Nxm))/Dx;
+                    var G = (Mx + (b*Nxm))/Dx;
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.085;
+
                     var Mx = <?php echo $data->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Nx = <?php echo $data->sheets[0]['cells'][3+$currentAge][11] ?>;
                     var Nxs = <?php echo $data->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
                     //待解決
-                    var Nxm = <?php echo $data->sheets[0]['cells'][3+$currentAge     ][11] ?>;
+                    var Nxm = <?php echo $data->sheets[0]['cells'][3+$currentAge+$survivalPaybackTime][11] ?>;
 
                     var B = <?php echo $data->sheets[0]['cells'][3+$currentAge+$insuranceSpan][11] ?>;
-                    var G = (Mx + (B*Nxm))/(Nx-Nxs);
+                    var G = (Mx + (b*Nxm))/(Nx-Nxs);
                     alert(G);
                 }
             }else if (gender == "female") {
                 if (paymentType == 1) {
 
+                    var loading = 0.085;
+
                     var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Dx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][9] ?>;
                     //待解決
-                    var Nxm = <?php echo $data2->sheets[0]['cells'][3+$currentAge    ][11] ?>;
+                    var Nxm = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$survivalPaybackTime][11] ?>;
 
                     var B = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$insuranceSpan][11] ?>;
-                    var G = (Mx + (B*Nxm))/Dx;
+                    var G = (Mx + (b*Nxm))/Dx;
                     alert(G);
 
                 } else if (paymentType == 2) {
+
+                    var loading = 0.085;
+
                     var Mx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][10] ?>;
                     var Nx = <?php echo $data2->sheets[0]['cells'][3+$currentAge][11] ?>;
                     var Nxs = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$paymentSpan][11] ?>;
                     //待解決
-                    var Nxm = <?php echo $data2->sheets[0]['cells'][3+$currentAge    ][11] ?>;
+                    var Nxm = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$survivalPaybackTime][11] ?>;
 
                     var B = <?php echo $data2->sheets[0]['cells'][3+$currentAge+$insuranceSpan][11] ?>;
-                    var G = (Mx + (B*Nxm))/(Nx-Nxs);
+                    var G = (Mx + (b*Nxm))/(Nx-Nxs);
                     alert(G);
                 }
             }
+
+            var annualyInsurance = Math.floor(G * insuranceAmount/(1-loading));
+            document.getElementById('annualyInsuranceAmount').innerHTML = annualyInsurance + "元";
+
+            var annualySurvival = Math.floor(insuranceAmount * b);
+            document.getElementById('annualySurvivalAmount').innerHTML = annualySurvival + "元";
+
 
             break;
         case 5:
