@@ -210,11 +210,27 @@ th {
                 <tr id="survivalPayTimeRow" name="survivalPayTimeRow" style="display: none">
                     <td>生存金給付時間</td>
                     <td>
+                        <select id="survivalPayTime" name="survivalPayTime">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20" selected>20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                        </select>
                     </td>
                 </tr>
                 <tr id="survivalPayProportionRow" name="survivalPayProportionRow" style="display: none">
                     <td>生存金給付比例</td>
                     <td>
+                        <select id="survivalPayProportion" name="survivalPayProportion">
+                            <option value="0.05">5%</option>
+                            <option value="0.1">10%</option>
+                            <option value="0.15">15%</option>
+                            <option value="0.2" selected>20%</option>
+                            <option value="0.25">25%</option>
+                            <option value="0.3">30%</option>
+                        </select>
                     </td>
                 </tr>
                 <tr id="survivalPaybackTimeRow" name="survivalPaybackTimeRow" style="display: none">
