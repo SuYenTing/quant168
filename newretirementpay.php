@@ -54,6 +54,16 @@ th {
         }
 
         .button4:hover {background-color: #e7e7e7;}
+
+        .button5 {
+            background-color: white;
+            color: black;
+            border: 2px solid #f4425f;
+        }
+
+        .button5:hover {background-color: #f4425f;}
+        </style>
+
         </style>
         
 </head>
@@ -362,10 +372,47 @@ th {
 
             </table>
             <button onclick="changePage()" class="button button4">知道更多(點擊即可計算個人財務規劃)</button>
+            <button onclick="extraOutput(1)" class="button button5">給定退休花費，每月該提存？</button>
+            <button onclick="extraOutput(2)" class="button button5">給定每月提存，退休每月能花費？</button>
+
+            <table id="extraTable" style="display: none">
+            <tr>
+                <th colspan="4" style="text-align:center;">估算結果</th>
+            </tr>
+            <tr id="retireExpenseRow">
+                <td>退休後預期花費（每月）</td>
+                <td></td>
+                <td>現在每月須提撥金額</td>
+                <td></td>
+            </tr>
+            <tr id="monthlySavingRow">
+                <td>現在每月能為退休提撥金額</td>
+                <td></td>
+                <td>退休後每月可花費金額</td>
+                <td></td>
+            </tr>
+            </table>
+
            </body>
 
 
 <script type="text/javascript">
+
+function extraOutput(options){
+
+    switch(options){
+        case 1:
+            document.getElementById('extraTable').style.display = "table";
+            document.getElementById('retireExpenseRow').style.display = "table-row";
+            document.getElementById('monthlySavingRow').style.display = "none";
+            break;
+        case 2:
+            document.getElementById('extraTable').style.display = "table";
+            document.getElementById('retireExpenseRow').style.display = "none";
+            document.getElementById('monthlySavingRow').style.display = "table-row";
+            break;
+    }
+}
 
 function changePage(){
 
