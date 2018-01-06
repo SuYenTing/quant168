@@ -381,33 +381,54 @@ th {
             </tr>
             <tr id="retireExpenseRow">
                 <td>退休後預期花費（每月）</td>
-                <td></td>
+                <td><input name="retireExpense" type="number" id="retireExpense" value=10000></td>
                 <td>現在每月須提撥金額</td>
-                <td></td>
+                <td id="monthlySavingAmount"></td>
             </tr>
             <tr id="monthlySavingRow">
                 <td>現在每月能為退休提撥金額</td>
-                <td></td>
+                <td><input name="monthlySaving" type="number" id="monthlySaving" value=10000></td>
                 <td>退休後每月可花費金額</td>
-                <td></td>
+                <td id="monthlyExpenseAmount"></td>
             </tr>
             </table>
+            <button onclick="extraCalculate()" class="button button4" id="extraButton" style="display: none">計算</button>
+            
 
            </body>
 
 
 <script type="text/javascript">
 
+function extraCalculate(){
+    var retirementPay = document.getElementById('amountAccum').innerHTML;
+    var B7 = parseInt(retirementPay.replace('$',''));
+    var B2 = document.getElementById('currentAge').value;
+    var B3 = document.getElementById('retireAge').value;
+    var B4 = document.getElementById('retireExpense').value;
+    var B9 = 0.0164;
+    var B8 = document.getElementById('lifeLeft').value;
+
+    var B10 = (B4 - B7) * 12 * B9 * (1 - Math.pow((1 + B9), B8 * (-1)));
+
+    var monthlySaving = B10 * (B9/12) * (1/(Math.pow((1+(B9/12)),(B3-B2)*12)-1));
+    alert(1800*(1-Math.pow(1.015,-21.32)));
+
+
+}
+
 function extraOutput(options){
 
     switch(options){
         case 1:
             document.getElementById('extraTable').style.display = "table";
+            document.getElementById('extraButton').style.display = "block";
             document.getElementById('retireExpenseRow').style.display = "table-row";
             document.getElementById('monthlySavingRow').style.display = "none";
             break;
         case 2:
             document.getElementById('extraTable').style.display = "table";
+            document.getElementById('extraButton').style.display = "block";
             document.getElementById('retireExpenseRow').style.display = "none";
             document.getElementById('monthlySavingRow').style.display = "table-row";
             break;
