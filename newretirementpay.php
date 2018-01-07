@@ -409,11 +409,12 @@ function extraCalculate(){
     var B9 = 0.0164;
     var B8 = document.getElementById('lifeLeft').value;
 
-    var B10 = (B4 - B7) * 12 * B9 * (1 - Math.pow((1 + B9), B8 * (-1)));
+    var B10 = (B4 - B7) * 12 / B9 * (1 - Math.pow((1 + B9), B8 * (-1)));
 
     var monthlySaving = B10 * (B9/12) * (1/(Math.pow((1+(B9/12)),(B3-B2)*12)-1));
-    alert(1800*(1-Math.pow(1.015,-21.32)));
-
+    if (monthlySaving < 0) {monthlySaving =0}
+    // alert(monthlySaving);
+    document.getElementById('monthlySavingAmount').innerHTML = "$" + Math.round(monthlySaving);
 
 }
 
