@@ -428,6 +428,36 @@ function extraCalculate(){
     var result = document.getElementById("result");
     result.style.visibility="";
 
+    var rows = result.getElementsByTagName("tr");
+    while (rows.length > 2) {
+        rows[2].parentNode.removeChild(rows[2]);
+    }
+
+    var rowAge;
+
+    for (rowAge = B2; rowAge < 106; rowAge++){
+        var row = document.createElement("tr");
+
+        row.insertCell(0).innerHTML = rowAge;
+
+        if (rowAge < B3) {
+            row.insertCell(1).innerHTML = '$' + toThousands(Math.round(monthlySaving * 12));
+            row.insertCell(2).innerHTML = '$0';
+            row.insertCell(3).innerHTML = '$0';
+        } else if (rowAge >= B3) {
+            row.insertCell(1).innerHTML = '$0';
+            row.insertCell(2).innerHTML = '$' + toThousands(Math.round(B7 * 12));
+            row.insertCell(3).innerHTML = '$' + toThousands(Math.round(B4 * 12));
+        }
+        
+        row.insertCell(4).innerHTML = '-';
+
+        result.appendChild(row);
+    }
+
+    
+
+
 }
 
 function extraOutput(options){
@@ -446,6 +476,10 @@ function extraOutput(options){
             document.getElementById('monthlySavingRow').style.display = "table-row";
             break;
     }
+}
+
+function toThousands (num) {
+    return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
 function changePage(){
