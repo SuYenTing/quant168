@@ -160,7 +160,7 @@ $rs2 = mysql_fetch_row($stock2);
                     <td>權重</td>
                 </tr>
 <?php
-$stock = mysql_query("SELECT * FROM web_data.hedge_strategies_holding where YEAR(start_date) >= (YEAR(CURDATE())-1) and name='growth.1m';");
+$stock = mysql_query("SELECT * FROM web_data.hedge_strategies_holding where YEAR(trade_date) >= (YEAR(CURDATE())-1) and name='growth.1m';");
 for ($i = 1; $i <= mysql_num_rows($stock); $i++) {
 	$rs = mysql_fetch_row($stock);
 	?>
