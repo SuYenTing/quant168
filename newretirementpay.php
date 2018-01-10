@@ -374,6 +374,7 @@ th {
             <button onclick="changePage()" class="button button4">知道更多(點擊即可計算個人財務規劃)</button>
             <button onclick="extraOutput(1)" class="button button5">給定退休花費，每月該提存？</button>
             <button onclick="extraOutput(2)" class="button button5">給定每月提存，退休每月能花費？</button>
+            <input type="hidden" name="extraOutputType" id="extraOutputType" value="1">
 
             <table id="extraTable" style="display: none">
             <tr>
@@ -410,58 +411,77 @@ th {
 <script type="text/javascript">
 
 function extraCalculate(){
-    var retirementPay = document.getElementById('amountAccum').innerHTML;
-    var B7 = parseInt(retirementPay.replace('$',''));
-    var B2 = document.getElementById('currentAge').value;
-    var B3 = document.getElementById('retireAge').value;
-    var B4 = document.getElementById('retireExpense').value;
-    var B9 = 0.0164;
-    var B8 = document.getElementById('lifeLeft').value;
 
-    var B10 = (B4 - B7) * 12 / B9 * (1 - Math.pow((1 + B9), B8 * (-1)));
+    var type = document.getElementById('extraOutputType').value;
 
-    var monthlySaving = B10 * (B9/12) * (1/(Math.pow((1+(B9/12)),(B3-B2)*12)-1));
-    if (monthlySaving < 0) {monthlySaving =0}
-    // alert(monthlySaving);
-    document.getElementById('monthlySavingAmount').innerHTML = "$" + Math.round(monthlySaving);
+    switch(type){
+        case '1':
+            // alert('1');
 
-    var result = document.getElementById("result");
-    result.style.visibility="";
+            var retirementPay = document.getElementById('amountAccum').innerHTML;
+            var B7 = parseInt(retirementPay.replace('$',''));
+            var B2 = document.getElementById('currentAge').value;
+            var B3 = document.getElementById('retireAge').value;
+            var B4 = document.getElementById('retireExpense').value;
+            var B9 = 0.0164;
+            var B8 = document.getElementById('lifeLeft').value;
 
-    var rows = result.getElementsByTagName("tr");
-    while (rows.length > 1) {
-        rows[1].parentNode.removeChild(rows[1]);
+            var B10 = (B4 - B7) * 12 / B9 * (1 - Math.pow((1 + B9), B8 * (-1)));
+
+            var monthlySaving = B10 * (B9/12) * (1/(Math.pow((1+(B9/12)),(B3-B2)*12)-1));
+            if (monthlySaving < 0) {monthlySaving =0}
+            // alert(monthlySaving);
+            document.getElementById('monthlySavingAmount').innerHTML = "$" + Math.round(monthlySaving);
+
+            var result = document.getElementById("result");
+            result.style.visibility="";
+
+            var rows = result.getElementsByTagName("tr");
+            while (rows.length > 1) {
+                rows[1].parentNode.removeChild(rows[1]);
+            }
+
+            var rowAge;
+
+            for (rowAge = B2; rowAge < 106; rowAge++){
+                var row = document.createElement("tr");
+
+                row.insertCell(0).innerHTML = rowAge;
+
+                if (rowAge < B3) {
+                    row.insertCell(1).innerHTML = '$' + toThousands(Math.round(monthlySaving * 12));
+                    row.insertCell(2).innerHTML = '$0';
+                    row.insertCell(3).innerHTML = '$0';
+                } else if (rowAge >= B3) {
+                    row.insertCell(1).innerHTML = '$0';
+                    row.insertCell(2).innerHTML = '$' + toThousands(Math.round(B7 * 12));
+                    row.insertCell(3).innerHTML = '$' + toThousands(Math.round(B4 * 12));
+                }
+                
+                if (rowAge == B2) {
+                    row.insertCell(4).innerHTML = '$' + toThousands(Math.round(monthlySaving * 12));
+                } else if (rowAge > B2 && rowAge < B3) {
+                    var accumMonthlySaving = Math.round(monthlySaving * 12) * ((Math.pow(1.0164,(rowAge - B2 + 1))-1)/0.0164);
+                    row.insertCell(4).innerHTML = '$' + toThousands(accumMonthlySaving);
+                } else if (rowAge >= B3) {
+                    var accumMonthlySaving = Math.round((accumMonthlySaving + Math.round(B7 * 12) - Math.round(B4 * 12))*(1.0164));
+                    row.insertCell(4).innerHTML = '$' + toThousands(accumMonthlySaving);
+                }
+
+                result.appendChild(row);
+            }
+
+            break;
+            
+        case '2':
+            alert('2');
+
+
+
+            break;
     }
 
-    var rowAge;
-
-    for (rowAge = B2; rowAge < 106; rowAge++){
-        var row = document.createElement("tr");
-
-        row.insertCell(0).innerHTML = rowAge;
-
-        if (rowAge < B3) {
-            row.insertCell(1).innerHTML = '$' + toThousands(Math.round(monthlySaving * 12));
-            row.insertCell(2).innerHTML = '$0';
-            row.insertCell(3).innerHTML = '$0';
-        } else if (rowAge >= B3) {
-            row.insertCell(1).innerHTML = '$0';
-            row.insertCell(2).innerHTML = '$' + toThousands(Math.round(B7 * 12));
-            row.insertCell(3).innerHTML = '$' + toThousands(Math.round(B4 * 12));
-        }
-        
-        if (rowAge == B2) {
-            row.insertCell(4).innerHTML = '$' + toThousands(Math.round(monthlySaving * 12));
-        } else if (rowAge > B2 && rowAge < B3) {
-            var accumMonthlySaving = Math.round(monthlySaving * 12) * ((Math.pow(1.0164,(rowAge - B2 + 1))-1)/0.0164);
-            row.insertCell(4).innerHTML = '$' + toThousands(accumMonthlySaving);
-        } else if (rowAge >= B3) {
-            var accumMonthlySaving = Math.round((accumMonthlySaving + Math.round(B7 * 12) - Math.round(B4 * 12))*(1.0164));
-            row.insertCell(4).innerHTML = '$' + toThousands(accumMonthlySaving);
-        }
-
-        result.appendChild(row);
-    }
+    
 
     
 
@@ -476,12 +496,14 @@ function extraOutput(options){
             document.getElementById('extraButton').style.display = "block";
             document.getElementById('retireExpenseRow').style.display = "table-row";
             document.getElementById('monthlySavingRow').style.display = "none";
+            document.getElementById('extraOutputType').value = "1";
             break;
         case 2:
             document.getElementById('extraTable').style.display = "table";
             document.getElementById('extraButton').style.display = "block";
             document.getElementById('retireExpenseRow').style.display = "none";
             document.getElementById('monthlySavingRow').style.display = "table-row";
+            document.getElementById('extraOutputType').value = "2";
             break;
     }
 }
