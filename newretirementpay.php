@@ -450,7 +450,15 @@ function extraCalculate(){
             row.insertCell(3).innerHTML = '$' + toThousands(Math.round(B4 * 12));
         }
         
-        row.insertCell(4).innerHTML = '-';
+        if (rowAge == B2) {
+            row.insertCell(4).innerHTML = '$' + toThousands(Math.round(monthlySaving * 12));
+        } else if (rowAge > B2 && rowAge < B3) {
+            var accumMonthlySaving = Math.round(monthlySaving * 12) * ((Math.pow(1.0164,(rowAge - B2 + 1))-1)/0.0164);
+            row.insertCell(4).innerHTML = '$' + toThousands(accumMonthlySaving);
+        } else if (rowAge >= B3) {
+            var accumMonthlySaving = Math.round((accumMonthlySaving + Math.round(B7 * 12) - Math.round(B4 * 12))*(1.0164));
+            row.insertCell(4).innerHTML = '$' + toThousands(accumMonthlySaving);
+        }
 
         result.appendChild(row);
     }
