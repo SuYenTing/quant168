@@ -472,11 +472,62 @@ function extraCalculate(){
             }
 
             break;
-            
+
         case '2':
-            alert('2');
+            // alert('2');
 
+            var retirementPay = document.getElementById('amountAccum').innerHTML;
+            var B7 = parseInt(retirementPay.replace('$',''));
+            var B2 = document.getElementById('currentAge').value;
+            var B3 = document.getElementById('retireAge').value;
+            var B4 = document.getElementById('monthlySaving').value;
+            var B9 = 0.0164;
+            var B8 = document.getElementById('lifeLeft').value;
 
+            var B10 = B4 * ((Math.pow((1+(B9/12)),(12*(B3-B2)))-1)/(B9/12));
+
+            var monthlyDominate = B10 * (B9/12) * (1/(1-Math.pow((1+(B9/12)),(-B8 * 12)))) + B7;
+            if (monthlyDominate < 0) {monthlyDominate = 0}
+
+            document.getElementById('monthlyExpenseAmount').innerHTML = "$" + Math.round(monthlyDominate);
+
+            var result = document.getElementById("result");
+            result.style.visibility="";
+
+            var rows = result.getElementsByTagName("tr");
+            while (rows.length > 1) {
+                rows[1].parentNode.removeChild(rows[1]);
+            }
+
+            var rowAge;
+
+            for (rowAge = B2; rowAge < 106; rowAge++){
+                var row = document.createElement("tr");
+
+                row.insertCell(0).innerHTML = rowAge;
+
+                if (rowAge < B3) {
+                    row.insertCell(1).innerHTML = '$' + toThousands(Math.round(B4 * 12));
+                    row.insertCell(2).innerHTML = '$0';
+                    row.insertCell(3).innerHTML = '$0';
+                } else if (rowAge >= B3) {
+                    row.insertCell(1).innerHTML = '$0';
+                    row.insertCell(2).innerHTML = '$' + toThousands(Math.round(B7 * 12));
+                    row.insertCell(3).innerHTML = '$' + toThousands(Math.round(monthlyDominate * 12));
+                }
+                
+                if (rowAge == B2) {
+                    row.insertCell(4).innerHTML = '$' + toThousands(Math.round(B4 * 12));
+                } else if (rowAge > B2 && rowAge < B3) {
+                    var accumMonthlySaving = Math.round(B4 * 12) * ((Math.pow(1.0164,(rowAge - B2 + 1))-1)/0.0164);
+                    row.insertCell(4).innerHTML = '$' + toThousands(accumMonthlySaving);
+                } else if (rowAge >= B3) {
+                    var accumMonthlySaving = Math.round((accumMonthlySaving + Math.round(B7 * 12) - Math.round(B4 * 12))*(1.0164));
+                    row.insertCell(4).innerHTML = '$' + toThousands(accumMonthlySaving);
+                }
+
+                result.appendChild(row);
+            }
 
             break;
     }
