@@ -429,8 +429,8 @@ function extraCalculate(){
     result.style.visibility="";
 
     var rows = result.getElementsByTagName("tr");
-    while (rows.length > 2) {
-        rows[2].parentNode.removeChild(rows[2]);
+    while (rows.length > 1) {
+        rows[1].parentNode.removeChild(rows[1]);
     }
 
     var rowAge;
