@@ -70,17 +70,17 @@ th {
             </tr>
             <tr>
                 <td colspan="2">人壽保險</td>
-                <td class="content" onclick="typeInfo2('人壽保險','定期壽險')">定期壽險</td>
-                <td class="content" onclick="typeInfo2('人壽保險','終身壽險')">終身壽險</td>
+                <td class="content" onclick="typeInfo2('人壽保險','/定期壽險')">定期壽險</td>
+                <td class="content" onclick="typeInfo2('人壽保險','/終身壽險')">終身壽險</td>
             </tr>
             <tr class="content" onclick="typeInfo('儲蓄型保險')">
                 <td colspan="4">儲蓄型保險</td>
             </tr>
             <tr>
                 <td>健康醫療保險</td>
-                <td class="content" onclick="typeInfo2('健康醫療保險','/特定傷病（重疾、重大傷病放這）')">特定傷病（重疾、重大傷病放這）</td>
-                <td class="content" onclick="typeInfo2('健康醫療保險','/長期照護（殘扶、長照放這）')">長期照護（殘扶、長照放這）</td>
-                <td class="content" onclick="typeInfo2('健康醫療保險','/住院醫療（住院、手術、blablabla放這）')">住院醫療（住院、手術、blablabla放這）</td>
+                <td class="content" onclick="typeInfo2('健康醫療保險','/特定傷病（重疾、重大傷病放這）')">特定傷病</td>
+                <td class="content" onclick="typeInfo2('健康醫療保險','/長期照護（殘扶、長照放這）')">長期照護</td>
+                <td class="content" onclick="typeInfo2('健康醫療保險','/住院醫療（住院、手術、blablabla放這）')">住院醫療</td>
             </tr>
             <tr class="content" onclick="typeInfo('意外傷害險')">
                 <td colspan="4">意外傷害險</td>

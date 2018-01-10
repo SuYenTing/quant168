@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "navbar.html";
 set_time_limit(0);
 mysql_connect("140.119.86.174", "nccu", "nccu"); //連結伺服器
@@ -86,7 +86,7 @@ th {
 </style>
 
 <div class="container">
-    <h1><?php echo $product?></h1>
+    <h1><?php echo $product ?></h1>
     <hr>
     <button onclick="" class="button button4">商品DM</button>
     <button onclick="" class="button button4">商品條款</button>
@@ -188,20 +188,20 @@ th {
                     <select name="length" id="length" disabled="disabled">
 
                     <?php
-                    
-                    $lengthQuery="SELECT distinct (length) FROM web_data.insurance_premium where 1=1 and insurance_premium.company = '$company' and insurance_premium.name = '$product' ";
 
-                    $lengthResult=mysql_query($lengthQuery) or die ("Query to get data from firsttable failed: ".mysql_error());
-                    
-                    while ($lengthRow=mysql_fetch_array($lengthResult)) {
-                    $length=$lengthRow["length"];
-                        echo "<option value=\"$length\">
+$lengthQuery = "SELECT distinct (length) FROM web_data.insurance_premium where 1=1 and insurance_premium.company = '$company' and insurance_premium.name = '$product' ";
+
+$lengthResult = mysql_query($lengthQuery) or die("Query to get data from firsttable failed: " . mysql_error());
+
+while ($lengthRow = mysql_fetch_array($lengthResult)) {
+	$length = $lengthRow["length"];
+	echo "<option value=\"$length\">
                             $length
                         </option>";
-                    }
-                        
-                    ?>
-                        
+}
+
+?>
+
                     </select>
                 年期</td>
                 <td>保額：</td>
@@ -216,21 +216,22 @@ th {
             <h1>
                 保費：
                 <?php
-                    $premiumResult = mysql_query("$sql");
-                    while ($premiumRow = mysql_fetch_array($premiumResult)) {
-                        $premium = $premiumRow["premium"];
-                        $unit = $premiumRow["unit"];
-                        
-                        echo (($insured * 10000)/$unit)*$premium;
-                    }
-                ?>
+$premiumResult = mysql_query("$sql");
+while ($premiumRow = mysql_fetch_array($premiumResult)) {
+	$premium = $premiumRow["premium"];
+	$unit = $premiumRow["unit"];
+
+	//echo (($insured * 10000)/$unit)*$premium;
+	echo $insured . "/" . $unit . "/" . $premium;
+}
+?>
                 元
             </h1>
             <button onclick="goBack()" class="button button4">回到上頁</button>
 </div>
 </body>
 <script type="text/javascript">
-    
+
 function genderFunc(gender) {
     document.getElementById("genders").value = gender;
 }

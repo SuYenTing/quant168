@@ -9,6 +9,8 @@ $type = $_POST['type'];
 $company = $_POST['company'];
 $detail = $_POST['detail'];
 $sql = $_POST['sql'];
+$showMoney = $_POST['showMoney'];
+$insured = $_POST['insured'];
 if ($detail == "null") {
 	$detail = "";
 }
@@ -120,7 +122,7 @@ $existinsql = mysql_query("SELECT count(name) FROM web_data.insurance_premium wh
 $rs = mysql_fetch_row($existinsql);
 if ($rs[0] > 0) {
 	?>
-    <form id="productSearch" name="productSearch" method="post" action="premiumResult.php">
+    <form id="productSearch" name="productSearch" method="post" action="insuranceSearchResult3.php">
         <table>
             <tr>
                 <td>年齡：</td>
@@ -264,9 +266,28 @@ if ($rs[0] > 0) {
                 <input type="hidden" id="product" name="product">
                 <input type="hidden" id="company" name="company">
                 <input type="hidden" id="type" name="type">
+                <input type="hidden" id="showMoney" name="showMoney" value="false">
                 </tr>
             </table>
             <button onclick="calculate()" class="button button4">計算</button>
+<?php
+}if ($showMoney == "true") {
+	?>
+<h1>
+                保費：
+                <?php
+
+	$premiumResult = mysql_query("$sql");
+	while ($premiumRow = mysql_fetch_array($premiumResult)) {
+		$premium = $premiumRow["premium"];
+		$unit = $premiumRow["unit"];
+
+		echo (($insured * 10000) / $unit) * $premium;
+		//echo $insured . "/" . $unit . "/" . $premium;
+	}
+	?>
+                元
+            </h1>
 <?php
 }
 ?>
@@ -282,17 +303,17 @@ function calculate(){
     document.getElementById('product').value = "<?php echo $product ?>";
     document.getElementById('company').value = "<?php echo $company ?>";
     document.getElementById('type').value = "<?php echo $type ?>";
+    document.getElementById('showMoney').value = "true";
     sql = "";
     sql = sql + "and insurance_premium.company = '" + "<?php echo $company ?>" + "' ";
     sql = sql + "and insurance_premium.name = '" + "<?php echo $product ?>" + "' ";
-    sql = sql + "and insurance_premium.type = '" + "<?php echo $type ?>" + "' ";
     sql = sql + "and insurance_premium.length = " + document.getElementById('length').value + " ";
     sql = sql + "and insurance_premium.age = " + document.getElementById('currentAge').value + " ";
     sql = sql + "and insurance_premium.gender = " + document.getElementById('genders').value + " ";
     sql = sql + "and insurance_premium.condition = " + document.getElementById('condition').value + " ";
     document.getElementById("sql").value = "SELECT insurance_premium.premium, insurance_premium.unit FROM web_data.insurance_premium where 1=1 "+sql;
-    // alert(document.getElementById('sql').value);
-    document.getElementById("productSearch").action = "premiumResult.php";
+    //alert(document.getElementById('sql').value);
+    document.getElementById("productSearch").action = "insuranceSearchResult3.php";
     document.getElementById("productSearch").submit();
 }
 </script>
