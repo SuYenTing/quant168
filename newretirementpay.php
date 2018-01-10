@@ -394,6 +394,15 @@ th {
             </table>
             <button onclick="extraCalculate()" class="button button4" id="extraButton" style="display: none">計算</button>
             
+            <table id="result" style="visibility: hidden">
+                    <tr>
+                        <th colspan="1">年齡</th>
+                        <th colspan="1">當年度提撥金額</th>
+                        <th colspan="1">退休金</td>
+                        <th colspan="1">退休花費</th>
+                        <th colspan="1">累積應提撥金額</th>
+                    </tr>
+                </table>
 
            </body>
 
@@ -415,6 +424,9 @@ function extraCalculate(){
     if (monthlySaving < 0) {monthlySaving =0}
     // alert(monthlySaving);
     document.getElementById('monthlySavingAmount').innerHTML = "$" + Math.round(monthlySaving);
+
+    var result = document.getElementById("result");
+    result.style.visibility="";
 
 }
 
